@@ -1,0 +1,87 @@
+<?xml version="1.0" ?> 
+<project name="Redmagic">
+
+	<property file="build.properties" />
+
+	<target name="clean">
+		<delete file="Development/mcp/src/minecraft/mcmod.info" />
+		<delete dir="~/Development/mcp/src/minecraft/com" />
+		<delete dir="~/Development/mcp/reobf/minecraft" />
+	</target>
+
+	<target name="build">
+		<copy todir="~/Development/mcp/src/minecraft">
+			<fileset dir="~/Development/source/redmagic/common/" />
+		</copy>
+		<replace dir="~/Development/mcp/src/minecraft" token="1.4.3" value="1.4.3" />
+	</target>
+
+	<target name="recompile">
+		<exec dir="~/Development/mcp" executable="cmd" os="Windows 7">
+			<arg line="/c recompile.bat" />
+		</exec>
+		<exec dir="~/Development/mcp" executable="cmd" os="Windows 8">
+			<arg line="/c recompile.bat" />
+		</exec>
+		<exec dir="~/Development/mcp" executable="bash" os="Linux">
+			<arg line="recompile.sh" />
+		</exec>
+		<exec dir="~/Development/mcp" executable="bash" os="Mac OS X">
+			<arg line="recompile.sh" />
+		</exec>
+	</target>
+
+	<target name="reobfuscate">
+		<exec dir="~/Development/mcp" executable="cmd" os="Windows 7">
+			<arg line="/c reobfuscate.bat" />
+		</exec>
+		<exec dir="~/Development/mcp" executable="cmd" os="Windows 8">
+			<arg line="/c reobfuscate.bat" />
+		</exec>
+		<exec dir="~/Development/mcp" executable="bash" os="Linux">
+			<arg line="reobfuscate.sh" />
+		</exec>
+		<exec dir="~/Development/mcp" executable="bash" os="Mac OS X">
+			<arg line="reobfuscate.sh" />
+		</exec>
+	</target>
+
+	<target name="release-shared">
+		<!-- Prep for the release -->
+		<antcall target="clean" />
+		<antcall target="build" />
+		<antcall target="recompile" />		
+		<antcall target="reobfuscate" />
+
+		<!-- Build the jar -->
+		<mkdir dir="${dir.release}/${release.minecraft.version}/${release.mod.version}" />
+		<jar destfile="~/Development/bin/redmagic/Redmagic[Forge][MCXX]v.X.X.X.jar">
+			<fileset dir="~/Development/mcp/src/minecraft/"	includes="mcmod.info" />
+			<fileset dir="~/Development/mcp/reobf/minecraft" />
+			<fileset dir="~/Development/source/redmagic/resources" />
+		</jar>
+
+		<!-- Clean up the MCP source now that we are done -->
+		<antcall target="clean" />
+	</target>
+
+	<target name="release">
+		<!-- Prep for the release -->
+		<antcall target="clean" />
+		<antcall target="build" />
+		<antcall target="recompile" />		
+		<antcall target="reobfuscate" />
+
+		<!-- Build the jar -->
+		<mkdir dir="${dir.release}/${release.minecraft.version}/${release.mod.version}" />
+		<jar destfile="~/Development/source/release/Redmagic_NEW.jar">
+			<fileset dir="~/Development/mcp/src/minecraft/" includes="mcmod.info" />
+			<fileset dir="~/Development/mcp/reobf/minecraft" />
+			<fileset dir="~/Development/source/RedMagic/resources" />
+		</jar>
+
+		<!-- Clean up the MCP source now that we are done -->
+		<antcall target="clean" />
+	</target>
+
+</project>
