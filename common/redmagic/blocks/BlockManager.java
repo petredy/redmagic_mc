@@ -15,6 +15,8 @@ public class BlockManager {
 	public static Block soulTrap;
 	public static Block education;
 	public static Block crystalizer;
+	public static Block lens;
+	public static Block collector;
 	
 	public static void init(){
 		machine = new BlockMachine(BlockIndex.MACHINE_ID);
@@ -25,7 +27,11 @@ public class BlockManager {
 		soulTrap = new BlockSoulTrap(BlockIndex.SOUL_TRAP_ID);
 		education = new BlockEducation(BlockIndex.EDUCATION_ID);
 		crystalizer = new BlockCrystalizer(BlockIndex.CRYSTALIZER_ID);
+		lens = new BlockLens(BlockIndex.LENS_ID);
+		collector = new BlockCollector(BlockIndex.COLLECTOR_ID);
 		
+		GameRegistry.registerBlock(collector, BlockIndex.COLLECTOR_NAME);
+		GameRegistry.registerBlock(lens, BlockIndex.LENS_NAME);
 		GameRegistry.registerBlock(crystalizer, BlockIndex.CRYSTALIZER_NAME);
 		GameRegistry.registerBlock(education, ItemBlockEducation.class, BlockIndex.EDUCATION_NAME);
 		GameRegistry.registerBlock(soulTrap, BlockIndex.SOUL_TRAP_NAME);
@@ -50,6 +56,8 @@ public class BlockManager {
 		BlockIndex.SOUL_TRAP_ID = config.getBlock(BlockIndex.SOUL_TRAP_NAME, BlockIndex.SOUL_TRAP_DEFAULT_ID).getInt(BlockIndex.SOUL_TRAP_DEFAULT_ID);
 		BlockIndex.EDUCATION_ID = config.getBlock(BlockIndex.EDUCATION_NAME, BlockIndex.EDUCATION_DEFAULT_ID).getInt(BlockIndex.EDUCATION_DEFAULT_ID);
 		BlockIndex.CRYSTALIZER_ID = config.getBlock(BlockIndex.CRYSTALIZER_NAME, BlockIndex.CRYSTALIZER_DEFAULT_ID).getInt(BlockIndex.CRYSTALIZER_DEFAULT_ID);
+		BlockIndex.LENS_ID = config.getBlock(BlockIndex.LENS_NAME, BlockIndex.LENS_DEFAULT_ID).getInt(BlockIndex.LENS_DEFAULT_ID);
+		BlockIndex.COLLECTOR_ID = config.getBlock(BlockIndex.COLLECTOR_NAME, BlockIndex.COLLECTOR_DEFAULT_ID).getInt(BlockIndex.COLLECTOR_DEFAULT_ID);
 		
 	}
 	

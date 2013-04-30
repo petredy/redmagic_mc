@@ -59,4 +59,6 @@ public class LogicIndex {
 	public static final int EDUCATION_BASIC_BLOCKS_NEEDED = 4;
 	public static final int EDUCATION_BASIC_BLOCKS_NEEDED_FOR_MODULE = 4;
 	
+	//Lens
+	public static final int LENS_RANGE = 3;
 }

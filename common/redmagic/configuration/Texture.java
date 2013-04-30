@@ -24,6 +24,7 @@ public class Texture {
 	public static final String EDUCATION_BASIC = GUI_PATH + "education_basic.png";
 	public static final String EDUCATION_MOUDLE = GUI_PATH + "education_module.png";
 	public static final String CRYSTALIZER = GUI_PATH + "crystalizer.png";
+	public static final String COLLECTOR = GUI_PATH + "collector.png";
 	
 	//Particles
 	public static final String DIMENSION_CRACK_FX = PARTICLE_PATH + "dimension_crack.png";

@@ -35,6 +35,14 @@ public class BlockIndex {
 	public static final int CRYSTALIZER_DEFAULT_ID = 3307;
 	public static int CRYSTALIZER_ID;
 	
+	public static final String LENS_NAME = "lens";
+	public static final int LENS_DEFAULT_ID = 3308;
+	public static int LENS_ID;
+	
+	public static final String COLLECTOR_NAME = "collector";
+	public static final int COLLECTOR_DEFAULT_ID = 3309;
+	public static int COLLECTOR_ID;
+	
 	
 	//Machine Names
 	public static final String MACHINE_FRAME_NAME = "frame";

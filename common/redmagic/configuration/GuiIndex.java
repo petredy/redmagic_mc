@@ -8,5 +8,6 @@ public class GuiIndex {
 	public static final int EDUCATION_BASIC = 3;
 	public static final int EDUCATION_MODULE = 4;
 	public static final int CRYSTALIZER = 5;
+	public static final int COLLECTOR = 6;
 	
 }

@@ -6,6 +6,7 @@ import redmagic.entities.particle.EntityCrackFX;
 import redmagic.entities.particle.EntityWorkTableFX;
 import redmagic.handlers.KeyBindingHandler;
 import redmagic.helpers.KeyBindingHelper;
+import redmagic.tileentities.TileEntityLens;
 import redmagic.tileentities.TileEntityPipe;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
@@ -40,6 +41,7 @@ public class ClientProxy extends CommonProxy{
 	@Override
     public void registerRendering(){
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPipe.class, new RenderPipe());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLens.class, new RenderLens());
 	}
 	
 	
