@@ -5,9 +5,11 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraftforge.liquids.LiquidTank;
 import redmagic.api.frame.ISoulFrame;
 import redmagic.api.frame.ISoul;
 import redmagic.configuration.LogicIndex;
+import redmagic.core.Logger;
 import redmagic.helpers.EnvironmentHelper;
 import redmagic.tileentities.TileEntityProducer;
 
@@ -20,8 +22,8 @@ public class TileEntityMachineFilter extends TileEntityProducer implements ISoul
 	private int soulSlot = 0;
 	
 	public TileEntityMachineFilter(){
+		super(LogicIndex.FILTER_STORAGE);
 		this.inv = new ItemStack[1];
-		this.maxEssences = 0;
 	}
 	
 	@Override
@@ -44,7 +46,8 @@ public class TileEntityMachineFilter extends TileEntityProducer implements ISoul
 	}
 	
 	public void setMaxEssences(){
-		this.maxEssences = this.getCapacity() * LogicIndex.FILTER_STORAGE;
+		Logger.log(this.getCapacity() * LogicIndex.FILTER_STORAGE);
+		tank.setCapacity(this.getCapacity() * LogicIndex.FILTER_STORAGE);
 	}
 	
 	

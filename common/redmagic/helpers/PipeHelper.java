@@ -3,6 +3,7 @@ package redmagic.helpers;
 import redmagic.api.essence.IPipe;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.liquids.LiquidStack;
 
 public class PipeHelper {
 	
@@ -22,7 +23,7 @@ public class PipeHelper {
 		return this.tileEntity != null && this.tileEntity instanceof IPipe;
 	}
 
-	public int store(int extracted) {
+	public int store(LiquidStack extracted) {
 		if(this.isPipe()){
 			return ((IPipe)this.tileEntity).store(extracted);
 		}

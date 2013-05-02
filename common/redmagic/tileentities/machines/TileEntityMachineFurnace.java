@@ -5,6 +5,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraftforge.liquids.LiquidTank;
 import redmagic.api.frame.*;
 import redmagic.configuration.LogicIndex;
 import redmagic.tileentities.TileEntityConsumer;
@@ -16,7 +17,7 @@ public class TileEntityMachineFurnace extends TileEntityConsumer implements ISou
 	public int soulSlot = 0;
 	
 	public TileEntityMachineFurnace(){
-		this.maxEssences = 0;
+		super(LogicIndex.FURNACE_MAX_ESSENCES);
 	}
 	
 	
@@ -34,7 +35,7 @@ public class TileEntityMachineFurnace extends TileEntityConsumer implements ISou
 	
 	public void setMaxEssences(){
 		if(this.getSoul() != null){
-			this.maxEssences = LogicIndex.FURNACE_MAX_ESSENCES * ((ISoul)this.getSoul().getItem()).getCapacity(this.getSoul());
+			tank.setCapacity(LogicIndex.FURNACE_MAX_ESSENCES * ((ISoul)this.getSoul().getItem()).getCapacity(this.getSoul()));
 		}
 	}
 	

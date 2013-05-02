@@ -7,6 +7,8 @@ import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.liquids.ITankContainer;
+import net.minecraftforge.liquids.LiquidStack;
 import redmagic.api.essence.IPipe;
 import redmagic.api.essence.IStorage;
 import redmagic.configuration.LogicIndex;
@@ -24,7 +26,7 @@ public class TileEntityPipe extends TileEntityStorage implements IPipe{
 	public boolean left, right, back, front, bottom, top;
 	
 	public TileEntityPipe(){
-		this.maxEssences = LogicIndex.PIPE_MAX_ESSENCES;
+		super(LogicIndex.PIPE_MAX_ESSENCES);
 		this.essencesPerTick = LogicIndex.PIPE_ESSENCES_PER_TICK;
 	}
 	
@@ -42,14 +44,21 @@ public class TileEntityPipe extends TileEntityStorage implements IPipe{
 	}
 	
 	private void updateAsExtractor() {
-		IStorage[] storages = this.getConnectedStorages();
+		ITankContainer[] storages = this.getConnectedStorages();
 		if(storages != null){
 			int essencesPerConnection = this.essencesPerTick / storages.length;
 			int count = 0;
-			while(count < storages.length && this.essences < this.maxEssences){
-				int rest = this.extractEssence(storages[count], essencesPerConnection);
-				storages[count].store(rest);
-				essencesPerConnection += rest / storages.length - count;
+			while(count < storages.length && this.getEssences() < this.getMaxEssences()){
+				if(storages[count] != null){
+					int rest = this.extractEssence(storages[count], essencesPerConnection, ForgeDirection.getOrientation(count));
+					LiquidStack stack = this.tank.getLiquid();
+					if(stack != null){
+						stack = stack.copy();
+						stack.amount = rest;
+					}
+					storages[count].fill(ForgeDirection.UNKNOWN, stack, true);
+					essencesPerConnection += rest / storages.length - count;
+				}
 				count++;
 			}
 		}
@@ -57,14 +66,18 @@ public class TileEntityPipe extends TileEntityStorage implements IPipe{
 
 
 	private void updateAsFiller() {
-		IStorage[] storages = this.getConnectedStorages();
-		if(storages != null && this.essences > 0){
-			int essencesPerConnection = ((this.essencesPerTick > this.essences)? this.essences : this.essencesPerTick) / storages.length;
+		ITankContainer[] storages = this.getConnectedStorages();
+		if(storages != null && this.getEssences() > 0 ){
+			int essencesPerConnection = ((this.essencesPerTick > this.getEssences())? this.getEssences() : this.essencesPerTick) / storages.length;
 			int count = 0;
-			while(count < storages.length && this.essences > 0){
-				int rest = this.fillEssence(storages[count], essencesPerConnection);
-				this.store(rest);
-				essencesPerConnection += rest / (storages.length - count);
+			while(count < storages.length && this.getEssences() > 0){
+				if(storages[count] != null){
+					LiquidStack rest = this.fillEssence(storages[count], essencesPerConnection, ForgeDirection.getOrientation(count));
+					if(rest != null){
+						this.store(rest);
+						essencesPerConnection += rest.amount / (storages.length - count);
+					}
+				}
 				count++;
 			}
 		}
@@ -73,13 +86,15 @@ public class TileEntityPipe extends TileEntityStorage implements IPipe{
 
 	private void updateAsPipe() {
 		PipeHelper[] pipes = this.getConnectedPipes();
-		if(pipes != null && this.essences > 0){
-			int essencesPerConnection = ((this.essencesPerTick > this.essences) ? this.essences : this.essencesPerTick) / pipes.length;
+		if(pipes != null && this.getEssences() > 0){
+			int essencesPerConnection = ((this.essencesPerTick > this.getEssences()) ? this.getEssences() : this.essencesPerTick) / pipes.length;
 			int count = 0;
-			while(count < pipes.length && this.essences > 0){
-				int rest = this.transportEssence(pipes[count], essencesPerConnection);
-				this.store(rest);
-				essencesPerConnection += rest / (pipes.length - count);
+			while(count < pipes.length && this.getEssences() > 0){
+				LiquidStack rest = this.transportEssence(pipes[count], essencesPerConnection);
+				if(rest != null){
+					this.store(rest);
+					essencesPerConnection += rest.amount / (pipes.length - count);
+				}
 				count++;
 			}
 		}
@@ -120,40 +135,29 @@ public class TileEntityPipe extends TileEntityStorage implements IPipe{
 
 
 	@Override
-	public IStorage[] getConnectedStorages() {
-		IStorage[] storages = new IStorage[6];
-		int count = 0;
-		if(this.isStorage(this.xCoord + 1, this.yCoord, this.zCoord))storages[count++] = this.getStorage(this.xCoord + 1, this.yCoord, this.zCoord);
-		if(this.isStorage(this.xCoord - 1, this.yCoord, this.zCoord))storages[count++] = this.getStorage(this.xCoord - 1, this.yCoord, this.zCoord);
-		if(this.isStorage(this.xCoord, this.yCoord + 1, this.zCoord))storages[count++] = this.getStorage(this.xCoord, this.yCoord + 1, this.zCoord);
-		if(this.isStorage(this.xCoord, this.yCoord - 1, this.zCoord))storages[count++] = this.getStorage(this.xCoord, this.yCoord - 1, this.zCoord);
-		if(this.isStorage(this.xCoord, this.yCoord, this.zCoord + 1))storages[count++] = this.getStorage(this.xCoord, this.yCoord, this.zCoord + 1);
-		if(this.isStorage(this.xCoord, this.yCoord, this.zCoord - 1))storages[count++] = this.getStorage(this.xCoord, this.yCoord, this.zCoord - 1);
+	public ITankContainer[] getConnectedStorages() {
+		ITankContainer[] storages = new ITankContainer[6];
 		
-		if(count > 0){
-			IStorage[] rtnStorages = new IStorage[count];
-			int tmpCount = 0;
-			for(int i = 0; i < storages.length; i++){
-				if(storages[i] != null){
-					rtnStorages[tmpCount++] = storages[i];
-				}
-			}
-			return rtnStorages;
-		}
+		if(this.isStorage(this.xCoord, this.yCoord - 1, this.zCoord))storages[0] = this.getStorage(this.xCoord, this.yCoord -1, this.zCoord);
+		if(this.isStorage(this.xCoord, this.yCoord + 1, this.zCoord))storages[1] = this.getStorage(this.xCoord, this.yCoord + 1, this.zCoord);
+		if(this.isStorage(this.xCoord, this.yCoord, this.zCoord - 1))storages[2] = this.getStorage(this.xCoord, this.yCoord, this.zCoord - 1);
+		if(this.isStorage(this.xCoord, this.yCoord, this.zCoord + 1))storages[3] = this.getStorage(this.xCoord, this.yCoord, this.zCoord + 1);
+		if(this.isStorage(this.xCoord + 1, this.yCoord, this.zCoord))storages[4] = this.getStorage(this.xCoord + 1, this.yCoord, this.zCoord);
+		if(this.isStorage(this.xCoord - 1, this.yCoord, this.zCoord))storages[5] = this.getStorage(this.xCoord - 1, this.yCoord, this.zCoord);
 		
-		return null;
+		return storages;
 	}
 	
-	private IStorage getStorage(int x, int y, int z) {
+	private ITankContainer getStorage(int x, int y, int z) {
 		TileEntity entity = this.worldObj.getBlockTileEntity(x, y, z);
-		if(entity instanceof IStorage)return (IStorage) entity;
+		if(entity instanceof ITankContainer)return (ITankContainer) entity;
 		return null;
 	}
 
 
 	private boolean isStorage(int x, int y, int z){
 		TileEntity entity = this.worldObj.getBlockTileEntity(x, y, z);
-		return entity != null && entity instanceof IStorage && !(entity instanceof IPipe);
+		return entity != null && entity instanceof ITankContainer && !(entity instanceof IPipe);
 	}
 
 
@@ -183,11 +187,11 @@ public class TileEntityPipe extends TileEntityStorage implements IPipe{
 
 
 	@Override
-	public int extractEssence(IStorage storage, int essencesPerConnection) {
+	public int extractEssence(ITankContainer storage, int essencesPerConnection, ForgeDirection direction) {
 		if(storage != null){
-			int extracted = storage.extract(essencesPerConnection);
-			if(extracted > 0){
-				int stored = this.store(extracted);
+			LiquidStack stack = storage.drain(direction, essencesPerConnection, true);
+			if(stack != null  && stack.amount > 0){
+				int stored = this.store(stack);
 				return essencesPerConnection - stored;
 			}
 		}
@@ -196,27 +200,30 @@ public class TileEntityPipe extends TileEntityStorage implements IPipe{
 
 
 	@Override
-	public int transportEssence(PipeHelper pipe, int essencesPerConnection) {
+	public LiquidStack transportEssence(PipeHelper pipe, int essencesPerConnection) {
 		if(pipe != null){
-			int extracted = this.extract(essencesPerConnection);
-			if(extracted > 0){
+			LiquidStack extracted = this.extract(essencesPerConnection);
+			if(extracted != null && extracted.amount > 0){
 				int stored = pipe.store(extracted);
-				return essencesPerConnection - stored;
+				extracted.amount -= stored;
+				return extracted;
 			}
 		}
-		return 0;
+		return null;
 	}
 	
 	@Override
-	public int fillEssence(IStorage storage, int essencesPerConnection){
+	public LiquidStack fillEssence(ITankContainer storage, int essencesPerConnection, ForgeDirection direction){
 		if(storage != null){
-			int extracted = this.extract(essencesPerConnection);
-			if(extracted > 0){
-				int stored = storage.store(extracted);
-				return essencesPerConnection - stored;
+			LiquidStack extracted = this.extract(essencesPerConnection);
+			Logger.log(extracted);
+			if(extracted != null && extracted.amount > 0){
+				int stored = storage.fill(direction, extracted, true);
+				extracted.amount -= stored;
+				return extracted;
 			}
 		}
-		return 0;
+		return null;
 	}
 
 

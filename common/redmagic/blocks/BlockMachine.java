@@ -6,7 +6,7 @@ import java.util.Random;
 import redmagic.Redmagic;
 import redmagic.configuration.BlockIndex;
 import redmagic.configuration.Reference;
-import redmagic.helpers.SoulMachineHelper;
+import redmagic.helpers.SoulHelper;
 import redmagic.tileentities.machines.TileEntityMachineFilter;
 import redmagic.tileentities.machines.TileEntityMachineFurnace;
 import redmagic.tileentities.machines.TileEntityMachineStorage;
@@ -83,7 +83,7 @@ public class BlockMachine extends BlockContainer{
 		int metadata = par1World.getBlockMetadata(par2, par3, par4);
 		switch(metadata){
 			case BlockIndex.MACHINE_FRAME_METADATA:
-				return SoulMachineHelper.linkSoul(par5EntityPlayer.getCurrentEquippedItem(), par1World, par2, par3, par4);
+				return SoulHelper.linkSoul(par5EntityPlayer.getCurrentEquippedItem(), par1World, par2, par3, par4);
 		}
 		return false;
     }

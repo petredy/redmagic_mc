@@ -6,10 +6,12 @@ import redmagic.core.Logger;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChunkCoordinates;
+import net.minecraft.world.EnumSkyBlock;
 
 public class TileEntityLens extends TileEntity{
 	
-	public int count = 0, need = 1000;
+	public int count = 0, need = 50;
+	public boolean active = false;
 	
 	public void updateEntity(){
 		if(count >= need){
@@ -20,33 +22,17 @@ public class TileEntityLens extends TileEntity{
 	}
 
 	private void update() {
-		if(this.worldObj.canBlockSeeTheSky(this.xCoord, this.yCoord + 1, this.zCoord)){
-			
-			Logger.log(this.worldObj.isDaytime());
-			if(this.worldObj.isDaytime()){
-				this.updateDay();
-			}else{
-				this.updateNight();
-			}
+		if(this.worldObj.canBlockSeeTheSky(this.xCoord, this.yCoord + 1, this.zCoord) &&
+				this.worldObj.isAirBlock(xCoord, yCoord - 1, zCoord) &&
+				this.worldObj.isAirBlock(xCoord, yCoord - 2, zCoord) &&
+				this.worldObj.isAirBlock(xCoord, yCoord - 3, zCoord)){
+			active = true;
+			this.worldObj.setLightValue(EnumSkyBlock.Block, xCoord, yCoord, zCoord, 15);
+		}else{
+			this.worldObj.setLightValue(EnumSkyBlock.Block, xCoord, yCoord, zCoord, 1);
+			active = false;
 		}
-	}
-
-	private void updateDay() {
-		TileEntity entity = this.worldObj.getBlockTileEntity(xCoord, yCoord - 4, zCoord);
-		Logger.log(entity);
-		if(entity instanceof TileEntityCollector){
-			TileEntityCollector collector = (TileEntityCollector)entity;
-			collector.getDayLight();
-		}
-	}
-
-	private void updateNight() {
-		TileEntity entity = this.worldObj.getBlockTileEntity(xCoord, yCoord - 4, zCoord);
-		if(entity instanceof TileEntityCollector){
-			TileEntityCollector collector = (TileEntityCollector)entity;
-			collector.getMoonLight();
-		}
-	}
+	} 
 	
 	@SideOnly(Side.CLIENT)
     public AxisAlignedBB getRenderBoundingBox()

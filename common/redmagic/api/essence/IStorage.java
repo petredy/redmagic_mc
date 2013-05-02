@@ -1,5 +1,7 @@
 package redmagic.api.essence;
 
+import net.minecraftforge.liquids.LiquidStack;
+
 public interface IStorage {
 
 	/**
@@ -8,7 +10,7 @@ public interface IStorage {
 	 * @param data
 	 * @return returns the essence amount, which could be stored
 	 */
-	public abstract int store(int amount, Object...data);
+	public abstract int store(LiquidStack resource, Object...data);
 	
 	/**
 	 * Loads an amount of essence from the storage
@@ -16,7 +18,7 @@ public interface IStorage {
 	 * @param data
 	 * @return the amount or zero
 	 */
-	public abstract int extract(int amount, Object...data);
+	public abstract LiquidStack extract(int amount, Object...data);
 	
 	/**
 	 * Returns the stored essences.

@@ -38,6 +38,7 @@ public class ItemWrench extends Item implements IWrench{
 			if(Block.blocksList[id] instanceof IWrenchable){
 				int metadata = par2World.getBlockMetadata(position.blockX, position.blockY, position.blockZ);
 				((IWrenchable)Block.blocksList[id]).onWrench(par3EntityPlayer, par2World, position.blockX, position.blockY, position.blockZ, metadata);
+				par3EntityPlayer.swingItem();
 			}
 		}
         return par1ItemStack;

@@ -67,8 +67,17 @@ public class Redmagic{
         //Configurate Blocks
         BlockManager.config(config);
         
+        //Initialise Items
+  		ItemManager.init();
+  				
+  		//Initialise Blocks
+  		BlockManager.init();
+        
         //Configurates Keybinding
         KeyBindingHandler.config(config);
+        
+        //Initialise Liquid Registration
+      	LiquidHandler.init();
         
         config.save();
 	}
@@ -82,22 +91,18 @@ public class Redmagic{
     {
 		proxy.registerAll();
 		
-		//Initialise Items
-		ItemManager.init();
-				
-		//Initialise Blocks
-		BlockManager.init();
-		
 		//Handle Recipe Registration
 		RecipeHandler.registry();
 		
 		//Initialise World Generation
 		GameRegistry.registerWorldGenerator(new WorldGenerationHandler());
 		
+		
+		// Initialise Liquid Texture Mapping
+		MinecraftForge.EVENT_BUS.register(new LiquidHandler());
+		
 		proxy.registerRendering();
 		
-		//Initialise Living Drop Handler
-		MinecraftForge.EVENT_BUS.register(new LivingDropHandler());
     }
 	
 	//----------------------------------------------------------------------------------------

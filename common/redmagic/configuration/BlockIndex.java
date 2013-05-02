@@ -43,6 +43,22 @@ public class BlockIndex {
 	public static final int COLLECTOR_DEFAULT_ID = 3309;
 	public static int COLLECTOR_ID;
 	
+	public static final String SOUL_JUICE_NAME = "soul_juice";
+	public static final int SOUL_JUICE_DEFAULT_ID = 3310;
+	public static int SOUL_JUICE_ID;
+	
+	public static final String CRYSTAL_NAME = "crystal";
+	public static final int CRYSTAL_DEFAULT_ID = 3311;
+	public static int CRYSTAL_ID;
+	
+	public static final String JUICER_NAME = "juicer";
+	public static final int JUICER_DEFAULT_ID = 3312;
+	public static int JUICER_ID;
+	
+	public static final String LIQUID_ESSENCE_NAME = "essence";
+	public static final int LIQUID_ESSENCE_DEFAULT_ID = 3313;
+	public static int LIQUID_ESSENCE_ID;
+	
 	
 	//Machine Names
 	public static final String MACHINE_FRAME_NAME = "frame";
@@ -60,6 +76,16 @@ public class BlockIndex {
 	public static final int EDUCATION_BASIC_METADATA = 0;
 	public static final String EDUCATION_RESISTENCE_NAME = "resistence";
 	public static final int EDUCATION_RESISTENCE_METADATA = 1;
+	
+	//Crystals
+	public static final String CRYSTAL_INTELLIGENCE_NAME = "intelligence";
+	public static final int CRYSTAL_INTELLIGENCE_METADATA = 0;
+	public static final String CRYSTAL_STRENGTH_NAME = "strength";
+	public static final int CRYSTAL_STRENGTH_METADATA = 1;
+	public static final String CRYSTAL_CAPACITY_NAME = "capacity";
+	public static final int CRYSTAL_CAPACITY_METADATA = 2;
+	public static final String CRYSTAL_ILLUSION_NAME = "illusion";
+	public static final int CRYSTAL_ILLUSION_METADATA = 3;
 	
 	
 }

@@ -210,8 +210,30 @@ public class InventoryHelper {
 		int used = 0;
 		for(int i = 0; i < inv.getSizeInventory(); i++){
 			ItemStack item = inv.getStackInSlot(i);
+			Logger.log(stack);
+			Logger.log(item);
+			if(item != null)Logger.log(stack.isItemEqual(item));
 			if(item != null && stack.isItemEqual(item) && item.stackSize > 0){
-				Logger.log("found a soul");
+				if(item.stackSize - amount >= 0){
+					inv.decrStackSize(i, amount);
+					if(item.stackSize <= 0)inv.setInventorySlotContents(i, null);
+					return amount;
+				}else{
+					used += item.stackSize;
+					inv.setInventorySlotContents(i, null);
+				}
+			}
+			
+		}
+		return used;
+	}
+	
+	
+	public static int reduceIDInInventory(IInventory inv, int id, int amount) {
+		int used = 0;
+		for(int i = 0; i < inv.getSizeInventory(); i++){
+			ItemStack item = inv.getStackInSlot(i);
+			if(item != null && item.itemID == id && item.stackSize > 0){
 				if(item.stackSize - amount >= 0){
 					inv.decrStackSize(i, amount);
 					if(item.stackSize <= 0)inv.setInventorySlotContents(i, null);

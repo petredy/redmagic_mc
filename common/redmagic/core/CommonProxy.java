@@ -4,6 +4,7 @@ import com.google.common.base.Throwables;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.server.gui.PlayerListBox;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import redmagic.configuration.BlockIndex;
@@ -11,7 +12,6 @@ import redmagic.configuration.GuiIndex;
 import redmagic.configuration.Texture;
 import redmagic.client.guis.*;
 import redmagic.containers.*;
-import redmagic.helpers.TamingHelper;
 import redmagic.tileentities.*;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -40,9 +40,6 @@ public class CommonProxy implements IGuiHandler{
 		if(ID == GuiIndex.SOUL_TRAP){
 			return new ContainerSoulTrap(player, (TileEntitySoulTrap)tileEntity);
 		}
-		if(ID == GuiIndex.TAMING){
-			return new ContainerTaming(player, TamingHelper.getTileEntity(world, x), x);
-		}
 		if(ID == GuiIndex.EDUCATION_BASIC){
 			return new ContainerEducationBasic(player, tileEntity);
 		}
@@ -51,6 +48,9 @@ public class CommonProxy implements IGuiHandler{
 		}
 		if(ID == GuiIndex.COLLECTOR){
 			return new ContainerOneSlot(player, (IInventory) tileEntity);
+		}
+		if(ID == GuiIndex.JUICER){
+			return new ContainerJuicer(player, (TileEntityJuicer)tileEntity);
 		}
 		return null;
 	}
@@ -64,9 +64,6 @@ public class CommonProxy implements IGuiHandler{
 		if(ID == GuiIndex.SOUL_TRAP){
 			return new GuiSoulTrap(player, (TileEntitySoulTrap)tileEntity);
 		}
-		if(ID == GuiIndex.TAMING){
-			return new GuiTaming(player, TamingHelper.getTileEntity(world, x), x);
-		}
 		if(ID == GuiIndex.EDUCATION_BASIC){
 			return new GuiEducationBasic(player, tileEntity);
 		}
@@ -75,6 +72,9 @@ public class CommonProxy implements IGuiHandler{
 		}
 		if(ID == GuiIndex.COLLECTOR){
 			return new GuiOneSlot(player, (IInventory) tileEntity);
+		}
+		if(ID == GuiIndex.JUICER){
+			return new GuiJuicer(player, (TileEntityJuicer)tileEntity);
 		}
 		return null;
 	}

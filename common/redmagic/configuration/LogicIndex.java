@@ -8,13 +8,15 @@ public class LogicIndex {
 	
 	//ISoul
 	public static final String[] SOUL_TYPES = new String[]{
+		"none",
 		ItemIndex.MACHINE_SOUL_FILTER_NAME,
 		ItemIndex.MACHINE_SOUL_FURNACE_NAME,
 		ItemIndex.MACHINE_SOUL_STORAGE_NAME
 	};
-	public static final int SOUL_FILTER = 0;
-	public static final int SOUL_FURNACE = 1;
-	public static final int SOUL_STORAGE = 2;
+	public static final int SOUL_NONE = 0;
+	public static final int SOUL_FILTER = 1;
+	public static final int SOUL_FURNACE = 2;
+	public static final int SOUL_STORAGE = 3;
 	
 	public static int SOUL_MAX_INTELLIGENCE = 100;
 	public static int SOUL_MAX_STRENGTH = 100;
@@ -48,12 +50,6 @@ public class LogicIndex {
 	public static final int ORE_SOULCRYSTAL_DEPOSIT_AMOUNT = 5;
 	
 	public static final int SOUL_TRAP_MAX_NECTAR = 9;
-	
-	//Taming
-	public static final long TAMING_MAX_TIME = 10000;
-	public static final double TAMING_DAMAGE_PER_SECOND = 0.02;
-	public static final int TAMING_REQUEST_PLUS = 5;
-	public static final int TAMING_REQUEST_MINUS = 20;
 	
 	//Education System
 	public static final int EDUCATION_BASIC_BLOCKS_NEEDED = 4;

@@ -20,6 +20,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.liquids.ITankContainer;
 
 public class BlockPipe extends BlockContainer{
 
@@ -83,7 +84,7 @@ public class BlockPipe extends BlockContainer{
 	}
 	
 	private boolean canConnect(World world, int x, int y, int z){
-		return world.getBlockTileEntity(x, y, z) instanceof IStorage;
+		return world.getBlockTileEntity(x, y, z) instanceof ITankContainer;
 	}
 	
 	public void randomDisplayTick(World world, int x, int y, int z, Random par5Random) {

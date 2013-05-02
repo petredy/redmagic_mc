@@ -3,9 +3,11 @@ package redmagic.client;
 import redmagic.client.renderers.*;
 import redmagic.core.CommonProxy;
 import redmagic.entities.particle.EntityCrackFX;
+import redmagic.entities.particle.EntityStarFX;
 import redmagic.entities.particle.EntityWorkTableFX;
 import redmagic.handlers.KeyBindingHandler;
 import redmagic.helpers.KeyBindingHelper;
+import redmagic.tileentities.TileEntityCollector;
 import redmagic.tileentities.TileEntityLens;
 import redmagic.tileentities.TileEntityPipe;
 import cpw.mods.fml.client.FMLClientHandler;
@@ -42,6 +44,7 @@ public class ClientProxy extends CommonProxy{
     public void registerRendering(){
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPipe.class, new RenderPipe());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLens.class, new RenderLens());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCollector.class, new RenderCollector());
 	}
 	
 	
@@ -59,6 +62,8 @@ public class ClientProxy extends CommonProxy{
 			efx = new EntityCrackFX(world, d1, d2, d3);
 		}else if(name.equals("worktable")){
 			efx = new EntityWorkTableFX(world, d1, d2, d3, (Integer)data[0], (ItemStack)data[1]);
+		}else if(name.equals("star")){
+			efx = new EntityStarFX(world, d1, d2, d3, (Double)data[0], (Double)data[1], (Double)data[2]);
 		}
 
 		if(efx != null)

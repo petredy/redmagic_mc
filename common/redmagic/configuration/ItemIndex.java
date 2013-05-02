@@ -8,8 +8,6 @@ public class ItemIndex {
 	public static final String SOUL_CRYSTAL_NAME = "soul_crystal";
 	public static final String SOUL_NECTAR_NAME = "soul_nectar";
 	public static final String SOUL_NAME = "soul";
-	public static final String STATEMETER_NAME = "statemeter";
-	public static final String CLASS_NAME = "class";
 	public static final String WRENCH_NAME = "wrench";
 	public static final String CRYSTAL_NAME = "crystal";
 	
@@ -20,8 +18,6 @@ public class ItemIndex {
 	public static final int SOUL_CRYSTAL_DEFAULT_ID = 13903;
 	public static final int SOUL_NECTAR_DEFAULT_ID = 13904;
 	public static final int SOUL_DEFAULT_ID = 13905;
-	public static final int STATEMETER_DEFAULT_ID = 13907;
-	public static final int CLASS_DEFAULT_ID = 13908;
 	public static final int WRENCH_DEFAULT_ID = 13909;
 	public static final int CRYSTAL_DEFAULT_ID = 13910;
 	
@@ -32,8 +28,6 @@ public class ItemIndex {
 	public static int SOUL_CRYSTAL_ID;
 	public static int SOUL_NECTAR_ID;
 	public static int SOUL_ID;
-	public static int STATEMETER_ID;
-	public static int CLASS_ID;
 	public static int WRENCH_ID;
 	public static int CRYSTAL_ID;
 	

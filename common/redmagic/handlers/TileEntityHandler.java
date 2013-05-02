@@ -9,7 +9,6 @@ public class TileEntityHandler {
 	public static void init(){
 		
 		GameRegistry.registerTileEntity(TileEntityStorage.class, "redmagic.TileEntityStorage");
-		GameRegistry.registerTileEntity(TileEntityTransporter.class, "redmagic.TileEntityTransporter");
 		GameRegistry.registerTileEntity(TileEntityProducer.class, "redmagic.TileEntityProducer");
 		GameRegistry.registerTileEntity(TileEntityConsumer.class, "redmagic.TileEntityConsumer");
 		
@@ -26,7 +25,7 @@ public class TileEntityHandler {
 		GameRegistry.registerTileEntity(TileEntityLens.class, "redmagic.TileEntityLens");
 		GameRegistry.registerTileEntity(TileEntityCollector.class, "redmagic.TileEntityCollector");
 		
-		GameRegistry.registerTileEntity(TileEntityTaming.class, "redmagic.TileEntityTaming");
+		GameRegistry.registerTileEntity(TileEntityJuicer.class, "redmagic.TileEntityJuicer");
 		GameRegistry.registerTileEntity(TileEntitySoulTrap.class, "redmagic.TileEntitySoulTrap");
 		GameRegistry.registerTileEntity(TileEntityWorkTable.class, "redmagic.TileEntityWorkTable");
 		GameRegistry.registerTileEntity(TileEntityCrystalizer.class, "redmagic.TileEntityCrystalizer");

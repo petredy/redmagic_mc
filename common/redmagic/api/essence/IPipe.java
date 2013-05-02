@@ -1,6 +1,8 @@
 package redmagic.api.essence;
 
 import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.liquids.ITankContainer;
+import net.minecraftforge.liquids.LiquidStack;
 import redmagic.helpers.PipeHelper;
 
 public interface IPipe extends IStorage{
@@ -15,7 +17,7 @@ public interface IPipe extends IStorage{
 	 * Searches for connected IStorages, which are not IPipes
 	 * @return
 	 */
-	public abstract IStorage[] getConnectedStorages();
+	public abstract ITankContainer[] getConnectedStorages();
 	
 	/**
 	 * Returns whether the pipe is an extractor or not
@@ -39,14 +41,14 @@ public interface IPipe extends IStorage{
 	 * @param pipe
 	 * @param amount
 	 */
-	public abstract int extractEssence(IStorage storage, int essencesPerConnection);
+	public abstract int extractEssence(ITankContainer storage, int essencesPerConnection, ForgeDirection direction);
 	
 	/**
 	 * Transports essences to the pipe
 	 * @param pipe
 	 * @param amount
 	 */
-	public abstract int transportEssence(PipeHelper pipe, int essencesPerConnection);
+	public abstract LiquidStack transportEssence(PipeHelper pipe, int essencesPerConnection);
 	
 	/**
 	 * Transports essences to an IStorage
@@ -54,7 +56,7 @@ public interface IPipe extends IStorage{
 	 * @param essencesPerConnection
 	 * @return
 	 */
-	public abstract int fillEssence(IStorage storage, int essencesPerConnection);
+	public abstract LiquidStack fillEssence(ITankContainer storage, int essencesPerConnection, ForgeDirection direction);
 	
 	/**
 	 * Return whether the side is connected to an IStorage or not

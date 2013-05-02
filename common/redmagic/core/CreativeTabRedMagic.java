@@ -1,5 +1,6 @@
 package redmagic.core;
 
+import redmagic.items.ItemManager;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 
@@ -10,7 +11,7 @@ public class CreativeTabRedMagic extends CreativeTabs{
 	}
 	
 	public int getTabIconItemIndex() {
-        return Block.stone.blockID;
+        return ItemManager.soul.itemID;
     }
 	
 	

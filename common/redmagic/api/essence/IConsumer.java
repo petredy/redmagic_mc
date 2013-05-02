@@ -1,5 +1,7 @@
 package redmagic.api.essence;
 
+import net.minecraftforge.liquids.LiquidStack;
+
 public interface IConsumer extends IStorage{
 	
 	/**
@@ -8,5 +10,5 @@ public interface IConsumer extends IStorage{
 	 * @param data
 	 * @return the amount of energy needed
 	 */
-	public abstract int consume(int amount, Object...data);
+	public abstract LiquidStack consume(int amount, Object...data);
 }

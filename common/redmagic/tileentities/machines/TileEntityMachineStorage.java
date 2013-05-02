@@ -15,8 +15,8 @@ public class TileEntityMachineStorage extends TileEntityStorage implements IInve
 	public int soulSlot = 0;
 	
 	public TileEntityMachineStorage(){
+		super(LogicIndex.STORAGE_MAX_ESSENCES);
 		inv = new ItemStack[1];
-		this.maxEssences = LogicIndex.STORAGE_MAX_ESSENCES;
 		this.name = "TileEntityMachineStorage";
 	}
 	

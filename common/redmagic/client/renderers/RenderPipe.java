@@ -34,7 +34,7 @@ public class RenderPipe extends TileEntitySpecialRenderer implements ISimpleBloc
 		GL11.glPushMatrix();
 		if(entity instanceof TileEntityPipe){
 			TileEntityPipe pipe = (TileEntityPipe)entity;
-			if(pipe.essences > 0){
+			if(pipe.getEssences() > 0){
 				if(pipe.isExtractor()){
 					this.texture = Texture.PIPE_EXTRACTOR_ACTIVE;
 				}else if(pipe.isFiller()){

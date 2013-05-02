@@ -47,16 +47,6 @@ public class BlockLens extends BlockContainer{
 		return new TileEntityLens();
 	}
 	
-	public void randomDisplayTick(World world, int x, int y, int z, Random par5Random) {
-		if(world.canBlockSeeTheSky(x, y + 1, z)){
-			if(world.isDaytime()){
-				Redmagic.proxy.addEffect("crack", world, x + 0.5, y + 2, z + 0.5);
-			}else{
-				Redmagic.proxy.addEffect("crack", world, x, y + 1, z);
-			}
-		}
-    }
-	
 	
 
 }

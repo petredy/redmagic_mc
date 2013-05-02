@@ -10,7 +10,6 @@ import redmagic.api.frame.ISoul;
 import redmagic.configuration.ItemIndex;
 import redmagic.configuration.LogicIndex;
 import redmagic.configuration.Reference;
-import redmagic.helpers.TamingHelper;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -29,19 +28,11 @@ public class ItemSoul extends Item implements ISoul{
 		this.setHasSubtypes(true);
 	}
 	
-	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity){
-		if(entity instanceof EntityLiving){
-			EntityLiving living = (EntityLiving)entity;
-			TamingHelper.infectSoul(living, stack);
-			player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
-		}
-        return true;
-    }
-	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par1){
 		if(stack.stackTagCompound != null){
+			list.add("Type: " + LogicIndex.SOUL_TYPES[this.getType(stack)]);
 			list.add("Intelligence: " + ((Integer)this.getIntelligence(stack)).toString());
 			list.add("Strength: " + ((Integer)this.getStrength(stack)).toString());
 			list.add("Capacity: " + ((Integer)this.getCapacity(stack)).toString());
