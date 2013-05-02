@@ -6,6 +6,7 @@ import java.util.Random;
 import redmagic.Redmagic;
 import redmagic.configuration.BlockIndex;
 import redmagic.configuration.Reference;
+import redmagic.helpers.BlockHelper;
 import redmagic.helpers.SoulHelper;
 import redmagic.tileentities.machines.TileEntityMachineFilter;
 import redmagic.tileentities.machines.TileEntityMachineFurnace;
@@ -23,11 +24,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockMachine extends BlockContainer{
 
 	public Icon[] icons = new Icon[ItemBlockMachine.subNames.length];
+	public Icon furnaceBurnSide;
 	
 	protected BlockMachine(int par1) {
 		super(par1, Material.iron);
@@ -42,6 +45,19 @@ public class BlockMachine extends BlockContainer{
         	this.icons[count] = par1IconRegister.registerIcon(Reference.MOD_ID + ":" + name);
         	count++;
         }
+        this.furnaceBurnSide = par1IconRegister.registerIcon(Reference.MOD_ID + ":" + BlockIndex.MACHINE_FURNACE_NAME + "_pointer");
+    }
+	
+	public Icon getBlockTexture(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5){
+		int metadata = par1IBlockAccess.getBlockMetadata(par2, par3, par4);
+		if(metadata == BlockIndex.MACHINE_FURNACE_METADATA){
+			TileEntityMachineFurnace entity = (TileEntityMachineFurnace)par1IBlockAccess.getBlockTileEntity(par2, par3, par4);
+			if(par5 == entity.side){
+				return this.furnaceBurnSide;
+			}
+			return this.icons[metadata];
+		}
+		return this.getIcon(par5, metadata);
     }
 	
 	public Icon getIcon(int side, int metadata)
@@ -83,7 +99,7 @@ public class BlockMachine extends BlockContainer{
 		int metadata = par1World.getBlockMetadata(par2, par3, par4);
 		switch(metadata){
 			case BlockIndex.MACHINE_FRAME_METADATA:
-				return SoulHelper.linkSoul(par5EntityPlayer.getCurrentEquippedItem(), par1World, par2, par3, par4);
+				return SoulHelper.linkSoul(par5EntityPlayer.getCurrentEquippedItem(), par1World, par2, par3, par4, par5EntityPlayer);
 		}
 		return false;
     }
@@ -104,7 +120,6 @@ public class BlockMachine extends BlockContainer{
     {
     	super.onBlockPlacedBy(par1World, par1, par2, par3, par4EntityPlayer, stack);
     	switch(par1World.getBlockMetadata(par1, par2, par3)){
-    		
     	}
     }
 

@@ -216,7 +216,6 @@ public class TileEntityPipe extends TileEntityStorage implements IPipe{
 	public LiquidStack fillEssence(ITankContainer storage, int essencesPerConnection, ForgeDirection direction){
 		if(storage != null){
 			LiquidStack extracted = this.extract(essencesPerConnection);
-			Logger.log(extracted);
 			if(extracted != null && extracted.amount > 0){
 				int stored = storage.fill(direction, extracted, true);
 				extracted.amount -= stored;

@@ -1,26 +1,105 @@
 package redmagic.tileentities.machines;
 
+import java.util.Random;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.INetworkManager;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.Packet132TileEntityData;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 import redmagic.api.frame.*;
 import redmagic.configuration.LogicIndex;
+import redmagic.core.Logger;
+import redmagic.helpers.InventoryHelper;
 import redmagic.tileentities.TileEntityConsumer;
 
 public class TileEntityMachineFurnace extends TileEntityConsumer implements ISoulFrame, IInventory{
 	
-	public ItemStack[] inv = new ItemStack[4];
+	public ItemStack[] inv = new ItemStack[2];
 	
+	public int side = 0;
 	public int soulSlot = 0;
+	public int burn = 0;
+	
+	public static final int inputSlot = 1;
 	
 	public TileEntityMachineFurnace(){
 		super(LogicIndex.FURNACE_MAX_ESSENCES);
 	}
 	
+	public void updateEntity(){
+		if(this.isBurning()){
+			if(this.inv[inputSlot] == null)burn = 0;
+			else this.burnItem();
+		}else{
+			this.startBurn();
+		}
+	}
 	
+	private void burnItem() {
+		this.burn++;
+		LiquidStack cost = this.consume(LogicIndex.FURNACE_COSTS / this.getIntelligence());
+		if(burn > LogicIndex.SOUL_MAX_INTELLIGENCE / this.getIntelligence() && this.inv[inputSlot] != null && cost != null){
+			this.burn = 0;
+			TileEntity entity = this.getTarget();
+			if(entity instanceof IInventory){
+				ItemStack output = FurnaceRecipes.smelting().getSmeltingResult(this.inv[inputSlot]);
+				if(output != null){
+					output = output.copy();
+					int burnAmount = output.getMaxStackSize() > this.getStrength() ? output.getMaxStackSize() / this.getStrength() : output.getMaxStackSize();
+					int twice = this.getIllusion() / 10 > new Random().nextInt(100) ? 2 : 1;
+					output.stackSize = burnAmount * output.stackSize * twice;
+					if(output.stackSize > this.inv[inputSlot].stackSize)output.stackSize = this.inv[inputSlot].stackSize;
+					Logger.log("-----------");
+					Logger.log(output.stackSize);
+					Logger.log(this.inv[inputSlot]);
+					Logger.log(burnAmount);
+					Logger.log(this.inv[inputSlot].stackSize);
+					ItemStack drop = InventoryHelper.addItemStackToInventory((IInventory) entity, output);
+					if(drop != null)InventoryHelper.dropItemStack(drop, worldObj, (double)xCoord + 0.5, (double)yCoord + 0.5, (double)zCoord + 0.5);
+					Logger.log(output);
+					if(this.inv[inputSlot].stackSize - burnAmount <= 0)this.inv[inputSlot] = null;
+					else {
+						this.burn++;
+						this.decrStackSize(inputSlot, burnAmount);
+					}
+				}	
+			}
+		}
+	}
+
+	private void startBurn() {
+		this.burn = 0;
+		TileEntity entity = this.getTarget();
+		if(entity instanceof IInventory){
+			this.inv[inputSlot] = InventoryHelper.popBurnableItemStack((IInventory)entity);
+			this.burn++;
+		}
+	}
+
+	private TileEntity getTarget() {
+		switch(side){
+		case 0: return this.worldObj.getBlockTileEntity(xCoord, yCoord - 1, zCoord);
+		case 1: return this.worldObj.getBlockTileEntity(xCoord, yCoord + 1, zCoord);
+		case 2: return this.worldObj.getBlockTileEntity(xCoord, yCoord, zCoord - 1);
+		case 3: return this.worldObj.getBlockTileEntity(xCoord, yCoord, zCoord + 1);
+		case 4: return this.worldObj.getBlockTileEntity(xCoord - 1, yCoord, zCoord);
+		case 5: return this.worldObj.getBlockTileEntity(xCoord + 1, yCoord, zCoord);
+		default: return null;
+		}
+	}
+
+	private boolean isBurning() {
+		return burn > 0;
+	}
+
 	public int getIntelligence(){
 		return this.getSoul() != null ? ((ISoul)this.getSoul().getItem()).getIntelligence(this.getSoul()) : 0;
 	}
@@ -136,6 +215,7 @@ public class TileEntityMachineFurnace extends TileEntityConsumer implements ISou
 			}
 		}
 		this.setMaxEssences();
+		this.side = tagCompound.getInteger("side");
 	}
 	
 	@Override
@@ -153,6 +233,8 @@ public class TileEntityMachineFurnace extends TileEntityConsumer implements ISou
 			}
 		}
 		tagCompound.setTag("Inventory", itemList);
+		
+		tagCompound.setInteger("side", this.side);
 	}
 
 	@Override
@@ -164,5 +246,18 @@ public class TileEntityMachineFurnace extends TileEntityConsumer implements ISou
 	public boolean isStackValidForSlot(int i, ItemStack itemstack) {
 		return true;
 	}
+	
+	public Packet getDescriptionPacket()
+    {
+		NBTTagCompound tag = new NBTTagCompound();
+		this.writeToNBT(tag);
+        return new Packet132TileEntityData(this.xCoord, this.yCoord, this.zCoord, 0, tag);
+    }
+	
+	public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt)
+    {
+		NBTTagCompound tag = pkt.customParam1;
+		this.readFromNBT(tag);
+    }
 
 }

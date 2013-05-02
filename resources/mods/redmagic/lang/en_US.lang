@@ -8,19 +8,24 @@ tile.machine.frame.name=Soul Frame
 tile.machine.filter.name=Essence Filter
 tile.machine.furnace.name=Essence Furnace
 
+tile.crystal.intelligence.name=Intelligence Crystal Block
+tile.crystal.strength.name=Strength Crystal Block
+tile.crystal.capacity.name=Capacity Crystal Block
+tile.crystal.illusion.name=Illusion Crystal Block
+
 tile.education.basic.name=Education Block
 tile.education.resistence.name=Resistence Education Module
 
 tile.pipe.name=Essence Pipe
+tile.crack.name=Dimension Crack
 tile.work.name=Work Table
 tile.soul_trap.name=Soul Trap
 tile.soul_crystal_ore.name=Soul Crystal Deposit
 tile.crystalizer.name=Crystalizer
+tile.collector.name=Collector
+tile.essence.name=Liquid Essence
 
 item.redhole.name=Redhole
-item.machine.filter.name=Filter Soul
-item.machine.furnace.name=Furnace Soul
-item.machine.storage.name=Essence Storage Soul
 
 item.crystal.empty.name=Crystal
 item.crystal.intelligence.name=Intelligence Crystal
@@ -30,7 +35,6 @@ item.crystal.illusion.name=Illusion Crystal
 item.crystal.satisfaction.name=Satisfaction Crystal
 item.crystal.all.name=Redmagic Crystal
 
-item.class.eating.name=Eating Class
 
 item.soul_crystal.name=Soul Crystal
 item.soul_nectar.name=Soul Nectar

@@ -108,6 +108,7 @@ public class InventoryHelper {
 	}
 	
 	public static ItemStack addItemStackToInventory(IInventory inventory, ItemStack stackToMove){
+		if(stackToMove == null)return stackToMove;
 		for (int i = 0; i < inventory.getSizeInventory(); i++) {
 			ItemStack stack = inventory.getStackInSlot(i);
 			if (stack == null) {
@@ -340,6 +341,12 @@ public class InventoryHelper {
 			}
 		}
 		return null;
+	}
+
+	public static void dropItemStack(ItemStack drop, World worldObj, double xCoord, double yCoord, double zCoord) {
+		EntityItem item = new EntityItem(worldObj, xCoord, yCoord, zCoord, drop);
+		worldObj.spawnEntityInWorld(item);
+		
 	}
 	
 }

@@ -48,15 +48,11 @@ public class BlockIndex {
 	public static int SOUL_JUICE_ID;
 	
 	public static final String CRYSTAL_NAME = "crystal";
-	public static final int CRYSTAL_DEFAULT_ID = 3311;
+	public static final int CRYSTAL_DEFAULT_ID = 3312;
 	public static int CRYSTAL_ID;
 	
-	public static final String JUICER_NAME = "juicer";
-	public static final int JUICER_DEFAULT_ID = 3312;
-	public static int JUICER_ID;
-	
 	public static final String LIQUID_ESSENCE_NAME = "essence";
-	public static final int LIQUID_ESSENCE_DEFAULT_ID = 3313;
+	public static final int LIQUID_ESSENCE_DEFAULT_ID = 3311;
 	public static int LIQUID_ESSENCE_ID;
 	
 	

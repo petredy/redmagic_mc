@@ -19,7 +19,6 @@ public class BlockManager {
 	public static Block collector;
 	public static Block soulJuice;
 	public static Block crystal;
-	public static Block juicer;
 	public static Block essence;
 	
 	public static void init(){
@@ -35,11 +34,9 @@ public class BlockManager {
 		collector = new BlockCollector(BlockIndex.COLLECTOR_ID);
 		soulJuice = new BlockSoulJuice(BlockIndex.SOUL_JUICE_ID);
 		crystal = new BlockCrystal(BlockIndex.CRYSTAL_ID);
-		juicer = new BlockSoulJuicer(BlockIndex.JUICER_ID);
 		essence = new BlockLiquidEssence(BlockIndex.LIQUID_ESSENCE_ID);
 		
 		GameRegistry.registerBlock(essence, BlockIndex.LIQUID_ESSENCE_NAME);
-		GameRegistry.registerBlock(juicer, BlockIndex.JUICER_NAME);
 		GameRegistry.registerBlock(crystal, ItemBlockCrystal.class, BlockIndex.CRYSTAL_NAME);
 		GameRegistry.registerBlock(soulJuice, BlockIndex.SOUL_JUICE_NAME);
 		GameRegistry.registerBlock(collector, BlockIndex.COLLECTOR_NAME);
@@ -72,7 +69,6 @@ public class BlockManager {
 		BlockIndex.COLLECTOR_ID = config.getBlock(BlockIndex.COLLECTOR_NAME, BlockIndex.COLLECTOR_DEFAULT_ID).getInt(BlockIndex.COLLECTOR_DEFAULT_ID);
 		BlockIndex.SOUL_JUICE_ID = config.getBlock(BlockIndex.SOUL_JUICE_NAME, BlockIndex.SOUL_JUICE_DEFAULT_ID).getInt(BlockIndex.SOUL_JUICE_DEFAULT_ID);
 		BlockIndex.CRYSTAL_ID = config.getBlock(BlockIndex.CRYSTAL_NAME, BlockIndex.CRYSTAL_DEFAULT_ID).getInt(BlockIndex.CRYSTAL_DEFAULT_ID);
-		BlockIndex.JUICER_ID = config.getBlock(BlockIndex.JUICER_NAME, BlockIndex.JUICER_DEFAULT_ID).getInt(BlockIndex.JUICER_DEFAULT_ID);
 		BlockIndex.LIQUID_ESSENCE_ID = config.getBlock(BlockIndex.LIQUID_ESSENCE_NAME, BlockIndex.LIQUID_ESSENCE_DEFAULT_ID).getInt(BlockIndex.LIQUID_ESSENCE_DEFAULT_ID);
 		
 	}

@@ -25,7 +25,6 @@ public class TileEntityHandler {
 		GameRegistry.registerTileEntity(TileEntityLens.class, "redmagic.TileEntityLens");
 		GameRegistry.registerTileEntity(TileEntityCollector.class, "redmagic.TileEntityCollector");
 		
-		GameRegistry.registerTileEntity(TileEntityJuicer.class, "redmagic.TileEntityJuicer");
 		GameRegistry.registerTileEntity(TileEntitySoulTrap.class, "redmagic.TileEntitySoulTrap");
 		GameRegistry.registerTileEntity(TileEntityWorkTable.class, "redmagic.TileEntityWorkTable");
 		GameRegistry.registerTileEntity(TileEntityCrystalizer.class, "redmagic.TileEntityCrystalizer");

@@ -3,7 +3,6 @@ package redmagic.configuration;
 public class ItemIndex {
 	//Names
 	public static final String REDHOLE_NAME = "redhole";
-	public static final String MACHINE_SOUL_NAME = "machine";
 	public static final String HAMMER_NAME = "hammer";
 	public static final String SOUL_CRYSTAL_NAME = "soul_crystal";
 	public static final String SOUL_NECTAR_NAME = "soul_nectar";
@@ -13,7 +12,6 @@ public class ItemIndex {
 	
 	//Default IDs 
 	public static final int REDHOLE_DEFAULT_ID = 13900;
-	public static final int MACHINE_SOUL_DEFAULT_ID = 13901;
 	public static final int HAMMER_DEFAULT_ID = 13902;
 	public static final int SOUL_CRYSTAL_DEFAULT_ID = 13903;
 	public static final int SOUL_NECTAR_DEFAULT_ID = 13904;
@@ -23,7 +21,6 @@ public class ItemIndex {
 	
 	//Current IDs
 	public static int REDHOLE_ID;
-	public static int MACHINE_SOUL_ID;
 	public static int HAMMER_ID;
 	public static int SOUL_CRYSTAL_ID;
 	public static int SOUL_NECTAR_ID;
@@ -31,13 +28,6 @@ public class ItemIndex {
 	public static int WRENCH_ID;
 	public static int CRYSTAL_ID;
 	
-	// MACHINE_SOUL
-	public static final String MACHINE_SOUL_FILTER_NAME = "filter";
-	public static final int MACHINE_SOUL_FILTER_ITEMDAMAGE = 0;
-	public static final String MACHINE_SOUL_FURNACE_NAME = "furnace";
-	public static final int MACHINE_SOUL_FURNACE_ITEMDAMAGE = 1;
-	public static final String MACHINE_SOUL_STORAGE_NAME = "storage";
-	public static final int MACHINE_SOUL_STORAGE_ITEMDAMAGE = 2;
 	
 	//Crystal
 	public static final String CRYSTAL_EMPTY_NAME = "empty";

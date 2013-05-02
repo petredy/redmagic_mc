@@ -9,9 +9,9 @@ public class LogicIndex {
 	//ISoul
 	public static final String[] SOUL_TYPES = new String[]{
 		"none",
-		ItemIndex.MACHINE_SOUL_FILTER_NAME,
-		ItemIndex.MACHINE_SOUL_FURNACE_NAME,
-		ItemIndex.MACHINE_SOUL_STORAGE_NAME
+		"filter",
+		"furnace",
+		"storage"
 	};
 	public static final int SOUL_NONE = 0;
 	public static final int SOUL_FILTER = 1;
@@ -43,6 +43,7 @@ public class LogicIndex {
 	
 	
 	public static final int FURNACE_MAX_ESSENCES = 10000;
+	public static final int FURNACE_COSTS = 100;
 	
 	public static final int STORAGE_MAX_ESSENCES = 100000;
 	

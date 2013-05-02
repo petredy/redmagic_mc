@@ -9,13 +9,12 @@ import redmagic.helpers.SoulHelper;
 
 public class TileEntitySoulTrap extends TileEntityInventory{
 	
-	public int soul_nectar;
 	public int count = 0;
-	public int need = 50;
+	public int need = 100;
 	
 	
 	public TileEntitySoulTrap() {
-		super(9, BlockIndex.SOUL_TRAP_NAME);
+		super(1, BlockIndex.SOUL_TRAP_NAME);
 		
 	}
 	
@@ -28,11 +27,8 @@ public class TileEntitySoulTrap extends TileEntityInventory{
 	}
 	
 	private void update() {
-		if(new Random().nextInt(100) < 1){
-			this.soul_nectar--;
-			InventoryHelper.addItemStackToInventory(this, SoulHelper.createNewSoul());
-		}else if(new Random().nextInt(100) < 10){
-			this.soul_nectar--;
+		if(new Random().nextInt(1000) < 1){
+			this.inv[0] = SoulHelper.createNewSoul();
 		}
 	}
 

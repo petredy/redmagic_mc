@@ -63,7 +63,7 @@ public class TileEntityStorage extends TileEntity implements IStorage, ITankCont
 
 	@Override
 	public int getMaxEssences() {
-		return this.maxEssences;
+		return this.tank.getCapacity();
 	}
 	
 	@Override

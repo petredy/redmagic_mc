@@ -44,7 +44,7 @@ public class ItemSoul extends Item implements ISoul{
 	@SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister)
     {
-		this.itemIcon = par1IconRegister.registerIcon(Reference.MOD_ID + ":" + ItemIndex.MACHINE_SOUL_NAME);
+		this.itemIcon = par1IconRegister.registerIcon(Reference.MOD_ID + ":" + ItemIndex.SOUL_NAME);
     }
 	
 	@Override

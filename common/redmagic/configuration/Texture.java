@@ -19,7 +19,6 @@ public class Texture {
 	
 	//Guis
 	public static final String WORK_TABLE = GUI_PATH + "work.png";
-	public static final String SOUL_TRAP = GUI_PATH + "soul_trap.png";
 	public static final String EDUCATION_BASIC = GUI_PATH + "education_basic.png";
 	public static final String EDUCATION_MOUDLE = GUI_PATH + "education_module.png";
 	public static final String CRYSTALIZER = GUI_PATH + "crystalizer.png";
