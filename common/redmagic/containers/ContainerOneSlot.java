@@ -5,6 +5,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
 
 public class ContainerOneSlot extends Container{
 
@@ -38,5 +39,29 @@ public class ContainerOneSlot extends Container{
 	public boolean canInteractWith(EntityPlayer entityplayer) {
 		return this.inv.isUseableByPlayer(entityplayer);
 	}
+	
+	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int index)
+    {
+		Slot slot = (Slot) this.inventorySlots.get(index);
+		if(slot != null){
+			ItemStack stack = slot.getStack();
+			if(stack != null){
+				if(index == 0){
+					if(!this.mergeItemStack(stack, 1, this.inventorySlots.size(), false)){
+						return null;
+					}
+				}else{
+					if(!this.mergeItemStack(stack, 0, 1, false)){
+						return null;
+					}
+					if(stack.stackSize == 0){
+						slot.putStack(null);
+						stack = null;
+					}
+				}
+			}
+		}
+		return null;
+    }
 
 }

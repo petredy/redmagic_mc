@@ -6,7 +6,10 @@ import redmagic.Redmagic;
 import redmagic.configuration.ItemIndex;
 import redmagic.configuration.Reference;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public class ItemSoulCrystal extends Item{
 

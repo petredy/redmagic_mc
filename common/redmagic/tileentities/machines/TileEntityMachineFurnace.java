@@ -57,14 +57,8 @@ public class TileEntityMachineFurnace extends TileEntityConsumer implements ISou
 					int twice = this.getIllusion() / 10 > new Random().nextInt(100) ? 2 : 1;
 					output.stackSize = burnAmount * output.stackSize * twice;
 					if(output.stackSize > this.inv[inputSlot].stackSize)output.stackSize = this.inv[inputSlot].stackSize;
-					Logger.log("-----------");
-					Logger.log(output.stackSize);
-					Logger.log(this.inv[inputSlot]);
-					Logger.log(burnAmount);
-					Logger.log(this.inv[inputSlot].stackSize);
 					ItemStack drop = InventoryHelper.addItemStackToInventory((IInventory) entity, output);
-					if(drop != null)InventoryHelper.dropItemStack(drop, worldObj, (double)xCoord + 0.5, (double)yCoord + 0.5, (double)zCoord + 0.5);
-					Logger.log(output);
+					if(drop != null)InventoryHelper.dropItemStack(drop, worldObj, (double)xCoord + 0.5, (double)yCoord + 1, (double)zCoord + 0.5);
 					if(this.inv[inputSlot].stackSize - burnAmount <= 0)this.inv[inputSlot] = null;
 					else {
 						this.burn++;

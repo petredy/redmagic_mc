@@ -6,6 +6,7 @@ public class Texture {
 	public static final String GUI_PATH = TEXTURE_PATH + "gui/";
 	public static final String RENDER_PATH = TEXTURE_PATH + "renders/";
 	public static final String PARTICLE_PATH = TEXTURE_PATH + "particles/";
+	public static final String ENTITY_PATH = TEXTURE_PATH + "entities/";
 	
 	
 	//Renders
@@ -45,6 +46,10 @@ public class Texture {
 	
 	// Liquids
 	public static final String ESSENCE = TEXTURE_PATH + "blocks/essence.png";
+
+	
+	// Entities
+	public static final String GHOST = ENTITY_PATH + "ghost.png";
 
 	
 	

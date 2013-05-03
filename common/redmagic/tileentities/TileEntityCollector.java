@@ -6,6 +6,7 @@ import java.util.List;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
@@ -27,7 +28,7 @@ public class TileEntityCollector extends TileEntityInventory{
 	
 	public void updateEntity(){
 		if(activeCount > maxActiveCount){
-			if(this.inv[0] != null && this.inv[0].getItem() instanceof ISoul && this.worldObj.getBlockId(xCoord, yCoord - 3, zCoord) == BlockManager.soulJuice.blockID){
+			if(this.inv[0] != null && this.inv[0].getItem() instanceof ISoul && this.structureAvailable()){
 				this.sacrifice();
 			}
 			this.activeCount = 0;
@@ -38,6 +39,14 @@ public class TileEntityCollector extends TileEntityInventory{
 			activeCount++;
 			this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, BlockManager.collector.blockID, ++blockMetadata);
 		}
+	}
+
+	private boolean structureAvailable() {
+		return this.worldObj.getBlockId(xCoord, yCoord - 3, zCoord) == Block.waterStill.blockID &&
+			   this.worldObj.getBlockId(xCoord + 2, yCoord, zCoord) == BlockManager.crystal.blockID &&
+			   this.worldObj.getBlockId(xCoord - 2, yCoord, zCoord) == BlockManager.crystal.blockID &&
+			   this.worldObj.getBlockId(xCoord, yCoord, zCoord + 2) == BlockManager.crystal.blockID &&
+			   this.worldObj.getBlockId(xCoord, yCoord, zCoord - 2) == BlockManager.crystal.blockID;
 	}
 
 	private void sacrifice() {

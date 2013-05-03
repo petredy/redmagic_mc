@@ -16,7 +16,6 @@ import net.minecraft.item.ItemStack;
 public class ContainerWorkTable extends Container{
 
 	public TileEntityWorkTable entity;
-	public InventoryWorkTable inv;
 	public String[] slotTextures = new String[9];
 	public EntityPlayer player;
 	public int showSlot;
@@ -93,10 +92,6 @@ public class ContainerWorkTable extends Container{
         	if(!this.mergeItemStack(slot.getStack(), 10, this.inventorySlots.size(), false)){
         		return null;
         	}
-        }else if(slot != null){
-        	if(!this.mergeItemStack(slot.getStack(), 1, 10, false)){
-        		return null;
-        	}
         }
         
         if(slot != null){
@@ -111,4 +106,6 @@ public class ContainerWorkTable extends Container{
         }
         return slot != null ? slot.getStack() : null;
     }
+	
+	
 }
