@@ -9,6 +9,7 @@ public class ItemIndex {
 	public static final String SOUL_NAME = "soul";
 	public static final String WRENCH_NAME = "wrench";
 	public static final String CRYSTAL_NAME = "crystal";
+	public static final String BANK_CRYSTAL_NAME = "bank";
 	
 	//Default IDs 
 	public static final int REDHOLE_DEFAULT_ID = 13900;
@@ -18,6 +19,7 @@ public class ItemIndex {
 	public static final int SOUL_DEFAULT_ID = 13905;
 	public static final int WRENCH_DEFAULT_ID = 13909;
 	public static final int CRYSTAL_DEFAULT_ID = 13910;
+	public static final int BANK_CRYSTAL_DEFAULT_ID = 13911;
 	
 	//Current IDs
 	public static int REDHOLE_ID;
@@ -27,6 +29,7 @@ public class ItemIndex {
 	public static int SOUL_ID;
 	public static int WRENCH_ID;
 	public static int CRYSTAL_ID;
+	public static int BANK_CRYSTAL_ID;
 	
 	
 	//Crystal

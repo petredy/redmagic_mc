@@ -13,6 +13,7 @@ import redmagic.configuration.Texture;
 import redmagic.client.guis.*;
 import redmagic.containers.*;
 import redmagic.tileentities.*;
+import redmagic.tileentities.bank.TileEntityBank;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.server.FMLServerHandler;
@@ -46,6 +47,9 @@ public class CommonProxy implements IGuiHandler{
 		if(ID == GuiIndex.COLLECTOR){
 			return new ContainerOneSlot(player, (IInventory) tileEntity);
 		}
+		if(ID == GuiIndex.BANK){
+			return new ContainerBank(player, (TileEntityBank)tileEntity);
+		}
 		return null;
 	}
 
@@ -63,6 +67,9 @@ public class CommonProxy implements IGuiHandler{
 		}
 		if(ID == GuiIndex.COLLECTOR){
 			return new GuiOneSlot(player, (IInventory) tileEntity);
+		}
+		if(ID == GuiIndex.BANK){
+			return new GuiBank(player, (TileEntityBank)tileEntity);
 		}
 		return null;
 	}

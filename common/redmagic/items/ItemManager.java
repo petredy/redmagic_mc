@@ -12,6 +12,7 @@ public class ItemManager {
 	public static ItemSoul soul;
 	public static ItemWrench wrench;
 	public static ItemCrystal crystal;
+	public static ItemBankCrystal bankCrystal;
 	
 	public static void init(){
 		redhole = new ItemRedhole(ItemIndex.REDHOLE_ID);
@@ -21,6 +22,7 @@ public class ItemManager {
 		soul = new ItemSoul(ItemIndex.SOUL_ID);
 		wrench = new ItemWrench(ItemIndex.WRENCH_ID);
 		crystal = new ItemCrystal(ItemIndex.CRYSTAL_ID);
+		bankCrystal = new ItemBankCrystal(ItemIndex.BANK_CRYSTAL_ID);
 		
 		registerRecipes();
 	}
@@ -38,6 +40,7 @@ public class ItemManager {
 		ItemIndex.SOUL_ID = config.getItem(ItemIndex.SOUL_NAME, ItemIndex.SOUL_DEFAULT_ID).getInt(ItemIndex.SOUL_DEFAULT_ID);
 		ItemIndex.WRENCH_ID = config.getItem(ItemIndex.WRENCH_NAME, ItemIndex.WRENCH_DEFAULT_ID).getInt(ItemIndex.WRENCH_DEFAULT_ID);
 		ItemIndex.CRYSTAL_ID = config.getItem(ItemIndex.CRYSTAL_NAME, ItemIndex.CRYSTAL_DEFAULT_ID).getInt(ItemIndex.CRYSTAL_DEFAULT_ID);
+		ItemIndex.BANK_CRYSTAL_ID = config.getItem(ItemIndex.BANK_CRYSTAL_NAME, ItemIndex.BANK_CRYSTAL_DEFAULT_ID).getInt(ItemIndex.BANK_CRYSTAL_DEFAULT_ID);
 		
 	}
 }

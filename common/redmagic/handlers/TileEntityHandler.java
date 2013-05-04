@@ -1,6 +1,7 @@
 package redmagic.handlers;
 
 import redmagic.tileentities.*;
+import redmagic.tileentities.bank.TileEntityBank;
 import redmagic.tileentities.education.TileEntityEducationBasic;
 import redmagic.tileentities.machines.*;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -25,6 +26,7 @@ public class TileEntityHandler {
 		GameRegistry.registerTileEntity(TileEntityLens.class, "redmagic.TileEntityLens");
 		GameRegistry.registerTileEntity(TileEntityCollector.class, "redmagic.TileEntityCollector");
 		
+		GameRegistry.registerTileEntity(TileEntityBank.class, "redmagic.TileEntityBank");
 		GameRegistry.registerTileEntity(TileEntitySoulTrap.class, "redmagic.TileEntitySoulTrap");
 		GameRegistry.registerTileEntity(TileEntityWorkTable.class, "redmagic.TileEntityWorkTable");
 		GameRegistry.registerTileEntity(TileEntityCrystalizer.class, "redmagic.TileEntityCrystalizer");

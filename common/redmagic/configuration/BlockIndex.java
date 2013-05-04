@@ -55,6 +55,10 @@ public class BlockIndex {
 	public static final int LIQUID_ESSENCE_DEFAULT_ID = 3311;
 	public static int LIQUID_ESSENCE_ID;
 	
+	public static final String BANK_NAME = "bank";
+	public static final int BANK_DEFAULT_ID = 3312;
+	public static int BANK_ID;
+	
 	
 	//Machine Names
 	public static final String MACHINE_FRAME_NAME = "frame";

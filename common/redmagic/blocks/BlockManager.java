@@ -20,6 +20,7 @@ public class BlockManager {
 	public static Block soulJuice;
 	public static Block crystal;
 	public static Block essence;
+	public static Block bank;
 	
 	public static void init(){
 		machine = new BlockMachine(BlockIndex.MACHINE_ID);
@@ -35,7 +36,9 @@ public class BlockManager {
 		soulJuice = new BlockSoulJuice(BlockIndex.SOUL_JUICE_ID);
 		crystal = new BlockCrystal(BlockIndex.CRYSTAL_ID);
 		essence = new BlockLiquidEssence(BlockIndex.LIQUID_ESSENCE_ID);
+		bank = new BlockBank(BlockIndex.BANK_ID);
 		
+		GameRegistry.registerBlock(bank, BlockIndex.BANK_NAME);
 		GameRegistry.registerBlock(essence, BlockIndex.LIQUID_ESSENCE_NAME);
 		GameRegistry.registerBlock(crystal, ItemBlockCrystal.class, BlockIndex.CRYSTAL_NAME);
 		GameRegistry.registerBlock(soulJuice, BlockIndex.SOUL_JUICE_NAME);
@@ -70,7 +73,7 @@ public class BlockManager {
 		BlockIndex.SOUL_JUICE_ID = config.getBlock(BlockIndex.SOUL_JUICE_NAME, BlockIndex.SOUL_JUICE_DEFAULT_ID).getInt(BlockIndex.SOUL_JUICE_DEFAULT_ID);
 		BlockIndex.CRYSTAL_ID = config.getBlock(BlockIndex.CRYSTAL_NAME, BlockIndex.CRYSTAL_DEFAULT_ID).getInt(BlockIndex.CRYSTAL_DEFAULT_ID);
 		BlockIndex.LIQUID_ESSENCE_ID = config.getBlock(BlockIndex.LIQUID_ESSENCE_NAME, BlockIndex.LIQUID_ESSENCE_DEFAULT_ID).getInt(BlockIndex.LIQUID_ESSENCE_DEFAULT_ID);
-		
+		BlockIndex.BANK_ID = config.getBlock(BlockIndex.BANK_NAME, BlockIndex.BANK_DEFAULT_ID).getInt(BlockIndex.BANK_DEFAULT_ID);
 	}
 	
 }

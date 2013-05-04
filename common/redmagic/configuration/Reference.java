@@ -21,4 +21,12 @@ public class Reference {
 	public static final String KEY_EXTRA_NAME = MOD_NAME + " key";
 	public static final int KEY_EXTRA_DEFAULT = 47;
 	public static int KEY_EXTRA_ID;
+	
+	//Storage
+	public static final String SAVE_DIR = "saves";
+	public static final String WORLD_STORAGE_FILE = "data.cfg";
+	public static final int SAVE_INTERVAL = 1000;
+	public static final String BANK_DATA_TYPE = "bank";
+	public static final String BANK_DATA_SPLITTER = ";";
+	public static final String BANK_DATA_COUNT = "ItemCount";
 }

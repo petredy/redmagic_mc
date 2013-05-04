@@ -22,6 +22,7 @@ import redmagic.configuration.*;
 import redmagic.core.*;
 import redmagic.handlers.*;
 import redmagic.items.*;
+import redmagic.lib.bank.BankData;
 import redmagic.network.*;
 
 @Mod( modid = Reference.MOD_ID, name=Reference.MOD_NAME, version=Reference.VERSION)
@@ -38,6 +39,13 @@ public class Redmagic{
 	public static CreativeTabs tabRedMagic = new CreativeTabRedMagic(CreativeTabs.getNextID(), Reference.MOD_NAME);
 	
 	public static boolean DEBUG;
+	
+	public static boolean loaded = false;
+	public static long saved = 0;
+	
+	
+	public static Configuration data;
+	public static BankData bankData;
 	
 	//-------------------------------------------------------------------------------------------------------------
 	//PRE INIT
@@ -57,6 +65,9 @@ public class Redmagic{
       	
       	//Initialise TileEntity Registration
       	TileEntityHandler.init();
+      	
+      	//Configurate LogicElements
+      	ConfigHandler.config(config);
         
         //Register GuiHandler
         NetworkRegistry.instance().registerGuiHandler(instance, this.proxy);
@@ -101,6 +112,9 @@ public class Redmagic{
 		// Initialise Liquid Texture Mapping
 		MinecraftForge.EVENT_BUS.register(new LiquidHandler());
 		
+		//Initialise WorldLoad Handler
+      	MinecraftForge.EVENT_BUS.register(new WorldLoadingHandler());
+		
 		proxy.registerRendering();
 		
     }
@@ -112,4 +126,8 @@ public class Redmagic{
     {
 
     }
+	
+	public static void initialiseData() {
+		DataHandler.init(Redmagic.data);
+	}
 }
