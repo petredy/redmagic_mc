@@ -56,7 +56,7 @@ public class GuiBank extends GuiContainer{
         Keyboard.enableRepeatEvents(true);
         this.searchField = new GuiTextField(this.fontRenderer, this.guiLeft + 81, this.guiTop + 5, 89, this.fontRenderer.FONT_HEIGHT);
         this.searchField.setMaxStringLength(15);
-        this.searchField.setEnableBackgroundDrawing(true);
+        this.searchField.setEnableBackgroundDrawing(false);
         this.searchField.setVisible(true);
         this.searchField.setTextColor(16777215);
     }

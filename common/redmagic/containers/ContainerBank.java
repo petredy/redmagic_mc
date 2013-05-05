@@ -11,6 +11,9 @@ import redmagic.core.Logger;
 import redmagic.helpers.BankHelper;
 import redmagic.helpers.InventoryHelper;
 import redmagic.lib.bank.BankManager;
+import redmagic.network.PacketBuyItem;
+import redmagic.network.PacketHandler;
+import redmagic.network.PacketSellItem;
 import redmagic.slots.SlotWorkTable;
 import redmagic.tileentities.bank.TileEntityBank;
 import net.minecraft.client.gui.inventory.GuiContainerCreative;
@@ -101,7 +104,11 @@ public class ContainerBank extends Container{
 	
 	public ItemStack buy(ItemStack stack, ItemStack crystal, int amount, EntityPlayer player){
 		float costs = BankManager.getItemPrice(stack.itemID, stack.getItemDamage()) * amount;
-		if(BankHelper.getMoney(crystal) >= costs && BankManager.removeItemAmount(stack.itemID, stack.getItemDamage(), amount / 2)){
+		if(player.worldObj.isRemote && BankHelper.getMoney(crystal) >= costs){
+			
+			
+			PacketDispatcher.sendPacketToServer(PacketHandler.populatePacket(new PacketBuyItem(stack.itemID, stack.getItemDamage(), amount, this.entity.xCoord, this.entity.yCoord, this.entity.zCoord)));
+			
 			BankHelper.setMoney(crystal, BankHelper.getMoney(crystal) - costs);
 			ItemStack output = new ItemStack(stack.itemID, amount, stack.getItemDamage());
 			
@@ -125,8 +132,11 @@ public class ContainerBank extends Container{
 			if(slotIndex >= 45){
 				if(stack != null){
 					float money = BankManager.getItemPrice(stack.itemID, stack.getItemDamage()) * stack.stackSize;
-					if(BankManager.addItemAmount(stack.itemID, stack.getItemDamage(), stack.stackSize / 2)){
+					if(entityPlayer.worldObj.isRemote){
 						Logger.log("get " + money);
+						
+						PacketDispatcher.sendPacketToServer(PacketHandler.populatePacket(new PacketSellItem(stack.itemID, stack.getItemDamage(), stack.stackSize, this.entity.xCoord, this.entity.yCoord, this.entity.zCoord)));
+						entityPlayer.playSound(Sounds.CHEST_CLOSE, 1.0F, 1.0F);
 						BankHelper.setMoney(crystal, BankHelper.getMoney(crystal) + money);
 					}
 					stack = null;
