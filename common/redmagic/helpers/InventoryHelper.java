@@ -13,7 +13,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.ISidedInventory;
 
-@SuppressWarnings("deprecation")
 public class InventoryHelper {
 	
 	public static IInventory getInventoryOnSide(World world, int x, int y, int z, int side){
@@ -29,26 +28,39 @@ public class InventoryHelper {
 	}
 	
 	public static boolean containsInventoryItems(IInventory inventory, ItemStack[] items){
-		int count = 0;
-		int need = items.length;
+		ItemStack[] containedItems = containedItemsInInventory(inventory, items);
+		for(int i = 0; i < containedItems.length; i++){
+			if(containedItems[i] != null){
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public static ItemStack[] containedItemsInInventory(IInventory inventory, ItemStack[] items){
 		
+		int[] used = new int[inventory.getSizeInventory()];
+		ItemStack[] contained = new ItemStack[items.length];
 		for(int i = 0; i < inventory.getSizeInventory(); i++){
 			ItemStack slot = inventory.getStackInSlot(i);
-			for(int j = 0; j < items.length; j++){
-				ItemStack item = items[j];
-				if(slot != null && item != null && slot.isItemEqual(item)){
-					if(slot.stackSize >= item.stackSize){
-						count++;
-						items[j] = null;
-					}else{
-						item.stackSize -= slot.stackSize;
+			if(slot != null){
+				for(int j = 0; j < items.length; j++){
+					ItemStack item = items[j];
+					if(item != null && slot.isItemEqual(item) && used[i] < slot.stackSize){
+						if(slot.stackSize >= item.stackSize){
+							contained[j] = items[j];
+							items[j] = null;
+							used[i]++;
+						}else{
+							item.stackSize -= slot.stackSize;
+							if(item.stackSize == 0)item = null;
+							used[i]++;
+						}
 					}
 				}
 			}
 		}
-		
-		if(count >= need)return true;
-		return false;
+		return items;
 	}
 
 	public static ItemStack[] sortItems(ItemStack[] items){
@@ -59,7 +71,7 @@ public class InventoryHelper {
 				length++;
 				for(int j = 0; j < items.length; j++){
 					if(j != i){
-						if(items[j] != null && item != null && items[j].isItemEqual(item)){
+						if(items[j] != null && items[j].isItemEqual(item)){
 							item.stackSize += items[j].stackSize;
 							items[j] = null;
 						}
@@ -73,7 +85,6 @@ public class InventoryHelper {
 		for(int i = 0; i < items.length; i++){
 			if(items[i] != null){
 				sortedItems[count] = items[i];
-				Logger.log(count + ": " + sortedItems[count]);
 				count++;
 			}
 		}
@@ -129,7 +140,6 @@ public class InventoryHelper {
 		return stackToMove;
 	}
 	
-	@SuppressWarnings("unused")
 	public static int addItemStackToInventorySide(ISidedInventory inventory, int side, ItemStack par1ItemStack){
 		int start = inventory.getStartInventorySide(ForgeDirection.getOrientation(side));
 		int length = inventory.getSizeInventorySide(ForgeDirection.getOrientation(side));
@@ -163,7 +173,6 @@ public class InventoryHelper {
     }
 	
     
-    @SuppressWarnings("unused")
 	private static int storeItemStack(ItemStack[] inv, ItemStack par1ItemStack)
     {
         for (int var2 = 0; var2 < inv.length; ++var2)
@@ -211,9 +220,6 @@ public class InventoryHelper {
 		int used = 0;
 		for(int i = 0; i < inv.getSizeInventory(); i++){
 			ItemStack item = inv.getStackInSlot(i);
-			Logger.log(stack);
-			Logger.log(item);
-			if(item != null)Logger.log(stack.isItemEqual(item));
 			if(item != null && stack.isItemEqual(item) && item.stackSize > 0){
 				if(item.stackSize - amount >= 0){
 					inv.decrStackSize(i, amount);
@@ -249,7 +255,6 @@ public class InventoryHelper {
 		return used;
 	}
 	
-	@SuppressWarnings("unused")
 	public static ItemStack addToAdjacentInventory(World world, int x, int y, int z, ItemStack stack){
 		TileEntity entityTo = world.getBlockTileEntity(x, y + 1, z);
 		ItemStack rtn = null;

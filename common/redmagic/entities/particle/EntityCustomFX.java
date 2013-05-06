@@ -50,27 +50,5 @@ public class EntityCustomFX extends EntityFX{
    
         tessellator1.draw();
     }
-	
-	public String getTextureFromItemStack(ItemStack stack){
-		if(stack == null)return "";
-		Icon icon = stack.getIconIndex();
-		String name = icon.getIconName();
-		if(name.indexOf(":") > 0){
-			String mod = name.substring(0, name.indexOf(":"));
-			String file = name.substring(name.indexOf(":") + 1);
-			if(stack.getItem() instanceof ItemBlock){
-				return "/mods/" + mod + "/textures/blocks/" + file + ".png";
-			}else{
-				return "/mods/" + mod + "/textures/items/" + file + ".png";
- 			}
-			
-		}else{
-			if(stack.getItem() instanceof ItemBlock){
-				return "/textures/blocks/" + name + ".png";
-			}else{
-				return "/textures/items/" + name + ".png";
-			}
-		}
-	}
 }
 

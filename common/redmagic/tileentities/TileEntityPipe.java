@@ -56,7 +56,7 @@ public class TileEntityPipe extends TileEntityStorage implements IPipe{
 						stack = stack.copy();
 						stack.amount = rest;
 					}
-					storages[count].fill(ForgeDirection.UNKNOWN, stack, true);
+					storages[count].fill(ForgeDirection.getOrientation(count), stack, true);
 					essencesPerConnection += rest / storages.length - count;
 				}
 				count++;

@@ -6,6 +6,7 @@ import redmagic.configuration.BlockIndex;
 import redmagic.configuration.GuiIndex;
 import redmagic.configuration.Reference;
 import redmagic.helpers.BlockHelper;
+import redmagic.helpers.InventoryHelper;
 import redmagic.tileentities.TileEntityWorkTable;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -64,7 +65,8 @@ public class BlockWorkTable extends BlockContainer{
 	
 	public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6)
     {
-		BlockHelper.dropItems(par1World, par2, par3, par4);
+		TileEntityWorkTable entity = (TileEntityWorkTable) par1World.getBlockTileEntity(par2, par3, par4);
+		if(entity.getStackInSlot(entity.outputSlot) != null)InventoryHelper.dropItemStack(entity.getStackInSlot(entity.outputSlot), par1World, par2, par3, par4);
 		super.breakBlock(par1World, par2, par3, par4, par5, par6);
     }
 

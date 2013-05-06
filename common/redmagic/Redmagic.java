@@ -17,6 +17,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
+import redmagic.addons.BuildcraftAddon;
 import redmagic.blocks.*;
 import redmagic.configuration.*;
 import redmagic.core.*;
@@ -124,7 +125,8 @@ public class Redmagic{
 	@PostInit
     public void init(FMLPostInitializationEvent event)
     {
-
+		//Initialise Buildcraft Addon
+		//BuildcraftAddon.init();
     }
 	
 	public static void initialiseData() {

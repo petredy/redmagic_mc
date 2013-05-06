@@ -97,7 +97,6 @@ public class BlockEducation extends BlockContainer implements IWrenchable{
 		super.breakBlock(par1World, par2, par3, par4, par5, par6);
 	}
 
-	@SuppressWarnings("unused")
 	@Override
 	public void onWrench(EntityPlayer player, World world, int x, int y, int z, int metadata) {
 		TileEntity entity = world.getBlockTileEntity(x, y, z);

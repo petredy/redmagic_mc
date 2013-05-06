@@ -9,9 +9,12 @@ import redmagic.tileentities.bank.TileEntityBank;
 import net.minecraft.block.BlockChest;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
@@ -64,6 +67,32 @@ public class BlockBank extends BlockContainer{
         }
 
         return true;
+    }
+    
+    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLiving par5EntityLiving, ItemStack par6ItemStack){
+    	byte b0 = 0;
+        int l1 = MathHelper.floor_double((double)(par5EntityLiving.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+
+        if (l1 == 0)
+        {
+            b0 = 2;
+        }
+
+        if (l1 == 1)
+        {
+            b0 = 5;
+        }
+
+        if (l1 == 2)
+        {
+            b0 = 3;
+        }
+
+        if (l1 == 3)
+        {
+            b0 = 4;
+        }
+        par1World.setBlockMetadataWithNotify(par2, par3, par4, b0, 3);
     }
 
 }

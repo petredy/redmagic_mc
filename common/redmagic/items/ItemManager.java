@@ -13,6 +13,8 @@ public class ItemManager {
 	public static ItemWrench wrench;
 	public static ItemCrystal crystal;
 	public static ItemBankCrystal bankCrystal;
+	public static ItemCrafting crafting;
+	public static ItemBlockifier blockifier;
 	
 	public static void init(){
 		redhole = new ItemRedhole(ItemIndex.REDHOLE_ID);
@@ -23,6 +25,8 @@ public class ItemManager {
 		wrench = new ItemWrench(ItemIndex.WRENCH_ID);
 		crystal = new ItemCrystal(ItemIndex.CRYSTAL_ID);
 		bankCrystal = new ItemBankCrystal(ItemIndex.BANK_CRYSTAL_ID);
+		crafting = new ItemCrafting(ItemIndex.CRAFTING_ID);
+		blockifier = new ItemBlockifier(ItemIndex.BLOCKIFIER_ID);
 		
 		registerRecipes();
 	}
@@ -41,6 +45,8 @@ public class ItemManager {
 		ItemIndex.WRENCH_ID = config.getItem(ItemIndex.WRENCH_NAME, ItemIndex.WRENCH_DEFAULT_ID).getInt(ItemIndex.WRENCH_DEFAULT_ID);
 		ItemIndex.CRYSTAL_ID = config.getItem(ItemIndex.CRYSTAL_NAME, ItemIndex.CRYSTAL_DEFAULT_ID).getInt(ItemIndex.CRYSTAL_DEFAULT_ID);
 		ItemIndex.BANK_CRYSTAL_ID = config.getItem(ItemIndex.BANK_CRYSTAL_NAME, ItemIndex.BANK_CRYSTAL_DEFAULT_ID).getInt(ItemIndex.BANK_CRYSTAL_DEFAULT_ID);
+		ItemIndex.CRAFTING_ID = config.getItem(ItemIndex.CRAFTING_NAME, ItemIndex.CRAFTING_DEFAULT_ID).getInt(ItemIndex.CRAFTING_DEFAULT_ID);
+		ItemIndex.BLOCKIFIER_ID = config.getItem(ItemIndex.BLOCKIFIER_NAME, ItemIndex.BLOCKIFIER_DEFAULT_ID).getInt(ItemIndex.BLOCKIFIER_DEFAULT_ID);
 		
 	}
 }

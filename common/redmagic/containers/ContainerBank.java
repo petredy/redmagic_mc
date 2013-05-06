@@ -80,26 +80,39 @@ public class ContainerBank extends Container{
 	
 	public ItemStack slotClick(int index, int right, int shift, EntityPlayer player)
     {
-		if(index < 45 && index > 0){
+		if(index >= 0 && index < this.inventorySlots.size()){
 			Slot slot = (Slot) this.inventorySlots.get(index);
 			ItemStack crystal = this.entity.getStackInSlot(0);
-			if(slot != null && crystal != null && slot.getStack() != null && (player.inventory.getItemStack() == null || player.inventory.getItemStack().isItemEqual(slot.getStack()))){
-				ItemStack stack = slot.getStack();
-				if(shift == 1 && right == 1){
-					
-				}else if(shift == 1 && player.inventory.getItemStack() == null){	
-					return this.buy(stack, crystal, stack.getMaxStackSize(), player);
-				}else if(right == 1 && (player.inventory.getItemStack() == null || player.inventory.getItemStack().stackSize + stack.getMaxStackSize() / 2 <= stack.getMaxStackSize())){
-					return this.buy(stack, crystal, stack.getMaxStackSize() / 2, player);
-				}else{
-					return this.buy(stack, crystal, 1, player);
+			if(index <= 45 && index > 0){
+				if(slot != null && crystal != null && slot.getStack() != null && player.inventory.getItemStack() == null){
+					ItemStack stack = slot.getStack();
+					if(shift == 1 && right == 1){
+						
+					}else if(shift == 1 && player.inventory.getItemStack() == null){	
+						return this.buy(stack, crystal, stack.getMaxStackSize(), player);
+					}else if(right == 1 && (player.inventory.getItemStack() == null || player.inventory.getItemStack().stackSize + stack.getMaxStackSize() / 2 <= stack.getMaxStackSize())){
+						return this.buy(stack, crystal, stack.getMaxStackSize() / 2, player);
+					}else{
+						return this.buy(stack, crystal, 1, player);
+					}
+				}else if(crystal != null && player.inventory.getItemStack() != null){
+					this.sell(player.inventory.getItemStack(), crystal, player);
+					player.inventory.setItemStack(null);
+					return null;
 				}
+				
+				return null;
+			}else{
+				if(slot != null && crystal != null && slot.getStack() != null && shift == 1 && index > 45 && index < this.inventorySlots.size()){
+					ItemStack rtn = this.sell(slot.getStack(), crystal, player);
+					slot.putStack(null);
+					player.inventory.setItemStack(null);
+					return null;
+				}
+				return super.slotClick(index, right, shift, player);
 			}
-			
-			return null;
-		}else{
-			return super.slotClick(index, right, shift, player);
 		}
+		return null;
     }
 	
 	public ItemStack buy(ItemStack stack, ItemStack crystal, int amount, EntityPlayer player){
@@ -111,39 +124,25 @@ public class ContainerBank extends Container{
 			
 			BankHelper.setMoney(crystal, BankHelper.getMoney(crystal) - costs);
 			ItemStack output = new ItemStack(stack.itemID, amount, stack.getItemDamage());
-			
-			
 			player.playSound(Sounds.CHEST_CLOSE, 1.0F, 1.0F);
-			if(player.inventory.getItemStack() != null){
-				output.stackSize += player.inventory.getItemStack().stackSize;
-			}
-			player.inventory.setItemStack(output);
 			return output;
 		}
 		return null;
 	}
 	
+	public ItemStack sell(ItemStack stack, ItemStack crystal, EntityPlayer player){
+		float money = BankManager.getItemPrice(stack.itemID, stack.getItemDamage()) * stack.stackSize;
+		if(player.worldObj.isRemote){
+			
+			PacketDispatcher.sendPacketToServer(PacketHandler.populatePacket(new PacketSellItem(stack.itemID, stack.getItemDamage(), stack.stackSize, this.entity.xCoord, this.entity.yCoord, this.entity.zCoord)));
+			player.playSound(Sounds.CHEST_CLOSE, 1.0F, 1.0F);
+			BankHelper.setMoney(crystal, BankHelper.getMoney(crystal) + money);
+		}
+		return stack;
+	}
+	
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer entityPlayer, int slotIndex) {
-		ItemStack crystal = this.entity.getStackInSlot(0);
-		Slot slot = (Slot) this.inventorySlots.get(slotIndex);
-		if(slot != null && crystal != null){
-			ItemStack stack = slot.getStack();
-			if(slotIndex >= 45){
-				if(stack != null){
-					float money = BankManager.getItemPrice(stack.itemID, stack.getItemDamage()) * stack.stackSize;
-					if(entityPlayer.worldObj.isRemote){
-						Logger.log("get " + money);
-						
-						PacketDispatcher.sendPacketToServer(PacketHandler.populatePacket(new PacketSellItem(stack.itemID, stack.getItemDamage(), stack.stackSize, this.entity.xCoord, this.entity.yCoord, this.entity.zCoord)));
-						entityPlayer.playSound(Sounds.CHEST_CLOSE, 1.0F, 1.0F);
-						BankHelper.setMoney(crystal, BankHelper.getMoney(crystal) + money);
-					}
-					stack = null;
-					slot.putStack(null);
-				}
-			}
-		}
 		return null;
 	}
 	
@@ -163,7 +162,7 @@ public class ContainerBank extends Container{
             {
                 int i1 = l + (k + j) * 9;
                 
-                if (i1 >= 0 && i1 < BankManager.getAllItems().size())
+                if (i1 >= 0 && i1 < list.size())
                 {
                     this.inv.setInventorySlotContents(l + k * 9, (ItemStack)list.get(i1));
                 }

@@ -26,7 +26,7 @@ public class TileEntityBank extends TileEntity implements IInventory{
     public TileEntityBank() {
 
         super();
-        inventory = new ItemStack[2];
+        inventory = new ItemStack[1];
     }
 
     @Override

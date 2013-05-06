@@ -8,6 +8,7 @@ import redmagic.api.items.IKeyBound;
 import redmagic.configuration.PacketIndex;
 import redmagic.core.Logger;
 import redmagic.helpers.BankHelper;
+import redmagic.helpers.InventoryHelper;
 import redmagic.lib.bank.BankManager;
 import redmagic.tileentities.bank.TileEntityBank;
 
@@ -64,6 +65,7 @@ public class PacketSellItem extends PacketRedMagic {
 			thePlayer.inventory.setItemStack(stack);
 			TileEntityBank bank = (TileEntityBank) thePlayer.worldObj.getBlockTileEntity(x, y, z);
 			ItemStack crystal = bank.getStackInSlot(0);
+			thePlayer.inventory.setItemStack(null);
 			if(crystal != null){
 				BankHelper.setMoney(crystal, BankHelper.getMoney(crystal) + money);
 			}

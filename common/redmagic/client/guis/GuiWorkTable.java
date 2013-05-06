@@ -29,16 +29,20 @@ public class GuiWorkTable extends GuiContainer{
 	public void initGui()
     {
 		super.initGui();
-		this.buttonList.add(new ButtonCustom(0, this.guiLeft + 100, this.guiTop + 10, 16, 16, "", Texture.BUTTON_WORK_TABLE_LEFT));
-		this.buttonList.add(new ButtonCustom(1, this.guiLeft + 148, this.guiTop + 10, 16, 16, "", Texture.BUTTON_WORK_TABLE_RIGHT));
+		this.buttonList.add(new GuiButton(0, this.guiLeft + 100, this.guiTop + 8, 20, 20, "<"));
+		this.buttonList.add(new GuiButton(1, this.guiLeft + 143, this.guiTop + 8, 20, 20, ">"));
     }
 	
 	protected void actionPerformed(GuiButton button) {
 		if(button.id == 0){
 			PacketDispatcher.sendPacketToServer(PacketHandler.populatePacket(new PacketWorkTable(this.entity.xCoord, this.entity.yCoord, this.entity.zCoord, -1)));
+			this.entity.craftingIndex -= 1;
+			this.entity.showCrafting();
 			this.container.showCrafting();
 		}else if(button.id == 1){
 			PacketDispatcher.sendPacketToServer(PacketHandler.populatePacket(new PacketWorkTable(this.entity.xCoord, this.entity.yCoord, this.entity.zCoord, 1)));
+			this.entity.craftingIndex += 1;
+			this.entity.showCrafting();
 			this.container.showCrafting();
 		}
 		
@@ -58,7 +62,7 @@ public class GuiWorkTable extends GuiContainer{
 		int x = (this.width - this.xSize) / 2;
 		int y = (this.height - this.ySize) / 2;
 		this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
-		/*
+		
 		int count = 0;
 		for(int i = 0; i < 3; i++){
 			for(int j = 0; j < 3; j++){
@@ -67,7 +71,7 @@ public class GuiWorkTable extends GuiContainer{
 				count++;
 			}
 		}
-		*/
+		
 	}
 
 }

@@ -1,6 +1,7 @@
 package redmagic.containers;
 
 import redmagic.configuration.Texture;
+import redmagic.core.Logger;
 import redmagic.helpers.InventoryHelper;
 import redmagic.recipes.worktable.WorkTableRegistry;
 import redmagic.slots.SlotOutput;
@@ -43,20 +44,29 @@ public class ContainerWorkTable extends Container{
 		this.bindPlayerInventory(player.inventory);
 	}
 	
-	@SuppressWarnings("static-access")
 	public void showCrafting() {
+		Logger.log("show");
 		this.clearMatrix();
+		ItemStack[] input = new ItemStack[9];
+		ItemStack[] review = new ItemStack[9];
+		int count = 0;
 		for(int i = this.entity.outputSlot + 1; i < this.entity.showSlot; i++){
-			ItemStack stack = this.entity.getStackInSlot(i);
+			review[count] = this.entity.getStackInSlot(i);
+			input[count++] = this.entity.getStackInSlot(i);
+		}
+		ItemStack[] containedItems = InventoryHelper.containedItemsInInventory(this.player.inventory, input);
+		for(int i = 0; i < containedItems.length; i++){
+			ItemStack stack = containedItems[i];
 		    if(stack == null){
-		    	this.slotTextures[i - this.entity.outputSlot - 1] = Texture.GRAY;
-			}else if(InventoryHelper.containsInventoryItems(this.player.inventory, new ItemStack[]{stack})){
-				this.slotTextures[i - this.entity.outputSlot - 1] = Texture.GREEN;
-			}else if(WorkTableRegistry.contains(stack)){
-				this.slotTextures[i - this.entity.outputSlot - 1] = Texture.ORANGE;
-			}else if(stack != null){
-				this.slotTextures[i - this.entity.outputSlot - 1] = Texture.RED;
+		    	if(review[i] != null){
+		    		this.slotTextures[i] = Texture.GREEN;
+		    	}
+			}else if(stack != null && WorkTableRegistry.contains(stack)){
+				this.slotTextures[i] = Texture.ORANGE;
+			}else{
+				this.slotTextures[i] = Texture.RED;
 			}
+				
 		}
 		
 	}

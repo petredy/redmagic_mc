@@ -2,6 +2,7 @@ package redmagic.entities.particle;
 
 import redmagic.configuration.Texture;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -36,11 +37,6 @@ public class EntityWorkTableFX extends EntityCustomFX{
 		this.setTextureByMode();
 		this.particleScale = 3;
 		super.renderParticle(par1Tessellator, par2, par3, par4, par5, par6, par7);
-		if(stack != null){
-			this.texture = this.getTextureFromItemStack(stack);
-			this.particleScale = 0.8F;
-			super.renderParticle(par1Tessellator, par2, par3, par4, par5, par6, par7);
-		}
     }
 
 }

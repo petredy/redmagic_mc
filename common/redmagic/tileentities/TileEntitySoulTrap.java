@@ -27,7 +27,7 @@ public class TileEntitySoulTrap extends TileEntityInventory{
 	}
 	
 	private void update() {
-		if(new Random().nextInt(1000) < 1){
+		if(this.inv[0] != null && new Random().nextInt(1000) < 1000){
 			this.inv[0] = SoulHelper.createNewSoul();
 		}
 	}

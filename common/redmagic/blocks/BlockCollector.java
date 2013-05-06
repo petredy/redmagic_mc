@@ -9,7 +9,6 @@ import redmagic.configuration.GuiIndex;
 import redmagic.configuration.Reference;
 import redmagic.core.Logger;
 import redmagic.tileentities.TileEntityCollector;
-import redmagic.tileentities.TileEntityLens;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -76,7 +75,7 @@ public class BlockCollector extends BlockContainer implements IWrenchable{
 	public void onWrench(EntityPlayer player, World world, int x, int y, int z, int metadata) {
 		TileEntity entity = world.getBlockTileEntity(x, y, z);
 		if(entity != null && entity instanceof TileEntityCollector){
-			((TileEntityCollector)entity).activeCount++;
+			((TileEntityCollector)entity).activate();
 			world.setBlockMetadataWithNotify(x, y, z, this.blockID, ((TileEntityCollector)entity).activeCount);
 		}
 	}

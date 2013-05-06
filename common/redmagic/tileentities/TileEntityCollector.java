@@ -41,6 +41,12 @@ public class TileEntityCollector extends TileEntityInventory{
 		}
 	}
 
+	public void activate(){
+		if(this.inv[0] != null && this.inv[0].getItem() instanceof ISoul && this.structureAvailable()){
+			this.activeCount++;
+		}
+	}
+	
 	private boolean structureAvailable() {
 		return this.worldObj.getBlockId(xCoord, yCoord - 3, zCoord) == Block.waterStill.blockID &&
 			   this.worldObj.getBlockId(xCoord + 2, yCoord, zCoord) == BlockManager.crystal.blockID &&

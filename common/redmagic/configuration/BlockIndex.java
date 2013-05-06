@@ -35,17 +35,9 @@ public class BlockIndex {
 	public static final int CRYSTALIZER_DEFAULT_ID = 3307;
 	public static int CRYSTALIZER_ID;
 	
-	public static final String LENS_NAME = "lens";
-	public static final int LENS_DEFAULT_ID = 3308;
-	public static int LENS_ID;
-	
 	public static final String COLLECTOR_NAME = "collector";
 	public static final int COLLECTOR_DEFAULT_ID = 3309;
 	public static int COLLECTOR_ID;
-	
-	public static final String SOUL_JUICE_NAME = "soul_juice";
-	public static final int SOUL_JUICE_DEFAULT_ID = 3310;
-	public static int SOUL_JUICE_ID;
 	
 	public static final String CRYSTAL_NAME = "crystal";
 	public static final int CRYSTAL_DEFAULT_ID = 3312;
@@ -58,6 +50,12 @@ public class BlockIndex {
 	public static final String BANK_NAME = "bank";
 	public static final int BANK_DEFAULT_ID = 3312;
 	public static int BANK_ID;
+	
+	public static final String ENTITY_NAME = "entity";
+	public static final int ENTITY_DEFAULT_ID = 3313;
+	public static int ENTITY_ID;
+	
+	
 	
 	
 	//Machine Names
@@ -87,5 +85,8 @@ public class BlockIndex {
 	public static final String CRYSTAL_ILLUSION_NAME = "illusion";
 	public static final int CRYSTAL_ILLUSION_METADATA = 3;
 	
+	//Entity
+	public static final String ENTITY_PIG_NAME = "pig";
+	public static final int ENTITY_PIG_METADATA = 0;
 	
 }

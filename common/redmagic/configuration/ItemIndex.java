@@ -10,6 +10,8 @@ public class ItemIndex {
 	public static final String WRENCH_NAME = "wrench";
 	public static final String CRYSTAL_NAME = "crystal";
 	public static final String BANK_CRYSTAL_NAME = "bank";
+	public static final String CRAFTING_NAME = "crafting";
+	public static final String BLOCKIFIER_NAME = "blockifier";
 	
 	//Default IDs 
 	public static final int REDHOLE_DEFAULT_ID = 13900;
@@ -20,6 +22,8 @@ public class ItemIndex {
 	public static final int WRENCH_DEFAULT_ID = 13909;
 	public static final int CRYSTAL_DEFAULT_ID = 13910;
 	public static final int BANK_CRYSTAL_DEFAULT_ID = 13911;
+	public static final int CRAFTING_DEFAULT_ID = 13912;
+	public static final int BLOCKIFIER_DEFAULT_ID = 13913;
 	
 	//Current IDs
 	public static int REDHOLE_ID;
@@ -30,6 +34,10 @@ public class ItemIndex {
 	public static int WRENCH_ID;
 	public static int CRYSTAL_ID;
 	public static int BANK_CRYSTAL_ID;
+	public static int CRAFTING_ID;
+	public static int BLOCKIFIER_ID;
+	
+	
 	
 	
 	//Crystal
@@ -48,6 +56,8 @@ public class ItemIndex {
 	public static final String CRYSTAL_ALL_NAME = "all";
 	public static final int CRYSTAL_ALL_ITEMDAMAGE = 6;
 	
-	
+	//Crafting
+	public static final String CRAFTING_SOUL_FRAGMENTS_NAME = "fragment";
+	public static final int CRAFTING_SOUL_FRAGMENTS_ITEMDAMAGE = 0;
 	
 }

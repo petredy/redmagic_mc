@@ -1,5 +1,6 @@
 package redmagic.client.guis;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -26,6 +27,7 @@ import net.minecraft.util.StatCollector;
 import redmagic.client.guis.button.ButtonCustom;
 import redmagic.configuration.Texture;
 import redmagic.containers.ContainerBank;
+import redmagic.core.Logger;
 import redmagic.helpers.BankHelper;
 import redmagic.lib.bank.BankManager;
 import redmagic.network.PacketHandler;
@@ -39,6 +41,8 @@ public class GuiBank extends GuiContainer{
 	public EntityPlayer player;
 	
 	public GuiTextField searchField;
+	private boolean wasClicking;
+	private boolean isScrolling;
 	
 	public GuiBank(EntityPlayer player, TileEntityBank tileEntity) {
 		super(new ContainerBank(player,tileEntity));
@@ -59,6 +63,10 @@ public class GuiBank extends GuiContainer{
         this.searchField.setEnableBackgroundDrawing(false);
         this.searchField.setVisible(true);
         this.searchField.setTextColor(16777215);
+        this.searchField.setVisible(true);
+        this.searchField.setCanLoseFocus(false);
+        this.searchField.setFocused(true);
+        this.searchField.setText("");
     }
 	
 	public void onGuiClosed()
@@ -74,9 +82,9 @@ public class GuiBank extends GuiContainer{
 	
 	 public void handleMouseInput()
     {
-        super.handleMouseInput();
+		super.handleMouseInput();
         int i = Mouse.getEventDWheel();
-
+        
         if (i != 0)
         {
             int j = BankManager.getAllItems().size() / 9 - 5 + 1;
@@ -105,6 +113,7 @@ public class GuiBank extends GuiContainer{
 
             ((ContainerBank)this.inventorySlots).scrollTo(this.currentScroll);
         }
+        
     }
 
 	@Override
@@ -149,10 +158,20 @@ public class GuiBank extends GuiContainer{
 		ContainerBank bank = (ContainerBank)this.inventorySlots;
 		
 		Iterator iterator = bank.list.iterator();
-		String s = this.searchField.getText().toLowerCase();
-		
-		while(iterator.hasNext()){
-			
+		List<ItemStack> newList = new ArrayList<ItemStack>();
+		String search = this.searchField.getText().toLowerCase();
+		if(!search.equals("")){
+			while(iterator.hasNext()){
+				ItemStack stack = (ItemStack) iterator.next();
+				String name = StatCollector.translateToLocal(stack.getDisplayName().toLowerCase());
+				if(name.matches(".*"+search+".*")){
+					newList.add(stack);
+				}
+			}
+			bank.list = newList;
+			bank.scrollTo(0.0F);
+		}else{
+			bank.list = BankManager.getAllItems();
 		}
 	}
 	
@@ -182,6 +201,50 @@ public class GuiBank extends GuiContainer{
 
         FontRenderer font = par1ItemStack.getItem().getFontRenderer(par1ItemStack);
         drawHoveringText(list, par2, par3, (font == null ? fontRenderer : font));
+    }
+	
+	public void drawScreen(int par1, int par2, float par3)
+    {
+        boolean flag = Mouse.isButtonDown(0);
+        int k = this.guiLeft;
+        int l = this.guiTop;
+        int i1 = k + 175;
+        int j1 = l + 18;
+        int k1 = i1 + 14;
+        int l1 = j1 + 112;
+
+        if (!this.wasClicking && flag && par1 >= i1 && par2 >= j1 && par1 < k1 && par2 < l1)
+        {
+            this.isScrolling = true;
+        }
+
+        if (!flag)
+        {
+            this.isScrolling = false;
+        }
+
+        this.wasClicking = flag;
+
+        if ((boolean) this.isScrolling)
+        {
+            this.currentScroll = ((float)(par2 - j1) - 7.5F) / ((float)(l1 - j1) - 15.0F);
+
+            if (this.currentScroll < 0.0F)
+            {
+                this.currentScroll = 0.0F;
+            }
+
+            if (this.currentScroll > 1.0F)
+            {
+                this.currentScroll = 1.0F;
+            }
+
+            ((ContainerBank)this.inventorySlots).scrollTo(this.currentScroll);
+        }else{
+        	((ContainerBank)this.inventorySlots).scrollTo(this.currentScroll);
+        }
+
+        super.drawScreen(par1, par2, par3);
     }
 }
 

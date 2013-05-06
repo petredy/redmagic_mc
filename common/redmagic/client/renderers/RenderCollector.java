@@ -10,7 +10,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 
 import redmagic.tileentities.TileEntityCollector;
-import redmagic.tileentities.TileEntityLens;
 
 public class RenderCollector extends TileEntitySpecialRenderer{
 
