@@ -5,15 +5,18 @@ import java.util.Random;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import redmagic.api.frame.ISoul;
 import redmagic.api.frame.ISoulFrame;
 import redmagic.blocks.BlockManager;
+import redmagic.configuration.BlockIndex;
 import redmagic.configuration.ItemIndex;
 import redmagic.configuration.LogicIndex;
 import redmagic.core.Logger;
 import redmagic.items.ItemManager;
 import redmagic.tileentities.machines.TileEntityMachineFurnace;
+import redmagic.tileentities.machines.TileEntityMachineSlaugther;
 
 public class SoulHelper {
 
@@ -51,11 +54,14 @@ public class SoulHelper {
 	}
 	
 	public static void handleSoulTypePlacing(ItemStack stack, World world, int x, int y, int z, int type, EntityPlayer player){
+		TileEntity entity = (TileEntity) world.getBlockTileEntity(x, y, z);
 		switch(type){
 		case LogicIndex.SOUL_FURNACE:
-			TileEntityMachineFurnace entity = (TileEntityMachineFurnace) world.getBlockTileEntity(x, y, z);
-    		entity.side = BlockHelper.getRotation(world, x, y, z, player);
+    		((TileEntityMachineFurnace)entity).side = BlockHelper.getRotation(world, x, y, z, player);
     		break;
+		 case BlockIndex.MACHINE_SLAUGTHER_METADATA:
+		    ((TileEntityMachineSlaugther)entity).side = BlockHelper.getRotation(world, x, y, z, player);
+		    break;
 		}
 	}
 

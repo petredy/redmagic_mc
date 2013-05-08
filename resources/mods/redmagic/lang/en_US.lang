@@ -8,6 +8,7 @@ tile.machine.frame.name=Soul Frame
 tile.machine.filter.name=Essence Filter
 tile.machine.furnace.name=Essence Furnace
 tile.machine.storage.name=Essence Storage
+tile.machine.slaugther.name=Slaugther
 
 tile.crystal.intelligence.name=Intelligence Crystal Block
 tile.crystal.strength.name=Strength Crystal Block

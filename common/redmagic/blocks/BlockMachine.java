@@ -6,10 +6,12 @@ import java.util.Random;
 import redmagic.Redmagic;
 import redmagic.configuration.BlockIndex;
 import redmagic.configuration.Reference;
+import redmagic.core.Logger;
 import redmagic.helpers.BlockHelper;
 import redmagic.helpers.SoulHelper;
 import redmagic.tileentities.machines.TileEntityMachineFilter;
 import redmagic.tileentities.machines.TileEntityMachineFurnace;
+import redmagic.tileentities.machines.TileEntityMachineSlaugther;
 import redmagic.tileentities.machines.TileEntityMachineStorage;
 
 import cpw.mods.fml.relauncher.Side;
@@ -30,7 +32,7 @@ import net.minecraft.world.World;
 public class BlockMachine extends BlockContainer{
 
 	public Icon[] icons = new Icon[ItemBlockMachine.subNames.length];
-	public Icon furnaceBurnSide;
+	public Icon furnaceBurnSide, slaughterSide;
 	
 	protected BlockMachine(int par1) {
 		super(par1, Material.iron);
@@ -48,6 +50,7 @@ public class BlockMachine extends BlockContainer{
         	count++;
         }
         this.furnaceBurnSide = par1IconRegister.registerIcon(Reference.MOD_ID + ":" + BlockIndex.MACHINE_FURNACE_NAME + "_pointer");
+        this.slaughterSide = par1IconRegister.registerIcon(Reference.MOD_ID + ":" + BlockIndex.MACHINE_SLAUGTHER_NAME + "_pointer");
     }
 	
 	public Icon getBlockTexture(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5){
@@ -57,7 +60,12 @@ public class BlockMachine extends BlockContainer{
 			if(par5 == entity.side){
 				return this.furnaceBurnSide;
 			}
-			return this.icons[metadata];
+		}
+		if(metadata == BlockIndex.MACHINE_SLAUGTHER_METADATA){
+			TileEntityMachineSlaugther entity = (TileEntityMachineSlaugther)par1IBlockAccess.getBlockTileEntity(par2, par3, par4);
+			if(par5 == entity.side){
+				return this.slaughterSide;
+			}
 		}
 		return this.getIcon(par5, metadata);
     }
@@ -82,6 +90,8 @@ public class BlockMachine extends BlockContainer{
 				return new TileEntityMachineFurnace();
 			case BlockIndex.MACHINE_STORAGE_METADATA:
 				return new TileEntityMachineStorage();
+			case BlockIndex.MACHINE_SLAUGTHER_METADATA:
+				return new TileEntityMachineSlaugther();
 			default: return this.createNewTileEntity(world);
 		}
     }
@@ -113,15 +123,27 @@ public class BlockMachine extends BlockContainer{
 		}
 	}
 	
-	/* -------------------------------------------------------------------------------------------------------------------------------------------------
-	 * Rotation
-	 * -------------------------------------------------------------------------------------------------------------------------------------------------
-	 */
-    public void onBlockPlacedBy(World par1World, int par1, int par2, int par3, EntityLiving par4EntityPlayer, ItemStack stack)
-    {
-    	super.onBlockPlacedBy(par1World, par1, par2, par3, par4EntityPlayer, stack);
-    	switch(par1World.getBlockMetadata(par1, par2, par3)){
-    	}
-    }
+	public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5) {
+        if (!par1World.isRemote) {
+        	if(par1World.isBlockIndirectlyGettingPowered(par2, par3, par4))handleRedstoneSignalOn(par1World, par2, par3, par4);
+        	else handleRedstoneSignalOff(par1World, par2, par3, par4);
+        }
+	}
+
+	private void handleRedstoneSignalOff(World world, int x, int y, int z) {
+		TileEntity entity = world.getBlockTileEntity(x, y, z);
+		switch(world.getBlockMetadata(x, y, z)){
+		case BlockIndex.MACHINE_FURNACE_METADATA:
+			((TileEntityMachineSlaugther)entity).activate();
+		}
+	}
+
+	private void handleRedstoneSignalOn(World world, int x, int y, int z) {
+		TileEntity entity = world.getBlockTileEntity(x, y, z);
+		switch(world.getBlockMetadata(x, y, z)){
+		case BlockIndex.MACHINE_FURNACE_METADATA:
+			((TileEntityMachineSlaugther)entity).deactivate();
+		}
+	}
 
 }

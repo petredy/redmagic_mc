@@ -2,8 +2,6 @@ package redmagic.blocks;
 
 import redmagic.Redmagic;
 import redmagic.configuration.BlockIndex;
-import redmagic.core.Logger;
-import redmagic.helpers.FragmentHelper;
 import redmagic.items.ItemFragment;
 import redmagic.tileentities.TileEntityMold;
 import net.minecraft.block.BlockContainer;

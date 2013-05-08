@@ -11,14 +11,16 @@ public class LogicIndex {
 	//ISoul
 	public static final String[] SOUL_TYPES = new String[]{
 		"none",
-		"filter",
-		"furnace",
-		"storage"
+		BlockIndex.MACHINE_FILTER_NAME,
+		BlockIndex.MACHINE_FURNACE_NAME,
+		BlockIndex.MACHINE_STORAGE_NAME,
+		BlockIndex.MACHINE_SLAUGTHER_NAME
 	};
 	public static final int SOUL_NONE = 0;
 	public static final int SOUL_FILTER = 1;
 	public static final int SOUL_FURNACE = 2;
 	public static final int SOUL_STORAGE = 3;
+	public static final int SOUL_SLAUGTHER = 4;
 	
 	public static int SOUL_MAX_INTELLIGENCE = 100;
 	public static int SOUL_MAX_STRENGTH = 100;
@@ -76,16 +78,16 @@ public class LogicIndex {
 	public static final int PIPE_ESSENCES_PER_TICK = 1000;
 	//---------------------------------------------------------------
 	//Machines
-	public static final int FURNACE_MAX_ESSENCES = 10000;
+	public static final int FURNACE_MAX_ESSENCES = 1000;
 	public static final int FURNACE_COSTS = 100;
 	
 	public static final int STORAGE_MAX_ESSENCES = 100000;
+	
+	public static final int SLAUGTHER_MAX_ESSENCES = 1000;
+	public static final int SLAUGTHER_RANGE = 1;
 	//---------------------------------------------------------------
 	//Ores
 	public static final int ORE_SOULCRYSTAL_CHUNK_DEPOSITS = 10;
 	public static final int ORE_SOULCRYSTAL_DEPOSIT_AMOUNT = 5;
-	//---------------------------------------------------------------
-	//Education System
-	public static final int EDUCATION_BASIC_BLOCKS_NEEDED = 4;
-	public static final int EDUCATION_BASIC_BLOCKS_NEEDED_FOR_MODULE = 4;
+
 }

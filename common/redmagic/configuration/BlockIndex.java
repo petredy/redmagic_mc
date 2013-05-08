@@ -65,6 +65,8 @@ public class BlockIndex {
 	public static final int MACHINE_FURNACE_METADATA = 2;
 	public static final String MACHINE_STORAGE_NAME = "storage";
 	public static final int MACHINE_STORAGE_METADATA = 3;
+	public static final String MACHINE_SLAUGTHER_NAME = "slaugther";
+	public static final int MACHINE_SLAUGTHER_METADATA = 4;
 	
 	
 	//Extractor Names

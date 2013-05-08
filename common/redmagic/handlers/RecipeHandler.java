@@ -139,6 +139,7 @@ public class RecipeHandler {
 		SacrificeRegistry.register(new SacrificeChangesType(new ItemStack(Block.fenceIron), LogicIndex.SOUL_FILTER));
 		SacrificeRegistry.register(new SacrificeChangesType(new ItemStack(Block.furnaceIdle), LogicIndex.SOUL_FURNACE));
 		SacrificeRegistry.register(new SacrificeChangesType(new ItemStack(Item.bucketEmpty), LogicIndex.SOUL_STORAGE));
+		SacrificeRegistry.register(new SacrificeChangesType(new ItemStack(Item.shears), LogicIndex.SOUL_SLAUGTHER));
 		
 	}
 	

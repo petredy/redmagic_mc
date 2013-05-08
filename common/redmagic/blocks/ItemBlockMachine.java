@@ -9,7 +9,8 @@ public class ItemBlockMachine extends ItemBlock{
 		BlockIndex.MACHINE_FRAME_NAME,
 		BlockIndex.MACHINE_FILTER_NAME,
 		BlockIndex.MACHINE_FURNACE_NAME,
-		BlockIndex.MACHINE_STORAGE_NAME
+		BlockIndex.MACHINE_STORAGE_NAME,
+		BlockIndex.MACHINE_SLAUGTHER_NAME
 	};
 
 	public ItemBlockMachine(int id) {
