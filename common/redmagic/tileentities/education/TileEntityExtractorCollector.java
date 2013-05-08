@@ -2,6 +2,8 @@ package redmagic.tileentities.education;
 
 
 
+import java.util.List;
+
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -9,25 +11,26 @@ import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
-import redmagic.api.multiblock.IEducationEntity;
+import redmagic.api.multiblock.IMultiEntity;
 import redmagic.api.multiblock.IMultiBlock;
 import redmagic.api.multiblock.IStructure;
-import redmagic.blocks.multi.education.EducationStructure;
+import redmagic.blocks.multi.extractor.ExtractorStructure;
+import redmagic.configuration.BlockIndex;
+import redmagic.core.Logger;
 import redmagic.helpers.InventoryHelper;
 import redmagic.tileentities.TileEntityInventory;
 
-public class TileEntityEducationBasic extends TileEntityInventory implements IEducationEntity{
+public class TileEntityExtractorCollector extends TileEntity implements IMultiEntity{
 
-	public EducationStructure structure;
-	private int soulSlot = 0;
+	public ExtractorStructure structure;
 	
-	public TileEntityEducationBasic() {
-		super(1, "Education System");
+	public void addFragments(ItemStack fragment){
+		InventoryHelper.addToAdjacentInventory(worldObj, xCoord, yCoord, zCoord, fragment);
 	}
 	
 	@Override
 	public void buildStructure() {
-		EducationStructure structure = new EducationStructure();
+		ExtractorStructure structure = new ExtractorStructure();
 		structure.buildFromBlock(this.worldObj, this.xCoord, this.yCoord, this.zCoord);
 	}
 
@@ -43,7 +46,7 @@ public class TileEntityEducationBasic extends TileEntityInventory implements IEd
 
 	@Override
 	public void setStructure(IStructure structure) {
-		this.structure = (EducationStructure) structure;
+		this.structure = (ExtractorStructure) structure;
 	}
 
 	@Override
@@ -55,7 +58,7 @@ public class TileEntityEducationBasic extends TileEntityInventory implements IEd
 	public void readFromNBT(NBTTagCompound tagCompound){
 		super.readFromNBT(tagCompound);
 		
-		this.structure = (EducationStructure) EducationStructure.loadFromNBT(tagCompound);
+		this.structure = (ExtractorStructure) ExtractorStructure.loadFromNBT(tagCompound);
 	}
 	
 	@Override
@@ -78,34 +81,5 @@ public class TileEntityEducationBasic extends TileEntityInventory implements IEd
 		if(this.structure != null && this.structure.blocks.size() <= 0)this.structure = null;
 		this.worldObj.markBlockForRenderUpdate(this.xCoord, this.yCoord, this.zCoord);
     }
-
-	@Override
-	public void saveSoul(ItemStack currentItem) {
-		if(this.structure != null){
-			IMultiBlock data = this.structure.getDataBlock();
-			if(data != null && (data.getX() != this.xCoord || data.getY() != this.yCoord || data.getZ() != this.zCoord)){
-				IEducationEntity entity = (IEducationEntity) data.getBasicEntity(worldObj);
-				entity.saveSoul(currentItem);
-			}else{
-				this.inv[this.soulSlot ] = currentItem;
-			}
-		}
-	}
-	
-	@Override
-	public void dropAll() {
-		if(this.hasStructure()){
-			IMultiBlock data = this.structure.getDataBlock();
-			if(data != null){
-				TileEntity entity = worldObj.getBlockTileEntity(data.getX(), data.getY(), data.getZ());
-				if(entity != null)InventoryHelper.dropInventory((IInventory)entity, worldObj, data.getX(), data.getY(), data.getZ());
-			}
-		}
-	}
-	
-	@Override
-	public ItemStack getSoul() {
-		return this.inv[this.soulSlot];
-	}
 
 }

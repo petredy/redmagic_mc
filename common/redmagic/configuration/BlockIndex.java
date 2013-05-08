@@ -3,6 +3,8 @@ package redmagic.configuration;
 
 public class BlockIndex {
 	
+	public static final float DEFAULT_HARDNESS = 3.0F;
+	
 	public static final String MACHINE_NAME = "machine";
 	public static final int MACHINE_DEFAULT_ID = 3300;
 	public static int MACHINE_ID;
@@ -27,13 +29,9 @@ public class BlockIndex {
 	public static final int SOUL_CRYSTAL_ORE_DEFAULT_ID = 3305;
 	public static int SOUL_CRYSTAL_ORE_ID;
 	
-	public static final String EDUCATION_NAME = "education";
-	public static final int EDUCATION_DEFAULT_ID = 3306;
-	public static int EDUCATION_ID;
-	
-	public static final String CRYSTALIZER_NAME = "crystalizer";
-	public static final int CRYSTALIZER_DEFAULT_ID = 3307;
-	public static int CRYSTALIZER_ID;
+	public static final String EXTRACTOR_NAME = "extractor";
+	public static final int EXTRACTOR_DEFAULT_ID = 3306;
+	public static int EXTRACTOR_ID;
 	
 	public static final String COLLECTOR_NAME = "collector";
 	public static final int COLLECTOR_DEFAULT_ID = 3309;
@@ -51,9 +49,9 @@ public class BlockIndex {
 	public static final int BANK_DEFAULT_ID = 3312;
 	public static int BANK_ID;
 	
-	public static final String ENTITY_NAME = "entity";
-	public static final int ENTITY_DEFAULT_ID = 3313;
-	public static int ENTITY_ID;
+	public static final String MOLD_NAME = "mold";
+	public static final int MOLD_DEFAULT_ID = 3313;
+	public static int MOLD_ID;
 	
 	
 	
@@ -69,11 +67,11 @@ public class BlockIndex {
 	public static final int MACHINE_STORAGE_METADATA = 3;
 	
 	
-	//Education Names
-	public static final String EDUCATION_BASIC_NAME = "basic";
-	public static final int EDUCATION_BASIC_METADATA = 0;
-	public static final String EDUCATION_RESISTENCE_NAME = "resistence";
-	public static final int EDUCATION_RESISTENCE_METADATA = 1;
+	//Extractor Names
+	public static final String EXTRACTOR_BASIC_NAME = "basic";
+	public static final int EXTRACTOR_BASIC_METADATA = 0;
+	public static final String EXTRACTOR_COLLECTOR_NAME = "collector";
+	public static final int EXTRACTOR_COLLECTOR_METADATA = 1;
 	
 	//Crystals
 	public static final String CRYSTAL_INTELLIGENCE_NAME = "intelligence";

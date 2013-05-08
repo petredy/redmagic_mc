@@ -34,8 +34,10 @@ public class BlockMachine extends BlockContainer{
 	
 	protected BlockMachine(int par1) {
 		super(par1, Material.iron);
+		this.setUnlocalizedName(BlockIndex.MACHINE_NAME);
 		this.setHardness(1.0F);
 		this.setCreativeTab(Redmagic.tabRedMagic);
+		this.setHardness(BlockIndex.DEFAULT_HARDNESS);
 	}
 
 	public void registerIcons(IconRegister par1IconRegister)
@@ -104,7 +106,6 @@ public class BlockMachine extends BlockContainer{
 		return false;
     }
 	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(int par1, CreativeTabs tab, List subItems) {
 		for (int i = 0; i < ItemBlockMachine.subNames.length; i++) {

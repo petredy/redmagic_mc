@@ -25,6 +25,7 @@ public class BlockCollector extends BlockContainer implements IWrenchable{
 		super(par1, Material.glass);
 		this.setCreativeTab(Redmagic.tabRedMagic);
 		this.setUnlocalizedName(BlockIndex.COLLECTOR_NAME);
+		this.setHardness(BlockIndex.DEFAULT_HARDNESS);
 	}
 
 	public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)

@@ -2,7 +2,8 @@ package redmagic.handlers;
 
 import redmagic.tileentities.*;
 import redmagic.tileentities.bank.TileEntityBank;
-import redmagic.tileentities.education.TileEntityEducationBasic;
+import redmagic.tileentities.education.TileEntityExtractorBasic;
+import redmagic.tileentities.education.TileEntityExtractorCollector;
 import redmagic.tileentities.machines.*;
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -21,7 +22,8 @@ public class TileEntityHandler {
 		
 		GameRegistry.registerTileEntity(TileEntityPipe.class, "redmagic.TileEntityPipe");
 		
-		GameRegistry.registerTileEntity(TileEntityEducationBasic.class, "redmagic.TileEntityEducationBasic");
+		GameRegistry.registerTileEntity(TileEntityExtractorCollector.class, "redmagic.TileEntityExtractorCollector");
+		GameRegistry.registerTileEntity(TileEntityExtractorBasic.class, "redmagic.TileEntityExtractorBasic");
 
 		GameRegistry.registerTileEntity(TileEntityCollector.class, "redmagic.TileEntityCollector");
 		
@@ -29,6 +31,5 @@ public class TileEntityHandler {
 		GameRegistry.registerTileEntity(TileEntityBank.class, "redmagic.TileEntityBank");
 		GameRegistry.registerTileEntity(TileEntitySoulTrap.class, "redmagic.TileEntitySoulTrap");
 		GameRegistry.registerTileEntity(TileEntityWorkTable.class, "redmagic.TileEntityWorkTable");
-		GameRegistry.registerTileEntity(TileEntityCrystalizer.class, "redmagic.TileEntityCrystalizer");
 	}
 }

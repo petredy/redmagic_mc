@@ -3,6 +3,8 @@ package redmagic.blocks;
 import cpw.mods.fml.common.registry.GameRegistry;
 import redmagic.configuration.BlockIndex;
 import net.minecraft.block.Block;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
 
 public class BlockManager {
@@ -13,12 +15,12 @@ public class BlockManager {
 	public static Block workTable;
 	public static Block soulCrystalOre;
 	public static Block soulTrap;
-	public static Block education;
-	public static Block crystalizer;
+	public static Block extractor;
 	public static Block collector;
 	public static Block crystal;
 	public static Block essence;
 	public static Block bank;
+	public static Block mold;
 	
 	public static void init(){
 		machine = new BlockMachine(BlockIndex.MACHINE_ID);
@@ -27,19 +29,19 @@ public class BlockManager {
 		workTable = new BlockWorkTable(BlockIndex.WORK_TABLE_ID);
 		soulCrystalOre = new BlockSoulCrystalOre(BlockIndex.SOUL_CRYSTAL_ORE_ID);
 		soulTrap = new BlockSoulTrap(BlockIndex.SOUL_TRAP_ID);
-		education = new BlockEducation(BlockIndex.EDUCATION_ID);
-		crystalizer = new BlockCrystalizer(BlockIndex.CRYSTALIZER_ID);
+		extractor = new BlockExtractor(BlockIndex.EXTRACTOR_ID);
 		collector = new BlockCollector(BlockIndex.COLLECTOR_ID);
 		crystal = new BlockCrystal(BlockIndex.CRYSTAL_ID);
 		essence = new BlockLiquidEssence(BlockIndex.LIQUID_ESSENCE_ID);
 		bank = new BlockBank(BlockIndex.BANK_ID);
+		mold = new BlockSoulMold(BlockIndex.MOLD_ID);
 		
+		GameRegistry.registerBlock(mold, BlockIndex.MOLD_NAME);
 		GameRegistry.registerBlock(bank, BlockIndex.BANK_NAME);
 		GameRegistry.registerBlock(essence, BlockIndex.LIQUID_ESSENCE_NAME);
 		GameRegistry.registerBlock(crystal, ItemBlockCrystal.class, BlockIndex.CRYSTAL_NAME);
 		GameRegistry.registerBlock(collector, BlockIndex.COLLECTOR_NAME);
-		GameRegistry.registerBlock(crystalizer, BlockIndex.CRYSTALIZER_NAME);
-		GameRegistry.registerBlock(education, ItemBlockEducation.class, BlockIndex.EDUCATION_NAME);
+		GameRegistry.registerBlock(extractor, ItemBlockExtractor.class, BlockIndex.EXTRACTOR_NAME);
 		GameRegistry.registerBlock(soulTrap, BlockIndex.SOUL_TRAP_NAME);
 		GameRegistry.registerBlock(soulCrystalOre, BlockIndex.SOUL_CRYSTAL_ORE_NAME);
 		GameRegistry.registerBlock(workTable, BlockIndex.WORK_TABLE_NAME);
@@ -50,7 +52,15 @@ public class BlockManager {
 	}
 	
 	public static void registerRecipes(){
-		
+		GameRegistry.addRecipe(new ItemStack(workTable), new Object[]{
+			"III",
+			"PWP",
+			"PCP",
+			'I', Item.ingotIron,
+			'P', Item.paper,
+			'W', Block.workbench,
+			'C', Block.chest
+		});
 	}
 	
 	public static void config(Configuration config){
@@ -60,12 +70,12 @@ public class BlockManager {
 		BlockIndex.WORK_TABLE_ID = config.getBlock(BlockIndex.WORK_TABLE_NAME, BlockIndex.WORK_TABLE_DEFAULT_ID).getInt(BlockIndex.WORK_TABLE_DEFAULT_ID);
 		BlockIndex.SOUL_CRYSTAL_ORE_ID = config.getBlock(BlockIndex.SOUL_CRYSTAL_ORE_NAME, BlockIndex.SOUL_CRYSTAL_ORE_DEFAULT_ID).getInt(BlockIndex.SOUL_CRYSTAL_ORE_DEFAULT_ID);
 		BlockIndex.SOUL_TRAP_ID = config.getBlock(BlockIndex.SOUL_TRAP_NAME, BlockIndex.SOUL_TRAP_DEFAULT_ID).getInt(BlockIndex.SOUL_TRAP_DEFAULT_ID);
-		BlockIndex.EDUCATION_ID = config.getBlock(BlockIndex.EDUCATION_NAME, BlockIndex.EDUCATION_DEFAULT_ID).getInt(BlockIndex.EDUCATION_DEFAULT_ID);
-		BlockIndex.CRYSTALIZER_ID = config.getBlock(BlockIndex.CRYSTALIZER_NAME, BlockIndex.CRYSTALIZER_DEFAULT_ID).getInt(BlockIndex.CRYSTALIZER_DEFAULT_ID);
+		BlockIndex.EXTRACTOR_ID = config.getBlock(BlockIndex.EXTRACTOR_NAME, BlockIndex.EXTRACTOR_DEFAULT_ID).getInt(BlockIndex.EXTRACTOR_DEFAULT_ID);
 		BlockIndex.COLLECTOR_ID = config.getBlock(BlockIndex.COLLECTOR_NAME, BlockIndex.COLLECTOR_DEFAULT_ID).getInt(BlockIndex.COLLECTOR_DEFAULT_ID);
 		BlockIndex.CRYSTAL_ID = config.getBlock(BlockIndex.CRYSTAL_NAME, BlockIndex.CRYSTAL_DEFAULT_ID).getInt(BlockIndex.CRYSTAL_DEFAULT_ID);
 		BlockIndex.LIQUID_ESSENCE_ID = config.getBlock(BlockIndex.LIQUID_ESSENCE_NAME, BlockIndex.LIQUID_ESSENCE_DEFAULT_ID).getInt(BlockIndex.LIQUID_ESSENCE_DEFAULT_ID);
 		BlockIndex.BANK_ID = config.getBlock(BlockIndex.BANK_NAME, BlockIndex.BANK_DEFAULT_ID).getInt(BlockIndex.BANK_DEFAULT_ID);
+		BlockIndex.MOLD_ID = config.getBlock(BlockIndex.MOLD_NAME, BlockIndex.MOLD_DEFAULT_ID).getInt(BlockIndex.MOLD_DEFAULT_ID);
 		
 	}
 	

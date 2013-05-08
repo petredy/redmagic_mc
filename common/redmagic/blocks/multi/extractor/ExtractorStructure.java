@@ -1,4 +1,4 @@
-package redmagic.blocks.multi.education;
+package redmagic.blocks.multi.extractor;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -6,8 +6,8 @@ import java.util.List;
 
 import cpw.mods.fml.common.network.PacketDispatcher;
 
-import redmagic.api.multiblock.IEducationEntity;
 import redmagic.api.multiblock.IMultiBlock;
+import redmagic.api.multiblock.IMultiEntity;
 import redmagic.api.multiblock.IStructure;
 import redmagic.configuration.Reference;
 import redmagic.core.Logger;
@@ -17,12 +17,12 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.world.World;
 
-public class EducationStructure implements IStructure{
+public class ExtractorStructure implements IStructure{
 	
 	public List<IMultiBlock> blocks = new ArrayList<IMultiBlock>();
 	public IMultiBlock dataBlock;
 	
-	public EducationStructure(){
+	public ExtractorStructure(){
 		
 	}
 	
@@ -30,12 +30,11 @@ public class EducationStructure implements IStructure{
 		
 		this.lookAtBlock(world, x, y, z);
 		int blocks = this.getBlocks().size();
-		if(blocks == 8){
+		if(blocks >= 2){
 			this.dataBlock = this.getBlockAt(x, y, z);
 			this.notifyAllBlocks(world, this);
 			return true;
 		}
-		
 		return false;
 	}
 	
@@ -48,7 +47,7 @@ public class EducationStructure implements IStructure{
 	}
 
 	private void notifyBlock(World world, IMultiBlock block, IStructure structure) {
-		IEducationEntity entity = (IEducationEntity) block.getBasicEntity(world);
+		IMultiEntity entity = (IMultiEntity) block.getBasicEntity(world);
 		if(entity != null){
 			entity.setStructure(structure);
 			
@@ -60,8 +59,9 @@ public class EducationStructure implements IStructure{
 
 	private void lookAtBlock(World world, int x, int y, int z){
 		if(!this.containsBlockAt(x, y, z)){
-			EducationBlock block = new EducationBlock(x, y, z);
-			if(block.isMultiBlock(world) && !block.getBasicEntity(world).hasStructure()){
+			ExtractorBlock block = new ExtractorBlock(x, y, z);
+			if(block.isMultiBlock(world)){
+				block.setType(world);
 				blocks.add(block);
 				this.lookAtBlocksAround(world, x, y, z);
 			}
@@ -100,7 +100,7 @@ public class EducationStructure implements IStructure{
 		Iterator<IMultiBlock> it = blocks.iterator();
 		while(it.hasNext()){
 			IMultiBlock block = it.next();
-			IEducationEntity entity = (IEducationEntity) block.getBasicEntity(world);
+			IMultiEntity entity = (IMultiEntity) block.getBasicEntity(world);
 			entity.setStructure(this);
 		}
 		
@@ -109,23 +109,21 @@ public class EducationStructure implements IStructure{
 	@Override
 	public void readFromNBT(NBTTagCompound tag) {
 		NBTTagCompound structure = (NBTTagCompound) tag.getTag(Reference.MOD_ID+ "_education_structure");
-		Logger.log(structure);
-		Logger.log(Reference.MOD_ID+ "_education_structure");
 		if(structure != null){
 			NBTTagList list = structure.getTagList("blocks");
 			
 			for(int i = 0; i < list.tagCount(); i++){
 				NBTTagCompound block = (NBTTagCompound) list.tagAt(i);
 				if(block != null){
-					blocks.add(EducationBlock.loadFromNBT(block));
+					blocks.add(ExtractorBlock.loadFromNBT(block));
 				}
 			}
-			this.dataBlock = EducationBlock.loadFromNBT((NBTTagCompound) structure.getTag("dataBlock"));
+			this.dataBlock = ExtractorBlock.loadFromNBT((NBTTagCompound) structure.getTag("dataBlock"));
 		}
 	}
 
 	public static IStructure loadFromNBT(NBTTagCompound tag) {
-		EducationStructure structure = new EducationStructure();
+		ExtractorStructure structure = new ExtractorStructure();
 		structure.readFromNBT(tag);
 		return structure.blocks.size() > 0 ? structure : null;
 	}
@@ -172,6 +170,17 @@ public class EducationStructure implements IStructure{
 		}
 		return null;
  	}
+
+	@Override
+	public List<IMultiBlock> getBlockType(int type) {
+		Iterator it = this.blocks.iterator();
+		List<IMultiBlock> blocks = new ArrayList<IMultiBlock>();
+		while(it.hasNext()){
+			IMultiBlock block = (IMultiBlock) it.next();
+			if(block.getType() == type)blocks.add(block);
+		}
+		return blocks;
+	}
 
 	
 }

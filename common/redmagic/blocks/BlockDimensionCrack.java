@@ -3,6 +3,7 @@ package redmagic.blocks;
 import java.util.Random;
 
 import redmagic.Redmagic;
+import redmagic.configuration.BlockIndex;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
@@ -12,6 +13,7 @@ public class BlockDimensionCrack extends Block{
 	public BlockDimensionCrack(int par1) {
 		super(par1, Material.dragonEgg);
 		this.setCreativeTab(Redmagic.tabRedMagic);
+		this.setUnlocalizedName(BlockIndex.DIMENSION_CRACK_NAME);
 	}
 	
 	@Override

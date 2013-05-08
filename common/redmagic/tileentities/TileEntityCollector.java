@@ -56,13 +56,14 @@ public class TileEntityCollector extends TileEntityInventory{
 	}
 
 	private void sacrifice() {
-		Logger.log("sacrifice");
 		List<ModifierHelper> modifiers = this.getModifiers();
 		List<EntityItem> items = this.worldObj.getEntitiesWithinAABB(EntityItem.class, AxisAlignedBB.getBoundingBox(xCoord, yCoord - 3, zCoord, xCoord + 1, yCoord - 2, zCoord + 1));
 		
 		for(EntityItem item: items){
 			if(item != null && item.getEntityItem() != null){
-				SacrificeRegistry.changeSoul(item.getEntityItem(), this.inv[0], modifiers);
+				if(!SacrificeRegistry.changeSoul(item.getEntityItem(), this.inv[0], modifiers)){
+					this.setInventorySlotContents(0, null);
+				}
 				item.setDead();
 			}
 		}
@@ -95,13 +96,13 @@ public class TileEntityCollector extends TileEntityInventory{
 	private ModifierHelper getModifierByMetadata(int metadata){
 		switch(metadata){
 		case BlockIndex.CRYSTAL_INTELLIGENCE_METADATA:
-			return new ModifierHelper(BlockIndex.CRYSTAL_INTELLIGENCE_NAME,1);
+			return new ModifierHelper(BlockIndex.CRYSTAL_INTELLIGENCE_METADATA,1);
 		case BlockIndex.CRYSTAL_STRENGTH_METADATA:
-			return new ModifierHelper(BlockIndex.CRYSTAL_STRENGTH_NAME, 1);
+			return new ModifierHelper(BlockIndex.CRYSTAL_STRENGTH_METADATA, 1);
 		case BlockIndex.CRYSTAL_CAPACITY_METADATA:
-			return new ModifierHelper(BlockIndex.CRYSTAL_CAPACITY_NAME, 1);
+			return new ModifierHelper(BlockIndex.CRYSTAL_CAPACITY_METADATA, 1);
 		case BlockIndex.CRYSTAL_ILLUSION_METADATA:
-			return new ModifierHelper(BlockIndex.CRYSTAL_ILLUSION_NAME, 1);
+			return new ModifierHelper(BlockIndex.CRYSTAL_ILLUSION_METADATA, 1);
 		}
 		return null;
 	}

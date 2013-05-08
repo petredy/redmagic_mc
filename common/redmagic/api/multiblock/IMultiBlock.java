@@ -7,9 +7,11 @@ public interface IMultiBlock {
 
 	public abstract boolean isMultiBlock(World world);
 	public abstract IMultiEntity getBasicEntity(World world);
+	
 	public abstract int getX();
 	public abstract int getY();
 	public abstract int getZ();
+	public abstract int getType();
 	
 	public abstract void readFromNBT(NBTTagCompound tag);
 	public abstract void writeToNBT(NBTTagCompound tag);

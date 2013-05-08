@@ -37,11 +37,13 @@ public class GuiWorkTable extends GuiContainer{
 		if(button.id == 0){
 			PacketDispatcher.sendPacketToServer(PacketHandler.populatePacket(new PacketWorkTable(this.entity.xCoord, this.entity.yCoord, this.entity.zCoord, -1)));
 			this.entity.craftingIndex -= 1;
+			if(this.entity.craftingIndex < 0)this.entity.craftingIndex = this.entity.getMaxCraftingIndex();
 			this.entity.showCrafting();
 			this.container.showCrafting();
 		}else if(button.id == 1){
 			PacketDispatcher.sendPacketToServer(PacketHandler.populatePacket(new PacketWorkTable(this.entity.xCoord, this.entity.yCoord, this.entity.zCoord, 1)));
 			this.entity.craftingIndex += 1;
+			if(this.entity.craftingIndex > this.entity.getMaxCraftingIndex())this.entity.craftingIndex = 0;
 			this.entity.showCrafting();
 			this.container.showCrafting();
 		}

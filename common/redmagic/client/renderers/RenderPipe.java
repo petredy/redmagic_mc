@@ -29,9 +29,9 @@ public class RenderPipe extends TileEntitySpecialRenderer implements ISimpleBloc
 	public void renderAModelAt(TileEntity entity, double d, double d1, double d2, float f)
 	{	
 		GL11.glPushMatrix();
+		GL11.glPushMatrix();
 		GL11.glTranslatef((float)d + 0.5f, (float)d1 + 0.5f, (float)d2 + 0.5f);
 		GL11.glScalef(0.515F, 0.515F, 0.515F);
-		GL11.glPushMatrix();
 		if(entity instanceof TileEntityPipe){
 			TileEntityPipe pipe = (TileEntityPipe)entity;
 			if(pipe.getEssences() > 0){
@@ -51,7 +51,7 @@ public class RenderPipe extends TileEntitySpecialRenderer implements ISimpleBloc
 					this.texture = Texture.PIPE_INACTIVE;
 				}
 			}
-			GL11.glBindTexture(GL11.GL_TEXTURE_2D, FMLClientHandler.instance().getClient().renderEngine.getTexture(this.texture));
+			FMLClientHandler.instance().getClient().renderEngine.bindTexture(this.texture);
 			model.renderPart("base");
 			if(pipe.left)model.renderPart("left");
 			if(pipe.right)model.renderPart("right");
@@ -70,10 +70,10 @@ public class RenderPipe extends TileEntitySpecialRenderer implements ISimpleBloc
 	@Override
 	public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
 		GL11.glPushMatrix();
+		GL11.glPushMatrix();
 		GL11.glTranslatef((float)0, (float)0, (float)0);
 		GL11.glScalef(0.51F, 0.51F, 0.51F);
-		GL11.glPushMatrix();
-		GL11.glBindTexture(GL11.GL_TEXTURE_2D, FMLClientHandler.instance().getClient().renderEngine.getTexture(""));
+		FMLClientHandler.instance().getClient().renderEngine.bindTexture("");
 		model.renderPart("base");
 		model.renderPart("top");
 		model.renderPart("bottom");

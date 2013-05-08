@@ -98,10 +98,12 @@ public class ContainerWorkTable extends Container{
 	
 	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2){
         Slot slot = (Slot)this.inventorySlots.get(par2);
-        if(slot != null  && par2 <= 9){
-        	if(!this.mergeItemStack(slot.getStack(), 10, this.inventorySlots.size(), false)){
+        if(slot != null  && par2 == 0){
+        	if(!this.mergeItemStack(slot.getStack(), 11, this.inventorySlots.size(), false)){
         		return null;
         	}
+        }else{
+        	return null;
         }
         
         if(slot != null){

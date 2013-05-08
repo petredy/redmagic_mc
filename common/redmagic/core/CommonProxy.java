@@ -41,9 +41,6 @@ public class CommonProxy implements IGuiHandler{
 		if(ID == GuiIndex.EDUCATION_BASIC){
 			return new ContainerEducationBasic(player, tileEntity);
 		}
-		if(ID == GuiIndex.CRYSTALIZER){
-			return new ContainerCrystalizer(player, (TileEntityCrystalizer)tileEntity);
-		}
 		if(ID == GuiIndex.COLLECTOR){
 			return new ContainerOneSlot(player, (IInventory) tileEntity);
 		}
@@ -61,9 +58,6 @@ public class CommonProxy implements IGuiHandler{
 		}
 		if(ID == GuiIndex.EDUCATION_BASIC){
 			return new GuiEducationBasic(player, tileEntity);
-		}
-		if(ID == GuiIndex.CRYSTALIZER){
-			return new GuiCrystalizer(player, (TileEntityCrystalizer)tileEntity);
 		}
 		if(ID == GuiIndex.COLLECTOR){
 			return new GuiOneSlot(player, (IInventory) tileEntity);

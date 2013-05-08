@@ -19,6 +19,8 @@ public interface IStructure {
 	
 	public abstract IMultiBlock getDataBlock();
 	
+	public abstract List<IMultiBlock> getBlockType(int type);
+	
 	public abstract void createStructure(World world);
 	
 	

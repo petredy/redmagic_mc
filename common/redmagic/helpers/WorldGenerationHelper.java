@@ -7,6 +7,7 @@ import net.minecraft.world.gen.feature.WorldGenMinable;
 
 import redmagic.blocks.BlockManager;
 import redmagic.configuration.LogicIndex;
+import redmagic.core.Logger;
 
 public class WorldGenerationHelper {
 	
@@ -26,7 +27,7 @@ public class WorldGenerationHelper {
 			int Ycoord = random.nextInt(50);
 			int Zcoord = blockZ + random.nextInt(16);
 			
-			(new WorldGenMinable(BlockManager.soulCrystalOre.blockID, 0, LogicIndex.ORE_SOULCRYSTAL_DEPOSIT_AMOUNT)).generate(world, random, Xcoord, Ycoord, Zcoord);
+			(new WorldGenMinable(BlockManager.soulCrystalOre.blockID, LogicIndex.ORE_SOULCRYSTAL_DEPOSIT_AMOUNT)).generate(world, random, Xcoord, Ycoord, Zcoord);
 		}
 		
 	}

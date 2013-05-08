@@ -4,15 +4,19 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import redmagic.configuration.Texture;
 import redmagic.tileentities.bank.TileEntityBank;
+import net.minecraft.block.Block;
 import net.minecraft.client.model.ModelChest;
+import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.ForgeDirection;
 
-public class RenderBank extends TileEntitySpecialRenderer{
+public class RenderBank extends TileEntitySpecialRenderer implements ISimpleBlockRenderingHandler{
 
 	private ModelChest modelChest = new ModelChest();
 	public static int renderID = RenderingRegistry.getNextAvailableRenderId();
@@ -63,6 +67,32 @@ public class RenderBank extends TileEntitySpecialRenderer{
             GL11.glPopMatrix();
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		}
+	}
+	
+	@Override
+	public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
+		FMLClientHandler.instance().getClient().renderEngine.bindTexture(Texture.BANK);
+        GL11.glPushMatrix();
+        GL11.glTranslated(0, -0.2, 0);
+        
+        modelChest.renderAll();
+        
+        GL11.glPopMatrix();
+	}
+
+	@Override
+	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+		return false;
+	}
+
+	@Override
+	public boolean shouldRender3DInInventory() {
+		return true;
+	}
+
+	@Override
+	public int getRenderId() {
+		return renderID;
 	}
 
 }

@@ -17,7 +17,11 @@ import net.minecraft.util.MathHelper;
 public class ItemCrafting extends Item{
 
 	public String[] subNames = new String[]{
-		ItemIndex.CRAFTING_SOUL_FRAGMENTS_NAME
+		ItemIndex.CRAFTING_SOUL_POWDER_NAME,
+		ItemIndex.CRAFTING_SOUL_INGOT_NAME,
+		ItemIndex.CRAFTING_REDSTONE_SHARD_NAME,
+		ItemIndex.CRAFTING_REDSTONE_LOGIC_CORE_NAME,
+		ItemIndex.CRAFTING_FLINT_IRON_INGOT_NAME
 	};
 	public Icon[] icons = new Icon[subNames.length];
 	
@@ -25,13 +29,14 @@ public class ItemCrafting extends Item{
 		super(par1);
 		this.setCreativeTab(Redmagic.tabRedMagic);
 		this.setUnlocalizedName(ItemIndex.CRAFTING_NAME);
+		this.setHasSubtypes(true);
 	}
 	
 	@SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister)
     {
 		for(int i = 0; i < subNames.length; i++){
-			icons[i] = par1IconRegister.registerIcon(Reference.MOD_ID + ":" + subNames[i]);
+			icons[i] = par1IconRegister.registerIcon(Reference.MOD_ID + ":" + ItemIndex.CRAFTING_NAME + "_" + subNames[i]);
 		}
     }
 	

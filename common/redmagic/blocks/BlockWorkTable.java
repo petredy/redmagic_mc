@@ -25,6 +25,7 @@ public class BlockWorkTable extends BlockContainer{
 		super(par1, Material.wood);
 		this.setCreativeTab(Redmagic.tabRedMagic);
 		this.setUnlocalizedName(BlockIndex.WORK_TABLE_NAME);
+		this.setHardness(BlockIndex.DEFAULT_HARDNESS);
 	}
 
 	@Override

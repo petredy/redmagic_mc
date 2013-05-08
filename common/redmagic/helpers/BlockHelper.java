@@ -33,7 +33,7 @@ public class BlockHelper {
 			}
 		}
 
-		world.setBlockMetadataWithNotify(x, y, z, 0, 0);
+		world.setBlockToAir(x, y, z);
 	}
 	
 	

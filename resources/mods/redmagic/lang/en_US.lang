@@ -7,14 +7,15 @@ itemGroup.Redmagic=Redmagic
 tile.machine.frame.name=Soul Frame
 tile.machine.filter.name=Essence Filter
 tile.machine.furnace.name=Essence Furnace
+tile.machine.storage.name=Essence Storage
 
 tile.crystal.intelligence.name=Intelligence Crystal Block
 tile.crystal.strength.name=Strength Crystal Block
 tile.crystal.capacity.name=Capacity Crystal Block
 tile.crystal.illusion.name=Illusion Crystal Block
 
-tile.education.basic.name=Education Block
-tile.education.resistence.name=Resistence Education Module
+tile.extractor.basic.name=Extractor Basic Block
+tile.extractor.collector.name=Extractor Collector Module
 
 tile.pipe.name=Essence Pipe
 tile.crack.name=Dimension Crack
@@ -24,24 +25,27 @@ tile.soul_crystal_ore.name=Soul Crystal Deposit
 tile.crystalizer.name=Crystalizer
 tile.collector.name=Collector
 tile.essence.name=Liquid Essence
+tile.bank.name=Trading Chest
+tile.mold.name=Soul Mold
 
 item.redhole.name=Redhole
-
-item.crystal.empty.name=Crystal
-item.crystal.intelligence.name=Intelligence Crystal
-item.crystal.strength.name=Strength Crystal
-item.crystal.capacity.name=Capacity Crystal
-item.crystal.illusion.name=Illusion Crystal
-item.crystal.satisfaction.name=Satisfaction Crystal
-item.crystal.all.name=Redmagic Crystal
-
 
 item.soul_crystal.name=Soul Crystal
 item.soul_nectar.name=Soul Nectar
 item.hammer.name=Working Hammer
 item.soul.name=Soul
-item.statemeter.name=Statemeter
 item.wrench.name=Redmagic Wrench
 item.bank.name=Trading Crystal
 
-item.crafting.fragment.name=Soul Fragment
+item.crafting.powder.name=Soul Powder
+item.crafting.ingot.name=Soul Ingot
+item.crafting.shard.name=Redstone Shard
+item.crafting.core.name=Redstone Logic Core
+item.crafting.flintIron.name=Flintiron Ingot
+
+item.fragment.intelligence.name=Intelligence Soul Fragment
+item.fragment.strength.name=Strength Soul Fragment
+item.fragment.capacity.name=Capacity Soul Fragment
+item.fragment.illusion.name=Illusion Soul Fragment
+item.fragment.satisfaction.name=Satisfaction Soul Fragment
+item.fragment.all.name=Special Soul Fragment

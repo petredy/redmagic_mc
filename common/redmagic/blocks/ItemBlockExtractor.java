@@ -4,16 +4,16 @@ import redmagic.configuration.BlockIndex;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
-public class ItemBlockEducation extends ItemBlock{
+public class ItemBlockExtractor extends ItemBlock{
 	public final static String[] subNames = {
-		BlockIndex.EDUCATION_BASIC_NAME,
-		BlockIndex.EDUCATION_RESISTENCE_NAME
+		BlockIndex.EXTRACTOR_BASIC_NAME,
+		BlockIndex.EXTRACTOR_COLLECTOR_NAME
 	};
 
-	public ItemBlockEducation(int id) {
+	public ItemBlockExtractor(int id) {
 		super(id);
 		this.setHasSubtypes(true);
-		this.setUnlocalizedName(BlockIndex.EDUCATION_NAME);
+		this.setUnlocalizedName(BlockIndex.EXTRACTOR_NAME);
 	}
 	
 	@Override

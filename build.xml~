@@ -54,7 +54,7 @@
 		<antcall target="reobfuscate" />
 
 		<!-- Build the jar -->
-		<!--<mkdir dir="${dir.release}/${release.minecraft.version}/${release.mod.version}" />-->
+		<mkdir dir="${dir.release}/${release.minecraft.version}/${release.mod.version}" />
 		<jar destfile="/home/petredy/Development/bin/redmagic/redmagic[Forge][MCXX]v.X.X.X.jar">
 			<fileset dir="/home/petredy/Development/mcp/src/minecraft/"	includes="mcmod.info" />
 			<fileset dir="/home/petredy/Development/mcp/reobf/minecraft" />

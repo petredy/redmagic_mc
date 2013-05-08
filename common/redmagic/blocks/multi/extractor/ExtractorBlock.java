@@ -1,21 +1,23 @@
-package redmagic.blocks.multi.education;
+package redmagic.blocks.multi.extractor;
 
-import redmagic.api.multiblock.IEducationEntity;
 import redmagic.api.multiblock.IMultiBlock;
 import redmagic.api.multiblock.IMultiEntity;
+import redmagic.configuration.BlockIndex;
+import redmagic.tileentities.education.TileEntityExtractorBasic;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class EducationBlock implements IMultiBlock{
+public class ExtractorBlock implements IMultiBlock{
 	
 	public int x, y, z;
+	public int type;
 	
-	public EducationBlock(){
+	public ExtractorBlock(){
 		
 	}
 	
-	public EducationBlock(int x, int y, int z){
+	public ExtractorBlock(int x, int y, int z){
 		this.x = x;
 		this.y = y;
 		this.z = z;
@@ -24,13 +26,13 @@ public class EducationBlock implements IMultiBlock{
 	@Override
 	public boolean isMultiBlock(World world){
 		TileEntity entity = world.getBlockTileEntity(x, y, z);
-		if(entity != null && entity instanceof IEducationEntity)return true;
+		if(entity != null && entity instanceof IMultiEntity)return true;
 		return false;
 	}
 	
 	public static boolean isMultiBlock(World world, int x, int y, int z){
 		TileEntity entity = world.getBlockTileEntity(x, y, z);
-		if(entity != null && entity instanceof IEducationEntity)return true;
+		if(entity != null && entity instanceof IMultiEntity)return true;
 		return false;
 	}
 
@@ -51,6 +53,11 @@ public class EducationBlock implements IMultiBlock{
 	}
 
 	@Override
+	public int getType() {
+		return type;
+	}
+	
+	@Override
 	public IMultiEntity getBasicEntity(World world) {
 		return (IMultiEntity) world.getBlockTileEntity(x, y, z);
 	}
@@ -61,10 +68,11 @@ public class EducationBlock implements IMultiBlock{
 		this.x = tag.getInteger("x");
 		this.y = tag.getInteger("y");
 		this.z = tag.getInteger("z");
+		this.type = tag.getInteger("type");
 	}
 
 	public static IMultiBlock loadFromNBT(NBTTagCompound tag) {
-		EducationBlock block = new EducationBlock();
+		ExtractorBlock block = new ExtractorBlock();
 		block.readFromNBT(tag);
 		return block;
 	}
@@ -74,6 +82,14 @@ public class EducationBlock implements IMultiBlock{
 		tag.setInteger("x", x);
 		tag.setInteger("y", y);
 		tag.setInteger("z", z);
-		
+		tag.setInteger("type", type);
+	}
+
+	public void setType(World world) {
+		if(world.getBlockTileEntity(x, y, z) instanceof TileEntityExtractorBasic){
+			type = BlockIndex.EXTRACTOR_BASIC_METADATA;
+		}else{
+			type = BlockIndex.EXTRACTOR_COLLECTOR_METADATA;
+		}
 	}
 }

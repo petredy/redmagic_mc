@@ -24,6 +24,7 @@ public class BlockBank extends BlockContainer{
 		super(par1, Material.iron);
 		this.setCreativeTab(Redmagic.tabRedMagic);
 		this.setUnlocalizedName(BlockIndex.BANK_NAME);
+		this.setHardness(BlockIndex.DEFAULT_HARDNESS);
 	}
 
 	@Override

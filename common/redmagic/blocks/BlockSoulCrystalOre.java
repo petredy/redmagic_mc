@@ -16,7 +16,7 @@ public class BlockSoulCrystalOre extends Block{
 		super(par1, Material.rock);
 		this.setCreativeTab(Redmagic.tabRedMagic);
 		this.setUnlocalizedName(BlockIndex.SOUL_CRYSTAL_ORE_NAME);
-		this.setHardness(1.0F);
+		this.setHardness(BlockIndex.DEFAULT_HARDNESS);
 	}
 	
 	public void registerIcons(IconRegister par1IconRegister)

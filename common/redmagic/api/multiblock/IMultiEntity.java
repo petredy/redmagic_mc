@@ -10,6 +10,9 @@ public interface IMultiEntity {
 	
 	public abstract boolean hasStructure();
 	
+	public abstract void destroyStructure();
+	public abstract void buildStructure();
+	
 
 	public void writeToNBT(NBTTagCompound tag);
 	public void readFromNBT(NBTTagCompound tag);

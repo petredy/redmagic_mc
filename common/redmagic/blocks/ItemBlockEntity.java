@@ -12,7 +12,7 @@ public class ItemBlockEntity extends ItemBlock{
 	public ItemBlockEntity(int id) {
 		super(id);
 		this.setHasSubtypes(true);
-		this.setUnlocalizedName(BlockIndex.ENTITY_NAME);
+		this.setUnlocalizedName(BlockIndex.MOLD_NAME);
 	}
 	
 	@Override

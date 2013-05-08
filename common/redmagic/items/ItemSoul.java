@@ -10,7 +10,9 @@ import redmagic.api.frame.ISoul;
 import redmagic.configuration.ItemIndex;
 import redmagic.configuration.LogicIndex;
 import redmagic.configuration.Reference;
+import redmagic.helpers.SoulHelper;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,8 +29,7 @@ public class ItemSoul extends Item implements ISoul{
 		this.setMaxDamage(LogicIndex.SOUL_MAX_SATISFACTION);
 		this.setHasSubtypes(true);
 	}
-	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par1){
 		if(stack.stackTagCompound != null){
@@ -40,6 +41,12 @@ public class ItemSoul extends Item implements ISoul{
 			list.add("Satisfaction: " + ((Integer)this.getSatisfaction(stack)).toString());
 		}
 	}
+	
+	public void getSubItems(int par1, CreativeTabs par2CreativeTabs, List par3List)
+    {
+		par3List.add(SoulHelper.createNewSoul());
+		par3List.add(SoulHelper.createSoul(LogicIndex.SOUL_MAX_INTELLIGENCE, LogicIndex.SOUL_MAX_STRENGTH, LogicIndex.SOUL_MAX_CAPACITY, LogicIndex.SOUL_MAX_ILLUSION, LogicIndex.SOUL_MAX_SATISFACTION));
+    }
 	
 	@SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister)

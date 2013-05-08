@@ -1,13 +1,17 @@
 package redmagic.tileentities;
 
 import cpw.mods.fml.common.network.PacketDispatcher;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ITankContainer;
+import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidStack;
 import redmagic.api.essence.IPipe;
 import redmagic.api.essence.IStorage;
@@ -50,13 +54,7 @@ public class TileEntityPipe extends TileEntityStorage implements IPipe{
 			int count = 0;
 			while(count < storages.length && this.getEssences() < this.getMaxEssences()){
 				if(storages[count] != null){
-					int rest = this.extractEssence(storages[count], essencesPerConnection, ForgeDirection.getOrientation(count));
-					LiquidStack stack = this.tank.getLiquid();
-					if(stack != null){
-						stack = stack.copy();
-						stack.amount = rest;
-					}
-					storages[count].fill(ForgeDirection.getOrientation(count), stack, true);
+					int rest = this.extractEssence(storages[count], essencesPerConnection, ForgeDirection.getOrientation(count)); 
 					essencesPerConnection += rest / storages.length - count;
 				}
 				count++;
@@ -74,7 +72,6 @@ public class TileEntityPipe extends TileEntityStorage implements IPipe{
 				if(storages[count] != null){
 					LiquidStack rest = this.fillEssence(storages[count], essencesPerConnection, ForgeDirection.getOrientation(count));
 					if(rest != null){
-						this.store(rest);
 						essencesPerConnection += rest.amount / (storages.length - count);
 					}
 				}
@@ -92,7 +89,6 @@ public class TileEntityPipe extends TileEntityStorage implements IPipe{
 			while(count < pipes.length && this.getEssences() > 0){
 				LiquidStack rest = this.transportEssence(pipes[count], essencesPerConnection);
 				if(rest != null){
-					this.store(rest);
 					essencesPerConnection += rest.amount / (pipes.length - count);
 				}
 				count++;
@@ -262,5 +258,12 @@ public class TileEntityPipe extends TileEntityStorage implements IPipe{
     {
 		NBTTagCompound tag = pkt.customParam1;
 		this.readFromNBT(tag);
+    }
+	
+	@SideOnly(Side.CLIENT)
+    public AxisAlignedBB getRenderBoundingBox()
+    {
+        AxisAlignedBB bb = AxisAlignedBB.getBoundingBox(xCoord, yCoord, zCoord, xCoord + 1, yCoord + 1, zCoord + 1);
+        return bb;
     }
 }

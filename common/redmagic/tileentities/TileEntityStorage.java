@@ -23,7 +23,7 @@ public class TileEntityStorage extends TileEntity implements IStorage, ITankCont
 	public LiquidTank tank;
 	
 	public TileEntityStorage(int maxEssences){
-		tank = new LiquidTank(LiquidContainerRegistry.BUCKET_VOLUME * maxEssences);
+		tank = new LiquidTank(maxEssences);
 		this.maxEssences = maxEssences;
 	}
 	

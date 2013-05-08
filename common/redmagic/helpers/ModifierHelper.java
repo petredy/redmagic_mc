@@ -2,10 +2,10 @@ package redmagic.helpers;
 
 public class ModifierHelper {
 	
-	public String type;
+	public int type;
 	public int amount;
 	
-	public ModifierHelper(String type, int amount){
+	public ModifierHelper(int type, int amount){
 		this.type = type;
 		this.amount = amount;
 	}

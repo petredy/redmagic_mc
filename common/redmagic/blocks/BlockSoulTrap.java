@@ -24,6 +24,7 @@ public class BlockSoulTrap extends BlockContainer{
 		super(par1, Material.rock);
 		this.setCreativeTab(Redmagic.tabRedMagic);
 		this.setUnlocalizedName(BlockIndex.SOUL_TRAP_NAME);
+		this.setHardness(BlockIndex.DEFAULT_HARDNESS);
 	}
 
 	@Override

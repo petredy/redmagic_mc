@@ -71,7 +71,7 @@ public class TileEntityWorkTable extends TileEntityInventory{
 				if(outputSlot == null){
 					this.setInventorySlotContents(this.outputSlot, output.copy());
 				}else{
-					this.getStackInSlot(this.outputSlot).stackSize++;
+					this.getStackInSlot(this.outputSlot).stackSize += output.stackSize;
 					if(this.getStackInSlot(this.outputSlot).stackSize > this.getStackInSlot(this.outputSlot).getMaxStackSize()) this.getStackInSlot(this.outputSlot).stackSize = this.getStackInSlot(this.outputSlot).getMaxStackSize();
 				}
 			}

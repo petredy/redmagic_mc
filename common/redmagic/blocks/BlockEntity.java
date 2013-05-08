@@ -31,6 +31,7 @@ public class BlockEntity extends BlockContainer{
 	public BlockEntity(int par1) {
 		super(par1, Material.cloth);
 		this.setCreativeTab(Redmagic.tabRedMagic);
+		this.setHardness(BlockIndex.DEFAULT_HARDNESS);
 		
 	}
 	

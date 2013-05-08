@@ -115,6 +115,9 @@ public class Redmagic{
 		
 		//Initialise WorldLoad Handler
       	MinecraftForge.EVENT_BUS.register(new WorldLoadingHandler());
+      	
+      	//Initialise Death Handling
+      	MinecraftForge.EVENT_BUS.register(new EntityDeathHandler());
 		
 		proxy.registerRendering();
 		
