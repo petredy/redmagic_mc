@@ -15,6 +15,9 @@ import redmagic.configuration.ItemIndex;
 import redmagic.configuration.LogicIndex;
 import redmagic.core.Logger;
 import redmagic.items.ItemManager;
+import redmagic.lib.souls.Soul;
+import redmagic.lib.souls.SoulFilter;
+import redmagic.lib.souls.SoulEssenceStorage;
 import redmagic.tileentities.machines.TileEntityMachineFurnace;
 import redmagic.tileentities.machines.TileEntityMachineSlaugther;
 
@@ -79,5 +82,32 @@ public class SoulHelper {
 		soul.setSatisfaction(soulStack, satisfaction);
 		return soulStack;
 	}
+
+	public static int getCapacity(ItemStack soul) {
+		if(soul != null && soul.getItem() instanceof ISoul){
+			return ((ISoul)soul.getItem()).getCapacity(soul);
+		}
+		return 0;
+	}
+	
+	
+	public static int getType(ItemStack soul) {
+		if(soul != null && soul.getItem() instanceof ISoul){
+			return ((ISoul)soul.getItem()).getType(soul);
+		}
+		return 0;
+	}
+	
+	public static Soul getSoulByStack(ItemStack soul){
+		switch(getType(soul)){
+		case LogicIndex.SOUL_FILTER:
+			return new SoulFilter();
+		case LogicIndex.SOUL_STORAGE:
+			return new SoulEssenceStorage();
+		}
+		return null;
+	}
+
+	
 	
 }

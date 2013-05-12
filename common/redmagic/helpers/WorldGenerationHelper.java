@@ -8,6 +8,7 @@ import net.minecraft.world.gen.feature.WorldGenMinable;
 import redmagic.blocks.BlockManager;
 import redmagic.configuration.LogicIndex;
 import redmagic.core.Logger;
+import redmagic.gen.WorldGenDimensionCrack;
 
 public class WorldGenerationHelper {
 	

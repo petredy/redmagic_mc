@@ -22,7 +22,7 @@ public class TileEntityMachineSlaugther extends TileEntityConsumer implements IS
 	public int side;
 	public ItemStack[] inv = new ItemStack[1];
 	public String name;
-	public boolean active;
+	public boolean active = true;
 	
 	public TileEntityMachineSlaugther() {
 		super(LogicIndex.SLAUGTHER_MAX_ESSENCES);
@@ -34,11 +34,21 @@ public class TileEntityMachineSlaugther extends TileEntityConsumer implements IS
 	public void updateEntity(){
 		if(active){
 			List<EntityLiving> entities = this.getEntities();
+			Logger.log(side);
+			Logger.log(entities);
 			if(entities != null){
 				Iterator<EntityLiving> it = entities.iterator();
 				while(it.hasNext()){
 					EntityLiving entity = it.next();
-					entity.getMoveHelper().setMoveTo(1.0F, xCoord, yCoord, zCoord);
+					double distance = entity.getDistance(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5) * 10;
+					double xAll = xCoord + 0.5 - entity.posX;
+					double xOne = xAll / distance;
+					double yOne = (yCoord + 0.5 - entity.posY) / distance;
+					double zOne = (zCoord + 0.5 - entity.posZ) / distance;
+					entity.moveEntity(xOne, yOne, zOne);
+					if(entity.getDistance(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5) <= 2){
+						entity.setEntityHealth(entity.getHealth() - 1);
+					}
 				}
 			}
 		}
@@ -47,17 +57,17 @@ public class TileEntityMachineSlaugther extends TileEntityConsumer implements IS
 	private List<EntityLiving> getEntities() {
 		switch(this.side){
 		case 0:
-			return worldObj.getEntitiesWithinAABB(EntityLiving.class, AxisAlignedBB.getBoundingBox(xCoord - LogicIndex.SLAUGTHER_RANGE, yCoord - LogicIndex.SLAUGTHER_RANGE*3, zCoord - LogicIndex.SLAUGTHER_RANGE, xCoord + LogicIndex.SLAUGTHER_RANGE, yCoord - LogicIndex.SLAUGTHER_RANGE, zCoord + LogicIndex.SLAUGTHER_RANGE));
+			return worldObj.getEntitiesWithinAABB(EntityLiving.class, AxisAlignedBB.getBoundingBox(xCoord - LogicIndex.SLAUGTHER_RANGE, yCoord - LogicIndex.SLAUGTHER_RANGE * 3, zCoord - LogicIndex.SLAUGTHER_RANGE, xCoord + LogicIndex.SLAUGTHER_RANGE, yCoord, zCoord + LogicIndex.SLAUGTHER_RANGE));
 		case 1:
 			return worldObj.getEntitiesWithinAABB(EntityLiving.class, AxisAlignedBB.getBoundingBox(xCoord - LogicIndex.SLAUGTHER_RANGE, yCoord + LogicIndex.SLAUGTHER_RANGE, zCoord - LogicIndex.SLAUGTHER_RANGE, xCoord + LogicIndex.SLAUGTHER_RANGE, yCoord + LogicIndex.SLAUGTHER_RANGE*3, zCoord + LogicIndex.SLAUGTHER_RANGE));
 		case 2:
-			return worldObj.getEntitiesWithinAABB(EntityLiving.class, AxisAlignedBB.getBoundingBox(xCoord - LogicIndex.SLAUGTHER_RANGE, yCoord - LogicIndex.SLAUGTHER_RANGE, zCoord - LogicIndex.SLAUGTHER_RANGE, xCoord + LogicIndex.SLAUGTHER_RANGE, yCoord + LogicIndex.SLAUGTHER_RANGE, zCoord - LogicIndex.SLAUGTHER_RANGE*3));
+			return worldObj.getEntitiesWithinAABB(EntityLiving.class, AxisAlignedBB.getBoundingBox(xCoord - LogicIndex.SLAUGTHER_RANGE, yCoord - LogicIndex.SLAUGTHER_RANGE, zCoord - LogicIndex.SLAUGTHER_RANGE * 3, xCoord + LogicIndex.SLAUGTHER_RANGE, yCoord + LogicIndex.SLAUGTHER_RANGE, zCoord));
 		case 3:
 			return worldObj.getEntitiesWithinAABB(EntityLiving.class, AxisAlignedBB.getBoundingBox(xCoord - LogicIndex.SLAUGTHER_RANGE, yCoord - LogicIndex.SLAUGTHER_RANGE, zCoord + LogicIndex.SLAUGTHER_RANGE, xCoord + LogicIndex.SLAUGTHER_RANGE, yCoord + LogicIndex.SLAUGTHER_RANGE, zCoord + LogicIndex.SLAUGTHER_RANGE*3));
 		case 4:
-			return worldObj.getEntitiesWithinAABB(EntityLiving.class, AxisAlignedBB.getBoundingBox(xCoord - LogicIndex.SLAUGTHER_RANGE*3, yCoord - LogicIndex.SLAUGTHER_RANGE, zCoord - LogicIndex.SLAUGTHER_RANGE, xCoord - LogicIndex.SLAUGTHER_RANGE, yCoord + LogicIndex.SLAUGTHER_RANGE, zCoord + LogicIndex.SLAUGTHER_RANGE));
-		case 5:
-			return worldObj.getEntitiesWithinAABB(EntityLiving.class, AxisAlignedBB.getBoundingBox(xCoord + LogicIndex.SLAUGTHER_RANGE, yCoord - LogicIndex.SLAUGTHER_RANGE, zCoord - LogicIndex.SLAUGTHER_RANGE, xCoord + LogicIndex.SLAUGTHER_RANGE*3, yCoord + LogicIndex.SLAUGTHER_RANGE, zCoord + LogicIndex.SLAUGTHER_RANGE));
+			return worldObj.getEntitiesWithinAABB(EntityLiving.class, AxisAlignedBB.getBoundingBox(xCoord - LogicIndex.SLAUGTHER_RANGE * 3, yCoord - LogicIndex.SLAUGTHER_RANGE, zCoord - LogicIndex.SLAUGTHER_RANGE, xCoord + LogicIndex.SLAUGTHER_RANGE, yCoord + LogicIndex.SLAUGTHER_RANGE, zCoord + LogicIndex.SLAUGTHER_RANGE));
+		case 5: //TODO
+			return worldObj.getEntitiesWithinAABB(EntityLiving.class, AxisAlignedBB.getBoundingBox(xCoord + LogicIndex.SLAUGTHER_RANGE, yCoord - LogicIndex.SLAUGTHER_RANGE, zCoord - LogicIndex.SLAUGTHER_RANGE, xCoord + LogicIndex.SLAUGTHER_RANGE*4, yCoord + LogicIndex.SLAUGTHER_RANGE, zCoord + LogicIndex.SLAUGTHER_RANGE));
 		}
 		return null;
 	}

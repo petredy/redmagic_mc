@@ -56,8 +56,6 @@ public class DataHandler {
 		BankData.register(24, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 75F / 64F, BankIndex.TAX, BankIndex.BUYING);
 		// NoteBlock
 		BankData.register(25, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 30F, 0.1F, BankIndex.BUYING);
-		// Bed
-		BankData.register(26, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 5F, BankIndex.TAX, BankIndex.BUYING);
 		// Powered Rail
 		BankData.register(27, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 15F, BankIndex.TAX, BankIndex.BUYING);
 		// Detector Rail

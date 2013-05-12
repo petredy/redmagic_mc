@@ -5,6 +5,7 @@ import java.io.DataInputStream;
 
 import redmagic.configuration.PacketIndex;
 import redmagic.configuration.Reference;
+import redmagic.core.Logger;
 
 
 import net.minecraft.network.INetworkManager;
@@ -19,11 +20,9 @@ public class PacketHandler implements IPacketHandler {
 	
 	@Override
 	public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player player) {
-		if (packet.channel.equals(Reference.PACKET_CHANNEL_SERVER)) {
-			PacketRedMagic packetRM = PacketHandler.buildPacket(packet.data);
-	    	
-			packetRM.execute(manager, player);
-		}
+		PacketRedMagic packetRM = PacketHandler.buildPacket(packet.data);
+		
+		packetRM.execute(manager, player);
 	}
 	@SuppressWarnings("unchecked")
 	public static PacketRedMagic buildPacket(byte[] data) {

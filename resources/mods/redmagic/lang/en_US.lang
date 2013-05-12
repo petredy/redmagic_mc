@@ -18,6 +18,15 @@ tile.crystal.illusion.name=Illusion Crystal Block
 tile.extractor.basic.name=Extractor Basic Block
 tile.extractor.collector.name=Extractor Collector Module
 
+tile.wood.fragment.name=Fragment Wood
+tile.wood.filter.name=Filter Wood
+
+tile.leaves.fragment.name=Fragment Leaves
+tile.leaves.filter.name=Filter Leaves
+
+tile.sapling.fragment.name=Fragment Sapling
+tile.sapling.filter.name=Filter Sapling
+
 tile.pipe.name=Essence Pipe
 tile.crack.name=Dimension Crack
 tile.work.name=Work Table

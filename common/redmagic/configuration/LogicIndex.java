@@ -51,7 +51,7 @@ public class LogicIndex {
 	public static float SOUL_FRAGMENT_CAPACITY_CHANCE = 0.3F;
 	public static float SOUL_FRAGMENT_ILLUSION_CHANCE = 0.5F;
 	public static float SOUL_FRAGMENT_SATISFACTION_CHANCE = 0.1F;
-	public static float SOUL_FRAGMENT_ALL_CHANCE = 0.001F;
+	public static float SOUL_FRAGMENT_ALL_CHANCE = 0.1F;
 	
 	public static float[] SOUL_FRAGMENT_CHANCES = new float[]{
 		SOUL_FRAGMENT_INTELLIGENCE_CHANCE,
@@ -66,12 +66,12 @@ public class LogicIndex {
 	
 	//---------------------------------------------------------------
 	// Filters
-	public static final int FILTER_RANGE = 2;
+	public static final int FILTER_RANGE = 1;
 	public static final int FILTER_STORAGE = 100;
 	public static final int FILTER_TRANSPORT = 40;
 	public static final float FILTER_AIR_RAITING = 0.1F;
 	public static final float FILTER_WATER_RAITING = 0.3F;
-	public static final float FILTER_LAVA_RAITING = 1F;
+	public static final float FILTER_LEAVES_RAITING = 1F;
 	//---------------------------------------------------------------
 	//Pipes
 	public static final int PIPE_MAX_ESSENCES = 5000;
@@ -90,4 +90,10 @@ public class LogicIndex {
 	public static final int ORE_SOULCRYSTAL_CHUNK_DEPOSITS = 10;
 	public static final int ORE_SOULCRYSTAL_DEPOSIT_AMOUNT = 5;
 
+	//---------------------------------------------------------------
+	//Trees
+	
+	//----------------------------------
+	//Fragment tree
+	public static final float FRAGMENT_DROP_CHANCE = 0.9F;
 }

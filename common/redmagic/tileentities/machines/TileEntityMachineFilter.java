@@ -32,7 +32,7 @@ public class TileEntityMachineFilter extends TileEntityProducer implements ISoul
 		if(this.getUpdatesNeeded() > 0 && updateCount >= this.getUpdatesNeeded()){
 			EnvironmentHelper environment = new EnvironmentHelper(this.worldObj, this.xCoord, this.yCoord, this.zCoord, LogicIndex.FILTER_RANGE);
 			updateCount = 0;
-			int production = this.getStrength() * environment.avg;
+			int production = this.getStrength() * 100;
 			this.produce(production);
 		}
 		updateCount++;

@@ -21,6 +21,9 @@ public class BlockManager {
 	public static Block essence;
 	public static Block bank;
 	public static Block mold;
+	public static Block sapling;
+	public static Block wood;
+	public static Block leaves;
 	
 	public static void init(){
 		machine = new BlockMachine(BlockIndex.MACHINE_ID);
@@ -35,7 +38,13 @@ public class BlockManager {
 		essence = new BlockLiquidEssence(BlockIndex.LIQUID_ESSENCE_ID);
 		bank = new BlockBank(BlockIndex.BANK_ID);
 		mold = new BlockSoulMold(BlockIndex.MOLD_ID);
+		sapling = new BlockSoulSapling(BlockIndex.SAPLING_ID);
+		wood = new BlockSoulWood(BlockIndex.WOOD_ID);
+		leaves = new BlockSoulLeaves(BlockIndex.LEAVES_ID);
 		
+		GameRegistry.registerBlock(leaves, ItemBlockLeaves.class, BlockIndex.LEAVES_NAME);
+		GameRegistry.registerBlock(wood, ItemBlockWood.class, BlockIndex.WOOD_NAME);
+		GameRegistry.registerBlock(sapling, ItemBlockSapling.class, BlockIndex.SAPLING_NAME);
 		GameRegistry.registerBlock(mold, BlockIndex.MOLD_NAME);
 		GameRegistry.registerBlock(bank, BlockIndex.BANK_NAME);
 		GameRegistry.registerBlock(essence, BlockIndex.LIQUID_ESSENCE_NAME);
@@ -76,6 +85,9 @@ public class BlockManager {
 		BlockIndex.LIQUID_ESSENCE_ID = config.getBlock(BlockIndex.LIQUID_ESSENCE_NAME, BlockIndex.LIQUID_ESSENCE_DEFAULT_ID).getInt(BlockIndex.LIQUID_ESSENCE_DEFAULT_ID);
 		BlockIndex.BANK_ID = config.getBlock(BlockIndex.BANK_NAME, BlockIndex.BANK_DEFAULT_ID).getInt(BlockIndex.BANK_DEFAULT_ID);
 		BlockIndex.MOLD_ID = config.getBlock(BlockIndex.MOLD_NAME, BlockIndex.MOLD_DEFAULT_ID).getInt(BlockIndex.MOLD_DEFAULT_ID);
+		BlockIndex.SAPLING_ID = config.getBlock(BlockIndex.SAPLING_NAME, BlockIndex.SAPLING_DEFAULT_ID).getInt(BlockIndex.SAPLING_DEFAULT_ID);
+		BlockIndex.WOOD_ID = config.getBlock(BlockIndex.WOOD_NAME, BlockIndex.WOOD_DEFAULT_ID).getInt(BlockIndex.WOOD_DEFAULT_ID);
+		BlockIndex.LEAVES_ID = config.getBlock(BlockIndex.LEAVES_NAME, BlockIndex.LEAVES_DEFAULT_ID).getInt(BlockIndex.LEAVES_DEFAULT_ID);
 		
 	}
 	

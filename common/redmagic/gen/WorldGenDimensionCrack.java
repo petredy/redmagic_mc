@@ -1,4 +1,4 @@
-package redmagic.helpers;
+package redmagic.gen;
 
 import java.util.Random;
 

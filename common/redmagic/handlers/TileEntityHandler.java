@@ -5,6 +5,9 @@ import redmagic.tileentities.bank.TileEntityBank;
 import redmagic.tileentities.education.TileEntityExtractorBasic;
 import redmagic.tileentities.education.TileEntityExtractorCollector;
 import redmagic.tileentities.machines.*;
+import redmagic.tileentities.tree.TileEntityTreeLeaves;
+import redmagic.tileentities.tree.TileEntityTreeWood;
+import redmagic.tileentities.tree.fragment.TileEntityFragmentTree;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class TileEntityHandler {
@@ -32,5 +35,9 @@ public class TileEntityHandler {
 		GameRegistry.registerTileEntity(TileEntityBank.class, "redmagic.TileEntityBank");
 		GameRegistry.registerTileEntity(TileEntitySoulTrap.class, "redmagic.TileEntitySoulTrap");
 		GameRegistry.registerTileEntity(TileEntityWorkTable.class, "redmagic.TileEntityWorkTable");
+	
+		GameRegistry.registerTileEntity(TileEntityTreeWood.class, "redmagic.TileEntityTreeWood");
+		GameRegistry.registerTileEntity(TileEntityTreeLeaves.class, "redmagic.TileEntityTreeLeaves");
+		GameRegistry.registerTileEntity(TileEntityFragmentTree.class, "redmagic.TileEntityFragmentTree");
 	}
 }

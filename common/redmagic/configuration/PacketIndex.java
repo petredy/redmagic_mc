@@ -8,10 +8,12 @@ public class PacketIndex {
 		PacketKeyPressed.class,
 		PacketWorkTable.class,
 		PacketBuyItem.class,
-		PacketSellItem.class
+		PacketSellItem.class,
+		PacketTreeStructure.class
 	};
 	public static final byte KEY = 0;
 	public static final byte WORK_TABLE = 1;
 	public static final byte BUY = 2;
 	public static final byte SELL = 3;
+	public static final byte TREE = 4;
 }

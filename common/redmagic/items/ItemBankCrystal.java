@@ -18,6 +18,7 @@ public class ItemBankCrystal extends Item{
 		super(par1);
 		this.setCreativeTab(Redmagic.tabRedMagic);
 		this.setUnlocalizedName(ItemIndex.BANK_CRYSTAL_NAME);
+		this.setMaxStackSize(1);
 	}
 	
 	public void registerIcons(IconRegister iconRegister){

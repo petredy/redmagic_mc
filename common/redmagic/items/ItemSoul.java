@@ -28,6 +28,7 @@ public class ItemSoul extends Item implements ISoul{
 		this.setUnlocalizedName(ItemIndex.SOUL_NAME);
 		this.setMaxDamage(LogicIndex.SOUL_MAX_SATISFACTION);
 		this.setHasSubtypes(true);
+		this.setMaxStackSize(1);
 	}
 
 	@Override
@@ -45,6 +46,11 @@ public class ItemSoul extends Item implements ISoul{
 	public void getSubItems(int par1, CreativeTabs par2CreativeTabs, List par3List)
     {
 		par3List.add(SoulHelper.createNewSoul());
+		for(int i = 0; i < LogicIndex.SOUL_TYPES.length; i++){
+			ItemStack soul = SoulHelper.createSoul(LogicIndex.SOUL_MAX_INTELLIGENCE, LogicIndex.SOUL_MAX_STRENGTH, LogicIndex.SOUL_MAX_CAPACITY, LogicIndex.SOUL_MAX_ILLUSION, LogicIndex.SOUL_MAX_SATISFACTION);
+			((ISoul)soul.getItem()).setType(soul, i);
+			par3List.add(soul);
+		}
 		par3List.add(SoulHelper.createSoul(LogicIndex.SOUL_MAX_INTELLIGENCE, LogicIndex.SOUL_MAX_STRENGTH, LogicIndex.SOUL_MAX_CAPACITY, LogicIndex.SOUL_MAX_ILLUSION, LogicIndex.SOUL_MAX_SATISFACTION));
     }
 	

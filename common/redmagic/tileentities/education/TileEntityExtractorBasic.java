@@ -9,6 +9,7 @@ import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 import redmagic.api.multiblock.IMultiEntity;
 import redmagic.api.multiblock.IMultiBlock;
 import redmagic.api.multiblock.IStructure;
@@ -77,5 +78,16 @@ public class TileEntityExtractorBasic extends TileEntity implements IMultiEntity
 		if(this.structure != null && this.structure.blocks.size() <= 0)this.structure = null;
 		this.worldObj.markBlockForRenderUpdate(this.xCoord, this.yCoord, this.zCoord);
     }
+
+	@Override
+	public World getWorld() {
+		return worldObj;
+	}
+
+	@Override
+	public void setStructure(Integer id) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

@@ -4,7 +4,7 @@ public class Reference {
 	//Mod Metdata
 	public static final String MOD_ID = "redmagic";
 	public static final String MOD_NAME = "Redmagic";
-	public static final String VERSION = "0.0.30";
+	public static final String VERSION = "0.0.40";
 	
 	//Proxies
 	public static final String PROXY_CLIENT = "redmagic.client.ClientProxy";

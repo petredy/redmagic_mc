@@ -4,15 +4,16 @@ import redmagic.configuration.BlockIndex;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
-public class ItemBlockEntity extends ItemBlock{
+public class ItemBlockLeaves extends ItemBlock{
 	public final static String[] subNames = {
-		BlockIndex.ENTITY_PIG_NAME
+		BlockIndex.LEAVES_FRAGMENT_NAME,
+		BlockIndex.LEAVES_TOKEE_NAME
 	};
 
-	public ItemBlockEntity(int id) {
+	public ItemBlockLeaves(int id) {
 		super(id);
 		this.setHasSubtypes(true);
-		this.setUnlocalizedName(BlockIndex.MOLD_NAME);
+		this.setUnlocalizedName(BlockIndex.LEAVES_NAME);
 	}
 	
 	@Override

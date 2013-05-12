@@ -53,7 +53,17 @@ public class BlockIndex {
 	public static final int MOLD_DEFAULT_ID = 3313;
 	public static int MOLD_ID;
 	
+	public static final String SAPLING_NAME = "sapling";
+	public static final int SAPLING_DEFAULT_ID = 3314;
+	public static int SAPLING_ID;
 	
+	public static final String WOOD_NAME = "wood";
+	public static final int WOOD_DEFAULT_ID = 3315;
+	public static int WOOD_ID;
+	
+	public static final String LEAVES_NAME = "leaves";
+	public static final int LEAVES_DEFAULT_ID = 3316;
+	public static int LEAVES_ID;
 	
 	
 	//Machine Names
@@ -85,8 +95,22 @@ public class BlockIndex {
 	public static final String CRYSTAL_ILLUSION_NAME = "illusion";
 	public static final int CRYSTAL_ILLUSION_METADATA = 3;
 	
-	//Entity
-	public static final String ENTITY_PIG_NAME = "pig";
-	public static final int ENTITY_PIG_METADATA = 0;
+	//Saplings
+	public static final String SAPLING_FRAGMENT_NAME = "fragment";
+	public static final int SAPLING_FRAGMENT_METADATA = 0;
+	public static final String SAPLING_TOKEE_NAME = "tokee";
+	public static final int SAPLING_TOKEE_METADATA = 1;
+	
+	//Wood
+	public static final String WOOD_FRAGMENT_NAME = "fragment";
+	public static final int WOOD_FRAGMENT_METADATA = 0;
+	public static final String WOOD_TOKEE_NAME = "tokee";
+	public static final int WOOD_TOKEE_METADATA = 1;
+	
+	//Leaves
+	public static final String LEAVES_FRAGMENT_NAME = "fragment";
+	public static final int LEAVES_FRAGMENT_METADATA = 0;
+	public static final String LEAVES_TOKEE_NAME = "tokee";
+	public static final int LEAVES_TOKEE_METADATA = 1;
 	
 }

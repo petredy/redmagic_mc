@@ -95,4 +95,23 @@ public class FragmentHelper {
 		if(stack.stackTagCompound == null)stack.stackTagCompound = new NBTTagCompound();
 		return stack.stackTagCompound.getInteger(SATISFACTION);
 	}
+
+	public static ItemStack combine(ItemStack fragment1, ItemStack fragment2) {
+		int itl = getIntelligence(fragment1) + getIntelligence(fragment2);
+		int str = getStrength(fragment1) + getStrength(fragment2);
+		int cap = getCapacity(fragment1) + getCapacity(fragment2);
+		int ill = getIllusion(fragment1) + getIllusion(fragment2);
+		int sat = getSatisfaction(fragment1) + getSatisfaction(fragment2);
+		return createFragmentAll(itl, str, cap, ill, sat);
+	}
+
+	private static ItemStack createFragmentAll(int itl, int str, int cap, int ill, int sat) {
+		ItemStack fragment = new ItemStack(ItemManager.fragment.itemID, 1, ItemIndex.FRAGMENT_ALL_ITEMDAMAGE);
+		setIntelligence(fragment, itl);
+		setStrength(fragment, str);
+		setCapacity(fragment, cap);
+		setIllusion(fragment, ill);
+		setSatisfaction(fragment, sat);
+		return fragment;
+	}
 }
