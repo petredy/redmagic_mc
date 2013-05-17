@@ -11,8 +11,6 @@ public class BuildcraftAddon {
 			
 			
 			
-		}else{
-			Logger.log("Buildcraft was not found. There will be problems while playing.");
 		}
 		
 	}

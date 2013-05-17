@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import redmagic.configuration.LogicIndex;
 import redmagic.configuration.Reference;
 import redmagic.helpers.SoulHelper;
 import redmagic.api.frame.ISoul;
@@ -15,6 +16,7 @@ import net.minecraft.nbt.NBTTagList;
 public class SoulStorage {
 	
 	public List<SoulBlock> souls = new ArrayList<SoulBlock>();
+	public int capacity;
 	
 	public SoulStorage(){}
 	
@@ -35,12 +37,18 @@ public class SoulStorage {
 		}
 	}
 	
+	public int calculateCapacity(int wood){
+		this.capacity = wood / LogicIndex.TREE_CAPACITY_CALCULATER;
+		return this.capacity;
+	}
+	
 	public void readFromNBT(NBTTagCompound tag){
 		NBTTagList list = tag.getTagList(Reference.MOD_ID + "_souls");
 		for(int i = 0; i < list.tagCount(); i++){
 			NBTTagCompound soul = (NBTTagCompound) list.tagAt(i);
 			souls.add(SoulBlock.loadFromNBT(soul));
 		}
+		this.capacity = tag.getInteger(Reference.MOD_ID + "_capacity");
 	}
 	
 	public static SoulStorage loadFromNBT(NBTTagCompound tag){
@@ -61,6 +69,7 @@ public class SoulStorage {
 		}
 		
 		tag.setTag(Reference.MOD_ID + "_souls", list);
+		tag.setInteger(Reference.MOD_ID + "_capacity", this.capacity);
 	}
 
 	public SoulBlock getBlockAt(int x, int y, int z) {

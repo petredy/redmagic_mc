@@ -18,6 +18,12 @@ public class ItemManager {
 	public static ItemBankCrystal bankCrystal;
 	public static ItemCrafting crafting;
 	public static ItemFragment fragment;
+	public static ItemGlasses glasses;
+	public static ItemSoulPickaxe pickaxe;
+	public static ItemSoulShovel shovel;
+	public static ItemSoulAxe axe;
+	public static ItemSoulHoe hoe;
+	public static ItemBroom broom;
 	
 	public static void init(){
 		redhole = new ItemRedhole(ItemIndex.REDHOLE_ID);
@@ -29,6 +35,12 @@ public class ItemManager {
 		bankCrystal = new ItemBankCrystal(ItemIndex.BANK_CRYSTAL_ID);
 		crafting = new ItemCrafting(ItemIndex.CRAFTING_ID);
 		fragment = new ItemFragment(ItemIndex.FRAGMENT_ID);
+		glasses = new ItemGlasses(ItemIndex.ARMOR_SOUL_ID, 0, 0);
+		pickaxe = new ItemSoulPickaxe(ItemIndex.PICKAXE_ID);
+		shovel = new ItemSoulShovel(ItemIndex.SHOVEL_ID);
+		axe = new ItemSoulAxe(ItemIndex.AXE_ID);
+		hoe = new ItemSoulHoe(ItemIndex.HOE_ID);
+		broom = new ItemBroom(ItemIndex.BROOM_ID);
 		
 		registerRecipes();
 		registerSmelting();
@@ -58,6 +70,12 @@ public class ItemManager {
 		ItemIndex.BANK_CRYSTAL_ID = config.getItem(ItemIndex.BANK_CRYSTAL_NAME, ItemIndex.BANK_CRYSTAL_DEFAULT_ID).getInt(ItemIndex.BANK_CRYSTAL_DEFAULT_ID);
 		ItemIndex.CRAFTING_ID = config.getItem(ItemIndex.CRAFTING_NAME, ItemIndex.CRAFTING_DEFAULT_ID).getInt(ItemIndex.CRAFTING_DEFAULT_ID);
 		ItemIndex.FRAGMENT_ID = config.getItem(ItemIndex.FRAGMENT_NAME, ItemIndex.FRAGMENT_DEFAULT_ID).getInt(ItemIndex.FRAGMENT_DEFAULT_ID);
+		ItemIndex.ARMOR_SOUL_ID = config.getItem(ItemIndex.ARMOR_SOUL_NAME, ItemIndex.ARMOR_SOUL_DEFAULT_ID).getInt(ItemIndex.ARMOR_SOUL_DEFAULT_ID);
+		ItemIndex.PICKAXE_ID = config.getItem(ItemIndex.PICKAXE_NAME, ItemIndex.PICKAXE_DEFAULT_ID).getInt(ItemIndex.PICKAXE_DEFAULT_ID);
+		ItemIndex.SHOVEL_ID = config.getItem(ItemIndex.SHOVEL_NAME, ItemIndex.SHOVEL_DEFAULT_ID).getInt(ItemIndex.SHOVEL_DEFAULT_ID);
+		ItemIndex.AXE_ID = config.getItem(ItemIndex.AXE_NAME, ItemIndex.AXE_DEFAULT_ID).getInt(ItemIndex.AXE_DEFAULT_ID);
+		ItemIndex.HOE_ID = config.getItem(ItemIndex.HOE_NAME, ItemIndex.HOE_DEFAULT_ID).getInt(ItemIndex.HOE_DEFAULT_ID);
+		ItemIndex.BROOM_ID = config.getItem(ItemIndex.BROOM_NAME, ItemIndex.BROOM_DEFAULT_ID).getInt(ItemIndex.BROOM_DEFAULT_ID);
 		
 	}
 }

@@ -6,6 +6,7 @@ import java.util.List;
 
 import cpw.mods.fml.common.network.PacketDispatcher;
 
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.packet.Packet132TileEntityData;
@@ -18,7 +19,9 @@ import redmagic.blocks.BlockManager;
 import redmagic.blocks.multi.extractor.ExtractorBlock;
 import redmagic.configuration.Reference;
 import redmagic.core.Logger;
+import redmagic.helpers.InventoryHelper;
 import redmagic.helpers.TreeHelper;
+import redmagic.lib.tree.SoulBlock;
 import redmagic.lib.tree.SoulStorage;
 import redmagic.lib.tree.SoulTank;
 
@@ -46,6 +49,7 @@ public class TreeStructure implements IStructure{
 			TreeBlock block = new TreeBlock(x, y, z);
 			block.type = type;
 			blocks.add(block);
+			this.storage.calculateCapacity(this.getBlockType(woodKey).size());
 			TreeHelper.saveStructure(world, this.id, this);
 			this.updateAllBlocks(world);
 		}
@@ -55,12 +59,34 @@ public class TreeStructure implements IStructure{
 		TreeBlock block = (TreeBlock) this.getBlockAt(x, y, z);
 		if(block != null){
 			blocks.remove(block);
+			int canHoldSouls = this.storage.calculateCapacity(this.getBlockType(woodKey).size());
+			Logger.log(canHoldSouls);
+			if(canHoldSouls < this.storage.souls.size()){
+				SoulBlock soulBlock = this.storage.souls.get(0);
+				if(block != null){
+					InventoryHelper.dropItemStack(soulBlock.soulStack, world, soulBlock.x, soulBlock.y, soulBlock.z);
+					this.storage.remove(soulBlock.x, soulBlock.y, soulBlock.z);
+					world.markBlockForUpdate(soulBlock.x, soulBlock.y, soulBlock.z);
+				}
+			}
 			TreeHelper.saveStructure(world, this.id, this);
 			this.updateAllBlocks(world);
 			if(blocks.size() <= 2){
 				this.destroy(world);
 			}
 		}
+	}
+	
+	public boolean addSoulToStorage(int x, int y, int z, ItemStack soul){
+		if(this.storage.capacity > this.storage.souls.size()){
+			this.storage.add(x, y, z, soul);
+			return true;
+		}
+		return false;
+	}
+	
+	public void removeSoulFromStroage(int x, int y, int z){
+		this.storage.remove(x, y, z);
 	}
 	
 	private void updateAllBlocks(World world) {

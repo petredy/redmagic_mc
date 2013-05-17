@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 
 public class Sacrifice {
 	public ItemStack input;
-	public int damage = 5;
+	public int damage = 1;
 	public Sacrifice(ItemStack input){
 		this.input = input;
 	}

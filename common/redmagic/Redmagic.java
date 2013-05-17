@@ -45,7 +45,6 @@ public class Redmagic{
 	public static long saved = 0;
 	
 	
-	public static Configuration data;
 	public static BankData bankData;
 	
 	//-------------------------------------------------------------------------------------------------------------
@@ -133,6 +132,6 @@ public class Redmagic{
     }
 	
 	public static void initialiseData() {
-		DataHandler.init(Redmagic.data);
+		DataHandler.init();
 	}
 }

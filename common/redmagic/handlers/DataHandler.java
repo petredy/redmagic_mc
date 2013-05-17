@@ -7,7 +7,7 @@ import net.minecraftforge.common.Configuration;
 
 public class DataHandler {
 	
-	public static void init(Configuration config){
+	public static void init(){
 		
 	}
 

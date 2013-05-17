@@ -2,6 +2,8 @@ package redmagic.tileentities.tree;
 
 import java.util.Iterator;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;
@@ -16,16 +18,20 @@ import redmagic.api.multiblock.IMultiEntity;
 import redmagic.api.multiblock.IStructure;
 import redmagic.blocks.multi.tree.TreeStructure;
 import redmagic.core.Logger;
+import redmagic.helpers.BlockHelper;
+import redmagic.helpers.InventoryHelper;
 import redmagic.helpers.SoulHelper;
 import redmagic.helpers.TreeHelper;
+import redmagic.lib.souls.inventory.SoulInventory;
 import redmagic.lib.tree.SoulBlock;
 import redmagic.tileentities.TileEntityStorage;
 
-public class TileEntityTreeWood extends TileEntityStorage implements IMultiEntity{
+public class TileEntityTreeWood extends TileEntityStorage implements IMultiEntity, ISidedInventory{
 
 	public Integer structureID = null;
 	public int updateCount = 0, neededUpdateCount = 50;
 	public boolean init = false;
+	public boolean redstone = false;
 	
 	public TileEntityTreeWood() {
 		super(0);
@@ -45,38 +51,46 @@ public class TileEntityTreeWood extends TileEntityStorage implements IMultiEntit
 		TreeStructure structure = (TreeStructure) this.getStructure();
 		SoulBlock block = structure.storage.getBlockAt(xCoord, yCoord, zCoord);
 		if(block != null){
-			SoulHelper.getSoulByStack(block.soul).onUpdate(this, structure, xCoord, yCoord, zCoord);
+			block.soul.onUpdate(block.soulStack, this, structure, xCoord, yCoord, zCoord);
 		}
 		TreeHelper.saveStructure(worldObj, structureID, structure);
 		if(!worldObj.isRemote)TreeHelper.syncClient(worldObj, structureID);
 	}
 
-	public void wrench(){
+	public void wrench(boolean sneaking, EntityPlayer player){
 		if(this.hasStructure()){
 			TreeStructure structure = (TreeStructure) this.getStructure();
 			SoulBlock block = structure.storage.getBlockAt(xCoord, yCoord, zCoord);
-			if(block != null){
-				SoulHelper.getSoulByStack(block.soul).onWrench(this, structure, xCoord, yCoord, zCoord);
+			if(block != null && !sneaking && player != null){
+				block.soul.onWrench(block.soulStack, this, structure, player, xCoord, yCoord, zCoord);
 				TreeHelper.saveStructure(worldObj, structureID, structure);
-			}	
+			}else if(block != null){
+				ItemStack soul = block.soulStack;
+				this.removeSoul();
+				if(!worldObj.isRemote)InventoryHelper.dropItemStack(soul, worldObj, xCoord, yCoord, zCoord);
+				worldObj.markBlockForRenderUpdate(xCoord, yCoord, zCoord);
+			}
 		}
 	}
 	
-	public void addSoul(ItemStack soul){
+	public boolean addSoul(ItemStack soul){
 		if(this.hasStructure()){
 			TreeStructure structure = (TreeStructure) this.getStructure();
-			structure.storage.add(xCoord, yCoord, zCoord, soul);
-			init = false;
-			TreeHelper.saveStructure(worldObj, structureID, structure);
+			if(structure.addSoulToStorage(xCoord, yCoord, zCoord, soul)){
+				init = false;
+				TreeHelper.saveStructure(worldObj, structureID, structure);
+				return true;
+			}
 		}
+		return false;
 	}
 	
 	public void removeSoul(){
 		TreeStructure structure = (TreeStructure) this.getStructure();
 		SoulBlock block = structure.storage.getBlockAt(xCoord, yCoord, zCoord);
 		if(block != null){
-			SoulHelper.getSoulByStack(block.soul).remove(this, structure, xCoord, yCoord, zCoord);
-			structure.storage.remove(xCoord, yCoord, zCoord);
+			block.soul.remove(block.soulStack, this, structure, xCoord, yCoord, zCoord);
+			structure.removeSoulFromStroage(xCoord, yCoord, zCoord);
 			TreeHelper.saveStructure(worldObj, structureID, structure);
 		}
 	}
@@ -93,6 +107,11 @@ public class TileEntityTreeWood extends TileEntityStorage implements IMultiEntit
 		if(this.hasStructure()){
 			TreeStructure structure = (TreeStructure) this.getStructure();
 			structure.tank.setCapacity(structure.tank.getCapacity() - amount);
+			if(structure.tank.getLiquid().amount > structure.tank.getCapacity()){
+				LiquidStack stack = structure.tank.getLiquid();
+				stack.amount = structure.tank.getCapacity();
+				structure.tank.setLiquid(stack);
+			}
 			TreeHelper.saveStructure(worldObj, structureID, structure);
 		}
 	}
@@ -108,7 +127,7 @@ public class TileEntityTreeWood extends TileEntityStorage implements IMultiEntit
 		TreeStructure structure = (TreeStructure) this.getStructure();
 		SoulBlock block = structure.storage.getBlockAt(xCoord, yCoord, zCoord);
 		if(block != null){
-			SoulHelper.getSoulByStack(block.soul).init(this, structure, xCoord, yCoord, zCoord);
+			block.soul.init(block.soulStack, this, structure, xCoord, yCoord, zCoord);
 			TreeHelper.saveStructure(worldObj, structureID, structure);
 			worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 			init = true;
@@ -145,6 +164,10 @@ public class TileEntityTreeWood extends TileEntityStorage implements IMultiEntit
 	@Override
 	public boolean hasStructure() {
 		return this.structureID != null && TreeHelper.loadStructure(worldObj, structureID) != null;
+	}
+	
+	public boolean hasSoul(){
+		return this.hasStructure() && TreeHelper.loadStructure(worldObj, structureID).storage.contains(xCoord, yCoord, zCoord);
 	}
 
 	@Override
@@ -331,5 +354,159 @@ public class TileEntityTreeWood extends TileEntityStorage implements IMultiEntit
 			return ((TreeStructure)this.getStructure()).tank;
 		}
 		return null;
+	}
+
+	
+	// IInventory Redirect
+	
+	public boolean isUseableByPlayer(EntityPlayer entityplayer) {
+		return true;
+	}
+
+	@Override
+	public int getSizeInventory() {
+		if(this.hasSoul()){
+			SoulInventory inv = TreeHelper.loadStructure(worldObj, structureID).storage.getBlockAt(xCoord, yCoord, zCoord).soul.getInventory();
+			if(inv != null)return inv.getSizeInventory();
+		}
+		return 0;
+	}
+
+	@Override
+	public ItemStack getStackInSlot(int i) {
+		if(this.hasSoul()){
+			SoulInventory inv = TreeHelper.loadStructure(worldObj, structureID).storage.getBlockAt(xCoord, yCoord, zCoord).soul.getInventory();
+			if(inv != null)return inv.getStackInSlot(i);
+		}
+		return null;
+	}
+
+	@Override
+	public ItemStack decrStackSize(int i, int j) {
+		if(this.hasSoul()){
+			SoulInventory inv = TreeHelper.loadStructure(worldObj, structureID).storage.getBlockAt(xCoord, yCoord, zCoord).soul.getInventory();
+			if(inv != null)return inv.decrStackSize(i, j);
+		}
+		return null;
+	}
+
+	@Override
+	public ItemStack getStackInSlotOnClosing(int i) {
+		if(this.hasSoul()){
+			SoulInventory inv = TreeHelper.loadStructure(worldObj, structureID).storage.getBlockAt(xCoord, yCoord, zCoord).soul.getInventory();
+			if(inv != null)return inv.getStackInSlotOnClosing(i);
+		}
+		return null;
+	}
+
+	@Override
+	public void setInventorySlotContents(int i, ItemStack itemstack) {
+		if(this.hasSoul()){
+			SoulInventory inv = TreeHelper.loadStructure(worldObj, structureID).storage.getBlockAt(xCoord, yCoord, zCoord).soul.getInventory();
+			if(inv != null)inv.setInventorySlotContents(i, itemstack);
+		}
+	}
+
+	@Override
+	public String getInvName() {
+		if(this.hasSoul()){
+			SoulInventory inv = TreeHelper.loadStructure(worldObj, structureID).storage.getBlockAt(xCoord, yCoord, zCoord).soul.getInventory();
+			if(inv != null)return inv.getInvName();
+		}
+		return null;
+	}
+
+	@Override
+	public boolean isInvNameLocalized() {
+		if(this.hasSoul()){
+			SoulInventory inv = TreeHelper.loadStructure(worldObj, structureID).storage.getBlockAt(xCoord, yCoord, zCoord).soul.getInventory();
+			if(inv != null)return inv.isInvNameLocalized();
+		}
+		return false;
+	}
+
+	@Override
+	public int getInventoryStackLimit() {
+		return 64;
+	}
+
+	@Override
+	public void openChest() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void closeChest() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean isStackValidForSlot(int i, ItemStack itemstack) {
+		if(this.hasSoul()){
+			SoulInventory inv = TreeHelper.loadStructure(worldObj, structureID).storage.getBlockAt(xCoord, yCoord, zCoord).soul.getInventory();
+			if(inv != null)return inv.isStackValidForSlot(i, itemstack);
+		}
+		return false;
+	}
+
+	@Override
+	public int[] getAccessibleSlotsFromSide(int var1) {
+		if(this.hasSoul()){
+			SoulInventory inv = TreeHelper.loadStructure(worldObj, structureID).storage.getBlockAt(xCoord, yCoord, zCoord).soul.getInventory();
+			if(inv != null)return inv.getAccessibleSlotsFromSide(var1);
+		}
+		return null;
+	}
+
+	@Override
+	public boolean canInsertItem(int i, ItemStack itemstack, int j) {
+		if(this.hasSoul()){
+			SoulInventory inv = TreeHelper.loadStructure(worldObj, structureID).storage.getBlockAt(xCoord, yCoord, zCoord).soul.getInventory();
+			if(inv != null)return inv.canInsertItem(i, itemstack, j);
+		}
+		return false;
+	}
+
+	@Override
+	public boolean canExtractItem(int i, ItemStack itemstack, int j) {
+		if(this.hasSoul()){
+			SoulInventory inv = TreeHelper.loadStructure(worldObj, structureID).storage.getBlockAt(xCoord, yCoord, zCoord).soul.getInventory();
+			if(inv != null)return inv.canExtractItem(i, itemstack, j);
+		}
+		return false;
+	}
+
+	public void onRedstoneOn() {
+		redstone = true;
+		if(this.hasSoul()){
+			TreeStructure structure = TreeHelper.loadStructure(worldObj, structureID);
+			SoulBlock block = structure.storage.getBlockAt(xCoord, yCoord, zCoord);
+			if(block != null){
+				block.soul.onRedstoneOn(block.soulStack, this, structure, xCoord, yCoord, zCoord);
+			}
+		}
+	}
+
+	public void onRedstoneOff() {
+		redstone = false;
+		if(this.hasSoul()){
+			TreeStructure structure = TreeHelper.loadStructure(worldObj, structureID);
+			SoulBlock block = structure.storage.getBlockAt(xCoord, yCoord, zCoord);
+			if(block != null){
+				block.soul.onRedstoneOff(block.soulStack, this, structure, xCoord, yCoord, zCoord);
+			}
+		}
+	}
+
+	public void onActivated(EntityPlayer player) {
+		if(this.hasSoul()){
+			TreeStructure structure = TreeHelper.loadStructure(worldObj, structureID);
+			SoulBlock block = structure.storage.getBlockAt(xCoord, yCoord, zCoord);
+			if(block != null){
+				block.soul.onActivated(block.soulStack, this, structure, player, xCoord, yCoord, zCoord);
+			}
+		}
 	}
 }

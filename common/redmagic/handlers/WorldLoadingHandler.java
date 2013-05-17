@@ -8,8 +8,12 @@ import redmagic.Redmagic;
 import redmagic.configuration.Reference;
 import redmagic.core.Logger;
 import redmagic.lib.bank.BankData;
+import redmagic.lib.bank.BankSavedData;
+import redmagic.network.PacketBankSync;
+import redmagic.network.PacketHandler;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.network.PacketDispatcher;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.World;
@@ -26,15 +30,19 @@ public class WorldLoadingHandler {
 		
 		if(!Redmagic.loaded){
 			Logger.log("Load World BankData!");
-			File saves = new File(Minecraft.getMinecraftDir().getAbsolutePath(), Reference.SAVE_DIR);
-			File world = new File(saves, FMLCommonHandler.instance().getMinecraftServerInstance().getFolderName());
-			File redbank = new File(world, Reference.MOD_ID);
-			Redmagic.data = new Configuration(new File(redbank, Reference.WORLD_STORAGE_FILE));
-			Redmagic.data.load();
+			
+			BankSavedData data = (BankSavedData) event.world.loadItemData(BankSavedData.class, Reference.BANK_TOKEN);
+			if(data == null){
+				Logger.log("BankData couldn't be loaded!");
+				data = new BankSavedData(Reference.BANK_TOKEN);
+				data.data = new BankData();
+				if(data.data.getItems().size() == 0)DataHandler.loadDefault();
+				event.world.setItemData(Reference.BANK_TOKEN, data);
+			}
+			Redmagic.bankData = data.data;
 			Redmagic.initialiseData();
-			Redmagic.bankData = new BankData();
-			Redmagic.bankData.load(Redmagic.data);
 			Redmagic.loaded = true;
+			data.markDirty();
 		}
 	}
 	
@@ -43,34 +51,31 @@ public class WorldLoadingHandler {
 	public void onSave(Save event){
 		if(Redmagic.saved + Reference.SAVE_INTERVAL < new Date().getTime()){
 			Logger.log("Save World BankData!");
-			File saves = new File(Minecraft.getMinecraftDir().getAbsolutePath(), Reference.SAVE_DIR);
-			File world = new File(saves, FMLCommonHandler.instance().getMinecraftServerInstance().getFolderName());
-			File redmagic = new File(world, Reference.MOD_ID);
-			File dataFile = new File(redmagic, Reference.WORLD_STORAGE_FILE);
-			boolean delete = dataFile.delete();
-			if(!delete)Logger.log("The BankData was probably not saved right. Can't remove the old configuration file.");
-			Redmagic.data = new Configuration(dataFile);
-			Redmagic.data.load();
-			Redmagic.bankData.save(Redmagic.data);
-			Redmagic.data.save();
+			BankSavedData data = (BankSavedData) event.world.loadItemData(BankSavedData.class, Reference.BANK_TOKEN);
+			if(data == null){
+				data = new BankSavedData(Reference.BANK_TOKEN);
+				data.data = new BankData();
+				if(data.data.getItems().size() == 0)DataHandler.loadDefault();
+				event.world.setItemData(Reference.BANK_TOKEN, data);
+			}
+			data.markDirty();
+			PacketDispatcher.sendPacketToAllPlayers(PacketHandler.populatePacket(new PacketBankSync(data.data)));
 			Redmagic.saved = new Date().getTime();
 		}
 	}
 	
 	@ForgeSubscribe
-	public void onLoad(Unload event){
+	public void onUnload(Unload event){
 		if(Redmagic.saved + Reference.SAVE_INTERVAL < new Date().getTime()){
 			Logger.log("Save World BankData!");
-			File saves = new File(Minecraft.getMinecraftDir().getAbsolutePath(), Reference.SAVE_DIR);
-			File world = new File(saves, FMLCommonHandler.instance().getMinecraftServerInstance().getFolderName());
-			File redmagic = new File(world, Reference.MOD_ID);
-			File dataFile = new File(redmagic, Reference.WORLD_STORAGE_FILE);
-			boolean delete = dataFile.delete();
-			if(!delete)Logger.log("The BankData was probably not saved right. Can't remove the old configuration file.");
-			Redmagic.data = new Configuration(dataFile);
-			Redmagic.data.load();
-			Redmagic.bankData.save(Redmagic.data);
-			Redmagic.data.save();
+			BankSavedData data = (BankSavedData) event.world.loadItemData(BankSavedData.class, Reference.BANK_TOKEN);
+			if(data == null){
+				data = new BankSavedData(Reference.BANK_TOKEN);
+				data.data = new BankData();
+				if(data.data.getItems().size() == 0)DataHandler.loadDefault();
+				event.world.setItemData(Reference.BANK_TOKEN, data);
+			}
+			data.markDirty();
 			Redmagic.saved = new Date().getTime();
 		}
 	}

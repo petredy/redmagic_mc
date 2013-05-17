@@ -12,6 +12,12 @@ public class ItemIndex {
 	public static final String CRAFTING_NAME = "crafting";
 	public static final String BLOCKIFIER_NAME = "blockifier";
 	public static final String FRAGMENT_NAME = "fragment";
+	public static final String ARMOR_SOUL_NAME = "glasses";
+	public static final String PICKAXE_NAME = "pickaxe";
+	public static final String SHOVEL_NAME = "shovel";
+	public static final String AXE_NAME = "axe";
+	public static final String HOE_NAME = "hoe";
+	public static final String BROOM_NAME = "broom";
 	
 	//Default IDs 
 	public static final int REDHOLE_DEFAULT_ID = 13900;
@@ -24,6 +30,12 @@ public class ItemIndex {
 	public static final int CRAFTING_DEFAULT_ID = 13912;
 	public static final int BLOCKIFIER_DEFAULT_ID = 13913;
 	public static final int FRAGMENT_DEFAULT_ID = 13914;
+	public static final int ARMOR_SOUL_DEFAULT_ID = 13915;
+	public static final int PICKAXE_DEFAULT_ID = 13916;
+	public static final int SHOVEL_DEFAULT_ID = 13917;
+	public static final int AXE_DEFAULT_ID = 13918;
+	public static final int HOE_DEFAULT_ID = 13919;
+	public static final int BROOM_DEFAULT_ID = 13920;
 	
 	//Current IDs
 	public static int REDHOLE_ID;
@@ -36,6 +48,12 @@ public class ItemIndex {
 	public static int CRAFTING_ID;
 	public static int BLOCKIFIER_ID;
 	public static int FRAGMENT_ID;
+	public static int ARMOR_SOUL_ID;
+	public static int PICKAXE_ID;
+	public static int SHOVEL_ID;
+	public static int AXE_ID;
+	public static int HOE_ID;
+	public static int BROOM_ID;
 	
 	//Crafting
 	public static final String CRAFTING_SOUL_POWDER_NAME = "powder";

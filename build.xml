@@ -7,6 +7,7 @@
 		<delete file="/home/petredy/Development/mcp/src/minecraft/mcmod.info" />
 		<delete dir="/home/petredy/Development/mcp/src/minecraft/com" />
 		<delete dir="/home/petredy/Development/mcp/reobf/minecraft" />
+        <delete dir="/home/petredy/Development/mcp/src/minecraft/redmagic" />
 	</target>
 
 	<target name="build">
@@ -73,7 +74,7 @@
 		<antcall target="reobfuscate" />
 
 		<!-- Build the jar -->
-		<mkdir dir="${dir.release}/${release.minecraft.version}/${release.mod.version}" />
+		<!--<mkdir dir="${dir.release}/${release.minecraft.version}/${release.mod.version}" />-->
 		<jar destfile="/home/petredy/Development/source/release/redmagic_NEW.jar">
 			<fileset dir="/home/petredy/Development/mcp/src/minecraft/" includes="mcmod.info" />
 			<fileset dir="/home/petredy/Development/mcp/reobf/minecraft" />

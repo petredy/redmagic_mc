@@ -19,13 +19,13 @@ tile.extractor.basic.name=Extractor Basic Block
 tile.extractor.collector.name=Extractor Collector Module
 
 tile.wood.fragment.name=Fragment Wood
-tile.wood.filter.name=Filter Wood
+tile.wood.tokee.name=Tokee Wood
 
 tile.leaves.fragment.name=Fragment Leaves
-tile.leaves.filter.name=Filter Leaves
+tile.leaves.tokee.name=Tokee Leaves
 
 tile.sapling.fragment.name=Fragment Sapling
-tile.sapling.filter.name=Filter Sapling
+tile.sapling.tokee.name=Tokee Sapling
 
 tile.pipe.name=Essence Pipe
 tile.crack.name=Dimension Crack
@@ -46,6 +46,7 @@ item.hammer.name=Working Hammer
 item.soul.name=Soul
 item.wrench.name=Redmagic Wrench
 item.bank.name=Trading Crystal
+item.glasses.name=Virtual Reality Glasses
 
 item.crafting.powder.name=Soul Powder
 item.crafting.ingot.name=Soul Ingot

@@ -12,6 +12,7 @@ import redmagic.lib.sacrifice.SacrificeChangesType;
 import redmagic.lib.sacrifice.SacrificeRegistry;
 import redmagic.lib.sacrifice.SacrificeSoul;
 import redmagic.lib.sacrifice.SacrificeSoulFragment;
+import redmagic.recipes.tree.TreeCraftingRegistry;
 import redmagic.recipes.worktable.WorkTableRegistry;
 
 public class RecipeHandler {
@@ -31,6 +32,15 @@ public class RecipeHandler {
 		WorkTableRegistry.registerShapeless(new ItemStack(ItemManager.crafting.itemID, 1, ItemIndex.CRAFTING_FLINT_IRON_INGOT_ITEMDAMAGE), new ItemStack[]{
 			new ItemStack(Item.flint), new ItemStack(Item.ingotIron)
 		});
+		
+		WorkTableRegistry.registerShapeless(new ItemStack(BlockManager.sapling.blockID, 1, BlockIndex.SAPLING_FRAGMENT_METADATA), new ItemStack[]{
+			new ItemStack(Block.sapling), new ItemStack(ItemManager.soulNectar)
+		});
+		
+		WorkTableRegistry.registerShapeless(new ItemStack(BlockManager.sapling.blockID, 1, BlockIndex.SAPLING_TOKEE_METADATA), new ItemStack[]{
+			new ItemStack(Block.sapling), new ItemStack(ItemManager.soul)
+		});
+		
 		
 		WorkTableRegistry.register(new ItemStack(ItemManager.crafting.itemID, 1, ItemIndex.CRAFTING_REDSTONE_LOGIC_CORE_ITEMDAMAGE), new ItemStack[]{
 			new ItemStack(Item.redstone), new ItemStack(ItemManager.crafting.itemID, 1, ItemIndex.CRAFTING_REDSTONE_SHARD_ITEMDAMAGE), new ItemStack(Item.redstone),
@@ -127,6 +137,13 @@ public class RecipeHandler {
 			new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE),
 		});
 		
+		//----------------------------------------------------------------------
+		//TreeCrafting Registry
+		
+		TreeCraftingRegistry.registerShapeless(new ItemStack(ItemManager.crafting, 4, ItemIndex.CRAFTING_REDSTONE_SHARD_ITEMDAMAGE), new ItemStack[]{
+			new ItemStack(Block.blockRedstone)
+		}, 10, 10, 10, 30, 15);
+		
 		
 		
 		//----------------------------------------------------------------------
@@ -139,7 +156,7 @@ public class RecipeHandler {
 		SacrificeRegistry.register(new SacrificeChangesType(new ItemStack(Block.fenceIron), LogicIndex.SOUL_FILTER));
 		SacrificeRegistry.register(new SacrificeChangesType(new ItemStack(Block.furnaceIdle), LogicIndex.SOUL_FURNACE));
 		SacrificeRegistry.register(new SacrificeChangesType(new ItemStack(Item.bucketEmpty), LogicIndex.SOUL_STORAGE));
-		SacrificeRegistry.register(new SacrificeChangesType(new ItemStack(Item.shears), LogicIndex.SOUL_SLAUGTHER));
+		SacrificeRegistry.register(new SacrificeChangesType(new ItemStack(Block.workbench), LogicIndex.SOUL_CRAFTING));
 		
 	}
 	

@@ -9,6 +9,8 @@ import redmagic.configuration.Reference;
 import redmagic.core.Logger;
 import redmagic.handlers.DataHandler;
 
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.Property;
 
@@ -32,31 +34,28 @@ public class BankData {
 		data.add(new ItemData(itemID, itemDamage, amount, tradeable, price, tax, buying));
 	}
 	
-	public void save(Configuration config){
-		Iterator it = this.data.iterator();
-		int count = 0;
+	public void writeToNBT(NBTTagCompound tag){
+		NBTTagList list = new NBTTagList();
+		Iterator<ItemData> it = data.iterator();
 		while(it.hasNext()){
-			ItemData data = (ItemData) it.next();
-			data.config(config, count);
-			count++;
+			ItemData item = it.next();
+			if(item != null){
+				NBTTagCompound tmp = new NBTTagCompound();
+				item.writeToNBT(tmp);
+				list.appendTag(tmp);
+			}
 		}
-		if(count == 0){
-			Logger.log("Couldn't save any redbank data");
-		}
+		tag.setTag(Reference.MOD_ID, list);
 	}
 	
-	public void load(Configuration config){
-		Collection<Property> data  = config.getCategory(Reference.BANK_DATA_TYPE).values();
-		Iterator it = data.iterator();
-		int count = 0;
-		while(it.hasNext()){
-			Property item = (Property) it.next();
-			this.data.add(ItemData.loadFromConfig(item));
-			count++;
-		}
-		Logger.log(count);
-		if(count == 0){
-			DataHandler.loadDefault();
+	public void readFromNBT(NBTTagCompound tag){
+		NBTTagList list = tag.getTagList(Reference.MOD_ID);
+		this.data.clear();
+		for(int i = 0; i < list.tagCount(); i++){
+			NBTTagCompound data = (NBTTagCompound) list.tagAt(i);
+			if(data != null){
+				this.data.add(ItemData.loadFromNBT(data));
+			}
 		}
 	}
 

@@ -23,10 +23,6 @@ public class Reference {
 	public static int KEY_EXTRA_ID;
 	
 	//Storage
-	public static final String SAVE_DIR = "saves";
-	public static final String WORLD_STORAGE_FILE = "data.cfg";
-	public static final int SAVE_INTERVAL = 1000;
-	public static final String BANK_DATA_TYPE = "bank";
-	public static final String BANK_DATA_SPLITTER = ";";
-	public static final String BANK_DATA_COUNT = "ItemCount";
+	public static final int SAVE_INTERVAL = 10000;
+	public static final String BANK_TOKEN = MOD_ID + "_bank";
 }

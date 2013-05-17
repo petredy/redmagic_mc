@@ -56,6 +56,12 @@ public class KeyBindingHandler extends KeyBindingRegistry.KeyHandler{
                             PacketDispatcher.sendPacketToServer(PacketHandler.populatePacket(new PacketKeyPressed(kb.keyDescription)));
                         }
                     }
+                    for(int i = 0; i < player.inventory.armorInventory.length; i++){
+        				if(player.inventory.armorInventory[i] != null && player.inventory.armorInventory[i].getItem() instanceof IKeyBound){
+        					PacketDispatcher.sendPacketToServer(PacketHandler.populatePacket(new PacketKeyPressed(kb.keyDescription)));
+        					break;
+        				}
+        			}
                 }
             }
         }

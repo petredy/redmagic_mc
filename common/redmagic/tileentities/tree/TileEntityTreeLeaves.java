@@ -14,9 +14,17 @@ import redmagic.helpers.TreeHelper;
 public class TileEntityTreeLeaves extends TileEntity implements IMultiEntity{
 
 	public Integer structureID = null;
+	public boolean init = false;
 	
 	public TileEntityTreeLeaves() {
 		
+	}
+	
+	public void updateEntity(){
+		if(this.hasStructure() && !init){
+			init = true;
+			worldObj.markBlockForRenderUpdate(xCoord, yCoord, zCoord);
+		}
 	}
 	
 	@Override

@@ -14,6 +14,7 @@ import redmagic.client.guis.*;
 import redmagic.containers.*;
 import redmagic.tileentities.*;
 import redmagic.tileentities.bank.TileEntityBank;
+import redmagic.tileentities.tree.TileEntityTreeWood;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.server.FMLServerHandler;
@@ -47,6 +48,10 @@ public class CommonProxy implements IGuiHandler{
 		if(ID == GuiIndex.BANK){
 			return new ContainerBank(player, (TileEntityBank)tileEntity);
 		}
+		if(ID == GuiIndex.TREE){
+			if(((TileEntityTreeWood)tileEntity).hasSoul())
+			return new ContainerTree(player, (TileEntityTreeWood)tileEntity);
+		}
 		return null;
 	}
 
@@ -64,6 +69,10 @@ public class CommonProxy implements IGuiHandler{
 		}
 		if(ID == GuiIndex.BANK){
 			return new GuiBank(player, (TileEntityBank)tileEntity);
+		}
+		if(ID == GuiIndex.TREE){
+			if(((TileEntityTreeWood)tileEntity).hasSoul())
+			return new GuiTree(player, (TileEntityTreeWood)tileEntity);
 		}
 		return null;
 	}

@@ -35,13 +35,15 @@ import net.minecraft.world.World;
 public class BlockSoulWood extends BlockContainer implements IWrenchable{
 
 	public Icon[] icons = new Icon[ItemBlockWood.subNames.length];
-	public Icon tokeeWithSoul, tokeeWithFilterSoul, tokeeWithStorageSoul, tokeeWithFurnaceSoul, tokeeTop;
+	public Icon[] soulIcons = new Icon[LogicIndex.SOUL_TYPES.length];
+	public Icon tokeeTop;
 	
 	protected BlockSoulWood(int par1) {
 		super(par1, Material.wood);
 		this.setCreativeTab(Redmagic.tabRedMagic);
 		this.setUnlocalizedName(BlockIndex.WOOD_NAME);
 		this.setStepSound(Block.soundWoodFootstep);
+		this.setHardness(5.0F);
 	}
 	
 	@Override
@@ -56,10 +58,9 @@ public class BlockSoulWood extends BlockContainer implements IWrenchable{
         	this.icons[count] = par1IconRegister.registerIcon(Reference.MOD_ID + ":" + BlockIndex.WOOD_NAME + "_" + name);
         	count++;
         }
-        this.tokeeWithSoul = par1IconRegister.registerIcon(Reference.MOD_ID + ":" + BlockIndex.WOOD_NAME + "_" + BlockIndex.WOOD_TOKEE_NAME + "_soul");
-        this.tokeeWithFilterSoul = par1IconRegister.registerIcon(Reference.MOD_ID + ":" + BlockIndex.WOOD_NAME + "_" + BlockIndex.WOOD_TOKEE_NAME + "_soul_filter");
-        this.tokeeWithStorageSoul = par1IconRegister.registerIcon(Reference.MOD_ID + ":" + BlockIndex.WOOD_NAME + "_" + BlockIndex.WOOD_TOKEE_NAME + "_soul_storage");
-        this.tokeeWithFurnaceSoul = par1IconRegister.registerIcon(Reference.MOD_ID + ":" + BlockIndex.WOOD_NAME + "_" + BlockIndex.WOOD_TOKEE_NAME + "_soul_furnace");
+        for(int i = 0; i < LogicIndex.SOUL_TYPES.length;i++){
+        	this.soulIcons[i] = par1IconRegister.registerIcon(Reference.MOD_ID + ":" + BlockIndex.WOOD_NAME + "_" + BlockIndex.WOOD_TOKEE_NAME + "_soul_" + LogicIndex.SOUL_TYPES[i]);
+        }
         this.tokeeTop = par1IconRegister.registerIcon(Reference.MOD_ID + ":" + BlockIndex.WOOD_NAME + "_" + BlockIndex.WOOD_TOKEE_NAME + "_top");
     }
 	
@@ -68,21 +69,12 @@ public class BlockSoulWood extends BlockContainer implements IWrenchable{
 		TileEntity entity = par1IBlockAccess.getBlockTileEntity(par2, par3, par4);
 		switch(metadata){
 		case BlockIndex.WOOD_TOKEE_METADATA:
+			if(par5 == 0 || par5 == 1)return this.tokeeTop;
 			if(((TileEntityTreeWood)entity).hasStructure() && ((TreeStructure)((TileEntityTreeWood)entity).getStructure()).storage.contains(par2, par3, par4)){
 				TileEntityTreeWood tree = (TileEntityTreeWood)entity;
-				int type = SoulHelper.getType(((TreeStructure)tree.getStructure()).storage.getBlockAt(par2, par3, par4).soul);
-				Logger.log(type);
-				switch(type){
-				case LogicIndex.SOUL_FILTER:
-					return this.tokeeWithFilterSoul;
-				case LogicIndex.SOUL_STORAGE:
-					return this.tokeeWithFurnaceSoul;
-				case LogicIndex.SOUL_FURNACE:
-					return this.tokeeWithFurnaceSoul;
-				}
-				return this.tokeeWithSoul;
+				int type = SoulHelper.getType(((TreeStructure)tree.getStructure()).storage.getBlockAt(par2, par3, par4).soulStack);
+				return this.soulIcons[type];
 			}
-			if(par5 == 0 || par5 == 1)return this.tokeeTop;
 			break;
 		}
 		return getIcon(par5, metadata);
@@ -91,13 +83,13 @@ public class BlockSoulWood extends BlockContainer implements IWrenchable{
 	public Icon getIcon(int side, int metadata)
     {
 		switch(metadata){
-		case BlockIndex.WOOD_TOKEE_METADATA:
-			switch(side){
-			case 1:
-			case 0:
-				return this.tokeeTop;
-			}
-			break;
+			case BlockIndex.WOOD_TOKEE_METADATA:
+				switch(side){
+				case 1:
+				case 0:
+					return this.tokeeTop;
+				}
+				break;
 		}
 		return this.icons[metadata];
     }
@@ -133,10 +125,15 @@ public class BlockSoulWood extends BlockContainer implements IWrenchable{
 		switch(metadata){
 		case BlockIndex.WOOD_TOKEE_METADATA:
 			if(current != null && current.getItem() instanceof ItemSoul){
-				((TileEntityTreeWood)entity).addSoul(current);
-				if(!par5EntityPlayer.capabilities.isCreativeMode)par5EntityPlayer.inventory.setInventorySlotContents(par5EntityPlayer.inventory.currentItem, null);
-				par1World.markBlockForRenderUpdate(par2, par3, par4);
+				if(((TileEntityTreeWood)entity).addSoul(current)){
+					if(!par5EntityPlayer.capabilities.isCreativeMode)par5EntityPlayer.inventory.setInventorySlotContents(par5EntityPlayer.inventory.currentItem, null);
+					par1World.markBlockForRenderUpdate(par2, par3, par4);
+				}
 				return true;
+			}else{
+				if(((TileEntityTreeWood)entity).hasSoul()){
+					((TileEntityTreeWood)entity).onActivated(par5EntityPlayer);
+				}
 			}
 			break;
 		}
@@ -175,6 +172,14 @@ public class BlockSoulWood extends BlockContainer implements IWrenchable{
     	int metadata = par1World.getBlockMetadata(par2, par3, par4);
     	TileEntity entity = par1World.getBlockTileEntity(par2, par3, par4);
     	switch(metadata){
+    	case BlockIndex.WOOD_TOKEE_METADATA:
+    		if(entity instanceof TileEntityTreeWood){
+    			if(par1World.isBlockIndirectlyGettingPowered(par2, par3, par4)){
+    				((TileEntityTreeWood)entity).onRedstoneOn();
+    			}else if(!((TileEntityTreeWood)entity).redstone){
+    				((TileEntityTreeWood)entity).onRedstoneOff();
+    			}
+    		}
     	}
     }
 
@@ -183,7 +188,11 @@ public class BlockSoulWood extends BlockContainer implements IWrenchable{
 		TileEntity entity = world.getBlockTileEntity(x, y, z);
 		switch(metadata){
 		case BlockIndex.WOOD_TOKEE_METADATA:
-			((TileEntityTreeWood)entity).wrench();
+			if(player.isSneaking()){
+				((TileEntityTreeWood)entity).wrench(true, player);
+			}else{
+				((TileEntityTreeWood)entity).wrench(false, player);
+			}
 			break;
 		}
 		

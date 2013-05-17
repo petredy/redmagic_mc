@@ -201,7 +201,7 @@ public class BlockSoulLeaves extends BlockContainer implements IShearable{
         case BlockIndex.LEAVES_FRAGMENT_METADATA:
         	return this.getColorForFragmentLeaves((TileEntityFragmentTree)entity);
         case BlockIndex.LEAVES_TOKEE_METADATA:
-        	return ((TileEntityTreeLeaves)entity).hasStructure() ? 6350257 : 6300257;
+        	return ((TileEntityTreeLeaves)entity).hasStructure() ? 6400257 : 6300257;
         }
         return 6396257;
     }

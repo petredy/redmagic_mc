@@ -11,16 +11,16 @@ public class LogicIndex {
 	//ISoul
 	public static final String[] SOUL_TYPES = new String[]{
 		"none",
-		BlockIndex.MACHINE_FILTER_NAME,
-		BlockIndex.MACHINE_FURNACE_NAME,
-		BlockIndex.MACHINE_STORAGE_NAME,
-		BlockIndex.MACHINE_SLAUGTHER_NAME
+		"filter",
+		"furnace",
+		"storage",
+		"crafting"
 	};
 	public static final int SOUL_NONE = 0;
 	public static final int SOUL_FILTER = 1;
 	public static final int SOUL_FURNACE = 2;
 	public static final int SOUL_STORAGE = 3;
-	public static final int SOUL_SLAUGTHER = 4;
+	public static final int SOUL_CRAFTING = 4;
 	
 	public static int SOUL_MAX_INTELLIGENCE = 100;
 	public static int SOUL_MAX_STRENGTH = 100;
@@ -93,7 +93,12 @@ public class LogicIndex {
 	//---------------------------------------------------------------
 	//Trees
 	
+	public static final int TREE_CAPACITY_CALCULATER = 5;
+	
 	//----------------------------------
 	//Fragment tree
 	public static final float FRAGMENT_DROP_CHANCE = 0.9F;
+	
+	//TreeSoul Crafting
+	public static final int CRAFTING_COSTS = 100;
 }

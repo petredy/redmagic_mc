@@ -45,6 +45,13 @@ public class PacketKeyPressed extends PacketRedMagic {
 		Logger.log("execute KeyPressed");
 		if ((thePlayer.getCurrentEquippedItem() != null) && (thePlayer.getCurrentEquippedItem().getItem() instanceof IKeyBound)) {
 		    ((IKeyBound) thePlayer.getCurrentEquippedItem().getItem()).doKeyBindingAction(thePlayer, thePlayer.getCurrentEquippedItem(), this.key);
+		}else{
+			for(int i = 0; i < thePlayer.inventory.armorInventory.length; i++){
+				if(thePlayer.inventory.armorInventory[i] != null && thePlayer.inventory.armorInventory[i].getItem() instanceof IKeyBound){
+					((IKeyBound)thePlayer.inventory.armorInventory[i].getItem()).doKeyBindingAction(thePlayer, thePlayer.inventory.armorInventory[i], this.key);
+					break;
+				}
+			}
 		}
 	}
 }

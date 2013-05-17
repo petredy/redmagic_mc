@@ -342,7 +342,7 @@ public class InventoryHelper {
 			ItemStack stack = inv.getStackInSlot(i);
 			if(stack != null && FurnaceRecipes.smelting().getSmeltingResult(stack) != null){
 				inv.setInventorySlotContents(i, null);
-				return stack.copy();
+				return stack;
 			}
 		}
 		return null;
@@ -352,6 +352,47 @@ public class InventoryHelper {
 		EntityItem item = new EntityItem(worldObj, xCoord, yCoord, zCoord, drop);
 		worldObj.spawnEntityInWorld(item);
 		
+	}
+
+	public static IInventory getNextInventory(World world, int x, int y, int z, boolean top) {
+		if(world.getBlockTileEntity(x + 1, y, z) instanceof IInventory)return (IInventory) world.getBlockTileEntity(x + 1, y, z);
+		if(world.getBlockTileEntity(x - 1, y, z) instanceof IInventory)return (IInventory) world.getBlockTileEntity(x - 1, y, z);
+		if(world.getBlockTileEntity(x, y, z + 1) instanceof IInventory)return (IInventory) world.getBlockTileEntity(x, y, z + 1);
+		if(world.getBlockTileEntity(x, y, z - 1) instanceof IInventory)return (IInventory) world.getBlockTileEntity(x, y, z - 1);
+		if(top && world.getBlockTileEntity(x, y + 1, z) instanceof IInventory)return (IInventory) world.getBlockTileEntity(x, y + 1, z);
+		if(top && world.getBlockTileEntity(x, y - 1, z) instanceof IInventory)return (IInventory) world.getBlockTileEntity(x, y - 1, z);
+		return null;
+
+
+	}
+
+	public static ItemStack splitStack(ItemStack stack, int amount) {
+		if(stack != null){
+			if(stack.stackSize >= amount){
+				ItemStack rtn = stack.copy();
+				rtn.stackSize = amount;
+				return rtn;
+			}else{
+				return stack.copy();
+			}
+		}
+		return null;
+	}
+
+	public static boolean containsBurnableItem(IInventory inv) {
+		for(int i = 0; i < inv.getSizeInventory(); i ++){
+			ItemStack slot = inv.getStackInSlot(i);
+			if(FurnaceRecipes.smelting().getSmeltingResult(slot) != null)return true;
+		}
+		return false;
+	}
+	
+	public static ItemStack popBurnableItem(IInventory inv, int amount){
+		for(int i = 0; i < inv.getSizeInventory(); i ++){
+			ItemStack slot = inv.getStackInSlot(i);
+			if(FurnaceRecipes.smelting().getSmeltingResult(slot) != null)return splitStack(slot, amount);
+		}
+		return null;
 	}
 	
 }

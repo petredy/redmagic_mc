@@ -38,6 +38,7 @@ public class WorldGenTokeeTree extends WorldGenSoulTree{
 		TreeStructure structure = new TreeStructure();
 		structure.blocks = blocks;
 		structure.id = id;
+		structure.storage.calculateCapacity(structure.getBlockType(TreeStructure.woodKey).size());
 		TreeHelper.saveStructure(world, id, structure);
 		entity.setStructure(id);
 		entity.buildStructure();
