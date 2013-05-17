@@ -1,6 +1,7 @@
 package redmagic.tileentities;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import cpw.mods.fml.common.network.PacketDispatcher;
@@ -32,6 +33,8 @@ public class TileEntityWorkTable extends TileEntityInventory{
 	public int displayLength = 50;
 	public int displayMode = 0;
 	
+	public List<ContainerWorkTable> containers = new ArrayList<ContainerWorkTable>();
+	
 	public int craftingIndex = 0;
 	
 	public TileEntityWorkTable() {
@@ -40,6 +43,14 @@ public class TileEntityWorkTable extends TileEntityInventory{
 	
 	public void updateEntity(){
 		
+	}
+	
+	public void showCraftingOnContainers(){
+		Iterator<ContainerWorkTable> it = containers.iterator();
+		while(it.hasNext()){
+			ContainerWorkTable container = it.next();
+			container.showCrafting();
+		}
 	}
 	
 	public void craft(EntityPlayer player){

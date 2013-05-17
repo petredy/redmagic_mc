@@ -52,7 +52,7 @@ public class ClientProxy extends CommonProxy{
 		RenderingRegistry.registerBlockHandler(new RenderPipe());
 		RenderingRegistry.registerBlockHandler(new RenderBank());
 		
-		RenderingRegistry.registerEntityRenderingHandler(EntityPlayer.class, new RenderSoulPlayer());
+		//RenderingRegistry.registerEntityRenderingHandler(EntityPlayer.class, new RenderSoulPlayer());
 	}
 	
 	

@@ -49,10 +49,9 @@ public class PacketWorkTable extends PacketRedMagic{
 		TileEntity entity = thePlayer.worldObj.getBlockTileEntity(x, y, z);
 		if(entity instanceof TileEntityWorkTable){
 			TileEntityWorkTable table = (TileEntityWorkTable)entity;
-			table.craftingIndex += this.craftingIndex;
-			if(table.craftingIndex < 0)table.craftingIndex = table.getMaxCraftingIndex();
-			if(table.craftingIndex > table.getMaxCraftingIndex())table.craftingIndex = 0;
+			table.craftingIndex = this.craftingIndex > 0 ? this.craftingIndex <= table.getMaxCraftingIndex() ? this.craftingIndex : table.getMaxCraftingIndex() : 0;
 			table.showCrafting();
+			table.showCraftingOnContainers();
 		}
 	}
 

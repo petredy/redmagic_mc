@@ -56,4 +56,23 @@ public class WorkTableRegistry {
 		return false;
 	}
 
+	public static int getCraftingIndex(ItemStack stack) {
+		int count = 0;
+		if(stack == null)return count;
+		Iterator<Recipe> it = recipes.iterator();
+		while(it.hasNext()){
+			Recipe recipe = (Recipe) it.next();
+			if(recipe.output.isItemEqual(stack))return count;
+			count++;
+		}
+		
+		Iterator<ShapelessRecipe> it1 = shapelessRecipes.iterator();
+		while(it1.hasNext()){
+			ShapelessRecipe recipe = (ShapelessRecipe) it1.next();
+			if(recipe.output.isItemEqual(stack))return count;
+			count++;
+		}
+		return 0;
+	}
+
 }

@@ -4,6 +4,7 @@ import java.io.DataOutputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 
+import redmagic.Redmagic;
 import redmagic.api.items.IKeyBound;
 import redmagic.configuration.PacketIndex;
 import redmagic.core.Logger;
@@ -12,6 +13,7 @@ import redmagic.helpers.InventoryHelper;
 import redmagic.lib.bank.BankManager;
 import redmagic.tileentities.bank.TileEntityBank;
 
+import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -68,6 +70,7 @@ public class PacketSellItem extends PacketRedMagic {
 			thePlayer.inventory.setItemStack(null);
 			if(crystal != null){
 				BankHelper.setMoney(crystal, BankHelper.getMoney(crystal) + money);
+				PacketDispatcher.sendPacketToAllPlayers(PacketHandler.populatePacket(new PacketBankSync(Redmagic.bankData)));
 			}
 		}
 	}

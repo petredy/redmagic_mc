@@ -38,7 +38,7 @@ public class GlassesHelper {
 		"mining"
 	};
 	
-	public static final int SWITCHING_FINISHED = 10;
+	public static final int SWITCHING_FINISHED = 12;
 	
 	public static final int OFFLINE = 0;
 	public static final int ONLINE = 1;
@@ -103,7 +103,7 @@ public class GlassesHelper {
 		for(int i = -5; i <= 5; i++){
 			for(int j = -5; j <= 5; j++){
 				for(int k = -5; k <= 5; k++){
-					if(player.worldObj.getBlockId((int)player.posX + i, (int)player.posY + j, (int)player.posZ + k) == BlockManager.soulCrystalOre.blockID){
+					if(shouldFocusOnOre(player.worldObj.getBlockId((int)player.posX + i, (int)player.posY + j, (int)player.posZ + k), player.worldObj.getBlockMetadata((int)player.posX + i, (int)player.posY + j, (int)player.posZ + k))){
 						blocks.add(new int[]{(int)player.posX + i, (int)player.posY + j, (int)player.posZ + k, player.worldObj.getBlockId((int)player.posX + i, (int)player.posY + j, (int)player.posZ + k), player.worldObj.getBlockMetadata((int)player.posX + i, (int)player.posY + j, (int)player.posZ + k)});
 					}
 				}
@@ -122,5 +122,12 @@ public class GlassesHelper {
 			return new ItemStack(nearest[3], 1, nearest[4]);
 		}
 		return new ItemStack(Block.stone);
+	}
+	
+	public static boolean shouldFocusOnOre(int id, int metadata){
+		for(int i = 0; i < LogicIndex.GLASSES_ORE_DIC.length; i += 2){
+			if(LogicIndex.GLASSES_ORE_DIC[i] == id && LogicIndex.GLASSES_ORE_DIC[i + 1] == metadata)return true;
+		}
+		return false;
 	}
 }

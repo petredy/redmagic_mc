@@ -65,9 +65,6 @@ public class Redmagic{
       	
       	//Initialise TileEntity Registration
       	TileEntityHandler.init();
-      	
-      	//Configurate LogicElements
-      	ConfigHandler.config(config);
         
         //Register GuiHandler
         NetworkRegistry.instance().registerGuiHandler(instance, this.proxy);
@@ -83,6 +80,9 @@ public class Redmagic{
   				
   		//Initialise Blocks
   		BlockManager.init();
+  		
+  		//Configurate LogicElements
+      	ConfigHandler.config(config);
         
         //Configurates Keybinding
         KeyBindingHandler.config(config);

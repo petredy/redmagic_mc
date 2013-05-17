@@ -1,5 +1,8 @@
 package redmagic.configuration;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LogicIndex {
 	
 	//---------------------------------------------------------------
@@ -90,6 +93,11 @@ public class LogicIndex {
 	public static final int ORE_SOULCRYSTAL_CHUNK_DEPOSITS = 10;
 	public static final int ORE_SOULCRYSTAL_DEPOSIT_AMOUNT = 5;
 
+	//---------------------------------------------------------------
+	//Glasses
+	
+	public static int[] GLASSES_ORE_DIC;
+	
 	//---------------------------------------------------------------
 	//Trees
 	

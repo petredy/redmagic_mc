@@ -1,8 +1,12 @@
 package redmagic.containers;
 
+import cpw.mods.fml.common.network.PacketDispatcher;
+import cpw.mods.fml.common.network.Player;
 import redmagic.configuration.Texture;
 import redmagic.core.Logger;
 import redmagic.helpers.InventoryHelper;
+import redmagic.network.PacketHandler;
+import redmagic.network.PacketWorkTable;
 import redmagic.recipes.worktable.WorkTableRegistry;
 import redmagic.slots.SlotOutput;
 import redmagic.slots.SlotWorkTable;
@@ -26,6 +30,7 @@ public class ContainerWorkTable extends Container{
 		super();
 		this.entity = entity;
 		this.player = player;
+		this.entity.containers.add(this);
 		//Output
 		this.addSlotToContainer(new SlotOutput((IInventory)entity, 0, 124, 35));
 		
@@ -43,6 +48,12 @@ public class ContainerWorkTable extends Container{
 		this.showCrafting();
 		this.bindPlayerInventory(player.inventory);
 	}
+	
+	public void onCraftGuiClosed(EntityPlayer par1EntityPlayer)
+    {
+		this.entity.containers.remove(this);
+		super.onCraftGuiClosed(par1EntityPlayer);
+    }
 	
 	public void showCrafting() {
 		Logger.log("show");
@@ -76,6 +87,22 @@ public class ContainerWorkTable extends Container{
 		}
 	}
 	
+	public ItemStack slotClick(int par1, int par2, int par3, EntityPlayer par4EntityPlayer)
+    {
+		if(par1 > 0 && par1 < 10){
+			Slot slot = (Slot)this.inventorySlots.get(par1);
+			if(slot != null && slot.getStack() != null && WorkTableRegistry.contains(slot.getStack())){
+				int index = WorkTableRegistry.getCraftingIndex(slot.getStack());
+				this.entity.craftingIndex = index;
+				PacketDispatcher.sendPacketToPlayer(PacketHandler.populatePacket(new PacketWorkTable(this.entity.xCoord, this.entity.yCoord, this.entity.zCoord, this.entity.craftingIndex)), (Player) par4EntityPlayer);
+				this.entity.showCrafting();
+				this.showCrafting();
+				return null;
+			}
+		}
+		return super.slotClick(par1, par2, par3, par4EntityPlayer);
+    }
+	
 	protected void bindPlayerInventory(InventoryPlayer inventory){
 		for (int i = 0; i < 3; ++i)
         {
@@ -98,7 +125,7 @@ public class ContainerWorkTable extends Container{
 	
 	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2){
         Slot slot = (Slot)this.inventorySlots.get(par2);
-        if(slot != null  && par2 == 0){
+        if(slot != null  && slot.getStack() != null && par2 == 0){
         	if(!this.mergeItemStack(slot.getStack(), 11, this.inventorySlots.size(), false)){
         		return null;
         	}

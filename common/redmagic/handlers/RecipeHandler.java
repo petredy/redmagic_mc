@@ -137,14 +137,44 @@ public class RecipeHandler {
 			new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE),
 		});
 		
+		WorkTableRegistry.register(new ItemStack(ItemManager.glasses), new ItemStack[]{
+			new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_POWDER_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_POWDER_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_POWDER_ITEMDAMAGE),
+			new ItemStack(Item.stick), new ItemStack(Block.thinGlass), new ItemStack(Item.stick),
+			new ItemStack(Item.stick), null, new ItemStack(Item.stick)
+		});
+		
+		WorkTableRegistry.register(new ItemStack(ItemManager.pickaxe), new ItemStack[]{
+			new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_FLINT_IRON_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_FLINT_IRON_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_FLINT_IRON_INGOT_ITEMDAMAGE),
+			null, new ItemStack(Item.stick), null,
+			null, new ItemStack(Item.stick), null
+		});
+		
+		WorkTableRegistry.register(new ItemStack(ItemManager.shovel), new ItemStack[]{
+			null, new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_FLINT_IRON_INGOT_ITEMDAMAGE), null,
+			null, new ItemStack(Item.stick), null,
+			null, new ItemStack(Item.stick), null
+		});
+		
+		WorkTableRegistry.register(new ItemStack(ItemManager.axe), new ItemStack[]{
+			new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_FLINT_IRON_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_FLINT_IRON_INGOT_ITEMDAMAGE), null,
+			new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_FLINT_IRON_INGOT_ITEMDAMAGE), new ItemStack(Item.stick), null,
+			null, new ItemStack(Item.stick), null
+		});
+		
+		WorkTableRegistry.register(new ItemStack(ItemManager.hoe), new ItemStack[]{
+			new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_FLINT_IRON_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_FLINT_IRON_INGOT_ITEMDAMAGE), null,
+			null, new ItemStack(Item.stick), null,
+			null, new ItemStack(Item.stick), null
+		});
+		
+		
 		//----------------------------------------------------------------------
 		//TreeCrafting Registry
 		
 		TreeCraftingRegistry.registerShapeless(new ItemStack(ItemManager.crafting, 4, ItemIndex.CRAFTING_REDSTONE_SHARD_ITEMDAMAGE), new ItemStack[]{
 			new ItemStack(Block.blockRedstone)
 		}, 10, 10, 10, 30, 15);
-		
-		
+				
 		
 		//----------------------------------------------------------------------
 		// Sacrifice Registry

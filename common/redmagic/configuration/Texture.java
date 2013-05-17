@@ -51,8 +51,10 @@ public class Texture {
 	
 	//Others
 	public static final String OVERLAY = TEXTURE_PATH + "others/overlay.png";
+	public static final String OVERLAY_START = TEXTURE_PATH + "others/overlay_start";
 	public static final String DANGER_OVERLAY = TEXTURE_PATH + "others/overlay_danger.png";
 	public static final String MODUS_OVERLAY = TEXTURE_PATH + "others/overlay_modus.png";
 	public static final String GLASSES = TEXTURE_PATH + "others/glasses.png";
+	
 	
 }

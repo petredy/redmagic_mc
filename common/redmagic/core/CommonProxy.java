@@ -7,15 +7,20 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.server.gui.PlayerListBox;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import redmagic.Redmagic;
 import redmagic.configuration.BlockIndex;
 import redmagic.configuration.GuiIndex;
 import redmagic.configuration.Texture;
 import redmagic.client.guis.*;
 import redmagic.containers.*;
+import redmagic.network.PacketBankSync;
+import redmagic.network.PacketHandler;
 import redmagic.tileentities.*;
 import redmagic.tileentities.bank.TileEntityBank;
 import redmagic.tileentities.tree.TileEntityTreeWood;
 import cpw.mods.fml.common.network.IGuiHandler;
+import cpw.mods.fml.common.network.PacketDispatcher;
+import cpw.mods.fml.common.network.Player;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.server.FMLServerHandler;
 
@@ -46,6 +51,7 @@ public class CommonProxy implements IGuiHandler{
 			return new ContainerOneSlot(player, (IInventory) tileEntity);
 		}
 		if(ID == GuiIndex.BANK){
+			PacketDispatcher.sendPacketToPlayer(PacketHandler.populatePacket(new PacketBankSync(Redmagic.bankData)), (Player) player);
 			return new ContainerBank(player, (TileEntityBank)tileEntity);
 		}
 		if(ID == GuiIndex.TREE){
