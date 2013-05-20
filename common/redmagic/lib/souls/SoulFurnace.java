@@ -29,7 +29,7 @@ public class SoulFurnace extends Soul{
 
 	@Override
 	public void onUpdate(ItemStack soul, TileEntityTreeWood entity, TreeStructure structure, int x, int y, int z) {
-		if(count > LogicIndex.SOUL_MAX_INTELLIGENCE - SoulHelper.getIntelligence(soul)){
+		if(count > LogicIndex.FURNACE_TIME){
 			if(this.burnStack != null){
 				int amount = SoulHelper.getStrength(soul);
 				for(int i = 0; i < amount && i < burnStack.stackSize; i++){
@@ -44,8 +44,9 @@ public class SoulFurnace extends Soul{
 				}
 			}
 		}else if(count > 0){
-			LiquidStack drain = structure.tank.drain(LogicIndex.FURNACE_COSTS, true);
-			if(drain != null && drain.amount == LogicIndex.FURNACE_COSTS)count++;
+			Logger.log(count);
+			LiquidStack drain = structure.tank.drain(LogicIndex.FURNACE_COSTS  - SoulHelper.getIntelligence(soul), true);
+			if(drain != null && drain.amount == LogicIndex.FURNACE_COSTS - SoulHelper.getIntelligence(soul))count++;
 			else if(drain != null){
 				structure.tank.fill(drain, true);
 			}

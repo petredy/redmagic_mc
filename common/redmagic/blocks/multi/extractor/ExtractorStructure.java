@@ -52,8 +52,11 @@ public class ExtractorStructure implements IStructure{
 			entity.setStructure(structure);
 			
 			NBTTagCompound tag = new NBTTagCompound();
-			entity.writeToNBT(tag);
-			PacketDispatcher.sendPacketToAllAround(block.getX(), block.getY(), block.getZ(), 40, world.getWorldInfo().getDimension(), new Packet132TileEntityData(block.getX(), block.getY(), block.getZ(), 0, tag));
+			
+			if(tag != null){
+				entity.writeToNBT(tag);
+				PacketDispatcher.sendPacketToAllAround(block.getX(), block.getY(), block.getZ(), 40, world.getWorldInfo().getDimension(), new Packet132TileEntityData(block.getX(), block.getY(), block.getZ(), 0, tag));
+			}
 		}
 	}
 

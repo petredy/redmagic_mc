@@ -6,6 +6,7 @@ import org.lwjgl.opengl.GL12;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import redmagic.configuration.RenderIndex;
 import redmagic.configuration.Texture;
 import redmagic.tileentities.bank.TileEntityBank;
 import net.minecraft.block.Block;
@@ -19,7 +20,6 @@ import net.minecraftforge.common.ForgeDirection;
 public class RenderBank extends TileEntitySpecialRenderer implements ISimpleBlockRenderingHandler{
 
 	private ModelChest modelChest = new ModelChest();
-	public static int renderID = RenderingRegistry.getNextAvailableRenderId();
 	
 	@Override
 	public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float tick) {
@@ -92,7 +92,7 @@ public class RenderBank extends TileEntitySpecialRenderer implements ISimpleBloc
 
 	@Override
 	public int getRenderId() {
-		return renderID;
+		return RenderIndex.BANK;
 	}
 
 }

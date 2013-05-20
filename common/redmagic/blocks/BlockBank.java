@@ -4,6 +4,7 @@ import redmagic.Redmagic;
 import redmagic.client.renderers.RenderBank;
 import redmagic.configuration.BlockIndex;
 import redmagic.configuration.GuiIndex;
+import redmagic.configuration.RenderIndex;
 import redmagic.helpers.InventoryHelper;
 import redmagic.tileentities.bank.TileEntityBank;
 import net.minecraft.block.BlockChest;
@@ -47,7 +48,7 @@ public class BlockBank extends BlockContainer{
     @Override
     public int getRenderType() {
 
-        return RenderBank.renderID;
+        return RenderIndex.BANK;
     }
     
     @Override

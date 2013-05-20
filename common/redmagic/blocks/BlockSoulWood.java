@@ -43,7 +43,7 @@ public class BlockSoulWood extends BlockContainer implements IWrenchable{
 		this.setCreativeTab(Redmagic.tabRedMagic);
 		this.setUnlocalizedName(BlockIndex.WOOD_NAME);
 		this.setStepSound(Block.soundWoodFootstep);
-		this.setHardness(5.0F);
+		this.setHardness(2.0F);
 	}
 	
 	@Override

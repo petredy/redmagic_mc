@@ -3,6 +3,7 @@ package redmagic.client.renderers;
 import org.lwjgl.opengl.GL11;
 
 import redmagic.client.models.ModelPipe;
+import redmagic.configuration.RenderIndex;
 import redmagic.configuration.Texture;
 import redmagic.tileentities.TileEntityPipe;
 
@@ -17,7 +18,6 @@ import net.minecraft.world.IBlockAccess;
 
 public class RenderPipe extends TileEntitySpecialRenderer implements ISimpleBlockRenderingHandler{
 
-	public static int blockRenderId = RenderingRegistry.getNextAvailableRenderId();
 	public ModelPipe model;
 	public String texture;
 	
@@ -98,6 +98,6 @@ public class RenderPipe extends TileEntitySpecialRenderer implements ISimpleBloc
 
 	@Override
 	public int getRenderId() {
-		return blockRenderId;
+		return RenderIndex.PIPE;
 	}
 }

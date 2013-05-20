@@ -1,7 +1,14 @@
 package redmagic.handlers;
 
 import redmagic.configuration.BankIndex;
+import redmagic.configuration.BlockIndex;
+import redmagic.configuration.ItemIndex;
 import redmagic.core.Logger;
+import redmagic.items.ItemManager;
+import redmagic.addons.ForestryAddon;
+import redmagic.addons.IndustrialCraftAddon;
+import redmagic.addons.RailcraftAddon;
+import redmagic.addons.ThaumcraftAddon;
 import redmagic.api.bank.*;
 import net.minecraftforge.common.Configuration;
 
@@ -61,7 +68,7 @@ public class DataHandler {
 		// Detector Rail
 		BankData.register(28, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 10F, BankIndex.TAX, BankIndex.BUYING);
 		// Sticky Pistion
-		BankData.register(29, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 15F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(29, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 12F, BankIndex.TAX, BankIndex.BUYING);
 		// Pistion
 		BankData.register(33, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 12F, BankIndex.TAX, BankIndex.BUYING);
 		// Wool
@@ -264,7 +271,7 @@ public class DataHandler {
 		BankData.register(131, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 10F / 64F, BankIndex.TAX, BankIndex.BUYING);
 
 		// Emerald Block
-		BankData.register(132, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 300F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(133, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 300F, BankIndex.TAX, BankIndex.BUYING);
 
 		// Beacon
 		BankData.register(138, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 500F, BankIndex.TAX, BankIndex.BUYING);
@@ -273,7 +280,7 @@ public class DataHandler {
 		BankData.register(139, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 8F / 64F, BankIndex.TAX, BankIndex.BUYING);
 
 		// Wooden Button
-		BankData.register(140, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 18F / 64F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(143, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 18F / 64F, BankIndex.TAX, BankIndex.BUYING);
 
 		// Anvil
 		BankData.register(145, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 40F, BankIndex.TAX, BankIndex.BUYING);
@@ -282,14 +289,573 @@ public class DataHandler {
 		// 1.5
 		// ------------------
 		
+		//Weighted Pressure Plate(Light)
+		BankData.register(147, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 10F, BankIndex.TAX, BankIndex.BUYING);
+		
+		//Weighted Pressure Plate(Heavy)
+		BankData.register(148, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 8F, BankIndex.TAX, BankIndex.BUYING);
+		
+		//Daylight Sensor
+		BankData.register(151, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 10F, BankIndex.TAX, BankIndex.BUYING);
+		
+		//Block Redstone
+		BankData.register(152, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 4F, BankIndex.TAX, BankIndex.BUYING);
+		
+		//Nether Quartz Ore
+		BankData.register(153, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.5F, BankIndex.TAX, BankIndex.BUYING);
+		
+		//Hopper
+		BankData.register(154, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 8F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Block Quartz
+		BankData.register(155, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 10F, BankIndex.TAX, BankIndex.BUYING);
+		
+		//Quartz Stairs
+		BankData.register(156, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 6F, BankIndex.TAX, BankIndex.BUYING);
+		
+		//Activator Rail
+		BankData.register(157, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 10F, BankIndex.TAX, BankIndex.BUYING);
+		
+		//Dropper
+		BankData.register(158, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.1F, BankIndex.TAX, BankIndex.BUYING);		
+		
+		//---------------------------------
+		//1.6
+		//---------------------------------
+		
+		//Stained Clay
+		//BankData.register(159, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 10F, BankIndex.TAX, BankIndex.BUYING);
+		
+		//Hay Block
+		//BankData.register(170, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 10F, BankIndex.TAX, BankIndex.BUYING);
+		
+		//Carpet
+		//BankData.register(171, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 10F, BankIndex.TAX, BankIndex.BUYING);
+		
+		//Hardened Clay
+		//BankData.register(172, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 10F, BankIndex.TAX, BankIndex.BUYING);
+		
+		//Block Coal
+		//BankData.register(173, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 10F, BankIndex.TAX, BankIndex.BUYING);
+		
 		//---------------------------------
 		// Items
 		//---------------------------------
 		
+		//Iron Shovel
+		BankData.register(256, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1F, BankIndex.TAX, BankIndex.BUYING);
 		
+		//Iron Pickaxe
+		BankData.register(257, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 3F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Iron Axe
+		BankData.register(258, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 3F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Flint and Steel
+		BankData.register(259, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Apple
+		BankData.register(260, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.2F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Bow
+		BankData.register(261, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.1F, BankIndex.TAX, BankIndex.BUYING);
+		
+		//Arrow
+		BankData.register(262, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.2F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Coal
+		BankData.register(263, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.75F, BankIndex.TAX, BankIndex.BUYING);
+		//Charcoal
+		BankData.register(263, 1, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.6F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Diamond
+		BankData.register(264, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 100F, BankIndex.TAX, BankIndex.BUYING);
 		
 		// Iron ingot
 		BankData.register(265, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1F, BankIndex.TAX, BankIndex.BUYING);
+		
+		//Gold Ingot
+		BankData.register(266, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 10F, BankIndex.TAX, BankIndex.BUYING);
+		
+		//Iron Sword
+		BankData.register(267, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 2F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Wooden Sword
+		BankData.register(268, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.5F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Wooden Shovel
+		BankData.register(269, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.25F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Wooden Pickaxe
+		BankData.register(270, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.75F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Wooden Axe
+		BankData.register(271, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.75F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Stone Sword
+		BankData.register(272, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 8 / 64F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Stone Shovel
+		BankData.register(273, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 4 / 64F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Stone Pickaxe
+		BankData.register(274, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 12 / 64F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Stone Axe
+		BankData.register(275, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 12 / 64F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Diamond Sword
+		BankData.register(276, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 200F, BankIndex.TAX, BankIndex.BUYING);
+		
+		//Diamond Shovel
+		BankData.register(277, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 100F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Diamond Pickaxe
+		BankData.register(278, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 300F, BankIndex.TAX, BankIndex.BUYING);
+		
+		//Diamond Axe
+		BankData.register(279, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 300F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Stick
+		BankData.register(280, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 4 / 64F, BankIndex.TAX, BankIndex.BUYING);
+		
+		//Bowl
+		BankData.register(281, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.75F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Mushroom Stew
+		BankData.register(282, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1.5F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Golden Sword
+		BankData.register(283, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1F, BankIndex.TAX, BankIndex.BUYING);
+		
+		//Golden Shovel
+		BankData.register(284, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Golden Pickaxe
+		BankData.register(285, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Golden Axe
+		BankData.register(286, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1F, BankIndex.TAX, BankIndex.BUYING);
+		
+		//String
+		BankData.register(287, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.2F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Feather
+		BankData.register(288, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.1F, BankIndex.TAX, BankIndex.BUYING);
+		
+		//Gunpowder
+		BankData.register(289, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 5F, BankIndex.TAX, BankIndex.BUYING);
+		
+		//Wooden Hoe
+		BankData.register(290, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.5F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Stone Hoe
+		BankData.register(291, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 8 / 64F, BankIndex.TAX, BankIndex.BUYING);
+		
+		//Iron Hoe
+		BankData.register(292, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 2F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Diamond Hoe
+		BankData.register(293, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 200F, BankIndex.TAX, BankIndex.BUYING);
+		
+		//Golden Hoe
+		BankData.register(294, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 20F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Seeds
+		BankData.register(295, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.1F, BankIndex.TAX, BankIndex.BUYING);
+		
+		//Wheat
+		BankData.register(296, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Bread
+		BankData.register(297, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 3F, BankIndex.TAX, BankIndex.BUYING);
+		
+		//Leather Cap
+		BankData.register(298, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 25F, BankIndex.TAX, BankIndex.BUYING);
+		
+		//Leather Tunic
+		BankData.register(299, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 40F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Leather Pants
+		BankData.register(300, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 35F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Leather Boots
+		BankData.register(301, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 20F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Chain Helment
+		BankData.register(302, 0, BankIndex.AMOUNT, !BankIndex.TRADEABLE, 1F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Chain Chestplate
+		BankData.register(303, 0, BankIndex.AMOUNT, !BankIndex.TRADEABLE, 1F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Chain Leggings
+		BankData.register(304, 0, BankIndex.AMOUNT, !BankIndex.TRADEABLE, 1F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Chain Boots
+		BankData.register(305, 0, BankIndex.AMOUNT, !BankIndex.TRADEABLE, 1F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Iron Helmet
+		BankData.register(306, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 5F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Iron Chestplate
+		BankData.register(307, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 8F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Iron Leggings
+		BankData.register(308, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 7F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Iron Boots
+		BankData.register(309, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 4F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Diamond Helmet
+		BankData.register(310, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 500F, BankIndex.TAX, BankIndex.BUYING);
+		
+		//Diamond Chestplate
+		BankData.register(311, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 800F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Diamond Leggings
+		BankData.register(312, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 700F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Diamond Boots
+		BankData.register(313, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 400F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Golden Helmet
+		BankData.register(314, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 50F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Golden Chestplate
+		BankData.register(315, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 80F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Golden Leggings
+		BankData.register(316, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 70F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Golden Boots
+		BankData.register(317, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 40F, BankIndex.TAX, BankIndex.BUYING);
+		
+		//Flint
+		BankData.register(318, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.5F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Raw Porkchop
+		BankData.register(319, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.2F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Cooked Porkchop
+		BankData.register(320, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.3F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Painting
+		BankData.register(321, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1.5F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Golden Apple
+		BankData.register(322, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 15F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Sign
+		BankData.register(323, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 2F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Wooden Dor
+		BankData.register(324, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 2F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Bucket
+		BankData.register(325, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 3F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Water Bucket
+		BankData.register(326, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 3.2F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Lava Bucket
+		BankData.register(327, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 10F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Minecart
+		BankData.register(328, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 5F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Saddle
+		BankData.register(329, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 50F, BankIndex.TAX, BankIndex.BUYING);
+		
+		//Iron Door
+		BankData.register(330, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 6F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Redstone
+		BankData.register(331, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.8F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Snowball
+		BankData.register(332, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 20 / 64F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Boat
+		BankData.register(333, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 2F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Leather
+		BankData.register(334, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 5F, BankIndex.TAX, BankIndex.BUYING);
+		
+		//Milk
+		BankData.register(335, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 3F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Brick
+		BankData.register(336, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Clay
+		BankData.register(337, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Sugar Canes
+		BankData.register(338, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 10 / 64F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Paper
+		BankData.register(339, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 30 / 64F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Book
+		BankData.register(340, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 6F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Slimeball
+		BankData.register(341, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 6 / 64F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Chest-Minecart
+		BankData.register(342, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 10F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Furnace-Minecart
+		BankData.register(343, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 5F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Egg
+		BankData.register(344, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 10 / 64F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Compass
+		BankData.register(345, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 8F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Fishing Rod
+		BankData.register(346, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Clock
+		BankData.register(347, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 50F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Glowstone Dust
+		BankData.register(348, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 2F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Raw Fish
+		BankData.register(349, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 10F, BankIndex.TAX, BankIndex.BUYING);
+		
+		//Cooked Fish
+		BankData.register(350, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 12F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Dye
+		BankData.register(351, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.2F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(351, 1, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.2F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(351, 2, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.2F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(351, 3, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.2F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(351, 4, BankIndex.AMOUNT, BankIndex.TRADEABLE, 2F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(351, 5, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.2F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(351, 6, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.2F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(351, 7, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.2F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(351, 8, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.2F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(351, 9, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.2F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(351, 10, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.2F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(351, 11, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.2F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(351, 12, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.2F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(351, 13, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.2F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(351, 14, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.2F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(351, 15, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.5F, BankIndex.TAX, BankIndex.BUYING);
+		
+		//Bone
+		BankData.register(352, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1.5F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Sugar
+		BankData.register(353, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 10 / 64F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Cake
+		BankData.register(354, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Bed
+		BankData.register(355, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 2F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Redstone Repeater
+		BankData.register(356, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Cookie
+		BankData.register(357, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 5 / 64F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Shears
+		BankData.register(359, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 3F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Melon
+		BankData.register(360, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.4F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Pumpkin Seeds
+		BankData.register(361, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.1F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Melon Seeds
+		BankData.register(362, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 10F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Raw Beef
+		BankData.register(363, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.5F, BankIndex.TAX, BankIndex.BUYING);
+		
+		//Steak
+		BankData.register(364, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.6F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Raw Chicken
+		BankData.register(365, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.5F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Cooked Chicken
+		BankData.register(366, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.6F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Rotten Flesh
+		BankData.register(367, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 10 / 64F, BankIndex.TAX, BankIndex.BUYING);
+
+		
+		//Ender Pearl
+		BankData.register(368, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 101F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Blaze Rod
+		BankData.register(369, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 50F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Ghast Tear
+		BankData.register(370, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 30F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Gold Nugget
+		BankData.register(371, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Nether Wart
+		BankData.register(372, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1.5F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Potions
+		BankData.register(373, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1F, BankIndex.TAX, BankIndex.BUYING);
+		//TODO
+		
+		//Glass Bottle
+		BankData.register(374, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1.5F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Spider Eye
+		BankData.register(375, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.2F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Fermented Spider Eye
+		BankData.register(376, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.2F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Blaze Powder
+		BankData.register(377, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 25F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Magma Cream
+		BankData.register(378, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 30F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Brewing Stand
+		BankData.register(379, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 10F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Cauldron
+		BankData.register(380, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 8F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Eye of Ender
+		BankData.register(381, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 150F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Glistering Melon
+		BankData.register(382, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Fire Charge
+		BankData.register(385, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1.2F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Book and Quill
+		BankData.register(386, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 8F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Emerald
+		//BankData.register(388, 0, BankIndex.AMOUNT, !BankIndex.TRADEABLE, 1F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Item Frame
+		BankData.register(389, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 10F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Flower Pot
+		BankData.register(390, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 3F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Carrot
+		BankData.register(391, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.8F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Potato
+		BankData.register(392, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.8F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Baked Potato
+		BankData.register(393, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.8F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Poisonous Potato
+		BankData.register(394, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.6F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Empty Map
+		BankData.register(395, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 3F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Golden Carrot
+		BankData.register(396, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Mob head
+		BankData.register(397, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 20F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(397, 1, BankIndex.AMOUNT, BankIndex.TRADEABLE, 20F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(397, 2, BankIndex.AMOUNT, BankIndex.TRADEABLE, 20F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(397, 3, BankIndex.AMOUNT, BankIndex.TRADEABLE, 20F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(397, 4, BankIndex.AMOUNT, BankIndex.TRADEABLE, 20F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Carrot on a Stick
+		BankData.register(398, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Nether Star
+		BankData.register(399, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1000F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Pumpkin Pie
+		BankData.register(400, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1.5F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Firework Rocket
+		BankData.register(401, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1.5F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Firework Star
+		BankData.register(402, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1.5F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Redstone Comparator
+		BankData.register(404, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 10F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Nether Brick
+		BankData.register(405, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1.5F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Nether Quartz
+		BankData.register(406, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1.5F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Minecart with TNT
+		BankData.register(407, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 15F, BankIndex.TAX, BankIndex.BUYING);
+
+		//Minecart with Hopper
+		BankData.register(408, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 14F, BankIndex.TAX, BankIndex.BUYING);
+
+		//----------------------------------
+		// 1.6
+		//----------------------------------
+		
+		
+		
+		
+		//-----------------------------------
+		// Redmagic
+		//-----------------------------------
+		
+		//Blocks
+		BankData.register(BlockIndex.COLLECTOR_ID, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 20F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(BlockIndex.CRYSTAL_ID, BlockIndex.CRYSTAL_ILLUSION_METADATA, BankIndex.AMOUNT, BankIndex.TRADEABLE, 50F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(BlockIndex.CRYSTAL_ID, BlockIndex.CRYSTAL_INTELLIGENCE_METADATA, BankIndex.AMOUNT, BankIndex.TRADEABLE, 50F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(BlockIndex.CRYSTAL_ID, BlockIndex.CRYSTAL_STRENGTH_METADATA, BankIndex.AMOUNT, BankIndex.TRADEABLE, 50F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(BlockIndex.CRYSTAL_ID, BlockIndex.CRYSTAL_ILLUSION_METADATA, BankIndex.AMOUNT, BankIndex.TRADEABLE, 50F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(BlockIndex.EXTRACTOR_ID, BlockIndex.EXTRACTOR_BASIC_METADATA, BankIndex.AMOUNT, BankIndex.TRADEABLE, 10F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(BlockIndex.EXTRACTOR_ID, BlockIndex.EXTRACTOR_COLLECTOR_METADATA, BankIndex.AMOUNT, BankIndex.TRADEABLE, 20F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(BlockIndex.MOLD_ID, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 40F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(BlockIndex.PIPE_ID, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 4F, BankIndex.TAX, BankIndex.BUYING);
+
+		
+		//Items
+				
+		BankData.register(ItemManager.axe.itemID, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 4F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(ItemManager.broom.itemID, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1F, BankIndex.TAX, BankIndex.BUYING);
+		
+		BankData.register(ItemManager.crafting.itemID, ItemIndex.CRAFTING_FLINT_IRON_INGOT_ITEMDAMAGE, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1.2F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(ItemManager.crafting.itemID, ItemIndex.CRAFTING_REDSTONE_SHARD_ITEMDAMAGE, BankIndex.AMOUNT, BankIndex.TRADEABLE, 10F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(ItemManager.crafting.itemID, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE, BankIndex.AMOUNT, BankIndex.TRADEABLE, 5F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(ItemManager.crafting.itemID, ItemIndex.CRAFTING_SOUL_POWDER_ITEMDAMAGE, BankIndex.AMOUNT, BankIndex.TRADEABLE, 4F, BankIndex.TAX, BankIndex.BUYING);
+		
+		BankData.register(ItemManager.hoe.itemID, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 2F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(ItemManager.pickaxe.itemID, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 4F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(ItemManager.shovel.itemID, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 2F, BankIndex.TAX, BankIndex.BUYING);
+		
+		BankData.register(ItemManager.soulCrystal.itemID, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 2F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(ItemManager.soulNectar.itemID, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 3F, BankIndex.TAX, BankIndex.BUYING);
+		
+		//-------------------------------------------------
+		// Addons
+		//-------------------------------------------------
+		ThaumcraftAddon.loadDefault();
+		ForestryAddon.loadDefault();
+		RailcraftAddon.loadDefault();
+		IndustrialCraftAddon.loadDefault();
 	}
 	
 	

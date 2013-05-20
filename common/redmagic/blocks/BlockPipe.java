@@ -6,8 +6,10 @@ import java.util.Random;
 import redmagic.Redmagic;
 import redmagic.api.essence.IPipe;
 import redmagic.api.essence.IStorage;
+import redmagic.api.items.IWrench;
 import redmagic.client.renderers.RenderPipe;
 import redmagic.configuration.BlockIndex;
+import redmagic.configuration.RenderIndex;
 import redmagic.tileentities.TileEntityPipe;
 import redmagic.items.ItemRedhole;
 import net.minecraft.block.BlockContainer;
@@ -35,7 +37,7 @@ public class BlockPipe extends BlockContainer{
 	public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
     {
 		ItemStack stack = par5EntityPlayer.getCurrentEquippedItem();
-		if(stack != null && stack.getItem() instanceof ItemRedhole){
+		if(stack != null && stack.getItem() instanceof IWrench){
 			TileEntityPipe entity = (TileEntityPipe) par1World.getBlockTileEntity(par2, par3, par4);
 			entity.switchMode();
 			return true;
@@ -63,7 +65,7 @@ public class BlockPipe extends BlockContainer{
     @Override
     public int getRenderType()
     {
-    	return RenderPipe.blockRenderId;
+    	return RenderIndex.PIPE;
     }
     
     @Override

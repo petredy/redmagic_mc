@@ -16,6 +16,7 @@ public class ItemBroom extends ItemTool{
 	protected ItemBroom(int par1) {
 		super(par1, 0, EnumToolMaterial.EMERALD, new Block[]{Block.dirt});
 		this.setMaxDamage(500);
+		this.setMaxStackSize(1);
 		
 		this.efficiencyOnProperMaterial = 2000F;
 	}

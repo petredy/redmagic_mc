@@ -47,6 +47,10 @@ item.soul.name=Soul
 item.wrench.name=Redmagic Wrench
 item.bank.name=Trading Crystal
 item.glasses.name=Virtual Reality Glasses
+item.pickaxe.name=Flintiron Pickaxe
+item.shovel.name=Flintiron Shovel
+item.axe.name=Flintiron Axe
+item.hoe.name=Flintiron Hoe
 
 item.crafting.powder.name=Soul Powder
 item.crafting.ingot.name=Soul Ingot

@@ -7,12 +7,14 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.server.gui.PlayerListBox;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 import redmagic.Redmagic;
 import redmagic.configuration.BlockIndex;
 import redmagic.configuration.GuiIndex;
 import redmagic.configuration.Texture;
 import redmagic.client.guis.*;
 import redmagic.containers.*;
+import redmagic.handlers.WorldLoadingHandler;
 import redmagic.network.PacketBankSync;
 import redmagic.network.PacketHandler;
 import redmagic.tileentities.*;
@@ -37,6 +39,7 @@ public class CommonProxy implements IGuiHandler{
 	public void registerRendering(){};
 	public void registerSound(){};
 	public void setKeyBinding(String name, int value){};
+    public void initRendering() {}
 	
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
@@ -102,5 +105,6 @@ public class CommonProxy implements IGuiHandler{
 	public void addEffect(String name, int type, World world, double d1, double d2, double d3, double d4, double d5, double d6) {
 		
 	}
+
 
 }

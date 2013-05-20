@@ -37,10 +37,15 @@ public class RecipeHandler {
 			new ItemStack(Block.sapling), new ItemStack(ItemManager.soulNectar)
 		});
 		
-		WorkTableRegistry.registerShapeless(new ItemStack(BlockManager.sapling.blockID, 1, BlockIndex.SAPLING_TOKEE_METADATA), new ItemStack[]{
-			new ItemStack(Block.sapling), new ItemStack(ItemManager.soul)
+		WorkTableRegistry.register(new ItemStack(BlockManager.sapling.blockID, 1, BlockIndex.SAPLING_TOKEE_METADATA), new ItemStack[]{
+			 new ItemStack(Item.ingotIron), new ItemStack(Item.ingotIron), new ItemStack(Item.ingotIron),
+			 new ItemStack(Item.ingotIron), new ItemStack(Block.sapling), new ItemStack(Item.ingotIron),
+			 new ItemStack(Item.ingotIron), new ItemStack(Item.ingotIron), new ItemStack(Item.ingotIron)
 		});
 		
+		WorkTableRegistry.registerShapeless(new ItemStack(ItemManager.broom), new ItemStack[]{
+			new ItemStack(Item.stick), new ItemStack(Item.wheat)
+		});
 		
 		WorkTableRegistry.register(new ItemStack(ItemManager.crafting.itemID, 1, ItemIndex.CRAFTING_REDSTONE_LOGIC_CORE_ITEMDAMAGE), new ItemStack[]{
 			new ItemStack(Item.redstone), new ItemStack(ItemManager.crafting.itemID, 1, ItemIndex.CRAFTING_REDSTONE_SHARD_ITEMDAMAGE), new ItemStack(Item.redstone),
@@ -49,7 +54,7 @@ public class RecipeHandler {
 		});
 		
 		WorkTableRegistry.registerShapeless(new ItemStack(ItemManager.soulNectar), new ItemStack[]{
-			new ItemStack(ItemManager.soulCrystal), new ItemStack(Item.glassBottle)
+			new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_POWDER_ITEMDAMAGE), new ItemStack(Item.glassBottle)
 		});
 		
 		WorkTableRegistry.register(new ItemStack(ItemManager.redhole), new ItemStack[]{
@@ -68,12 +73,6 @@ public class RecipeHandler {
 			new ItemStack(Item.dyePowder, 1, 4), new ItemStack(Item.dyePowder, 1, 4), new ItemStack(Item.dyePowder, 1, 4),
 			new ItemStack(Item.dyePowder, 1, 4), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_REDSTONE_LOGIC_CORE_ITEMDAMAGE), new ItemStack(Item.dyePowder, 1, 4),
 			new ItemStack(Item.dyePowder, 1, 4), new ItemStack(Item.dyePowder, 1, 4), new ItemStack(Item.dyePowder, 1, 4)
-		});
-		
-		WorkTableRegistry.register(new ItemStack(BlockManager.machine, 1, BlockIndex.MACHINE_FRAME_METADATA), new ItemStack[]{
-			new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_FLINT_IRON_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE),
-			new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_FLINT_IRON_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_REDSTONE_LOGIC_CORE_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_FLINT_IRON_INGOT_ITEMDAMAGE),
-			new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_FLINT_IRON_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE)
 		});
 		
 		WorkTableRegistry.register(new ItemStack(BlockManager.pipe, 16), new ItemStack[]{

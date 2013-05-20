@@ -14,11 +14,11 @@ import net.minecraft.item.ItemStack;
 public class ItemSoulPickaxe extends ItemPickaxe{
 
 	public ItemSoulPickaxe(int par1) {
-		super(par1, EnumToolMaterial.EMERALD);
+		super(par1, EnumToolMaterial.IRON);
 		this.setCreativeTab(Redmagic.tabRedMagic);
 		this.setUnlocalizedName(ItemIndex.PICKAXE_NAME);
 		this.efficiencyOnProperMaterial = 15F;
-		this.setMaxDamage(500);
+		this.setMaxDamage(2000);
 	}
 	
 	public void registerIcons(IconRegister iconRegister){

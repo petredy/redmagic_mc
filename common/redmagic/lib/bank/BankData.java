@@ -26,7 +26,7 @@ public class BankData {
 				return item;
 			}
 		}
-		Logger.log("null");
+		
 		return null;
 	}
 	

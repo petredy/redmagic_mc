@@ -18,6 +18,10 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 import redmagic.addons.BuildcraftAddon;
+import redmagic.addons.ForestryAddon;
+import redmagic.addons.IndustrialCraftAddon;
+import redmagic.addons.RailcraftAddon;
+import redmagic.addons.ThaumcraftAddon;
 import redmagic.blocks.*;
 import redmagic.configuration.*;
 import redmagic.core.*;
@@ -49,7 +53,6 @@ public class Redmagic{
 	
 	//-------------------------------------------------------------------------------------------------------------
 	//PRE INIT
-	@SuppressWarnings("static-access")
 	@PreInit
 	public void preInit(FMLPreInitializationEvent evt)
 	{		
@@ -69,6 +72,9 @@ public class Redmagic{
         //Register GuiHandler
         NetworkRegistry.instance().registerGuiHandler(instance, this.proxy);
         
+        //Register Rendering IDs
+        proxy.initRendering();
+        
         //Configurate Items
         ItemManager.config(config);
         
@@ -81,11 +87,8 @@ public class Redmagic{
   		//Initialise Blocks
   		BlockManager.init();
   		
-  		//Configurate LogicElements
+  		//Configurate LogicElements, KeyBindings, etc.
       	ConfigHandler.config(config);
-        
-        //Configurates Keybinding
-        KeyBindingHandler.config(config);
         
         //Initialise Liquid Registration
       	LiquidHandler.init();
@@ -112,8 +115,8 @@ public class Redmagic{
 		// Initialise Liquid Texture Mapping
 		MinecraftForge.EVENT_BUS.register(new LiquidHandler());
 		
-		//Initialise WorldLoad Handler
-      	MinecraftForge.EVENT_BUS.register(new WorldLoadingHandler());
+		// Register WorldLoading Handler
+		MinecraftForge.EVENT_BUS.register(new WorldLoadingHandler());
       	
       	//Initialise Death Handling
       	MinecraftForge.EVENT_BUS.register(new EntityDeathHandler());
@@ -128,7 +131,11 @@ public class Redmagic{
     public void init(FMLPostInitializationEvent event)
     {
 		//Initialise Buildcraft Addon
-		//BuildcraftAddon.init();
+		BuildcraftAddon.init();
+		ThaumcraftAddon.init();
+		ForestryAddon.init();
+		RailcraftAddon.init();
+		IndustrialCraftAddon.init();
     }
 	
 	public static void initialiseData() {

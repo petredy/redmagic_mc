@@ -7,6 +7,9 @@ import redmagic.api.essence.IStorage;
 import redmagic.api.items.IKeyBound;
 import redmagic.configuration.ItemIndex;
 import redmagic.configuration.Reference;
+import redmagic.core.Logger;
+import redmagic.handlers.DataHandler;
+import redmagic.lib.bank.BankData;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -46,7 +49,10 @@ public class ItemRedhole extends Item implements IKeyBound{
 	@Override
 	public void doKeyBindingAction(EntityPlayer player, ItemStack stack, String keyBinding) {
 		if(keyBinding.equals(Reference.KEY_EXTRA_NAME)){
-			
+			Logger.log("reset Bank");
+			BankData.data.clear();
+			Redmagic.bankData = new BankData();
+			DataHandler.loadDefault();
 			
 		}
 	}

@@ -117,7 +117,7 @@ public class BankManager {
 		Iterator it = data.iterator();
 		while(it.hasNext()){
 			ItemData item = (ItemData) it.next();
-			items.add(new ItemStack(item.itemID, 0, item.itemDamage));
+			items.add(new ItemStack(item.itemID, item.amount, item.itemDamage));
 		}
 		return items;
 	}

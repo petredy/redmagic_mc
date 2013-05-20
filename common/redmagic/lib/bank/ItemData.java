@@ -60,9 +60,9 @@ public class ItemData implements Comparable<ItemData>{
 
 	@Override
 	public int compareTo(ItemData data) {
-		if(this.itemID < data.itemID || (this.itemID == data.itemID && this.itemDamage < data.itemDamage))return -1;
-		if(this.itemID == data.itemID && this.itemDamage == data.itemDamage)return 0;
-		if(this.itemID > data.itemID || (this.itemID == data.itemID && this.itemDamage > data.itemDamage))return 1;
+		if(this.amount > data.amount)return -1;
+		if(this.amount == data.amount)return 0;
+		if(this.amount < data.amount)return 1;
 		return 0;
 	}
 	

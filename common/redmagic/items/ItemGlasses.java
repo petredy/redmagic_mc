@@ -13,6 +13,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import net.minecraft.world.World;
 import net.minecraftforge.common.IArmorTextureProvider;
 import redmagic.Redmagic;
 import redmagic.api.items.IKeyBound;
@@ -31,6 +32,7 @@ public class ItemGlasses extends ItemArmor implements IKeyBound{
 		this.setCreativeTab(Redmagic.tabRedMagic);
 		this.setUnlocalizedName(ItemIndex.ARMOR_SOUL_NAME);
 		this.setMaxDamage(0);
+		this.setMaxStackSize(1);
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -55,6 +57,11 @@ public class ItemGlasses extends ItemArmor implements IKeyBound{
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, int layer)
     {
         return Texture.GLASSES;
+    }
+	
+	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
+    {
+		return par1ItemStack;
     }
 
 }

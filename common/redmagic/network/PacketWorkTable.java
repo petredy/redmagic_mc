@@ -50,6 +50,7 @@ public class PacketWorkTable extends PacketRedMagic{
 		if(entity instanceof TileEntityWorkTable){
 			TileEntityWorkTable table = (TileEntityWorkTable)entity;
 			table.craftingIndex = this.craftingIndex > 0 ? this.craftingIndex <= table.getMaxCraftingIndex() ? this.craftingIndex : table.getMaxCraftingIndex() : 0;
+			table.displayMode = 0;
 			table.showCrafting();
 			table.showCraftingOnContainers();
 		}

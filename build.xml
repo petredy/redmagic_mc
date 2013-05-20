@@ -8,12 +8,20 @@
 		<delete dir="/home/petredy/Development/mcp/src/minecraft/com" />
 		<delete dir="/home/petredy/Development/mcp/reobf/minecraft" />
         <delete dir="/home/petredy/Development/mcp/src/minecraft/redmagic" />
+        <delete dir="/home/petredy/Development/mcp/src/minecraft/thaumcraft" />
+        <delete dir="/home/petredy/Development/mcp/src/minecraft/forestry" />
+        <delete dir="/home/petredy/Development/mcp/src/minecraft/mods" />
+        <delete dir="/home/petredy/Development/mcp/src/minecraft/ic2" />
 	</target>
 
 	<target name="build">
 		<copy todir="/home/petredy/Development/mcp/src/minecraft">
 			<fileset dir="/home/petredy/Development/source/redmagic/common/" />
-		</copy>
+            <fileset dir="/home/petredy/Development/source/thaumcraft/" />
+            <fileset dir="/home/petredy/Development/source/forestry/" />
+            <fileset dir="/home/petredy/Development/source/railcraft/" />
+            <fileset dir="/home/petredy/Development/source/ic2/" />
+        </copy>
 		<replace dir="/home/petredy/Development/mcp/src/minecraft" token="1.4.3" value="1.4.3" />
 	</target>
 

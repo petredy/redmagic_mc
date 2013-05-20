@@ -1,6 +1,7 @@
 package redmagic.client;
 
 import redmagic.client.renderers.*;
+import redmagic.configuration.RenderIndex;
 import redmagic.core.CommonProxy;
 import redmagic.entities.particle.EntityCrackFX;
 import redmagic.entities.particle.EntityStarFX;
@@ -42,6 +43,12 @@ public class ClientProxy extends CommonProxy{
         KeyBindingHelper.addKeyBinding(name, value);
         KeyBindingHelper.addIsRepeating(false);
     }
+	
+	@Override
+    public void initRendering() {
+		RenderIndex.BANK = RenderingRegistry.getNextAvailableRenderId();
+		RenderIndex.PIPE = RenderingRegistry.getNextAvailableRenderId();
+	}
 	
 	@Override
     public void registerRendering(){
@@ -89,5 +96,7 @@ public class ClientProxy extends CommonProxy{
 	public World getServerOverworld(){
 		return null;
 	}
+	
+	public void registerWorldLoadingHandler() {}
 	
 }

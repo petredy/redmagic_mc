@@ -26,12 +26,12 @@ public class BlockManager {
 	public static Block leaves;
 	
 	public static void init(){
-		machine = new BlockMachine(BlockIndex.MACHINE_ID);
+		//machine = new BlockMachine(BlockIndex.MACHINE_ID);
 		pipe = new BlockPipe(BlockIndex.PIPE_ID);
 		dimensionCrack = new BlockDimensionCrack(BlockIndex.DIMENSION_CRACK_ID);
 		workTable = new BlockWorkTable(BlockIndex.WORK_TABLE_ID);
 		soulCrystalOre = new BlockSoulCrystalOre(BlockIndex.SOUL_CRYSTAL_ORE_ID);
-		soulTrap = new BlockSoulTrap(BlockIndex.SOUL_TRAP_ID);
+		//soulTrap = new BlockSoulTrap(BlockIndex.SOUL_TRAP_ID);
 		extractor = new BlockExtractor(BlockIndex.EXTRACTOR_ID);
 		collector = new BlockCollector(BlockIndex.COLLECTOR_ID);
 		crystal = new BlockCrystal(BlockIndex.CRYSTAL_ID);
@@ -51,12 +51,12 @@ public class BlockManager {
 		GameRegistry.registerBlock(crystal, ItemBlockCrystal.class, BlockIndex.CRYSTAL_NAME);
 		GameRegistry.registerBlock(collector, BlockIndex.COLLECTOR_NAME);
 		GameRegistry.registerBlock(extractor, ItemBlockExtractor.class, BlockIndex.EXTRACTOR_NAME);
-		GameRegistry.registerBlock(soulTrap, BlockIndex.SOUL_TRAP_NAME);
+		//GameRegistry.registerBlock(soulTrap, BlockIndex.SOUL_TRAP_NAME);
 		GameRegistry.registerBlock(soulCrystalOre, BlockIndex.SOUL_CRYSTAL_ORE_NAME);
 		GameRegistry.registerBlock(workTable, BlockIndex.WORK_TABLE_NAME);
 		GameRegistry.registerBlock(dimensionCrack, BlockIndex.DIMENSION_CRACK_NAME);
 		GameRegistry.registerBlock(pipe, BlockIndex.PIPE_NAME);
-		GameRegistry.registerBlock(machine, ItemBlockMachine.class, BlockIndex.MACHINE_NAME);
+		//GameRegistry.registerBlock(machine, ItemBlockMachine.class, BlockIndex.MACHINE_NAME);
 		registerRecipes();
 	}
 	
@@ -69,6 +69,11 @@ public class BlockManager {
 			'P', Item.paper,
 			'W', Block.workbench,
 			'C', Block.chest
+		});
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(Block.planks), new Object[]{
+			new ItemStack(wood, 1, BlockIndex.WOOD_FRAGMENT_METADATA),
+			new ItemStack(wood, 1, BlockIndex.WOOD_FRAGMENT_METADATA)
 		});
 	}
 	

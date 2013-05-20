@@ -43,6 +43,7 @@ public class BlockSoulLeaves extends BlockContainer implements IShearable{
 		this.setCreativeTab(Redmagic.tabRedMagic);
 		this.setUnlocalizedName(BlockIndex.LEAVES_NAME);
 		this.setStepSound(Block.soundGrassFootstep);
+		this.setHardness(0.5F);
 		this.setTickRandomly(true);
 	}
 	

@@ -49,12 +49,12 @@ public class LogicIndex {
 	};
 	
 	public static int MAX_SOUL_FRAGMENTS_PER_ENTITY = 3;
-	public static float SOUL_FRAGMENT_INTELLIGENCE_CHANCE = 0.2F;
-	public static float SOUL_FRAGMENT_STRENGTH_CHANCE = 0.2F;
-	public static float SOUL_FRAGMENT_CAPACITY_CHANCE = 0.3F;
-	public static float SOUL_FRAGMENT_ILLUSION_CHANCE = 0.5F;
-	public static float SOUL_FRAGMENT_SATISFACTION_CHANCE = 0.1F;
-	public static float SOUL_FRAGMENT_ALL_CHANCE = 0.1F;
+	public static float SOUL_FRAGMENT_INTELLIGENCE_CHANCE = 0.02F;
+	public static float SOUL_FRAGMENT_STRENGTH_CHANCE = 0.02F;
+	public static float SOUL_FRAGMENT_CAPACITY_CHANCE = 0.03F;
+	public static float SOUL_FRAGMENT_ILLUSION_CHANCE = 0.05F;
+	public static float SOUL_FRAGMENT_SATISFACTION_CHANCE = 0.01F;
+	public static float SOUL_FRAGMENT_ALL_CHANCE = 0.01F;
 	
 	public static float[] SOUL_FRAGMENT_CHANCES = new float[]{
 		SOUL_FRAGMENT_INTELLIGENCE_CHANCE,
@@ -83,6 +83,7 @@ public class LogicIndex {
 	//Machines
 	public static final int FURNACE_MAX_ESSENCES = 1000;
 	public static final int FURNACE_COSTS = 100;
+	public static final int FURNACE_TIME = 15;
 	
 	public static final int STORAGE_MAX_ESSENCES = 100000;
 	
@@ -105,7 +106,7 @@ public class LogicIndex {
 	
 	//----------------------------------
 	//Fragment tree
-	public static final float FRAGMENT_DROP_CHANCE = 0.9F;
+	public static final float FRAGMENT_DROP_CHANCE = 0.3F;
 	
 	//TreeSoul Crafting
 	public static final int CRAFTING_COSTS = 100;

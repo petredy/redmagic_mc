@@ -16,6 +16,7 @@ import org.lwjgl.opengl.GL11;
 
 import redmagic.configuration.LogicIndex;
 import redmagic.configuration.Texture;
+import redmagic.core.Logger;
 import redmagic.helpers.GlassesHelper;
 import redmagic.helpers.ItemHelper;
 import redmagic.helpers.SoulHelper;

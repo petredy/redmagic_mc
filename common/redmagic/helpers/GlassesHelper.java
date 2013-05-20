@@ -100,9 +100,9 @@ public class GlassesHelper {
 
 	public static ItemStack renderOres(EntityPlayer player, int width, int height) {
 		List<int[]> blocks = new ArrayList<int[]>();
-		for(int i = -5; i <= 5; i++){
-			for(int j = -5; j <= 5; j++){
-				for(int k = -5; k <= 5; k++){
+		for(int i = -3; i <= 3; i++){
+			for(int j = -1; j <= 1; j++){
+				for(int k = -3; k <= 3; k++){
 					if(shouldFocusOnOre(player.worldObj.getBlockId((int)player.posX + i, (int)player.posY + j, (int)player.posZ + k), player.worldObj.getBlockMetadata((int)player.posX + i, (int)player.posY + j, (int)player.posZ + k))){
 						blocks.add(new int[]{(int)player.posX + i, (int)player.posY + j, (int)player.posZ + k, player.worldObj.getBlockId((int)player.posX + i, (int)player.posY + j, (int)player.posZ + k), player.worldObj.getBlockMetadata((int)player.posX + i, (int)player.posY + j, (int)player.posZ + k)});
 					}

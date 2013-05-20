@@ -7,22 +7,28 @@ import java.util.List;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
 
 import cpw.mods.fml.common.network.PacketDispatcher;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Icon;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.StatCollector;
 import redmagic.client.guis.button.ButtonCustom;
 import redmagic.configuration.Texture;
@@ -34,6 +40,14 @@ import redmagic.network.PacketHandler;
 import redmagic.tileentities.bank.TileEntityBank;
 
 public class GuiBank extends GuiContainer{
+	private static int field_94069_F = 0;
+	private static final long returningStackTime = 0;
+	private static final Slot returningStackDestSlot = null;
+	private static final int field_85049_r = 0;
+	private static final int field_85048_s = 0;
+	private static final Slot clickedSlot = null;
+	private static final int field_94071_C = 0;
+	
 	public TileEntityBank entity;
 	public ContainerBank container;
 	
@@ -41,8 +55,12 @@ public class GuiBank extends GuiContainer{
 	public EntityPlayer player;
 	
 	public GuiTextField searchField;
+	
 	private boolean wasClicking;
 	private boolean isScrolling;
+	
+	private Slot theSlot;
+	private ItemStack returningStack;
 	
 	public GuiBank(EntityPlayer player, TileEntityBank tileEntity) {
 		super(new ContainerBank(player,tileEntity));
@@ -175,18 +193,17 @@ public class GuiBank extends GuiContainer{
 		}
 	}
 	
+	@Override
 	protected void drawItemStackTooltip(ItemStack par1ItemStack, int par2, int par3)
     {
         List list = par1ItemStack.getTooltip(this.mc.thePlayer, this.mc.gameSettings.advancedItemTooltips);
-       
         
         //Add Costs to the tooltip of every item
         list.add("Amount: " + BankManager.getItemAmount(par1ItemStack.itemID, par1ItemStack.getItemDamage()));
         list.add("Costs");
         list.add("One: " + BankManager.getItemPrice(par1ItemStack.itemID, par1ItemStack.getItemDamage()) + "C");
         list.add("Stack: " + (BankManager.getItemPrice(par1ItemStack.itemID, par1ItemStack.getItemDamage()) * par1ItemStack.getMaxStackSize()) + "C");
-        
-        
+        Logger.log("expand List");
         for (int k = 0; k < list.size(); ++k)
         {
             if (k == 0)
@@ -201,6 +218,13 @@ public class GuiBank extends GuiContainer{
 
         FontRenderer font = par1ItemStack.getItem().getFontRenderer(par1ItemStack);
         drawHoveringText(list, par2, par3, (font == null ? fontRenderer : font));
+    }
+	
+	@Override
+	protected void drawHoveringText(List par1List, int par2, int par3, FontRenderer font)
+    {
+		Logger.log("draw text");
+		super.drawHoveringText(par1List, par2, par3, font);
     }
 	
 	public void drawScreen(int par1, int par2, float par3)
@@ -243,8 +267,63 @@ public class GuiBank extends GuiContainer{
         }else{
         	((ContainerBank)this.inventorySlots).scrollTo(this.currentScroll);
         }
-
+        
         super.drawScreen(par1, par2, par3);
+    }
+	
+	protected void drawSlotInventory(Slot par1Slot)
+    {
+		if(par1Slot != null && par1Slot.getStack() != null && par1Slot.getStack().getItem() != null && par1Slot.slotNumber <= 45 && par1Slot.slotNumber > 0){
+	        int i = par1Slot.xDisplayPosition;
+	        int j = par1Slot.yDisplayPosition;
+	        ItemStack itemstack = par1Slot.getStack();
+	        
+	        ItemStack stack = par1Slot.getStack();
+	        boolean flag = false;
+	        boolean flag1 = false;
+	        ItemStack itemstack1 = this.mc.thePlayer.inventory.getItemStack();
+	        String s = null;
+	
+	        this.zLevel = 100.0F;
+	        itemRenderer.zLevel = 100.0F;
+	
+	        if (itemstack == null)
+	        {
+	            Icon icon = par1Slot.getBackgroundIconIndex();
+	
+	            if (icon != null)
+	            {
+	                GL11.glDisable(GL11.GL_LIGHTING);
+	                this.mc.renderEngine.bindTexture("/gui/items.png");
+	                this.drawTexturedModelRectFromIcon(i, j, icon, 16, 16);
+	                GL11.glEnable(GL11.GL_LIGHTING);
+	                flag1 = true;
+	            }
+	        }
+	
+	        if (!flag1)
+	        {
+	            if (flag)
+	            {
+	                drawRect(i, j, i + 16, j + 16, -2130706433);
+	            }
+	
+	            GL11.glEnable(GL11.GL_DEPTH_TEST);
+	            if(itemstack != null){
+		            itemRenderer.renderItemAndEffectIntoGUI(this.fontRenderer, this.mc.renderEngine, itemstack, i, j);
+		            if(stack != null){
+		            	int amount = BankManager.getItemAmount(stack.itemID, stack.getItemDamage());
+		            	s = amount < 1000 ? String.valueOf(amount) : String.valueOf(amount / 1000) + "k";
+		            }
+		            itemRenderer.renderItemOverlayIntoGUI(this.fontRenderer, this.mc.renderEngine, itemstack, i, j, s);
+	            }
+	        }
+	
+	        itemRenderer.zLevel = 0.0F;
+	        this.zLevel = 0.0F;
+		}else{
+			super.drawSlotInventory(par1Slot);
+		}
     }
 }
 
