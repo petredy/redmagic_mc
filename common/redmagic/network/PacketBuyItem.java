@@ -60,17 +60,32 @@ public class PacketBuyItem extends PacketRedMagic {
 
 	public void execute(INetworkManager manager, Player player) {
 		EntityPlayer thePlayer = (EntityPlayer) player;
-		Logger.log("buy an item");
 		ItemStack stack = new ItemStack(id, amount, damage);
 		float costs = BankManager.getItemPrice(id, damage) * amount;
 		if(BankManager.removeItemAmount(id, damage, amount)){
 			thePlayer.inventory.setItemStack(stack);
 			TileEntityBank bank = (TileEntityBank) thePlayer.worldObj.getBlockTileEntity(x, y, z);
 			ItemStack crystal = bank.getStackInSlot(0);
-			InventoryHelper.addItemStackToInventory(thePlayer.inventory, stack);
+			if(!thePlayer.inventory.addItemStackToInventory(stack))InventoryHelper.dropItemStack(stack, thePlayer.worldObj,  thePlayer.posX, thePlayer.posY, thePlayer.posZ);
 			if(crystal != null){
 				BankHelper.setMoney(crystal, BankHelper.getMoney(crystal) - costs);
 				PacketDispatcher.sendPacketToAllPlayers(PacketHandler.populatePacket(new PacketBankSync(Redmagic.bankData)));
+				thePlayer.inventory.setItemStack(null);
+			}
+		}else{
+			amount = BankManager.getItemAmount(id, damage);
+			if(BankManager.removeItemAmount(id, damage, amount)){
+				costs = BankManager.getItemPrice(id, damage) * amount;
+				stack = new ItemStack(id, amount, damage);
+				thePlayer.inventory.setItemStack(stack);
+				TileEntityBank bank = (TileEntityBank) thePlayer.worldObj.getBlockTileEntity(x, y, z);
+				ItemStack crystal = bank.getStackInSlot(0);
+				if(!thePlayer.inventory.addItemStackToInventory(stack))InventoryHelper.dropItemStack(stack, thePlayer.worldObj,  thePlayer.posX, thePlayer.posY, thePlayer.posZ);
+				if(crystal != null){
+					BankHelper.setMoney(crystal, BankHelper.getMoney(crystal) - costs);
+					PacketDispatcher.sendPacketToAllPlayers(PacketHandler.populatePacket(new PacketBankSync(Redmagic.bankData)));
+					thePlayer.inventory.setItemStack(null);
+				}
 			}
 		}
 	}

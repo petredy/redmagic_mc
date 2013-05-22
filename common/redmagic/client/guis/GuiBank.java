@@ -199,11 +199,10 @@ public class GuiBank extends GuiContainer{
         List list = par1ItemStack.getTooltip(this.mc.thePlayer, this.mc.gameSettings.advancedItemTooltips);
         
         //Add Costs to the tooltip of every item
-        list.add("Amount: " + BankManager.getItemAmount(par1ItemStack.itemID, par1ItemStack.getItemDamage()));
         list.add("Costs");
         list.add("One: " + BankManager.getItemPrice(par1ItemStack.itemID, par1ItemStack.getItemDamage()) + "C");
         list.add("Stack: " + (BankManager.getItemPrice(par1ItemStack.itemID, par1ItemStack.getItemDamage()) * par1ItemStack.getMaxStackSize()) + "C");
-        Logger.log("expand List");
+       
         for (int k = 0; k < list.size(); ++k)
         {
             if (k == 0)
@@ -218,13 +217,6 @@ public class GuiBank extends GuiContainer{
 
         FontRenderer font = par1ItemStack.getItem().getFontRenderer(par1ItemStack);
         drawHoveringText(list, par2, par3, (font == null ? fontRenderer : font));
-    }
-	
-	@Override
-	protected void drawHoveringText(List par1List, int par2, int par3, FontRenderer font)
-    {
-		Logger.log("draw text");
-		super.drawHoveringText(par1List, par2, par3, font);
     }
 	
 	public void drawScreen(int par1, int par2, float par3)

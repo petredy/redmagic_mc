@@ -60,15 +60,14 @@ public class PacketSellItem extends PacketRedMagic {
 
 	public void execute(INetworkManager manager, Player player) {
 		EntityPlayer thePlayer = (EntityPlayer) player;
-		Logger.log("buy an item");
 		ItemStack stack = new ItemStack(id, amount, damage);
 		float money = BankManager.getItemPrice(id, damage) * amount;
 		if(BankManager.addItemAmount(id, damage, amount)){
-			thePlayer.inventory.setItemStack(stack);
 			TileEntityBank bank = (TileEntityBank) thePlayer.worldObj.getBlockTileEntity(x, y, z);
 			ItemStack crystal = bank.getStackInSlot(0);
-			thePlayer.inventory.setItemStack(null);
 			if(crystal != null){
+				if(thePlayer.inventory.getItemStack() == null)InventoryHelper.reduceItemStack(thePlayer.inventory, stack, amount);
+				else thePlayer.inventory.setItemStack(null);
 				BankHelper.setMoney(crystal, BankHelper.getMoney(crystal) + money);
 				PacketDispatcher.sendPacketToAllPlayers(PacketHandler.populatePacket(new PacketBankSync(Redmagic.bankData)));
 			}

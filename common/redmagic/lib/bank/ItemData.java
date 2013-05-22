@@ -66,4 +66,8 @@ public class ItemData implements Comparable<ItemData>{
 		return 0;
 	}
 	
+	public boolean equals(ItemData data){
+		if(this.itemDamage == data.itemDamage && this.itemID == data.itemID)return true;
+		return false;
+	}
 }

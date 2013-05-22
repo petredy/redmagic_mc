@@ -71,9 +71,8 @@ public class BlockManager {
 			'C', Block.chest
 		});
 		
-		GameRegistry.addShapelessRecipe(new ItemStack(Block.planks), new Object[]{
+		GameRegistry.addShapelessRecipe(new ItemStack(Block.planks, 4), new Object[]{
 			new ItemStack(wood, 1, BlockIndex.WOOD_FRAGMENT_METADATA),
-			new ItemStack(wood, 1, BlockIndex.WOOD_FRAGMENT_METADATA)
 		});
 	}
 	

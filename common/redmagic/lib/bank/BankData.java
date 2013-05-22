@@ -31,7 +31,11 @@ public class BankData {
 	}
 	
 	public static void register(int itemID, int itemDamage, int amount, boolean tradeable, float price, float tax, boolean buying){
-		data.add(new ItemData(itemID, itemDamage, amount, tradeable, price, tax, buying));
+		ItemData newData = new ItemData(itemID, itemDamage, amount, tradeable, price, tax, buying);
+		ItemData momData = getItemData(itemID, itemDamage);
+		data.remove(momData);
+		if(momData != null && newData.amount == 0)newData.amount = momData.amount;
+		data.add(newData);
 	}
 	
 	public void writeToNBT(NBTTagCompound tag){

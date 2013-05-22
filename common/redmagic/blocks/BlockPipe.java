@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import redmagic.Redmagic;
+import redmagic.api.blocks.IWrenchable;
 import redmagic.api.essence.IPipe;
 import redmagic.api.essence.IStorage;
 import redmagic.api.items.IWrench;
@@ -11,6 +12,7 @@ import redmagic.client.renderers.RenderPipe;
 import redmagic.configuration.BlockIndex;
 import redmagic.configuration.RenderIndex;
 import redmagic.tileentities.TileEntityPipe;
+import redmagic.helpers.BlockHelper;
 import redmagic.items.ItemRedhole;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -24,11 +26,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ITankContainer;
 
-public class BlockPipe extends BlockContainer{
+public class BlockPipe extends BlockContainer implements IWrenchable{
 
 	protected BlockPipe(int par1) {
 		super(par1, Material.piston);
-		this.setHardness(3.0F);
 		this.setCreativeTab(Redmagic.tabRedMagic);
 		this.setUnlocalizedName(BlockIndex.PIPE_NAME);
 		this.setHardness(BlockIndex.DEFAULT_HARDNESS);
@@ -145,6 +146,12 @@ public class BlockPipe extends BlockContainer{
 			return ((IPipe) tile).isConnectedOnSide(side);
 		}
 		return false;
+	}
+
+	@Override
+	public void onWrench(EntityPlayer player, World world, int x, int y, int z, int metadata) {
+		BlockHelper.breakBlock(world, x, y, z, 100, true);
+		
 	}
 
 }

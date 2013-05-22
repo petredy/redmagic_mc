@@ -37,10 +37,8 @@ public class RecipeHandler {
 			new ItemStack(Block.sapling), new ItemStack(ItemManager.soulNectar)
 		});
 		
-		WorkTableRegistry.register(new ItemStack(BlockManager.sapling.blockID, 1, BlockIndex.SAPLING_TOKEE_METADATA), new ItemStack[]{
-			 new ItemStack(Item.ingotIron), new ItemStack(Item.ingotIron), new ItemStack(Item.ingotIron),
-			 new ItemStack(Item.ingotIron), new ItemStack(Block.sapling), new ItemStack(Item.ingotIron),
-			 new ItemStack(Item.ingotIron), new ItemStack(Item.ingotIron), new ItemStack(Item.ingotIron)
+		WorkTableRegistry.registerShapeless(new ItemStack(BlockManager.sapling.blockID, 1, BlockIndex.SAPLING_TOKEE_METADATA), new ItemStack[]{
+			 new ItemStack(Item.ingotIron), new ItemStack(Block.sapling)
 		});
 		
 		WorkTableRegistry.registerShapeless(new ItemStack(ItemManager.broom), new ItemStack[]{

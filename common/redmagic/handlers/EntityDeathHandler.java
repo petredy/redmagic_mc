@@ -11,7 +11,7 @@ import redmagic.configuration.BlockIndex;
 import redmagic.configuration.LogicIndex;
 import redmagic.core.Logger;
 import redmagic.helpers.FragmentHelper;
-import redmagic.tileentities.education.TileEntityExtractorCollector;
+import redmagic.tileentities.extractor.TileEntityExtractorCollector;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;

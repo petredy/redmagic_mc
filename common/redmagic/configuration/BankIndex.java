@@ -2,7 +2,7 @@ package redmagic.configuration;
 
 public class BankIndex {
 	public static int AMOUNT;
-	public static boolean TRADEABLE;
+	public static boolean TRADEABLE = true;
 	public static float TAX;
 	public static float TAX_CHANGE;
 	public static boolean BUYING;

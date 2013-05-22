@@ -11,6 +11,8 @@ import redmagic.api.multiblock.IMultiEntity;
 import redmagic.api.multiblock.IStructure;
 import redmagic.configuration.Reference;
 import redmagic.core.Logger;
+import redmagic.tileentities.extractor.TileEntityExtractorBasic;
+import redmagic.tileentities.extractor.TileEntityExtractorCollector;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -52,11 +54,12 @@ public class ExtractorStructure implements IStructure{
 			entity.setStructure(structure);
 			
 			NBTTagCompound tag = new NBTTagCompound();
-			
-			if(tag != null){
-				entity.writeToNBT(tag);
-				PacketDispatcher.sendPacketToAllAround(block.getX(), block.getY(), block.getZ(), 40, world.getWorldInfo().getDimension(), new Packet132TileEntityData(block.getX(), block.getY(), block.getZ(), 0, tag));
+			if(entity instanceof TileEntityExtractorBasic){
+				((TileEntityExtractorBasic)entity).writeToNBT(tag);
+			}else{
+				((TileEntityExtractorCollector)entity).writeToNBT(tag);
 			}
+			PacketDispatcher.sendPacketToAllAround(block.getX(), block.getY(), block.getZ(), 40, world.getWorldInfo().getDimension(), new Packet132TileEntityData(block.getX(), block.getY(), block.getZ(), 0, tag));
 		}
 	}
 

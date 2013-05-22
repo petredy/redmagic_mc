@@ -54,7 +54,7 @@ public class DataHandler {
 		// Leaves
 		BankData.register(18, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 2F / 64F, BankIndex.TAX, BankIndex.BUYING);
 		// Glass
-		BankData.register(20, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 32F / 64F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(20, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 7F / 64F, BankIndex.TAX, BankIndex.BUYING);
 		// Lapis Block
 		BankData.register(22, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 40F, BankIndex.TAX, BankIndex.BUYING);
 		// Dispenser
@@ -68,7 +68,7 @@ public class DataHandler {
 		// Detector Rail
 		BankData.register(28, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 10F, BankIndex.TAX, BankIndex.BUYING);
 		// Sticky Pistion
-		BankData.register(29, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 12F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(29, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 15F, BankIndex.TAX, BankIndex.BUYING);
 		// Pistion
 		BankData.register(33, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 12F, BankIndex.TAX, BankIndex.BUYING);
 		// Wool
@@ -358,7 +358,7 @@ public class DataHandler {
 		BankData.register(260, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.2F, BankIndex.TAX, BankIndex.BUYING);
 
 		//Bow
-		BankData.register(261, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.1F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(261, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.6F, BankIndex.TAX, BankIndex.BUYING);
 		
 		//Arrow
 		BankData.register(262, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.2F, BankIndex.TAX, BankIndex.BUYING);
@@ -558,7 +558,7 @@ public class DataHandler {
 		BankData.register(326, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 3.2F, BankIndex.TAX, BankIndex.BUYING);
 
 		//Lava Bucket
-		BankData.register(327, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 10F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(327, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 5F, BankIndex.TAX, BankIndex.BUYING);
 
 		//Minecart
 		BankData.register(328, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 5F, BankIndex.TAX, BankIndex.BUYING);
@@ -594,13 +594,13 @@ public class DataHandler {
 		BankData.register(338, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 10 / 64F, BankIndex.TAX, BankIndex.BUYING);
 
 		//Paper
-		BankData.register(339, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 30 / 64F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(339, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 10 / 64F, BankIndex.TAX, BankIndex.BUYING);
 
 		//Book
 		BankData.register(340, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 6F, BankIndex.TAX, BankIndex.BUYING);
 
 		//Slimeball
-		BankData.register(341, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 6 / 64F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(341, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 3F, BankIndex.TAX, BankIndex.BUYING);
 
 		//Chest-Minecart
 		BankData.register(342, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 10F, BankIndex.TAX, BankIndex.BUYING);

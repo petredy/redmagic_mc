@@ -14,6 +14,9 @@ import org.lwjgl.util.vector.Matrix3f;
 import org.lwjgl.util.vector.Vector3f;
 
 import redmagic.Redmagic;
+import redmagic.addons.ForestryAddon;
+import redmagic.addons.IndustrialCraftAddon;
+import redmagic.addons.ThaumcraftAddon;
 import redmagic.blocks.BlockManager;
 import redmagic.client.renderers.glasses.*;
 import redmagic.configuration.LogicIndex;
@@ -129,5 +132,44 @@ public class GlassesHelper {
 			if(LogicIndex.GLASSES_ORE_DIC[i] == id && LogicIndex.GLASSES_ORE_DIC[i + 1] == metadata)return true;
 		}
 		return false;
+	}
+
+	public static int[] getOres() {
+		List<Integer> ores = new ArrayList<Integer>();
+		ores.add(14);
+		ores.add(0);
+		ores.add(15);
+		ores.add(0);
+		ores.add(16);
+		ores.add(0);
+		ores.add(21);
+		ores.add(0);
+		ores.add(56);
+		ores.add(0);
+		ores.add(73);
+		ores.add(0);
+		ores.add(74);
+		ores.add(0);
+		ores.add(129);
+		ores.add(0);
+		ores.add(153);
+		ores.add(0);
+		ores.add(BlockManager.soulCrystalOre.blockID);
+		ores.add(0);
+		
+		Logger.log(ores);
+		ForestryAddon.addOres(ores);
+		ThaumcraftAddon.addOres(ores);
+		IndustrialCraftAddon.addOres(ores);
+		
+		int[] array = new int[ores.size()];
+		Iterator<Integer> it = ores.iterator();
+		int count = 0;
+		while(it.hasNext()){
+			Integer number = it.next();
+			array[count++] = number;
+		}
+		
+		return array;
 	}
 }

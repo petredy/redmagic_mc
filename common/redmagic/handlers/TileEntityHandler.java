@@ -2,8 +2,8 @@ package redmagic.handlers;
 
 import redmagic.tileentities.*;
 import redmagic.tileentities.bank.TileEntityBank;
-import redmagic.tileentities.education.TileEntityExtractorBasic;
-import redmagic.tileentities.education.TileEntityExtractorCollector;
+import redmagic.tileentities.extractor.TileEntityExtractorBasic;
+import redmagic.tileentities.extractor.TileEntityExtractorCollector;
 import redmagic.tileentities.machines.*;
 import redmagic.tileentities.tree.TileEntityTreeLeaves;
 import redmagic.tileentities.tree.TileEntityTreeWood;

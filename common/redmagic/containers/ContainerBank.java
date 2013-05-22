@@ -87,25 +87,24 @@ public class ContainerBank extends Container{
 				if(slot != null && crystal != null && slot.getStack() != null && player.inventory.getItemStack() == null){
 					ItemStack stack = slot.getStack();
 					if(shift == 1 && right == 1){
-						
-					}else if(shift == 1 && player.inventory.getItemStack() == null){	
+					
+					}else if(shift == 1){	
 						return this.buy(stack, crystal, stack.getMaxStackSize(), player);
-					}else if(right == 1 && (player.inventory.getItemStack() == null || player.inventory.getItemStack().stackSize + stack.getMaxStackSize() / 2 <= stack.getMaxStackSize())){
+					}else if(right == 1){
 						return this.buy(stack, crystal, stack.getMaxStackSize() / 2, player);
 					}else{
 						return this.buy(stack, crystal, 1, player);
 					}
 				}else if(crystal != null && player.inventory.getItemStack() != null){
-					this.sell(player.inventory.getItemStack(), crystal, player);
-					player.inventory.setItemStack(null);
-					return null;
+					ItemStack rtn = this.sell(player.inventory.getItemStack(), crystal, player);
+					player.inventory.setItemStack(rtn);
+					return rtn;
 				}
-				
 				return null;
 			}else{
 				if(slot != null && crystal != null && slot.getStack() != null && shift == 1 && index > 45 && index < this.inventorySlots.size()){
 					ItemStack rtn = this.sell(slot.getStack(), crystal, player);
-					slot.putStack(null);
+					slot.putStack(rtn);
 					player.inventory.setItemStack(null);
 					return null;
 				}
@@ -117,14 +116,15 @@ public class ContainerBank extends Container{
 	
 	public ItemStack buy(ItemStack stack, ItemStack crystal, int amount, EntityPlayer player){
 		float costs = BankManager.getItemPrice(stack.itemID, stack.getItemDamage()) * amount;
-		if(player.worldObj.isRemote && BankHelper.getMoney(crystal) >= costs){
-			
+		if(player.worldObj.isRemote && BankHelper.getMoney(crystal) >= costs && BankManager.getItemAmount(stack.itemID, stack.getItemDamage()) > 0){
 			
 			PacketDispatcher.sendPacketToServer(PacketHandler.populatePacket(new PacketBuyItem(stack.itemID, stack.getItemDamage(), amount, this.entity.xCoord, this.entity.yCoord, this.entity.zCoord)));
 			
 			BankHelper.setMoney(crystal, BankHelper.getMoney(crystal) - costs);
 			ItemStack output = new ItemStack(stack.itemID, amount, stack.getItemDamage());
 			player.playSound(Sounds.CHEST_CLOSE, 1.0F, 1.0F);
+			InventoryHelper.addItemStackToInventory(player.inventory, output);
+			player.inventory.setItemStack(null);
 			return output;
 		}
 		return null;
@@ -132,11 +132,12 @@ public class ContainerBank extends Container{
 	
 	public ItemStack sell(ItemStack stack, ItemStack crystal, EntityPlayer player){
 		float money = BankManager.getItemPrice(stack.itemID, stack.getItemDamage()) * stack.stackSize;
-		if(player.worldObj.isRemote){
+		if(BankManager.getItemTradeable(stack.itemID, stack.getItemDamage()) && player.worldObj.isRemote){
 			
 			PacketDispatcher.sendPacketToServer(PacketHandler.populatePacket(new PacketSellItem(stack.itemID, stack.getItemDamage(), stack.stackSize, this.entity.xCoord, this.entity.yCoord, this.entity.zCoord)));
 			player.playSound(Sounds.CHEST_CLOSE, 1.0F, 1.0F);
 			BankHelper.setMoney(crystal, BankHelper.getMoney(crystal) + money);
+			return null;
 		}
 		return stack;
 	}

@@ -122,7 +122,7 @@ public class InventoryHelper {
 		if(stackToMove == null)return stackToMove;
 		for (int i = 0; i < inventory.getSizeInventory(); i++) {
 			ItemStack stack = inventory.getStackInSlot(i);
-			if (stack == null) {
+			if (stack == null && inventory.isStackValidForSlot(i, stackToMove)) {
 				inventory.setInventorySlotContents(i, stackToMove);
 				return null;
 			}
@@ -227,6 +227,7 @@ public class InventoryHelper {
 					return amount;
 				}else{
 					used += item.stackSize;
+					amount -= item.stackSize;
 					inv.setInventorySlotContents(i, null);
 				}
 			}

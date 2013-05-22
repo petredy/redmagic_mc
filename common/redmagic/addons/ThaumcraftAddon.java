@@ -1,5 +1,7 @@
 package redmagic.addons;
 
+import java.util.List;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.src.ModLoader;
 import redmagic.configuration.BankIndex;
@@ -119,6 +121,30 @@ public class ThaumcraftAddon {
 
 			
 			
+		}
+	}
+	
+	public static void addOres(List<Integer> ores){
+		if(initialised || ModLoader.isModLoaded(modName)){
+			ItemStack ore = ItemApi.getItem("blockCustomOre", 0);
+			if(ore != null){
+				ores.add(ore.itemID);
+				ores.add(0);
+				ores.add(ore.itemID);
+				ores.add(1);
+				ores.add(ore.itemID);
+				ores.add(2);
+				ores.add(ore.itemID);
+				ores.add(3);
+				ores.add(ore.itemID);
+				ores.add(4);
+				ores.add(ore.itemID);
+				ores.add(5);
+				ores.add(ore.itemID);
+				ores.add(6);
+				ores.add(ore.itemID);
+				ores.add(7);
+			}
 		}
 	}
 }

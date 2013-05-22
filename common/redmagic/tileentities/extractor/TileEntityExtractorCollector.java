@@ -1,6 +1,8 @@
-package redmagic.tileentities.education;
+package redmagic.tileentities.extractor;
 
 
+
+import java.util.List;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -14,15 +16,17 @@ import redmagic.api.multiblock.IMultiEntity;
 import redmagic.api.multiblock.IMultiBlock;
 import redmagic.api.multiblock.IStructure;
 import redmagic.blocks.multi.extractor.ExtractorStructure;
+import redmagic.configuration.BlockIndex;
+import redmagic.core.Logger;
 import redmagic.helpers.InventoryHelper;
+import redmagic.tileentities.TileEntityInventory;
 
-public class TileEntityExtractorBasic extends TileEntity implements IMultiEntity{
+public class TileEntityExtractorCollector extends TileEntity implements IMultiEntity{
 
 	public ExtractorStructure structure;
-	private int soulSlot = 0;
 	
-	public TileEntityExtractorBasic() {
-
+	public void addFragments(ItemStack fragment){
+		InventoryHelper.addToAdjacentInventory(worldObj, xCoord, yCoord, zCoord, fragment);
 	}
 	
 	@Override

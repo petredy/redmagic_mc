@@ -3,7 +3,7 @@ package redmagic.blocks.multi.extractor;
 import redmagic.api.multiblock.IMultiBlock;
 import redmagic.api.multiblock.IMultiEntity;
 import redmagic.configuration.BlockIndex;
-import redmagic.tileentities.education.TileEntityExtractorBasic;
+import redmagic.tileentities.extractor.TileEntityExtractorBasic;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;

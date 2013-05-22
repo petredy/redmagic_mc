@@ -1,5 +1,8 @@
 package redmagic.addons;
 
+import java.util.List;
+
+import forestry.api.core.BlockInterface;
 import forestry.api.core.ItemInterface;
 import net.minecraft.src.ModLoader;
 import net.minecraftforge.oredict.OreDictionary;
@@ -61,7 +64,7 @@ public class ForestryAddon {
 			BankData.register(ItemInterface.getItem("refractoryBiofuel").itemID, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1.2F, BankIndex.TAX, BankIndex.BUYING);
 			BankData.register(ItemInterface.getItem("refractoryOil").itemID, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.8F, BankIndex.TAX, BankIndex.BUYING);
 			BankData.register(ItemInterface.getItem("refractoryFuel").itemID, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1.2F, BankIndex.TAX, BankIndex.BUYING);
-			BankData.register(ItemInterface.getItem("refractoryLava").itemID, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 2F, BankIndex.TAX, BankIndex.BUYING);
+			BankData.register(ItemInterface.getItem("refractoryLava").itemID, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 5F, BankIndex.TAX, BankIndex.BUYING);
 			BankData.register(ItemInterface.getItem("refractorySeedOil").itemID, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.5F, BankIndex.TAX, BankIndex.BUYING);
 			BankData.register(ItemInterface.getItem("refractoryHoney").itemID, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1F, BankIndex.TAX, BankIndex.BUYING);
 			BankData.register(ItemInterface.getItem("refractoryJuice").itemID, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.6F, BankIndex.TAX, BankIndex.BUYING);
@@ -79,5 +82,19 @@ public class ForestryAddon {
 			BankData.register(ItemInterface.getItem("canJuice").itemID, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 3 / 16 + 0.3F, BankIndex.TAX, BankIndex.BUYING);
 
 		}
+	}
+	
+	public static void addOres(List<Integer> ores) {
+		if(initialised || ModLoader.isModLoaded(modName)){
+			/*
+			ores.add(BlockInterface.getBlock("resource").itemID);
+			ores.add(0);
+			ores.add(BlockInterface.getBlock("resource").itemID);
+			ores.add(1);
+			ores.add(BlockInterface.getBlock("resource").itemID);
+			ores.add(2);
+			*/
+		}
+		
 	}
 }

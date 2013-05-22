@@ -3,7 +3,7 @@ package redmagic.configuration;
 
 public class BlockIndex {
 	
-	public static final float DEFAULT_HARDNESS = 3.0F;
+	public static final float DEFAULT_HARDNESS = 1.0F;
 	
 	public static final String MACHINE_NAME = "machine";
 	public static final int MACHINE_DEFAULT_ID = 3300;
