@@ -16,9 +16,10 @@ import net.minecraft.util.MovingObjectPosition;
 public class GlassesRenderOnline extends GlassesRender{
 	public void render(ItemStack stack, EntityPlayer player, int width, int height, MovingObjectPosition target, int switchingTicks){
 
-		if(switchingTicks < GlassesHelper.SWITCHING_FINISHED){
+		if(switchingTicks < GlassesHelper.SWITCHING_FINISHED && GlassesHelper.getInitialised(stack) == 0){
 			this.switchToOnline(stack, player, width, height, switchingTicks);
 		}else{
+			GlassesHelper.setInitialised(stack, 1);
 			//Should be in an other mode
 			GlassesHelper.renderMachineName(player, target, width, height);
 			
@@ -26,7 +27,7 @@ public class GlassesRenderOnline extends GlassesRender{
 			
 			this.renderOverlay(width, height, texture);
 			
-			this.renderMode(width, height);
+			//this.renderMode(width, height);
 		}
 	}
 

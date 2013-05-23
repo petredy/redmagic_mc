@@ -15,6 +15,7 @@ import redmagic.configuration.Texture;
 import redmagic.client.guis.*;
 import redmagic.containers.*;
 import redmagic.handlers.WorldLoadingHandler;
+import redmagic.lib.bag.BagHelper;
 import redmagic.network.PacketBankSync;
 import redmagic.network.PacketHandler;
 import redmagic.tileentities.*;
@@ -50,9 +51,6 @@ public class CommonProxy implements IGuiHandler{
 		if(ID == GuiIndex.EDUCATION_BASIC){
 			return new ContainerEducationBasic(player, tileEntity);
 		}
-		if(ID == GuiIndex.COLLECTOR){
-			return new ContainerOneSlot(player, (IInventory) tileEntity);
-		}
 		if(ID == GuiIndex.BANK){
 			PacketDispatcher.sendPacketToPlayer(PacketHandler.populatePacket(new PacketBankSync(Redmagic.bankData)), (Player) player);
 			return new ContainerBank(player, (TileEntityBank)tileEntity);
@@ -60,6 +58,12 @@ public class CommonProxy implements IGuiHandler{
 		if(ID == GuiIndex.TREE){
 			if(((TileEntityTreeWood)tileEntity).hasSoul())
 			return new ContainerTree(player, (TileEntityTreeWood)tileEntity);
+		}
+		if(ID == GuiIndex.SOUL_FORGE){
+			return new ContainerSoulForge(player, (TileEntitySoulForge)tileEntity);
+		}
+		if(ID == GuiIndex.BAG){
+			return new ContainerBag(player, (TileEntityBag) BagHelper.createTileByData(BagHelper.getData(world, x), world), x);
 		}
 		return null;
 	}
@@ -73,15 +77,18 @@ public class CommonProxy implements IGuiHandler{
 		if(ID == GuiIndex.EDUCATION_BASIC){
 			return new GuiEducationBasic(player, tileEntity);
 		}
-		if(ID == GuiIndex.COLLECTOR){
-			return new GuiOneSlot(player, (IInventory) tileEntity);
-		}
 		if(ID == GuiIndex.BANK){
 			return new GuiBank(player, (TileEntityBank)tileEntity);
 		}
 		if(ID == GuiIndex.TREE){
 			if(((TileEntityTreeWood)tileEntity).hasSoul())
 			return new GuiTree(player, (TileEntityTreeWood)tileEntity);
+		}
+		if(ID == GuiIndex.SOUL_FORGE){
+			return new GuiSoulForge(player, (TileEntitySoulForge)tileEntity);
+		}
+		if(ID == GuiIndex.BAG){
+			return new GuiBag(player, (TileEntityBag) BagHelper.createTileByData(BagHelper.getData(world, x), world), x);
 		}
 		return null;
 	}

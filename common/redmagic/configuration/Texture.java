@@ -18,14 +18,18 @@ public class Texture {
 	public static final String PIPE_FILLER_ACTIVE = RENDER_PATH + "pipe_filler_active.png";
 	public static final String PIPE_FILLER_INACTIVE = RENDER_PATH + "pipe_filler_inactive.png";
 	public static final String BANK = RENDER_PATH + "bank.png";
+	public static final String SOUL_FORGE = RENDER_PATH + "forge.png";
+	
 	//Guis
 	public static final String WORK_TABLE = GUI_PATH + "work.png";
 	public static final String EDUCATION_BASIC = GUI_PATH + "education_basic.png";
 	public static final String EDUCATION_MOUDLE = GUI_PATH + "education_module.png";
-	public static final String CRYSTALIZER = GUI_PATH + "crystalizer.png";
-	public static final String COLLECTOR = GUI_PATH + "collector.png";
 	public static final String BANK_GUI = GUI_PATH + "bank.png";
 	public static final String CRAFTING_GUI = GUI_PATH + "crafting.png";
+	public static final String SOUL_FORGE_INV = GUI_PATH + "soul_forge_inv.png";
+	public static final String SOUL_FORGE_CRAFT = GUI_PATH + "soul_forge_craft.png";
+	public static final String BAG = GUI_PATH + "bag.png";
+	
 	//Particles
 	public static final String DIMENSION_CRACK_FX = PARTICLE_PATH + "dimension_crack.png";
 	public static final String WORK_TABLE_FX_0 = PARTICLE_PATH + "worktable0.png";
@@ -55,6 +59,7 @@ public class Texture {
 	public static final String DANGER_OVERLAY = TEXTURE_PATH + "others/overlay_danger.png";
 	public static final String MODUS_OVERLAY = TEXTURE_PATH + "others/overlay_modus.png";
 	public static final String GLASSES = TEXTURE_PATH + "others/glasses.png";
+	
 	
 	
 }

@@ -48,19 +48,27 @@ public class GlassesHelper {
 	public static final int MINING = 2;
 	
 	public static void setMode(ItemStack stack, int mode){
-		ItemHelper.setInteger(stack, "mode", mode);
+		ItemHelper.setInteger(stack, "redmagic.glasses.mode", mode);
 	}
 	
 	public static int getMode(ItemStack stack){
-		return ItemHelper.getInteger(stack, "mode");
+		return ItemHelper.getInteger(stack, "redmagic.glasses.mode");
+	}
+	
+	public static void setInitialised(ItemStack stack, int value){
+		ItemHelper.setInteger(stack, "redmagic.glasses.initialised", value);
+	}
+	
+	public static int getInitialised(ItemStack stack){
+		return ItemHelper.getInteger(stack, "redmagic.glasses.initialised");
 	}
 	
 	public static void setSwitchingStatus(ItemStack stack, int status){
-		ItemHelper.setInteger(stack, "status", status);
+		ItemHelper.setInteger(stack, "redmagic.glasses.status", status);
 	}
 	
 	public static int getSwitchingStatus(ItemStack stack){
-		return ItemHelper.getInteger(stack, "status");
+		return ItemHelper.getInteger(stack, "redmagic.glasses.status");
 	}
 	
 	public static void switchMode(ItemStack stack){
@@ -70,6 +78,7 @@ public class GlassesHelper {
 		Logger.log("switch mode to " + MODES[mode]);
 		setMode(stack, mode);
 		setSwitchingStatus(stack, 0);
+		setInitialised(stack, 0);
 	}
 	
 	public static GlassesRender getRenderByStack(ItemStack stack){

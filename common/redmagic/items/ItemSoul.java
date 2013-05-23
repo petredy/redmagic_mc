@@ -124,9 +124,6 @@ public class ItemSoul extends Item implements ISoul{
 	public void setSatisfaction(ItemStack stack, int resistence) {
 		if(stack.stackTagCompound == null)stack.stackTagCompound = new NBTTagCompound();
 		stack.stackTagCompound.setInteger(Reference.MOD_ID + "_satisfaction", resistence);
-		stack.setItemDamage(LogicIndex.SOUL_MAX_SATISFACTION - resistence);
-		if(stack.getItemDamage() > LogicIndex.SOUL_MAX_SATISFACTION)stack.setItemDamage(LogicIndex.SOUL_MAX_SATISFACTION);
-		if(stack.getItemDamage() < 0)stack.setItemDamage(0);
 	}
 
 	@Override

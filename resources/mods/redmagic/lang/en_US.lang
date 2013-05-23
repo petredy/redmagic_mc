@@ -4,17 +4,6 @@ language.code=en_US
 
 itemGroup.Redmagic=Redmagic
 
-tile.machine.frame.name=Soul Frame
-tile.machine.filter.name=Essence Filter
-tile.machine.furnace.name=Essence Furnace
-tile.machine.storage.name=Essence Storage
-tile.machine.slaugther.name=Slaugther
-
-tile.crystal.intelligence.name=Intelligence Crystal Block
-tile.crystal.strength.name=Strength Crystal Block
-tile.crystal.capacity.name=Capacity Crystal Block
-tile.crystal.illusion.name=Illusion Crystal Block
-
 tile.extractor.basic.name=Extractor Basic Block
 tile.extractor.collector.name=Extractor Collector Module
 
@@ -30,16 +19,14 @@ tile.sapling.tokee.name=Tokee Sapling
 tile.pipe.name=Essence Pipe
 tile.crack.name=Dimension Crack
 tile.work.name=Work Table
-tile.soul_trap.name=Soul Trap
 tile.soul_crystal_ore.name=Soul Crystal Deposit
-tile.crystalizer.name=Crystalizer
-tile.collector.name=Collector
 tile.essence.name=Liquid Essence
 tile.bank.name=Trading Chest
-tile.mold.name=Soul Mold
+tile.soul_forge.name=Soul Forge
 
 item.redhole.name=Redhole
 
+item.bag.name=Soul Bag
 item.soul_crystal.name=Soul Crystal
 item.soul_nectar.name=Soul Nectar
 item.hammer.name=Working Hammer

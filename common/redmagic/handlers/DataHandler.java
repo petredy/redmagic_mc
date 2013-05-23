@@ -56,13 +56,13 @@ public class DataHandler {
 		// Glass
 		BankData.register(20, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 7F / 64F, BankIndex.TAX, BankIndex.BUYING);
 		// Lapis Block
-		BankData.register(22, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 40F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(22, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 4.5F, BankIndex.TAX, BankIndex.BUYING);
 		// Dispenser
-		BankData.register(23, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 30F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(23, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1.5F, BankIndex.TAX, BankIndex.BUYING);
 		// Sandstone
 		BankData.register(24, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 75F / 64F, BankIndex.TAX, BankIndex.BUYING);
 		// NoteBlock
-		BankData.register(25, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 30F, 0.1F, BankIndex.BUYING);
+		BankData.register(25, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1.5F, BankIndex.TAX, BankIndex.BUYING);
 		// Powered Rail
 		BankData.register(27, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 15F, BankIndex.TAX, BankIndex.BUYING);
 		// Detector Rail
@@ -137,15 +137,15 @@ public class DataHandler {
 
 		// Stairs
 		BankData.register(53, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 2F, BankIndex.TAX, BankIndex.BUYING);
-		BankData.register(53, 1, BankIndex.AMOUNT, BankIndex.TRADEABLE, 2F, BankIndex.TAX, BankIndex.BUYING);
-		BankData.register(53, 2, BankIndex.AMOUNT, BankIndex.TRADEABLE, 2F, BankIndex.TAX, BankIndex.BUYING);
-		BankData.register(53, 3, BankIndex.AMOUNT, BankIndex.TRADEABLE, 2F, BankIndex.TAX, BankIndex.BUYING);
+		//BankData.register(53, 1, BankIndex.AMOUNT, BankIndex.TRADEABLE, 2F, BankIndex.TAX, BankIndex.BUYING);
+		//BankData.register(53, 2, BankIndex.AMOUNT, BankIndex.TRADEABLE, 2F, BankIndex.TAX, BankIndex.BUYING);
+		//BankData.register(53, 3, BankIndex.AMOUNT, BankIndex.TRADEABLE, 2F, BankIndex.TAX, BankIndex.BUYING);
 		// Cobblestone Stair
-		BankData.register(67, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 2F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(67, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 6 / 64F, BankIndex.TAX, BankIndex.BUYING);
 		// Brick Stairs
 		BankData.register(108, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 2F, BankIndex.TAX, BankIndex.BUYING);
 		// Stone Brick Stairs
-		BankData.register(109, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 2F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(109, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1F, BankIndex.TAX, BankIndex.BUYING);
 		// Nether Brick Stairs
 		BankData.register(114, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 2F, BankIndex.TAX, BankIndex.BUYING);
 		// Sandstone Stairs
@@ -202,7 +202,7 @@ public class DataHandler {
 		BankData.register(82, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1.4F, BankIndex.TAX, BankIndex.BUYING);
 
 		// Juke Box
-		BankData.register(84, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 150F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(84, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 100F, BankIndex.TAX, BankIndex.BUYING);
 
 		// Fence
 		BankData.register(85, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 50F / 64F, BankIndex.TAX, BankIndex.BUYING);
@@ -211,7 +211,7 @@ public class DataHandler {
 		BankData.register(86, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 10F / 64F, BankIndex.TAX, BankIndex.BUYING);
 
 		// Netherrack
-		BankData.register(87, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 10F / 64F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(87, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 2F / 64F, BankIndex.TAX, BankIndex.BUYING);
 
 		// Soul Sand
 		BankData.register(88, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 32F / 64F, BankIndex.TAX, BankIndex.BUYING);
@@ -229,7 +229,7 @@ public class DataHandler {
 		BankData.register(98, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 20F / 64F, BankIndex.TAX, BankIndex.BUYING);
 
 		// Iron Bars
-		BankData.register(101, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 8F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(101, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 6 / 16F, BankIndex.TAX, BankIndex.BUYING);
 
 		// Glass Pane
 		BankData.register(102, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 2.5F / 16, BankIndex.TAX, BankIndex.BUYING);
@@ -666,7 +666,7 @@ public class DataHandler {
 		BankData.register(357, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 5 / 64F, BankIndex.TAX, BankIndex.BUYING);
 
 		//Shears
-		BankData.register(359, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 3F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(359, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 2F, BankIndex.TAX, BankIndex.BUYING);
 
 		//Melon
 		BankData.register(360, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.4F, BankIndex.TAX, BankIndex.BUYING);
@@ -713,7 +713,7 @@ public class DataHandler {
 		//TODO
 		
 		//Glass Bottle
-		BankData.register(374, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1.5F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(374, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 7 / 64F, BankIndex.TAX, BankIndex.BUYING);
 
 		//Spider Eye
 		BankData.register(375, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.2F, BankIndex.TAX, BankIndex.BUYING);
@@ -821,14 +821,8 @@ public class DataHandler {
 		//-----------------------------------
 		
 		//Blocks
-		BankData.register(BlockIndex.COLLECTOR_ID, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 20F, BankIndex.TAX, BankIndex.BUYING);
-		BankData.register(BlockIndex.CRYSTAL_ID, BlockIndex.CRYSTAL_ILLUSION_METADATA, BankIndex.AMOUNT, BankIndex.TRADEABLE, 50F, BankIndex.TAX, BankIndex.BUYING);
-		BankData.register(BlockIndex.CRYSTAL_ID, BlockIndex.CRYSTAL_INTELLIGENCE_METADATA, BankIndex.AMOUNT, BankIndex.TRADEABLE, 50F, BankIndex.TAX, BankIndex.BUYING);
-		BankData.register(BlockIndex.CRYSTAL_ID, BlockIndex.CRYSTAL_STRENGTH_METADATA, BankIndex.AMOUNT, BankIndex.TRADEABLE, 50F, BankIndex.TAX, BankIndex.BUYING);
-		BankData.register(BlockIndex.CRYSTAL_ID, BlockIndex.CRYSTAL_ILLUSION_METADATA, BankIndex.AMOUNT, BankIndex.TRADEABLE, 50F, BankIndex.TAX, BankIndex.BUYING);
 		BankData.register(BlockIndex.EXTRACTOR_ID, BlockIndex.EXTRACTOR_BASIC_METADATA, BankIndex.AMOUNT, BankIndex.TRADEABLE, 10F, BankIndex.TAX, BankIndex.BUYING);
 		BankData.register(BlockIndex.EXTRACTOR_ID, BlockIndex.EXTRACTOR_COLLECTOR_METADATA, BankIndex.AMOUNT, BankIndex.TRADEABLE, 20F, BankIndex.TAX, BankIndex.BUYING);
-		BankData.register(BlockIndex.MOLD_ID, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 40F, BankIndex.TAX, BankIndex.BUYING);
 		BankData.register(BlockIndex.PIPE_ID, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 4F, BankIndex.TAX, BankIndex.BUYING);
 
 		

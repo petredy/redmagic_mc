@@ -174,8 +174,12 @@ public class GuiBank extends GuiContainer{
 
 	private void updateSearch() {
 		ContainerBank bank = (ContainerBank)this.inventorySlots;
-		
-		Iterator iterator = bank.list.iterator();
+		Iterator iterator;
+		if(bank.list.size() > 0){
+			iterator= bank.list.iterator();
+		}else{
+			iterator = BankManager.getAllItems().iterator();
+		}
 		List<ItemStack> newList = new ArrayList<ItemStack>();
 		String search = this.searchField.getText().toLowerCase();
 		if(!search.equals("")){

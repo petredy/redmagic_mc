@@ -91,7 +91,7 @@ public class LogicIndex {
 	public static final int SLAUGTHER_RANGE = 1;
 	//---------------------------------------------------------------
 	//Ores
-	public static final int ORE_SOULCRYSTAL_CHUNK_DEPOSITS = 10;
+	public static final int ORE_SOULCRYSTAL_CHUNK_DEPOSITS = 2;
 	public static final int ORE_SOULCRYSTAL_DEPOSIT_AMOUNT = 5;
 
 	//---------------------------------------------------------------

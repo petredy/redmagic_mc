@@ -4,7 +4,6 @@ import redmagic.tileentities.*;
 import redmagic.tileentities.bank.TileEntityBank;
 import redmagic.tileentities.extractor.TileEntityExtractorBasic;
 import redmagic.tileentities.extractor.TileEntityExtractorCollector;
-import redmagic.tileentities.machines.*;
 import redmagic.tileentities.tree.TileEntityTreeLeaves;
 import redmagic.tileentities.tree.TileEntityTreeWood;
 import redmagic.tileentities.tree.fragment.TileEntityFragmentTree;
@@ -19,23 +18,17 @@ public class TileEntityHandler {
 		
 		GameRegistry.registerTileEntity(TileEntityInventory.class, "redmagic.TileEntityInventory");
 		
-		GameRegistry.registerTileEntity(TileEntityMachineFilter.class, "redmagic.TileEntityMachineFilter");
-		GameRegistry.registerTileEntity(TileEntityMachineFurnace.class, "redmagic.TileEntityMachineFurnace");
-		GameRegistry.registerTileEntity(TileEntityMachineStorage.class, "redmagic.TileEntityMachineStorage");
-		GameRegistry.registerTileEntity(TileEntityMachineSlaugther.class, "redmagic.TileEntityMachineSlaugther");
-		
 		GameRegistry.registerTileEntity(TileEntityPipe.class, "redmagic.TileEntityPipe");
 		
 		GameRegistry.registerTileEntity(TileEntityExtractorCollector.class, "redmagic.TileEntityExtractorCollector");
 		GameRegistry.registerTileEntity(TileEntityExtractorBasic.class, "redmagic.TileEntityExtractorBasic");
-
-		GameRegistry.registerTileEntity(TileEntityCollector.class, "redmagic.TileEntityCollector");
 		
 		GameRegistry.registerTileEntity(TileEntityBlockEntity.class, "redmagic.TileEntityBlockEntity");
 		GameRegistry.registerTileEntity(TileEntityBank.class, "redmagic.TileEntityBank");
-		GameRegistry.registerTileEntity(TileEntitySoulTrap.class, "redmagic.TileEntitySoulTrap");
 		GameRegistry.registerTileEntity(TileEntityWorkTable.class, "redmagic.TileEntityWorkTable");
-	
+		GameRegistry.registerTileEntity(TileEntitySoulForge.class, "redmagic.TileEntitySoulForge");
+		GameRegistry.registerTileEntity(TileEntityBag.class, "redmagic.TileEntityBag");
+		
 		GameRegistry.registerTileEntity(TileEntityTreeWood.class, "redmagic.TileEntityTreeWood");
 		GameRegistry.registerTileEntity(TileEntityTreeLeaves.class, "redmagic.TileEntityTreeLeaves");
 		GameRegistry.registerTileEntity(TileEntityFragmentTree.class, "redmagic.TileEntityFragmentTree");

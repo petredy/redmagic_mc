@@ -24,6 +24,7 @@ public class ItemManager {
 	public static ItemSoulAxe axe;
 	public static ItemSoulHoe hoe;
 	public static ItemBroom broom;
+	public static ItemBag bag;
 	
 	public static void init(){
 		redhole = new ItemRedhole(ItemIndex.REDHOLE_ID);
@@ -41,6 +42,7 @@ public class ItemManager {
 		axe = new ItemSoulAxe(ItemIndex.AXE_ID);
 		hoe = new ItemSoulHoe(ItemIndex.HOE_ID);
 		broom = new ItemBroom(ItemIndex.BROOM_ID);
+		bag = new ItemBag(ItemIndex.BAG_ID);
 		
 		registerRecipes();
 		registerSmelting();
@@ -76,6 +78,7 @@ public class ItemManager {
 		ItemIndex.AXE_ID = config.getItem(ItemIndex.AXE_NAME, ItemIndex.AXE_DEFAULT_ID).getInt(ItemIndex.AXE_DEFAULT_ID);
 		ItemIndex.HOE_ID = config.getItem(ItemIndex.HOE_NAME, ItemIndex.HOE_DEFAULT_ID).getInt(ItemIndex.HOE_DEFAULT_ID);
 		ItemIndex.BROOM_ID = config.getItem(ItemIndex.BROOM_NAME, ItemIndex.BROOM_DEFAULT_ID).getInt(ItemIndex.BROOM_DEFAULT_ID);
+		ItemIndex.BAG_ID = config.getItem(ItemIndex.BAG_NAME, ItemIndex.BAG_DEFAULT_ID).getInt(ItemIndex.BAG_DEFAULT_ID);
 		
 	}
 }

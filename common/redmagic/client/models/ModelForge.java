@@ -1,23 +1,22 @@
 package redmagic.client.models;
 
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
 
-public class ModelPipe extends ModelBase{
+public class ModelForge extends ModelBase{
 	
-	public IModelCustom pipe;
+	public IModelCustom forge;
 	
-    public ModelPipe(){
-    	pipe = AdvancedModelLoader.loadModel("/mods/redmagic/models/pipe.obj");
+    public ModelForge(){
+    	forge = AdvancedModelLoader.loadModel("/mods/redmagic/models/forge.obj");
     }
     
     public void render(){
-    	pipe.renderAll();
+    	forge.renderAll();
     }
     
     public void renderPart(String part){
-    	pipe.renderPart(part);
+    	forge.renderPart(part);
     }
 }

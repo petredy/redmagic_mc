@@ -50,6 +50,7 @@ public class ItemRedhole extends Item implements IKeyBound{
 	public void doKeyBindingAction(EntityPlayer player, ItemStack stack, String keyBinding) {
 		if(keyBinding.equals(Reference.KEY_EXTRA_NAME)){
 			Logger.log("reset Bank");
+			if(player.isSneaking())BankData.data.clear();
 			Redmagic.bankData = new BankData();
 			DataHandler.loadDefault();
 			

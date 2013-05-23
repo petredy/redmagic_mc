@@ -18,6 +18,7 @@ public class ItemIndex {
 	public static final String AXE_NAME = "axe";
 	public static final String HOE_NAME = "hoe";
 	public static final String BROOM_NAME = "broom";
+	public static final String BAG_NAME = "bag";
 	
 	//Default IDs 
 	public static final int REDHOLE_DEFAULT_ID = 13900;
@@ -36,6 +37,7 @@ public class ItemIndex {
 	public static final int AXE_DEFAULT_ID = 13918;
 	public static final int HOE_DEFAULT_ID = 13919;
 	public static final int BROOM_DEFAULT_ID = 13920;
+	public static final int BAG_DEFAULT_ID = 13921;
 	
 	//Current IDs
 	public static int REDHOLE_ID;
@@ -54,6 +56,7 @@ public class ItemIndex {
 	public static int AXE_ID;
 	public static int HOE_ID;
 	public static int BROOM_ID;
+	public static int BAG_ID;
 	
 	//Crafting
 	public static final String CRAFTING_SOUL_POWDER_NAME = "powder";

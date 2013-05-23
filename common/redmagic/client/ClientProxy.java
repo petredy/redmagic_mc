@@ -9,8 +9,8 @@ import redmagic.entities.particle.EntityWorkTableFX;
 import redmagic.handlers.KeyBindingHandler;
 import redmagic.helpers.KeyBindingHelper;
 import redmagic.tileentities.TileEntityBlockEntity;
-import redmagic.tileentities.TileEntityCollector;
 import redmagic.tileentities.TileEntityPipe;
+import redmagic.tileentities.TileEntitySoulForge;
 import redmagic.tileentities.bank.TileEntityBank;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
@@ -53,7 +53,6 @@ public class ClientProxy extends CommonProxy{
 	@Override
     public void registerRendering(){
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPipe.class, new RenderPipe());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCollector.class, new RenderCollector());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBank.class, new RenderBank());
 		
 		RenderingRegistry.registerBlockHandler(new RenderPipe());

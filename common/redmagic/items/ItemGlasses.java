@@ -12,10 +12,13 @@ import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IArmorTextureProvider;
 import redmagic.Redmagic;
+import redmagic.api.glasses.IViewable;
 import redmagic.api.items.IKeyBound;
 import redmagic.client.renderers.glasses.RenderGlassesOverlay;
 import redmagic.configuration.ItemIndex;
@@ -49,7 +52,17 @@ public class ItemGlasses extends ItemArmor implements IKeyBound{
 	@Override
 	public void doKeyBindingAction(EntityPlayer player, ItemStack stack, String keyBinding) {
 		if(keyBinding.equals(Reference.KEY_EXTRA_NAME)){
-			GlassesHelper.switchMode(stack);
+			if(player.isSneaking() && GlassesHelper.getMode(stack) != GlassesHelper.OFFLINE){
+				MovingObjectPosition position = this.getMovingObjectPositionFromPlayer(player.worldObj, player, true);
+				if(position != null){
+					TileEntity entity = player.worldObj.getBlockTileEntity(position.blockX, position.blockY, position.blockZ);
+					if(entity instanceof IViewable){
+						((IViewable)entity).view(player, stack);
+					}
+				}
+			}else{
+				GlassesHelper.switchMode(stack);
+			}
 		}
 		
 	}

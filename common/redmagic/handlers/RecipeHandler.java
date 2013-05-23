@@ -8,10 +8,6 @@ import redmagic.configuration.BlockIndex;
 import redmagic.configuration.ItemIndex;
 import redmagic.configuration.LogicIndex;
 import redmagic.items.ItemManager;
-import redmagic.lib.sacrifice.SacrificeChangesType;
-import redmagic.lib.sacrifice.SacrificeRegistry;
-import redmagic.lib.sacrifice.SacrificeSoul;
-import redmagic.lib.sacrifice.SacrificeSoulFragment;
 import redmagic.recipes.tree.TreeCraftingRegistry;
 import redmagic.recipes.worktable.WorkTableRegistry;
 
@@ -91,36 +87,6 @@ public class RecipeHandler {
 			new ItemStack(Block.stone), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_FLINT_IRON_INGOT_ITEMDAMAGE), new ItemStack(Block.stone)
 		});
 		
-		WorkTableRegistry.register(new ItemStack(BlockManager.collector), new ItemStack[]{
-			new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_FLINT_IRON_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_REDSTONE_LOGIC_CORE_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_FLINT_IRON_INGOT_ITEMDAMAGE),
-			new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_REDSTONE_LOGIC_CORE_ITEMDAMAGE), new ItemStack(ItemManager.soulCrystal), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_REDSTONE_LOGIC_CORE_ITEMDAMAGE),
-			new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_FLINT_IRON_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_REDSTONE_LOGIC_CORE_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_FLINT_IRON_INGOT_ITEMDAMAGE),
-		});
-		
-		WorkTableRegistry.register(new ItemStack(BlockManager.crystal, 1, BlockIndex.CRYSTAL_INTELLIGENCE_METADATA), new ItemStack[]{
-			new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE),
-			new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.fragment, 1, ItemIndex.FRAGMENT_INTELLIGENCE_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE),
-			new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE)
-		});
-		
-		
-		WorkTableRegistry.register(new ItemStack(BlockManager.crystal, 1, BlockIndex.CRYSTAL_STRENGTH_METADATA), new ItemStack[]{
-			new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE),
-			new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.fragment, 1, ItemIndex.FRAGMENT_STRENGTH_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE),
-			new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE)
-		});
-		
-		WorkTableRegistry.register(new ItemStack(BlockManager.crystal, 1, BlockIndex.CRYSTAL_CAPACITY_METADATA), new ItemStack[]{
-			new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE),
-			new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.fragment, 1, ItemIndex.FRAGMENT_CAPACITY_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE),
-			new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE)
-		});
-		
-		WorkTableRegistry.register(new ItemStack(BlockManager.crystal, 1, BlockIndex.CRYSTAL_ILLUSION_METADATA), new ItemStack[]{
-			new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE),
-			new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.fragment, 1, ItemIndex.FRAGMENT_ILLUSION_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE),
-			new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE)
-		});
 		
 		WorkTableRegistry.register(new ItemStack(BlockManager.bank), new ItemStack[]{
 			new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE),
@@ -128,10 +94,16 @@ public class RecipeHandler {
 			new ItemStack(Block.planks), new ItemStack(Block.planks), new ItemStack(Block.planks) 
 		});
 		
-		WorkTableRegistry.register(new ItemStack(BlockManager.mold), new ItemStack[]{
-			new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE),
-			new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), null, new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE),
-			new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE),
+		WorkTableRegistry.register(new ItemStack(BlockManager.soulForge), new ItemStack[]{
+			new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), new ItemStack(Item.flint), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), 
+			new ItemStack(Item.flint), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_REDSTONE_LOGIC_CORE_ITEMDAMAGE), new ItemStack(Item.flint),
+			new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), new ItemStack(Item.flint), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE)
+		});
+		
+		WorkTableRegistry.register(new ItemStack(ItemManager.bag), new ItemStack[]{
+			null, new ItemStack(Item.silk), null,
+			null, new ItemStack(Item.leather), null,
+			null, new ItemStack(ItemManager.soul), null
 		});
 		
 		WorkTableRegistry.register(new ItemStack(ItemManager.glasses), new ItemStack[]{
@@ -172,19 +144,6 @@ public class RecipeHandler {
 			new ItemStack(Block.blockRedstone)
 		}, 10, 10, 10, 30, 15);
 				
-		
-		//----------------------------------------------------------------------
-		// Sacrifice Registry
-		
-		//Soul Sacrificing
-		SacrificeRegistry.register(new SacrificeSoul());
-		SacrificeRegistry.register(new SacrificeSoulFragment());
-		
-		SacrificeRegistry.register(new SacrificeChangesType(new ItemStack(Block.fenceIron), LogicIndex.SOUL_FILTER));
-		SacrificeRegistry.register(new SacrificeChangesType(new ItemStack(Block.furnaceIdle), LogicIndex.SOUL_FURNACE));
-		SacrificeRegistry.register(new SacrificeChangesType(new ItemStack(Item.bucketEmpty), LogicIndex.SOUL_STORAGE));
-		SacrificeRegistry.register(new SacrificeChangesType(new ItemStack(Block.workbench), LogicIndex.SOUL_CRAFTING));
-		
 	}
 	
 }
