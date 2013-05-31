@@ -55,14 +55,6 @@ public class GlassesHelper {
 		return ItemHelper.getInteger(stack, "redmagic.glasses.mode");
 	}
 	
-	public static void setInitialised(ItemStack stack, int value){
-		ItemHelper.setInteger(stack, "redmagic.glasses.initialised", value);
-	}
-	
-	public static int getInitialised(ItemStack stack){
-		return ItemHelper.getInteger(stack, "redmagic.glasses.initialised");
-	}
-	
 	public static void setSwitchingStatus(ItemStack stack, int status){
 		ItemHelper.setInteger(stack, "redmagic.glasses.status", status);
 	}
@@ -75,10 +67,8 @@ public class GlassesHelper {
 		int mode = getMode(stack);
 		if(mode + 1 >= MODES.length)mode = 0;
 		else mode++;
-		Logger.log("switch mode to " + MODES[mode]);
 		setMode(stack, mode);
 		setSwitchingStatus(stack, 0);
-		setInitialised(stack, 0);
 	}
 	
 	public static GlassesRender getRenderByStack(ItemStack stack){

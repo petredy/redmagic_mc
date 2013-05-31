@@ -27,7 +27,7 @@ public class ItemBankCrystal extends Item{
 	
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
 		if(par1ItemStack != null){
-			par3List.add("Credits: " + BankHelper.getMoney(par1ItemStack));
+			par3List.add("Credits: " + String.format("%.2f", BankHelper.getMoney(par1ItemStack)));
 		}
 	}
 

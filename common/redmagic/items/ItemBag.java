@@ -34,6 +34,11 @@ public class ItemBag extends Item{
 		return stack;
     }
 	
+    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
+    	par3List.add("ID: " + BagHelper.getID(par1ItemStack));
+    }
+
+	
 	
 
 }

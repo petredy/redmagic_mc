@@ -73,8 +73,9 @@ public class RenderBank extends TileEntitySpecialRenderer implements ISimpleBloc
 	public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(Texture.BANK);
         GL11.glPushMatrix();
-        GL11.glTranslated(0, -0.2, 0);
-        
+        GL11.glRotatef(180, 1, 0, 0);
+        GL11.glTranslated(-1, -0.2, 0);
+       
         modelChest.renderAll();
         
         GL11.glPopMatrix();

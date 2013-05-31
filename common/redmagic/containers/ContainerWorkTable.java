@@ -9,7 +9,7 @@ import redmagic.network.PacketHandler;
 import redmagic.network.PacketWorkTable;
 import redmagic.recipes.worktable.WorkTableRegistry;
 import redmagic.slots.SlotOutput;
-import redmagic.slots.SlotWorkTable;
+import redmagic.slots.SlotNoInteraction;
 import redmagic.tileentities.TileEntityWorkTable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -34,13 +34,13 @@ public class ContainerWorkTable extends Container{
 		//Output
 		this.addSlotToContainer(new SlotOutput((IInventory)entity, 0, 124, 35));
 		
-		this.addSlotToContainer(new SlotWorkTable(this.entity, 10, 124, 13));
+		this.addSlotToContainer(new SlotNoInteraction(this.entity, 10, 124, 13));
 		//Input
 		for (int l = 0; l < 3; ++l)
         {
             for (int i1 = 0; i1 < 3; ++i1)
             {
-                this.addSlotToContainer(new SlotWorkTable(this.entity, 1 + i1 + l * 3, 30 + i1 * 18, 17 + l * 18));
+                this.addSlotToContainer(new SlotNoInteraction(this.entity, 1 + i1 + l * 3, 30 + i1 * 18, 17 + l * 18));
             }
         }
 		

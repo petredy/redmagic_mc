@@ -36,7 +36,7 @@ public class BlockSoulWood extends BlockContainer implements IWrenchable{
 
 	public Icon[] icons = new Icon[ItemBlockWood.subNames.length];
 	public Icon[] soulIcons = new Icon[LogicIndex.SOUL_TYPES.length];
-	public Icon tokeeTop;
+	public Icon tokeeTop, fragment_top;
 	
 	protected BlockSoulWood(int par1) {
 		super(par1, Material.wood);
@@ -62,6 +62,7 @@ public class BlockSoulWood extends BlockContainer implements IWrenchable{
         	this.soulIcons[i] = par1IconRegister.registerIcon(Reference.MOD_ID + ":" + BlockIndex.WOOD_NAME + "_" + BlockIndex.WOOD_TOKEE_NAME + "_soul_" + LogicIndex.SOUL_TYPES[i]);
         }
         this.tokeeTop = par1IconRegister.registerIcon(Reference.MOD_ID + ":" + BlockIndex.WOOD_NAME + "_" + BlockIndex.WOOD_TOKEE_NAME + "_top");
+        this.fragment_top = par1IconRegister.registerIcon(Reference.MOD_ID + ":" + BlockIndex.WOOD_NAME + "_" + BlockIndex.WOOD_FRAGMENT_NAME + "_top");
     }
 	
 	public Icon getBlockTexture(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5){
@@ -88,6 +89,13 @@ public class BlockSoulWood extends BlockContainer implements IWrenchable{
 				case 1:
 				case 0:
 					return this.tokeeTop;
+				}
+				break;
+			case BlockIndex.WOOD_FRAGMENT_METADATA:
+				switch(side){
+				case 1:
+				case 0:
+					return this.fragment_top;
 				}
 				break;
 		}
@@ -176,7 +184,7 @@ public class BlockSoulWood extends BlockContainer implements IWrenchable{
     		if(entity instanceof TileEntityTreeWood){
     			if(par1World.isBlockIndirectlyGettingPowered(par2, par3, par4)){
     				((TileEntityTreeWood)entity).onRedstoneOn();
-    			}else if(!((TileEntityTreeWood)entity).redstone){
+    			}else{
     				((TileEntityTreeWood)entity).onRedstoneOff();
     			}
     		}

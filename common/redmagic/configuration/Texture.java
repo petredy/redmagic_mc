@@ -7,6 +7,7 @@ public class Texture {
 	public static final String RENDER_PATH = TEXTURE_PATH + "renders/";
 	public static final String PARTICLE_PATH = TEXTURE_PATH + "particles/";
 	public static final String ENTITY_PATH = TEXTURE_PATH + "entities/";
+	public static final String SCROLL_PATH = TEXTURE_PATH + "scrolls/";
 	
 	
 	//Renders
@@ -60,6 +61,10 @@ public class Texture {
 	public static final String MODUS_OVERLAY = TEXTURE_PATH + "others/overlay_modus.png";
 	public static final String GLASSES = TEXTURE_PATH + "others/glasses.png";
 	
+	//Scrolls
+	public static final String SCROLL = SCROLL_PATH + "scroll.png";
+	public static final String SCROLL_GLASSES = SCROLL_PATH + "scroll_glasses.png";
+	public static final String SCROLL_CRAFTING = SCROLL_PATH + "scroll_crafting.png";
 	
 	
 }

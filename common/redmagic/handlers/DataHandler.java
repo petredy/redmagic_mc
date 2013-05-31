@@ -121,7 +121,7 @@ public class DataHandler {
 		BankData.register(45, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 2F, BankIndex.TAX, BankIndex.BUYING);
 
 		// TNT
-		BankData.register(46, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 50F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(46, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 20F, BankIndex.TAX, BankIndex.BUYING);
 
 		// Bookshelf TODO
 		BankData.register(47, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0F, BankIndex.TAX, BankIndex.BUYING);
@@ -465,10 +465,10 @@ public class DataHandler {
 		BankData.register(295, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.1F, BankIndex.TAX, BankIndex.BUYING);
 		
 		//Wheat
-		BankData.register(296, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(296, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.2F, BankIndex.TAX, BankIndex.BUYING);
 
 		//Bread
-		BankData.register(297, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 3F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(297, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 0.6F, BankIndex.TAX, BankIndex.BUYING);
 		
 		//Leather Cap
 		BankData.register(298, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 25F, BankIndex.TAX, BankIndex.BUYING);
@@ -804,7 +804,7 @@ public class DataHandler {
 		BankData.register(406, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1.5F, BankIndex.TAX, BankIndex.BUYING);
 
 		//Minecart with TNT
-		BankData.register(407, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 15F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(407, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 30F, BankIndex.TAX, BankIndex.BUYING);
 
 		//Minecart with Hopper
 		BankData.register(408, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 14F, BankIndex.TAX, BankIndex.BUYING);
@@ -824,17 +824,16 @@ public class DataHandler {
 		BankData.register(BlockIndex.EXTRACTOR_ID, BlockIndex.EXTRACTOR_BASIC_METADATA, BankIndex.AMOUNT, BankIndex.TRADEABLE, 10F, BankIndex.TAX, BankIndex.BUYING);
 		BankData.register(BlockIndex.EXTRACTOR_ID, BlockIndex.EXTRACTOR_COLLECTOR_METADATA, BankIndex.AMOUNT, BankIndex.TRADEABLE, 20F, BankIndex.TAX, BankIndex.BUYING);
 		BankData.register(BlockIndex.PIPE_ID, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 4F, BankIndex.TAX, BankIndex.BUYING);
-
+		BankData.register(BlockIndex.SOUL_BLOCK_ID, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 18F, BankIndex.TAX, BankIndex.BUYING);
 		
 		//Items
 				
 		BankData.register(ItemManager.axe.itemID, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 4F, BankIndex.TAX, BankIndex.BUYING);
 		BankData.register(ItemManager.broom.itemID, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1F, BankIndex.TAX, BankIndex.BUYING);
 		
-		BankData.register(ItemManager.crafting.itemID, ItemIndex.CRAFTING_FLINT_IRON_INGOT_ITEMDAMAGE, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1.2F, BankIndex.TAX, BankIndex.BUYING);
-		BankData.register(ItemManager.crafting.itemID, ItemIndex.CRAFTING_REDSTONE_SHARD_ITEMDAMAGE, BankIndex.AMOUNT, BankIndex.TRADEABLE, 10F, BankIndex.TAX, BankIndex.BUYING);
-		BankData.register(ItemManager.crafting.itemID, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE, BankIndex.AMOUNT, BankIndex.TRADEABLE, 5F, BankIndex.TAX, BankIndex.BUYING);
-		BankData.register(ItemManager.crafting.itemID, ItemIndex.CRAFTING_SOUL_POWDER_ITEMDAMAGE, BankIndex.AMOUNT, BankIndex.TRADEABLE, 4F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(ItemManager.crafting.itemID, ItemIndex.CRAFTING_FLINT_IRON_INGOT_ITEMDAMAGE, BankIndex.AMOUNT, BankIndex.TRADEABLE, 1.1F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(ItemManager.crafting.itemID, ItemIndex.CRAFTING_REDSTONE_SHARD_ITEMDAMAGE, BankIndex.AMOUNT, BankIndex.TRADEABLE, 8F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(ItemManager.crafting.itemID, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE, BankIndex.AMOUNT, BankIndex.TRADEABLE, 2F, BankIndex.TAX, BankIndex.BUYING);
 		
 		BankData.register(ItemManager.hoe.itemID, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 2F, BankIndex.TAX, BankIndex.BUYING);
 		BankData.register(ItemManager.pickaxe.itemID, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 4F, BankIndex.TAX, BankIndex.BUYING);
@@ -842,6 +841,7 @@ public class DataHandler {
 		
 		BankData.register(ItemManager.soulCrystal.itemID, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 2F, BankIndex.TAX, BankIndex.BUYING);
 		BankData.register(ItemManager.soulNectar.itemID, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 3F, BankIndex.TAX, BankIndex.BUYING);
+		BankData.register(ItemManager.stick.itemID, 0, BankIndex.AMOUNT, BankIndex.TRADEABLE, 2F, BankIndex.TAX, BankIndex.BUYING);
 		
 		//-------------------------------------------------
 		// Addons

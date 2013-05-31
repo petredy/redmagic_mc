@@ -32,7 +32,36 @@ public class SoulContainerCrafting extends SoulContainer{
 
 	@Override
 	public boolean onClick(int slot, int shift, int right, EntityPlayer player, ItemStack stack) {
+		if(slot == 0 && entity != null){
+			for(int i = 1; i < 10; i++){
+				entity.decrStackSize(i, 1);
+			}
+		}
 		return true;
+	}
+
+	@Override
+	public ItemStack transferStackInSlot(ContainerTree container, EntityPlayer player, int slot) {
+		Slot slotData = (Slot) container.inventorySlots.get(slot);
+		if(slotData != null){
+			ItemStack stack = slotData.getStack();
+			if(stack != null){
+				if(slot < container.entity.getSizeInventory()){
+					if(!container.mergeItemStack(stack, container.entity.getSizeInventory(), container.inventorySlots.size(), false)){
+						return null;
+					}
+				}else if(slot >= container.entity.getSizeInventory()){
+					if(!container.mergeItemStack(stack, 1, container.entity.getSizeInventory(), false)){
+						return null;
+					}
+				}
+				if(stack.stackSize == 0){
+					slotData.putStack(null);
+					stack = null;
+				}
+			}
+		}
+		return null;
 	}
 
 }

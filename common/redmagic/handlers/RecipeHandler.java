@@ -41,6 +41,20 @@ public class RecipeHandler {
 			new ItemStack(Item.stick), new ItemStack(Item.wheat)
 		});
 		
+		WorkTableRegistry.register(new ItemStack(BlockManager.soulBlock, 2), new ItemStack[]{
+			new ItemStack(ItemManager.crafting.itemID, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE),
+			new ItemStack(ItemManager.crafting.itemID, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE),
+			null,
+			new ItemStack(ItemManager.crafting.itemID, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE),
+			new ItemStack(ItemManager.crafting.itemID, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE),
+			null,
+			null, null, null
+		});
+		
+		WorkTableRegistry.registerShapeless(new ItemStack(ItemManager.stick), new ItemStack[]{
+			new ItemStack(Item.stick), new ItemStack(ItemManager.soul)
+		});
+		
 		WorkTableRegistry.register(new ItemStack(ItemManager.crafting.itemID, 1, ItemIndex.CRAFTING_REDSTONE_LOGIC_CORE_ITEMDAMAGE), new ItemStack[]{
 			new ItemStack(Item.redstone), new ItemStack(ItemManager.crafting.itemID, 1, ItemIndex.CRAFTING_REDSTONE_SHARD_ITEMDAMAGE), new ItemStack(Item.redstone),
 			new ItemStack(ItemManager.crafting.itemID, 1, ItemIndex.CRAFTING_REDSTONE_SHARD_ITEMDAMAGE), new ItemStack(ItemManager.soulCrystal), new ItemStack(ItemManager.crafting.itemID, 1, ItemIndex.CRAFTING_REDSTONE_SHARD_ITEMDAMAGE),
@@ -49,12 +63,6 @@ public class RecipeHandler {
 		
 		WorkTableRegistry.registerShapeless(new ItemStack(ItemManager.soulNectar), new ItemStack[]{
 			new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_POWDER_ITEMDAMAGE), new ItemStack(Item.glassBottle)
-		});
-		
-		WorkTableRegistry.register(new ItemStack(ItemManager.redhole), new ItemStack[]{
-			new ItemStack(Item.redstone), new ItemStack(Item.redstone), new ItemStack(Item.redstone),
-			new ItemStack(Item.redstone), new ItemStack(Item.diamond), new ItemStack(Item.redstone),
-			new ItemStack(Item.redstone), new ItemStack(Item.redstone), new ItemStack(Item.redstone)
 		});
 		
 		WorkTableRegistry.register(new ItemStack(ItemManager.wrench), new ItemStack[]{
@@ -133,6 +141,12 @@ public class RecipeHandler {
 		WorkTableRegistry.register(new ItemStack(ItemManager.hoe), new ItemStack[]{
 			new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_FLINT_IRON_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_FLINT_IRON_INGOT_ITEMDAMAGE), null,
 			null, new ItemStack(Item.stick), null,
+			null, new ItemStack(Item.stick), null
+		});
+		
+		WorkTableRegistry.register(new ItemStack(ItemManager.soulAxe), new ItemStack[]{
+			new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), null,
+			new ItemStack(ItemManager.crafting, 1, ItemIndex.CRAFTING_SOUL_INGOT_ITEMDAMAGE), new ItemStack(Item.stick), null,
 			null, new ItemStack(Item.stick), null
 		});
 		

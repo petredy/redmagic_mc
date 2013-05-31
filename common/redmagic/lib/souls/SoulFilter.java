@@ -18,6 +18,8 @@ import redmagic.tileentities.tree.TileEntityTreeWood;
 
 public class SoulFilter extends Soul{
 
+	public int update = 0, neededUpdates = 100;
+	
 	@Override
 	public void init(ItemStack soul, TileEntityTreeWood entity, TreeStructure structure, int x, int y, int z) {
 		
@@ -25,19 +27,23 @@ public class SoulFilter extends Soul{
 
 	@Override
 	public void onUpdate(ItemStack soul, TileEntityTreeWood entity, TreeStructure structure, int x, int y, int z) {
+		if(update > neededUpdates){
+			update = 0;
+			int intelligence = SoulHelper.getIntelligence(soul);
+			int strength = SoulHelper.getStrength(soul);
+			int capacity = SoulHelper.getCapacity(soul);
+			int illusion = SoulHelper.getIllusion(soul);
+			int satisfaction = SoulHelper.getSatisfaction(soul);
+			int leaves = structure.getBlockType(TreeStructure.leaveKey).size();
+			leaves = leaves > capacity ? capacity : leaves;
+			leaves = leaves * (LogicIndex.SOUL_MAX_INTELLIGENCE / intelligence);
+			float multiplier = satisfaction < 50 ? 0.1F : satisfaction < 90 ? 0.3F : 1.0F;
+			int crit = new Random().nextInt(100) < illusion ? 2 : 1;
+			int essence = (int) (strength * leaves * multiplier * crit);
+			entity.store(LiquidDictionary.getLiquid("Essence", essence));
+		}
+		update++;
 		
-		int intelligence = SoulHelper.getIntelligence(soul);
-		int strength = SoulHelper.getStrength(soul);
-		int capacity = SoulHelper.getCapacity(soul);
-		int illusion = SoulHelper.getIllusion(soul);
-		int satisfaction = SoulHelper.getSatisfaction(soul);
-		int leaves = structure.getBlockType(TreeStructure.leaveKey).size();
-		leaves = leaves > capacity ? capacity : leaves;
-		leaves = leaves * (LogicIndex.SOUL_MAX_INTELLIGENCE / intelligence);
-		float multiplier = satisfaction < 50 ? 0.1F : satisfaction < 90 ? 0.3F : 1.0F;
-		int crit = new Random().nextInt(100) < illusion ? 2 : 1;
-		int essence = (int) (strength * leaves * multiplier * crit);
-		entity.store(LiquidDictionary.getLiquid("Essence", essence));
 		
 	}
 

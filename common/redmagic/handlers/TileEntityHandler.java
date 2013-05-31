@@ -28,6 +28,7 @@ public class TileEntityHandler {
 		GameRegistry.registerTileEntity(TileEntityWorkTable.class, "redmagic.TileEntityWorkTable");
 		GameRegistry.registerTileEntity(TileEntitySoulForge.class, "redmagic.TileEntitySoulForge");
 		GameRegistry.registerTileEntity(TileEntityBag.class, "redmagic.TileEntityBag");
+		GameRegistry.registerTileEntity(TileEntitySoulBlock.class, "redmagic.TileEntitySoulBlock");
 		
 		GameRegistry.registerTileEntity(TileEntityTreeWood.class, "redmagic.TileEntityTreeWood");
 		GameRegistry.registerTileEntity(TileEntityTreeLeaves.class, "redmagic.TileEntityTreeLeaves");

@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 
 public class BlockSoulForge extends BlockContainer{
 
-	public Icon side, top;
+	public Icon side, top, bottom;
 	
 	protected BlockSoulForge(int par1){
 		super(par1, Material.piston);
@@ -37,11 +37,13 @@ public class BlockSoulForge extends BlockContainer{
 	public void registerIcons(IconRegister iconRegister){
 		this.blockIcon = side = iconRegister.registerIcon(Reference.MOD_ID + ":" + BlockIndex.SOUL_FORGE_NAME + "_side");
 		top = iconRegister.registerIcon(Reference.MOD_ID + ":" + BlockIndex.SOUL_FORGE_NAME + "_top");
+		bottom = iconRegister.registerIcon(Reference.MOD_ID + ":" + BlockIndex.SOUL_FORGE_NAME + "_bottom");
 	}
 	
 	@Override
 	public Icon getIcon(int par1, int par2){
 		if(par1 == 1)return top;
+		if(par1 == 0)return bottom;
         return side;
     }
 	

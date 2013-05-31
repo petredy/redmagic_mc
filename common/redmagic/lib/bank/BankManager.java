@@ -81,7 +81,7 @@ public class BankManager {
 				}
 			}else{
 				if(!buying){
-					item.tax *= 1 + new java.util.Random().nextFloat() * BankIndex.TAX_CHANGE;
+					item.tax *= 1.5 + new java.util.Random().nextFloat() * BankIndex.TAX_CHANGE;
 					return 1 - amount * item.tax;
 				}else{
 					item.tax *= 1 - new java.util.Random().nextFloat() * BankIndex.TAX_CHANGE;

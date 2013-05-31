@@ -21,6 +21,7 @@ public class BlockManager {
 	public static Block wood;
 	public static Block leaves;
 	public static Block soulForge;
+	public static Block soulBlock;
 	
 	public static void init(){
 		pipe = new BlockPipe(BlockIndex.PIPE_ID);
@@ -34,7 +35,9 @@ public class BlockManager {
 		wood = new BlockSoulWood(BlockIndex.WOOD_ID);
 		leaves = new BlockSoulLeaves(BlockIndex.LEAVES_ID);
 		soulForge = new BlockSoulForge(BlockIndex.SOUL_FORGE_ID);
+		soulBlock = new BlockSoul(BlockIndex.SOUL_BLOCK_ID);
 		
+		GameRegistry.registerBlock(soulBlock, BlockIndex.SOUL_BLOCK_NAME);
 		GameRegistry.registerBlock(soulForge, BlockIndex.SOUL_FORGE_NAME);
 		GameRegistry.registerBlock(leaves, ItemBlockLeaves.class, BlockIndex.LEAVES_NAME);
 		GameRegistry.registerBlock(wood, ItemBlockWood.class, BlockIndex.WOOD_NAME);
@@ -78,6 +81,7 @@ public class BlockManager {
 		BlockIndex.WOOD_ID = config.getBlock(BlockIndex.WOOD_NAME, BlockIndex.WOOD_DEFAULT_ID).getInt(BlockIndex.WOOD_DEFAULT_ID);
 		BlockIndex.LEAVES_ID = config.getBlock(BlockIndex.LEAVES_NAME, BlockIndex.LEAVES_DEFAULT_ID).getInt(BlockIndex.LEAVES_DEFAULT_ID);
 		BlockIndex.SOUL_FORGE_ID = config.getBlock(BlockIndex.SOUL_FORGE_NAME, BlockIndex.SOUL_FORGE_DEFAULT_ID).getInt(BlockIndex.SOUL_FORGE_DEFAULT_ID);
+		BlockIndex.SOUL_BLOCK_ID = config.getBlock(BlockIndex.SOUL_BLOCK_NAME, BlockIndex.SOUL_BLOCK_DEFAULT_ID).getInt(BlockIndex.SOUL_BLOCK_DEFAULT_ID);
 		
 	}
 	

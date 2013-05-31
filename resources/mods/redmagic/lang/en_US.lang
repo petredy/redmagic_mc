@@ -23,6 +23,7 @@ tile.soul_crystal_ore.name=Soul Crystal Deposit
 tile.essence.name=Liquid Essence
 tile.bank.name=Trading Chest
 tile.soul_forge.name=Soul Forge
+tile.soul_block.name=Soul Block
 
 item.redhole.name=Redhole
 
@@ -38,6 +39,9 @@ item.pickaxe.name=Flintiron Pickaxe
 item.shovel.name=Flintiron Shovel
 item.axe.name=Flintiron Axe
 item.hoe.name=Flintiron Hoe
+item.soul_stick.name=Soul Stick
+item.soul_axe.name=Soul Axe
+item.scroll.name=Redmagic Scroll
 
 item.crafting.powder.name=Soul Powder
 item.crafting.ingot.name=Soul Ingot

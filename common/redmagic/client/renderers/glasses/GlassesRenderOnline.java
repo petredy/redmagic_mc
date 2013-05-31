@@ -15,24 +15,19 @@ import net.minecraft.util.MovingObjectPosition;
 
 public class GlassesRenderOnline extends GlassesRender{
 	public void render(ItemStack stack, EntityPlayer player, int width, int height, MovingObjectPosition target, int switchingTicks){
-
-		if(switchingTicks < GlassesHelper.SWITCHING_FINISHED && GlassesHelper.getInitialised(stack) == 0){
-			this.switchToOnline(stack, player, width, height, switchingTicks);
-		}else{
-			GlassesHelper.setInitialised(stack, 1);
+//		if(switchingTicks < GlassesHelper.SWITCHING_FINISHED ){
+//			this.switchToOnline(stack, player, width, height, switchingTicks);
+//		}else{
 			//Should be in an other mode
 			GlassesHelper.renderMachineName(player, target, width, height);
 			
 			String texture = this.getTexture(player);
 			
 			this.renderOverlay(width, height, texture);
-			
-			//this.renderMode(width, height);
-		}
+//		}
 	}
 
 	protected void switchToOnline(ItemStack stack, EntityPlayer player, int width, int height, int switchingTicks) {
-		Logger.log("switch to online");
 		GlassesHelper.setSwitchingStatus(stack, GlassesHelper.getSwitchingStatus(stack) + 1);
 		String texture = Texture.OVERLAY_START + switchingTicks + ".png";
 		this.renderOverlay(width, height, texture);

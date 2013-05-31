@@ -5,18 +5,18 @@ import redmagic.configuration.ItemIndex;
 import redmagic.configuration.Reference;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.EnumToolMaterial;
-import net.minecraft.item.ItemHoe;
+import net.minecraft.item.ItemSpade;
 
-public class ItemSoulHoe extends ItemHoe{
+public class ItemFlintIronShovel extends ItemSpade{
 
-	public ItemSoulHoe(int par1) {
+	public ItemFlintIronShovel(int par1) {
 		super(par1, EnumToolMaterial.EMERALD);
 		this.setCreativeTab(Redmagic.tabRedMagic);
-		this.setUnlocalizedName(ItemIndex.HOE_NAME);
+		this.setUnlocalizedName(ItemIndex.SHOVEL_NAME);
 	}
 	
 	public void registerIcons(IconRegister iconRegister){
-		this.itemIcon = iconRegister.registerIcon(Reference.MOD_ID + ":" + ItemIndex.HOE_NAME);
+		this.itemIcon = iconRegister.registerIcon(Reference.MOD_ID + ":" + ItemIndex.SHOVEL_NAME);
 	}
 
 }

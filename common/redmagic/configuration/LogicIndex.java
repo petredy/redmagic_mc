@@ -49,12 +49,12 @@ public class LogicIndex {
 	};
 	
 	public static int MAX_SOUL_FRAGMENTS_PER_ENTITY = 3;
-	public static float SOUL_FRAGMENT_INTELLIGENCE_CHANCE = 0.02F;
-	public static float SOUL_FRAGMENT_STRENGTH_CHANCE = 0.02F;
-	public static float SOUL_FRAGMENT_CAPACITY_CHANCE = 0.03F;
-	public static float SOUL_FRAGMENT_ILLUSION_CHANCE = 0.05F;
-	public static float SOUL_FRAGMENT_SATISFACTION_CHANCE = 0.01F;
-	public static float SOUL_FRAGMENT_ALL_CHANCE = 0.01F;
+	public static float SOUL_FRAGMENT_INTELLIGENCE_CHANCE = 0.1F;
+	public static float SOUL_FRAGMENT_STRENGTH_CHANCE = 0.1F;
+	public static float SOUL_FRAGMENT_CAPACITY_CHANCE = 0.1F;
+	public static float SOUL_FRAGMENT_ILLUSION_CHANCE = 0.1F;
+	public static float SOUL_FRAGMENT_SATISFACTION_CHANCE = 0.1F;
+	public static float SOUL_FRAGMENT_ALL_CHANCE = 0.05F;
 	
 	public static float[] SOUL_FRAGMENT_CHANCES = new float[]{
 		SOUL_FRAGMENT_INTELLIGENCE_CHANCE,

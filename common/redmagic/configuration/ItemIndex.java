@@ -19,6 +19,9 @@ public class ItemIndex {
 	public static final String HOE_NAME = "hoe";
 	public static final String BROOM_NAME = "broom";
 	public static final String BAG_NAME = "bag";
+	public static final String STICK_NAME = "soul_stick";
+	public static final String SOUL_AXE_NAME = "soul_axe";
+	public static final String SCROLL_NAME = "scroll";
 	
 	//Default IDs 
 	public static final int REDHOLE_DEFAULT_ID = 13900;
@@ -38,6 +41,9 @@ public class ItemIndex {
 	public static final int HOE_DEFAULT_ID = 13919;
 	public static final int BROOM_DEFAULT_ID = 13920;
 	public static final int BAG_DEFAULT_ID = 13921;
+	public static final int STICK_DEFAULT_ID = 13922;
+	public static final int SOUL_AXE_DEFAULT_ID = 13923;
+	public static final int SCROLL_DEFAULT_ID = 13924;
 	
 	//Current IDs
 	public static int REDHOLE_ID;
@@ -57,6 +63,9 @@ public class ItemIndex {
 	public static int HOE_ID;
 	public static int BROOM_ID;
 	public static int BAG_ID;
+	public static int STICK_ID;
+	public static int SOUL_AXE_ID;
+	public static int SCROLL_ID;
 	
 	//Crafting
 	public static final String CRAFTING_SOUL_POWDER_NAME = "powder";

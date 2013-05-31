@@ -11,9 +11,9 @@ import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 
 
-public class ItemSoulPickaxe extends ItemPickaxe{
+public class ItemFlintIronPickaxe extends ItemPickaxe{
 
-	public ItemSoulPickaxe(int par1) {
+	public ItemFlintIronPickaxe(int par1) {
 		super(par1, EnumToolMaterial.IRON);
 		this.setCreativeTab(Redmagic.tabRedMagic);
 		this.setUnlocalizedName(ItemIndex.PICKAXE_NAME);

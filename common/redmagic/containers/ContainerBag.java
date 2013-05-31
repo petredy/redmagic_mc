@@ -25,7 +25,7 @@ public class ContainerBag extends Container{
 		int count = 0;
 		for(int i = 0; i < 6; i++){
 			for(int j = 0; j < 9; j++){
-				this.addSlotToContainer(new SlotBag(entity, count++, j * 18 + 8, i * 18 - 10, id));
+				this.addSlotToContainer(new SlotBag(entity, count++, j * 18 + 8, i * 18 + 18, id));
 			}
 		}
 		
@@ -42,13 +42,13 @@ public class ContainerBag extends Container{
         {
             for (int j = 0; j < 9; ++j)
             {
-                this.addSlotToContainer(new Slot(inventory, j + i * 9 + 9, 8 + j * 18, 112 + i * 18));
+                this.addSlotToContainer(new Slot(inventory, j + i * 9 + 9, 8 + j * 18, 140 + i * 18));
             }
         }
 
         for (int i = 0; i < 9; ++i)
         {
-            this.addSlotToContainer(new Slot(inventory, i, 8 + i * 18, 170));
+            this.addSlotToContainer(new Slot(inventory, i, 8 + i * 18, 198));
         }
 	}
 	
@@ -63,7 +63,7 @@ public class ContainerBag extends Container{
 		if(slot != null){
 			ItemStack stack = slot.getStack();
 			if(stack != null){
-				if(index > 0 && index < 5){
+				if(index < this.entity.getSizeInventory()){
 					if(!this.mergeItemStack(stack, this.entity.getSizeInventory(), this.inventorySlots.size(), false)){
 						return null;
 					}

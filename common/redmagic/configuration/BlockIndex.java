@@ -53,7 +53,9 @@ public class BlockIndex {
 	public static final int SOUL_FORGE_DEFAULT_ID = 3317;
 	public static int SOUL_FORGE_ID;
 	
-	
+	public static final String SOUL_BLOCK_NAME = "soul_block";
+	public static final int SOUL_BLOCK_DEFAULT_ID = 3318;
+	public static int SOUL_BLOCK_ID;
 	
 	//Extractor Names
 	public static final String EXTRACTOR_BASIC_NAME = "basic";

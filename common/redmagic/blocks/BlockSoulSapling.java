@@ -45,7 +45,7 @@ public class BlockSoulSapling extends BlockContainer implements IPlantable, IWre
 	public Icon[] icons = new Icon[ItemBlockSapling.subNames.length];
 	
 	protected BlockSoulSapling(int par1) {
-		super(par1, Material.grass);
+		super(par1, Material.leaves);
 		this.setCreativeTab(Redmagic.tabRedMagic);
 		this.setUnlocalizedName(BlockIndex.SAPLING_NAME);
 		this.setTickRandomly(true);

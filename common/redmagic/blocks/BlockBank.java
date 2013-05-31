@@ -4,12 +4,14 @@ import redmagic.Redmagic;
 import redmagic.client.renderers.RenderBank;
 import redmagic.configuration.BlockIndex;
 import redmagic.configuration.GuiIndex;
+import redmagic.configuration.Reference;
 import redmagic.configuration.RenderIndex;
 import redmagic.helpers.InventoryHelper;
 import redmagic.tileentities.bank.TileEntityBank;
 import net.minecraft.block.BlockChest;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -31,6 +33,11 @@ public class BlockBank extends BlockContainer{
 	@Override
 	public TileEntity createNewTileEntity(World world) {
 		return new TileEntityBank();
+	}
+	
+	@Override
+	public void registerIcons(IconRegister iconRegister){
+		this.blockIcon = iconRegister.registerIcon(Reference.MOD_ID + ":" + BlockIndex.BANK_NAME);
 	}
 	
 	@Override

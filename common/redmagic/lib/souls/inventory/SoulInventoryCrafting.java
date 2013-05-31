@@ -5,6 +5,8 @@ import net.minecraftforge.common.ForgeDirection;
 
 public class SoulInventoryCrafting extends SoulInventory{
 	
+	public boolean change = false;
+	
 	public SoulInventoryCrafting(){
 		this.inv = new ItemStack[10];
 	}
@@ -22,6 +24,12 @@ public class SoulInventoryCrafting extends SoulInventory{
 	@Override
 	public boolean isStackValidForSlot(int i, ItemStack itemstack) {
 		return false;
+	}
+	
+	@Override
+	public void setInventorySlotContents(int i, ItemStack itemstack){
+		change = true;
+		inv[i] = itemstack;
 	}
 
 	@Override

@@ -11,4 +11,6 @@ public abstract class SoulContainer {
 	
 	public abstract boolean onClick(int slot, int shift, int right, EntityPlayer player, ItemStack stack);
 	
+	public abstract ItemStack transferStackInSlot(ContainerTree container, EntityPlayer player, int slot);
+	
 }

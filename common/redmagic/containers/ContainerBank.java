@@ -14,7 +14,7 @@ import redmagic.lib.bank.BankManager;
 import redmagic.network.PacketBuyItem;
 import redmagic.network.PacketHandler;
 import redmagic.network.PacketSellItem;
-import redmagic.slots.SlotWorkTable;
+import redmagic.slots.SlotNoInteraction;
 import redmagic.tileentities.bank.TileEntityBank;
 import net.minecraft.client.gui.inventory.GuiContainerCreative;
 import net.minecraft.entity.player.EntityPlayer;
@@ -43,7 +43,7 @@ public class ContainerBank extends Container{
         {
             for (int j = 0; j < 9; ++j)
             {
-                this.addSlotToContainer(new SlotWorkTable(this.inv, i * 9 + j, 9 + j * 18, 18 + i * 18));
+                this.addSlotToContainer(new SlotNoInteraction(this.inv, i * 9 + j, 9 + j * 18, 18 + i * 18));
             }
         }
 		

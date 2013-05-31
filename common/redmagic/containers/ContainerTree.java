@@ -54,26 +54,16 @@ public class ContainerTree extends Container{
 	
 	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int index)
     {
-		Slot slot = (Slot) this.inventorySlots.get(index);
-		if(slot != null){
-			ItemStack stack = slot.getStack();
-			if(stack != null){
-				if(index == 0){
-					if(!this.mergeItemStack(stack, this.entity.getSizeInventory(), this.inventorySlots.size(), false)){
-						return null;
-					}
-				}else{
-					if(!this.mergeItemStack(stack, 0, this.entity.getSizeInventory(), false)){
-						return null;
-					}
-					if(stack.stackSize == 0){
-						slot.putStack(null);
-						stack = null;
-					}
-				}
+		
+		if(this.entity.hasSoul()){
+			SoulContainer container = TreeHelper.loadStructure(this.entity.worldObj, this.entity.structureID).storage.getBlockAt(this.entity.xCoord, this.entity.yCoord, this.entity.zCoord).soul.getContainer();
+			if(container != null){
+				Slot slot = (Slot) this.inventorySlots.get(index);
+				return container.transferStackInSlot(this, par1EntityPlayer, index);
 			}
 		}
 		return null;
+		
     }
 	
 	public ItemStack slotClick(int par1, int par2, int par3, EntityPlayer par4EntityPlayer)
@@ -91,5 +81,9 @@ public class ContainerTree extends Container{
 		}
 		return super.slotClick(par1, par2, par3, par4EntityPlayer);
     }
+	
+	public boolean mergeItemStack(ItemStack stack, int start, int length, boolean idk){
+		return super.mergeItemStack(stack, start, length, idk);
+	}
 
 }

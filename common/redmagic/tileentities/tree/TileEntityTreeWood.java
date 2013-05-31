@@ -29,7 +29,6 @@ import redmagic.tileentities.TileEntityStorage;
 public class TileEntityTreeWood extends TileEntityStorage implements IMultiEntity, ISidedInventory{
 
 	public Integer structureID = null;
-	public int updateCount = 0, neededUpdateCount = 50;
 	public boolean init = false;
 	public boolean redstone = false;
 	
@@ -39,11 +38,9 @@ public class TileEntityTreeWood extends TileEntityStorage implements IMultiEntit
 	}
 	
 	public void updateEntity(){
-		if(updateCount > neededUpdateCount && this.hasStructure() && init){
-			updateCount = 0;
+		if(this.hasStructure() && init){
 			this.update();
 		}
-		updateCount++;
 		if(this.hasStructure() && !init)this.init();
 	}
 	
@@ -479,8 +476,8 @@ public class TileEntityTreeWood extends TileEntityStorage implements IMultiEntit
 	}
 
 	public void onRedstoneOn() {
-		redstone = true;
-		if(this.hasSoul()){
+		if(this.hasSoul() && !redstone){
+			redstone = true;
 			TreeStructure structure = TreeHelper.loadStructure(worldObj, structureID);
 			SoulBlock block = structure.storage.getBlockAt(xCoord, yCoord, zCoord);
 			if(block != null){
@@ -490,8 +487,8 @@ public class TileEntityTreeWood extends TileEntityStorage implements IMultiEntit
 	}
 
 	public void onRedstoneOff() {
-		redstone = false;
-		if(this.hasSoul()){
+		if(this.hasSoul() && redstone){
+			redstone = false;
 			TreeStructure structure = TreeHelper.loadStructure(worldObj, structureID);
 			SoulBlock block = structure.storage.getBlockAt(xCoord, yCoord, zCoord);
 			if(block != null){

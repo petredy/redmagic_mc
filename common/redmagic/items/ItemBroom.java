@@ -1,5 +1,6 @@
 package redmagic.items;
 
+import redmagic.Redmagic;
 import redmagic.configuration.ItemIndex;
 import redmagic.configuration.Reference;
 import redmagic.helpers.BlockHelper;
@@ -14,10 +15,11 @@ import net.minecraft.util.MovingObjectPosition;
 public class ItemBroom extends ItemTool{
 
 	protected ItemBroom(int par1) {
-		super(par1, 0, EnumToolMaterial.EMERALD, new Block[]{Block.dirt});
+		super(par1, 0, EnumToolMaterial.EMERALD, new Block[]{Block.dirt, Block.grass});
 		this.setMaxDamage(500);
 		this.setMaxStackSize(1);
-		
+		this.setUnlocalizedName(ItemIndex.BROOM_NAME);
+		this.setCreativeTab(Redmagic.tabRedMagic);
 		this.efficiencyOnProperMaterial = 2000F;
 	}
 	

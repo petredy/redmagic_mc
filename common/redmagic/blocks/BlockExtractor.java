@@ -56,7 +56,7 @@ public class BlockExtractor extends BlockContainer implements IWrenchable{
 	public void registerIcons(IconRegister par1IconRegister) {
         this.iconInactive = par1IconRegister.registerIcon(Reference.MOD_ID + ":" + BlockIndex.EXTRACTOR_BASIC_NAME);
         this.iconActive = par1IconRegister.registerIcon(Reference.MOD_ID + ":" + BlockIndex.EXTRACTOR_BASIC_NAME + "_active");
-        this.collectorInactive = par1IconRegister.registerIcon(Reference.MOD_ID + ":" + BlockIndex.EXTRACTOR_COLLECTOR_NAME);
+        this.collectorInactive = par1IconRegister.registerIcon(Reference.MOD_ID + ":" + BlockIndex.EXTRACTOR_BASIC_NAME);
         this.collectorActive = par1IconRegister.registerIcon(Reference.MOD_ID + ":" + BlockIndex.EXTRACTOR_COLLECTOR_NAME + "_active");
 	}
 	

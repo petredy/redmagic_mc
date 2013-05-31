@@ -1,5 +1,6 @@
 package redmagic.lib.souls.inventory;
 
+import redmagic.core.Logger;
 import net.minecraft.item.ItemStack;
 
 public abstract class SoulInventory {

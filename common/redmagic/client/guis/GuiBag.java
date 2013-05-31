@@ -24,16 +24,15 @@ public class GuiBag extends GuiContainer{
 	}
 	
 	public void initGui(){
-		super.initGui();
-		this.xSize = xSize;
 		this.ySize = ySize + 55;
+		super.initGui();
     }
 
 	@Override
 	public void drawGuiContainerForegroundLayer(int par1, int par2){
-		fontRenderer.drawString(this.entity.getInvName(), 8, - 22, 4210752);
+		fontRenderer.drawString(this.entity.getInvName(), 8, 6, 4210752);
 		
-		fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 120, 4210752);
+		fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 92, 4210752);
 	}
 	
 	@Override

@@ -66,13 +66,13 @@ public class GuiBank extends GuiContainer{
 		super(new ContainerBank(player,tileEntity));
 		this.entity = tileEntity;
 		this.player = player;
-		this.xSize = 194;
-		this.ySize = 192;
 		this.allowUserInput = true;
 	}
 	
 	public void initGui()
     {
+		this.xSize = 194;
+		this.ySize = 192;
 		super.initGui();
 		this.buttonList.clear();
         Keyboard.enableRepeatEvents(true);
@@ -204,8 +204,11 @@ public class GuiBank extends GuiContainer{
         
         //Add Costs to the tooltip of every item
         list.add("Costs");
-        list.add("One: " + BankManager.getItemPrice(par1ItemStack.itemID, par1ItemStack.getItemDamage()) + "C");
-        list.add("Stack: " + (BankManager.getItemPrice(par1ItemStack.itemID, par1ItemStack.getItemDamage()) * par1ItemStack.getMaxStackSize()) + "C");
+        float price = BankManager.getItemPrice(par1ItemStack.itemID, par1ItemStack.getItemDamage());
+        float stack = price * par1ItemStack.getMaxStackSize();
+        
+        list.add("One: " + (price > 0.01 ? String.format("%.2f", price) : "<0.01") + "C");
+        list.add("Stack: " + (stack > 0.01 ? String.format("%.2f", stack) : "<0.01") + "C");
        
         for (int k = 0; k < list.size(); ++k)
         {
@@ -221,6 +224,19 @@ public class GuiBank extends GuiContainer{
 
         FontRenderer font = par1ItemStack.getItem().getFontRenderer(par1ItemStack);
         drawHoveringText(list, par2, par3, (font == null ? fontRenderer : font));
+    }
+	
+	public List<String> handleItemTooltip(ItemStack stack, int mousex, int mousey, List<String> list)
+    {
+		if(stack != null){
+			list.add("Costs");
+			float price = BankManager.getItemPrice(stack.itemID, stack.getItemDamage());
+	        float stackPrice = price * stack.getMaxStackSize();
+	        
+	        list.add("One: " + (price > 0.01 ? String.format("%.2f", price) : "<0.01") + "C");
+	        list.add("Stack: " + (stackPrice > 0.01 ? String.format("%.2f", stackPrice) : "<0.01") + "C");
+		}
+        return list;
     }
 	
 	public void drawScreen(int par1, int par2, float par3)

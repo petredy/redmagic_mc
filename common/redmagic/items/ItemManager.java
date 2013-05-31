@@ -19,12 +19,15 @@ public class ItemManager {
 	public static ItemCrafting crafting;
 	public static ItemFragment fragment;
 	public static ItemGlasses glasses;
-	public static ItemSoulPickaxe pickaxe;
-	public static ItemSoulShovel shovel;
-	public static ItemSoulAxe axe;
-	public static ItemSoulHoe hoe;
+	public static ItemFlintIronPickaxe pickaxe;
+	public static ItemFlintIronShovel shovel;
+	public static ItemFlintIronAxe axe;
+	public static ItemFlintIronHoe hoe;
 	public static ItemBroom broom;
 	public static ItemBag bag;
+	public static ItemSoulStick stick;
+	public static ItemSoulAxe soulAxe;
+	public static ItemScroll scroll;
 	
 	public static void init(){
 		redhole = new ItemRedhole(ItemIndex.REDHOLE_ID);
@@ -37,12 +40,15 @@ public class ItemManager {
 		crafting = new ItemCrafting(ItemIndex.CRAFTING_ID);
 		fragment = new ItemFragment(ItemIndex.FRAGMENT_ID);
 		glasses = new ItemGlasses(ItemIndex.ARMOR_SOUL_ID, 0, 0);
-		pickaxe = new ItemSoulPickaxe(ItemIndex.PICKAXE_ID);
-		shovel = new ItemSoulShovel(ItemIndex.SHOVEL_ID);
-		axe = new ItemSoulAxe(ItemIndex.AXE_ID);
-		hoe = new ItemSoulHoe(ItemIndex.HOE_ID);
+		pickaxe = new ItemFlintIronPickaxe(ItemIndex.PICKAXE_ID);
+		shovel = new ItemFlintIronShovel(ItemIndex.SHOVEL_ID);
+		axe = new ItemFlintIronAxe(ItemIndex.AXE_ID);
+		hoe = new ItemFlintIronHoe(ItemIndex.HOE_ID);
 		broom = new ItemBroom(ItemIndex.BROOM_ID);
 		bag = new ItemBag(ItemIndex.BAG_ID);
+		stick = new ItemSoulStick(ItemIndex.STICK_ID);
+		soulAxe = new ItemSoulAxe(ItemIndex.SOUL_AXE_ID);
+		scroll = new ItemScroll(ItemIndex.SCROLL_ID);
 		
 		registerRecipes();
 		registerSmelting();
@@ -55,6 +61,10 @@ public class ItemManager {
 			" S ",
 			'I', Item.ingotIron,
 			'S', Item.stick
+		});
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(scroll), new Object[]{
+			new ItemStack(Item.paper), new ItemStack(Item.paper), new ItemStack(Item.paper), new ItemStack(Item.paper)
 		});
 	}
 	
@@ -79,6 +89,9 @@ public class ItemManager {
 		ItemIndex.HOE_ID = config.getItem(ItemIndex.HOE_NAME, ItemIndex.HOE_DEFAULT_ID).getInt(ItemIndex.HOE_DEFAULT_ID);
 		ItemIndex.BROOM_ID = config.getItem(ItemIndex.BROOM_NAME, ItemIndex.BROOM_DEFAULT_ID).getInt(ItemIndex.BROOM_DEFAULT_ID);
 		ItemIndex.BAG_ID = config.getItem(ItemIndex.BAG_NAME, ItemIndex.BAG_DEFAULT_ID).getInt(ItemIndex.BAG_DEFAULT_ID);
+		ItemIndex.STICK_ID = config.getItem(ItemIndex.STICK_NAME, ItemIndex.STICK_DEFAULT_ID).getInt(ItemIndex.STICK_DEFAULT_ID);
+		ItemIndex.SOUL_AXE_ID = config.getItem(ItemIndex.SOUL_AXE_NAME, ItemIndex.SOUL_AXE_DEFAULT_ID).getInt(ItemIndex.SOUL_AXE_DEFAULT_ID);
+		ItemIndex.SCROLL_ID = config.getItem(ItemIndex.SCROLL_NAME, ItemIndex.SCROLL_DEFAULT_ID).getInt(ItemIndex.SCROLL_DEFAULT_ID);
 		
 	}
 }

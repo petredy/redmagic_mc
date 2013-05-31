@@ -1,5 +1,6 @@
 package redmagic.lib.bag;
 
+import redmagic.api.bank.BankData;
 import redmagic.configuration.Reference;
 import redmagic.helpers.ItemHelper;
 import redmagic.tileentities.TileEntityBag;
@@ -9,11 +10,15 @@ import net.minecraft.world.World;
 public class BagHelper {
 	public static void initBag(World world, ItemStack bag){
 		int id = world.getUniqueDataId(Reference.MOD_ID + ".bag.");
-		BagData data = new BagData(Reference.MOD_ID + ".bag." + id);
-		data.bag = new TileEntityBag();
-		data.markDirty();
-		ItemHelper.setInteger(bag, Reference.MOD_ID + ".bag" , id);
-		world.setItemData(Reference.MOD_ID + ".bag." + id, data);
+		if(id > 0 && world.loadItemData(BankData.class, Reference.MOD_ID + ".bag." + id) == null){
+			BagData data = new BagData(Reference.MOD_ID + ".bag." + id);
+			data.bag = new TileEntityBag();
+			data.markDirty();
+			ItemHelper.setInteger(bag, Reference.MOD_ID + ".bag" , id);
+			world.setItemData(Reference.MOD_ID + ".bag." + id, data);
+		}else{
+			initBag(world, bag);
+		}
 	}
 	
 	public static boolean isInitialised(ItemStack bag){

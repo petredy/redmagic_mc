@@ -25,6 +25,7 @@ import redmagic.tileentities.tree.TileEntityTreeWood;
 public class SoulCrafting extends Soul{
 
 	public SoulInventoryCrafting inventory = new SoulInventoryCrafting();
+	public SoulContainerCrafting container = new SoulContainerCrafting();
 	
 	@Override
 	public void init(ItemStack soul, TileEntityTreeWood entity, TreeStructure structure, int x, int y, int z) {
@@ -34,8 +35,20 @@ public class SoulCrafting extends Soul{
 
 	@Override
 	public void onUpdate(ItemStack soul, TileEntityTreeWood entity, TreeStructure structure, int x, int y, int z) {
-		// TODO Auto-generated method stub
-		
+		if(inventory.change){
+			ItemStack[] matrix = new ItemStack[9];
+			int count = 0;
+			for(int i = 1; i < 10; i++){
+				matrix[count++] = entity.getStackInSlot(i);
+			}
+			ItemStack output = TreeCraftingRegistry.find(matrix, soul);
+			if(output == null)output = WorkTableRegistry.find(matrix);
+			if(output != null){
+				entity.setInventorySlotContents(0, output.copy());
+			}else{
+				entity.setInventorySlotContents(0, null);
+			}
+		}
 	}
 
 	@Override
@@ -60,7 +73,7 @@ public class SoulCrafting extends Soul{
 	}
 	
 	public SoulContainer getContainer(){
-		return new SoulContainerCrafting();
+		return container;
 	}
 
 	@Override
@@ -92,33 +105,7 @@ public class SoulCrafting extends Soul{
 
 	@Override
 	public void onRedstoneOn(ItemStack soul, TileEntityTreeWood entity, TreeStructure structure, int x, int y, int z) {
-		ItemStack[] matrix = new ItemStack[9];
-		int count = 0;
-		for(int i = 1; i < 10; i++){
-			matrix[count++] = entity.getStackInSlot(i);
-		}
-		ItemStack output = TreeCraftingRegistry.find(matrix, soul);
-		if(output == null)output = WorkTableRegistry.find(matrix);
-		if(output != null){
-			LiquidStack drain = entity.drain(ForgeDirection.UNKNOWN, LogicIndex.CRAFTING_COSTS, true);
-			if(drain != null && drain.amount >= LogicIndex.CRAFTING_COSTS){
-				for(int i = 1; i < 10; i++){
-					entity.decrStackSize(i, 1);
-				}
-				if(entity.getStackInSlot(0) == null){
-					entity.setInventorySlotContents(0, output.copy());
-				}else{
-					if(entity.getStackInSlot(0).isItemEqual(output) && entity.getStackInSlot(0).stackSize + output.stackSize <= output.getMaxStackSize()){
-						entity.decrStackSize(0, -output.stackSize);
-					}else{
-						InventoryHelper.dropItemStack(output.copy(), entity.worldObj, entity.xCoord, entity.yCoord, entity.zCoord);
-					}
-				}
-				
-			}else{
-				if(drain != null)entity.fill(ForgeDirection.UNKNOWN, drain, true);
-			}
-		}
+		
 	}
 
 	@Override
