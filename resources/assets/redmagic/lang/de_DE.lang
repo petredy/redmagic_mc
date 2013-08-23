@@ -1,0 +1,13 @@
+language.name=Deutsch
+language.region=DE
+language.code=de_DE
+
+gui.done=Fertig
+gui.cancel=Abbrechen
+gui.toMenu=Zurück zum Spiel
+gui.up=Hinauf
+gui.down=Hinuter
+gui.yes=Ja
+gui.no=Nein
+
+itemGroup.RedMagic=RedMagic
