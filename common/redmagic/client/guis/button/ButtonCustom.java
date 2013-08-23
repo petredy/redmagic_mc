@@ -2,9 +2,14 @@ package redmagic.client.guis.button;
 
 import org.lwjgl.opengl.GL11;
 
+import redmagic.configuration.Reference;
+import redmagic.configuration.Texture;
+import redmagic.helpers.ResourceLocationHelper;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.util.ResourceLocation;
 
 public class ButtonCustom extends GuiButton{
 	
@@ -20,7 +25,7 @@ public class ButtonCustom extends GuiButton{
         if (this.drawButton)
         {
         	FontRenderer var3 = par1Minecraft.fontRenderer;
-        	par1Minecraft.renderEngine.bindTexture(this.texture);
+			par1Minecraft.func_110434_K().func_110577_a(ResourceLocationHelper.getResourceLocation(this.texture));
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             this.field_82253_i = par2 >= this.xPosition && par3 >= this.yPosition && par2 < this.xPosition + this.width && par3 < this.yPosition + this.height;
             int k = this.getHoverState(this.field_82253_i);

@@ -10,7 +10,7 @@ public class ModelSymbol extends ModelBase{
 	public IModelCustom symbol;
 	
     public ModelSymbol(){
-    	symbol = AdvancedModelLoader.loadModel("/mods/redmagic/symbol.obj");
+    	symbol = AdvancedModelLoader.loadModel("/assets/redmagic/symbol.obj");
     }
     
     public void render(){

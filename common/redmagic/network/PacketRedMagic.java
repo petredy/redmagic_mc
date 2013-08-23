@@ -1,7 +1,9 @@
 package redmagic.network;
 
 import java.io.ByteArrayOutputStream;
+import java.io.DataInput;
 import java.io.DataInputStream;
+import java.io.DataOutput;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
@@ -44,9 +46,9 @@ public class PacketRedMagic extends Packet{
 	}
 	
 	@Override
-	public void readPacketData(DataInputStream var1) throws IOException {}
+	public void readPacketData(DataInput var1) throws IOException {}
 	@Override
-	public void writePacketData(DataOutputStream var1) throws IOException {}
+	public void writePacketData(DataOutput var1) throws IOException {}
 	@Override
 	public void processPacket(NetHandler var1) {}
 	@Override

@@ -2,25 +2,29 @@ package redmagic.helpers;
 
 import org.lwjgl.opengl.GL11;
 
+import redmagic.configuration.Texture;
+
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.client.renderer.RenderEngine;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import net.minecraft.util.ResourceLocation;
 
 public class RenderHelper {
 	
 	private static int rotationAngle = 0;
 	
-	public static void renderRotatingBlockIntoGUI(FontRenderer fontRenderer, RenderEngine renderEngine, ItemStack stack, int x, int y, float zLevel, float scale) {
+	public static void renderRotatingBlockIntoGUI(FontRenderer fontRenderer, TextureManager renderEngine, ItemStack stack, int x, int y, float zLevel, float scale) {
 
         RenderBlocks renderBlocks = new RenderBlocks();
 
         Block block = Block.blocksList[stack.itemID];
-        renderEngine.bindTexture("/terrain.png");
+		Minecraft.getMinecraft().func_110434_K().func_110577_a(Texture.VANILLA_BLOCK_TEXTURE_SHEET);
         GL11.glPushMatrix();
         GL11.glTranslatef(x - 2, y + 3, -3.0F + zLevel);
         GL11.glScalef(10.0F, 10.0F, 10.0F);
@@ -43,12 +47,38 @@ public class RenderHelper {
         renderBlocks.useInventoryTint = true;
         GL11.glPopMatrix();
     }
+	
+	public static void renderBlockIntoGUI(FontRenderer fontRenderer, TextureManager renderEngine, ItemStack stack, int x, int y, float zLevel, float scale) {
 
-    public static void renderItemIntoGUI(FontRenderer fontRenderer, RenderEngine renderEngine, ItemStack itemStack, int x, int y, float opacity, float scale) {
+        RenderBlocks renderBlocks = new RenderBlocks();
+
+        Block block = Block.blocksList[stack.itemID];
+		Minecraft.getMinecraft().func_110434_K().func_110577_a(Texture.VANILLA_BLOCK_TEXTURE_SHEET);
+        GL11.glPushMatrix();
+        GL11.glTranslatef(x - 2, y + 3, -3.0F + zLevel);
+        GL11.glScalef(10.0F, 10.0F, 10.0F);
+        GL11.glTranslatef(1.0F, 0.5F, 1.0F);
+        GL11.glScalef(1.0F * scale, 1.0F * scale, -1.0F);
+        GL11.glRotatef(210.0F, 1.0F, 0.0F, 0.0F);
+        GL11.glRotatef(45F, 0, 1, 0);
+        int var10 = Item.itemsList[stack.itemID].getColorFromItemStack(stack, 0);
+        float var16 = (var10 >> 16 & 255) / 255.0F;
+        float var12 = (var10 >> 8 & 255) / 255.0F;
+        float var13 = (var10 & 255) / 255.0F;
+
+        GL11.glColor4f(var16, var12, var13, 1.0F);
+
+        renderBlocks.useInventoryTint = true;
+        renderBlocks.renderBlockAsItem(block, stack.getItemDamage(), 1.0F);
+        renderBlocks.useInventoryTint = true;
+        GL11.glPopMatrix();
+    }
+
+    public static void renderItemIntoGUI(FontRenderer fontRenderer, TextureManager renderEngine, ItemStack itemStack, int x, int y, float opacity, float scale) {
 
         Icon icon = itemStack.getIconIndex();
         GL11.glDisable(GL11.GL_LIGHTING);
-        renderEngine.bindTexture("/gui/items.png");
+		Minecraft.getMinecraft().func_110434_K().func_110577_a(Texture.VANILLA_ITEM_TEXTURE_SHEET);
         int overlayColour = itemStack.getItem().getColorFromItemStack(itemStack, 0);
         float red = (overlayColour >> 16 & 255) / 255.0F;
         float green = (overlayColour >> 8 & 255) / 255.0F;

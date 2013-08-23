@@ -1,6 +1,5 @@
 package redmagic.helpers;
 
-import redmagic.core.Logger;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryBasic;
@@ -11,7 +10,6 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
-import net.minecraftforge.common.ISidedInventory;
 
 public class InventoryHelper {
 	
@@ -122,7 +120,7 @@ public class InventoryHelper {
 		if(stackToMove == null)return stackToMove;
 		for (int i = 0; i < inventory.getSizeInventory(); i++) {
 			ItemStack stack = inventory.getStackInSlot(i);
-			if (stack == null && inventory.isStackValidForSlot(i, stackToMove)) {
+			if (stack == null && inventory.isItemValidForSlot(i, stackToMove)) {
 				inventory.setInventorySlotContents(i, stackToMove);
 				return null;
 			}
@@ -140,12 +138,12 @@ public class InventoryHelper {
 		return stackToMove;
 	}
 	
-	public static int addItemStackToInventorySide(ISidedInventory inventory, int side, ItemStack par1ItemStack){
-		int start = inventory.getStartInventorySide(ForgeDirection.getOrientation(side));
-		int length = inventory.getSizeInventorySide(ForgeDirection.getOrientation(side));
-		//return addItemStackToInventory(getSlots(inventory, start, length), par1ItemStack);
-		return 0;
-	}
+//	public static int addItemStackToInventorySide(ISidedInventory inventory, int side, ItemStack par1ItemStack){
+//		int start = inventory.getStartInventorySide(ForgeDirection.getOrientation(side));
+//		int length = inventory.getSizeInventorySide(ForgeDirection.getOrientation(side));
+//		//return addItemStackToInventory(getSlots(inventory, start, length), par1ItemStack);
+//		return 0;
+//	}
 	
 	public static ItemStack[] getSlots(IInventory inventory){
 		return getSlots(inventory, 0, inventory.getSizeInventory());

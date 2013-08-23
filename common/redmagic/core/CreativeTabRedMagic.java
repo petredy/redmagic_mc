@@ -11,7 +11,7 @@ public class CreativeTabRedMagic extends CreativeTabs{
 	}
 	
 	public int getTabIconItemIndex() {
-        return ItemManager.soul.itemID;
+        return ItemManager.redhole.itemID;
     }
 	
 	

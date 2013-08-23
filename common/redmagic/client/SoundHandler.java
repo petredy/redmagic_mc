@@ -2,7 +2,7 @@ package redmagic.client;
 
 
 import redmagic.configuration.Sounds;
-import redmagic.core.Logger;
+import redmagic.helpers.LogHelper;
 
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.event.ForgeSubscribe;
@@ -15,11 +15,11 @@ public class SoundHandler {
         for (String soundFile : Sounds.soundFiles) {
             // Try to add the custom sound file to the pool of sounds
             try {
-                event.manager.soundPoolSounds.addSound(soundFile, this.getClass().getResource("/" + soundFile));
+                event.manager.soundPoolSounds.addSound(soundFile);
             }
             // If we cannot add the custom sound file to the pool, log the exception
             catch (Exception e) {
-                Logger.log("Failed loading sound file: " + soundFile);
+                LogHelper.log("Failed loading sound file: " + soundFile);
             }
         }
     }

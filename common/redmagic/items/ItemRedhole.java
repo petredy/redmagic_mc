@@ -3,13 +3,10 @@ package redmagic.items;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import redmagic.Redmagic;
-import redmagic.api.essence.IStorage;
 import redmagic.api.items.IKeyBound;
 import redmagic.configuration.ItemIndex;
 import redmagic.configuration.Reference;
-import redmagic.core.Logger;
-import redmagic.handlers.DataHandler;
-import redmagic.lib.bank.BankData;
+import redmagic.helpers.LogHelper;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -22,7 +19,7 @@ public class ItemRedhole extends Item implements IKeyBound{
 
 	public ItemRedhole(int par1) {
 		super(par1);
-		this.setCreativeTab(Redmagic.tabRedMagic);
+		this.setCreativeTab(Redmagic.tabRedmagic);
 		this.setMaxStackSize(1);
 		this.setUnlocalizedName(ItemIndex.REDHOLE_NAME);
 	}
@@ -35,26 +32,12 @@ public class ItemRedhole extends Item implements IKeyBound{
 	
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
     {
-		MovingObjectPosition position = this.getMovingObjectPositionFromPlayer(world, player, true);
-		if(position != null && !world.isRemote){
-			TileEntity entity = world.getBlockTileEntity(position.blockX, position.blockY, position.blockZ);
-			if(entity instanceof IStorage){
-				IStorage storage = (IStorage)entity;
-				player.addChatMessage("Essences: " + storage.getEssences() + "/" + storage.getMaxEssences());
-			}
-		}
         return stack;
     }
 	
 	@Override
 	public void doKeyBindingAction(EntityPlayer player, ItemStack stack, String keyBinding) {
-		if(keyBinding.equals(Reference.KEY_EXTRA_NAME)){
-			Logger.log("reset Bank");
-			if(player.isSneaking())BankData.data.clear();
-			Redmagic.bankData = new BankData();
-			DataHandler.loadDefault();
-			
-		}
+		
 	}
 
 }

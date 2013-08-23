@@ -1,15 +1,15 @@
 package redmagic;
 
 
+import java.io.File;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.Mod.Init;
-import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -17,17 +17,12 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-import redmagic.addons.BuildcraftAddon;
-import redmagic.addons.ForestryAddon;
-import redmagic.addons.IndustrialCraftAddon;
-import redmagic.addons.RailcraftAddon;
-import redmagic.addons.ThaumcraftAddon;
 import redmagic.blocks.*;
 import redmagic.configuration.*;
 import redmagic.core.*;
 import redmagic.handlers.*;
+import redmagic.helpers.LogHelper;
 import redmagic.items.*;
-import redmagic.lib.bank.BankData;
 import redmagic.network.*;
 
 @Mod( modid = Reference.MOD_ID, name=Reference.MOD_NAME, version=Reference.VERSION)
@@ -41,27 +36,23 @@ public class Redmagic{
 	@Instance(Reference.MOD_NAME)
 	public static Redmagic instance;
 	
-	public static CreativeTabs tabRedMagic = new CreativeTabRedMagic(CreativeTabs.getNextID(), Reference.MOD_NAME);
+	public static CreativeTabs tabRedmagic = new CreativeTabRedMagic(CreativeTabs.getNextID(), Reference.MOD_NAME);
 	
 	public static boolean DEBUG;
 	
-	public static boolean loaded = false;
-	public static long saved = 0;
-	
-	
-	public static BankData bankData;
 	
 	//-------------------------------------------------------------------------------------------------------------
 	//PRE INIT
-	@PreInit
+	@EventHandler
 	public void preInit(FMLPreInitializationEvent evt)
 	{		
 		instance = this;
 		Configuration config = new Configuration(evt.getSuggestedConfigurationFile());
         config.load();
-        
+
+        System.out.println(config);
         //Initialise Logger
-        Logger.init(config);
+        LogHelper.init(config);
         
         //Initialise Language Handling
       	LanguageHandler.init();
@@ -91,7 +82,7 @@ public class Redmagic{
       	ConfigHandler.config(config);
         
         //Initialise Liquid Registration
-      	LiquidHandler.init();
+      	//LiquidHandler.init();
         
         config.save();
 	}
@@ -100,26 +91,25 @@ public class Redmagic{
 	
 	//----------------------------------------------------------------------------------------
 	//INIT
-	@Init
+	@EventHandler
     public void init(FMLInitializationEvent event)
     {
-		proxy.registerAll();
-		
-		//Handle Recipe Registration
-		RecipeHandler.registry();
+		proxy.registerSound();
+		proxy.registerKeyBinding();
+		proxy.registerRendering();
 		
 		//Initialise World Generation
 		GameRegistry.registerWorldGenerator(new WorldGenerationHandler());
 		
 		
 		// Initialise Liquid Texture Mapping
-		MinecraftForge.EVENT_BUS.register(new LiquidHandler());
+		//MinecraftForge.EVENT_BUS.register(new LiquidHandler());
 		
 		// Register WorldLoading Handler
-		MinecraftForge.EVENT_BUS.register(new WorldLoadingHandler());
+		//MinecraftForge.EVENT_BUS.register(new WorldLoadingHandler());
       	
       	//Initialise Death Handling
-      	MinecraftForge.EVENT_BUS.register(new EntityDeathHandler());
+      	//MinecraftForge.EVENT_BUS.register(new EntityDeathHandler());
 		
 		proxy.registerRendering();
 		
@@ -127,18 +117,13 @@ public class Redmagic{
 	
 	//----------------------------------------------------------------------------------------
 	//PostINIT
-	@PostInit
+	@EventHandler
     public void init(FMLPostInitializationEvent event)
     {
-		//Initialise Buildcraft Addon
-		BuildcraftAddon.init();
-		ThaumcraftAddon.init();
-		ForestryAddon.init();
-		RailcraftAddon.init();
-		IndustrialCraftAddon.init();
+		// Addons
     }
 	
 	public static void initialiseData() {
-		DataHandler.init();
+		//DataHandler.init();
 	}
 }

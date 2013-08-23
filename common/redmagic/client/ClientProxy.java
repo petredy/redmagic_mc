@@ -1,17 +1,15 @@
 package redmagic.client;
 
-import redmagic.client.renderers.*;
+import redmagic.client.renderers.ItemBlockRenderer;
+import redmagic.configuration.ItemIndex;
+import redmagic.configuration.Reference;
 import redmagic.configuration.RenderIndex;
 import redmagic.core.CommonProxy;
-import redmagic.entities.particle.EntityCrackFX;
 import redmagic.entities.particle.EntityStarFX;
-import redmagic.entities.particle.EntityWorkTableFX;
 import redmagic.handlers.KeyBindingHandler;
 import redmagic.helpers.KeyBindingHelper;
-import redmagic.tileentities.TileEntityBlockEntity;
-import redmagic.tileentities.TileEntityPipe;
-import redmagic.tileentities.TileEntitySoulForge;
-import redmagic.tileentities.bank.TileEntityBank;
+import redmagic.helpers.LogHelper;
+import redmagic.items.ItemManager;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.KeyBindingRegistry;
@@ -20,18 +18,13 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 
 public class ClientProxy extends CommonProxy{
 	
-	
-	@Override
-	public void registerAll(){
-		//this.registerRendering();
-		this.registerSound();
-		this.registerKeyBinding();
-	}
 	
 	@Override
 	public void registerKeyBinding() {
@@ -46,19 +39,20 @@ public class ClientProxy extends CommonProxy{
 	
 	@Override
     public void initRendering() {
-		RenderIndex.BANK = RenderingRegistry.getNextAvailableRenderId();
-		RenderIndex.PIPE = RenderingRegistry.getNextAvailableRenderId();
+//		RenderIndex.BANK = RenderingRegistry.getNextAvailableRenderId();
+//		RenderIndex.PIPE = RenderingRegistry.getNextAvailableRenderId();
 	}
 	
 	@Override
     public void registerRendering(){
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPipe.class, new RenderPipe());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBank.class, new RenderBank());
-		
-		RenderingRegistry.registerBlockHandler(new RenderPipe());
-		RenderingRegistry.registerBlockHandler(new RenderBank());
-		
+//		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPipe.class, new RenderPipe());
+//		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBank.class, new RenderBank());
+//		
+//		RenderingRegistry.registerBlockHandler(new RenderPipe());
+//		RenderingRegistry.registerBlockHandler(new RenderBank());
+//		
 		//RenderingRegistry.registerEntityRenderingHandler(EntityPlayer.class, new RenderSoulPlayer());
+		MinecraftForgeClient.registerItemRenderer(ItemManager.artifact.itemID, new ItemBlockRenderer());
 	}
 	
 	
@@ -73,9 +67,9 @@ public class ClientProxy extends CommonProxy{
 
 		if(name == "crack")
 		{
-			efx = new EntityCrackFX(world, d1, d2, d3);
+			//efx = new EntityCrackFX(world, d1, d2, d3);
 		}else if(name.equals("worktable")){
-			efx = new EntityWorkTableFX(world, d1, d2, d3, (Integer)data[0], (ItemStack)data[1]);
+			//efx = new EntityWorkTableFX(world, d1, d2, d3, (Integer)data[0], (ItemStack)data[1]);
 		}else if(name.equals("star")){
 			efx = new EntityStarFX(world, d1, d2, d3, (Double)data[0], (Double)data[1], (Double)data[2]);
 		}
@@ -98,4 +92,7 @@ public class ClientProxy extends CommonProxy{
 	
 	public void registerWorldLoadingHandler() {}
 	
+	public void bindTexture(String path){
+		Minecraft.getMinecraft().func_110434_K().func_110577_a(new ResourceLocation(Reference.MOD_ID, path));
+	}
 }

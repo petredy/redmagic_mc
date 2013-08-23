@@ -1,70 +1,24 @@
 package redmagic.configuration;
 
+import redmagic.helpers.ResourceLocationHelper;
+import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.util.ResourceLocation;
+
 public class Texture {
-	public static final String TEXTURE_PATH = "/mods/redmagic/textures/";
+	public static final String TEXTURE_PATH = "textures/";
 	
 	public static final String GUI_PATH = TEXTURE_PATH + "gui/";
-	public static final String RENDER_PATH = TEXTURE_PATH + "renders/";
 	public static final String PARTICLE_PATH = TEXTURE_PATH + "particles/";
-	public static final String ENTITY_PATH = TEXTURE_PATH + "entities/";
-	public static final String SCROLL_PATH = TEXTURE_PATH + "scrolls/";
+	
+	public static final ResourceLocation VANILLA_BLOCK_TEXTURE_SHEET = TextureMap.field_110575_b;
+    public static final ResourceLocation VANILLA_ITEM_TEXTURE_SHEET = TextureMap.field_110576_c;
 	
 	
-	//Renders
-	public static final String SYMBOL = RENDER_PATH + "symbol.png";
-	public static final String PIPE_ACTIVE = RENDER_PATH + "pipe_active.png";
-	public static final String PIPE_INACTIVE = RENDER_PATH + "pipe_inactive.png";
-	public static final String PIPE_EXTRACTOR_ACTIVE = RENDER_PATH + "pipe_extractor_active.png";
-	public static final String PIPE_EXTRACTOR_INACTIVE = RENDER_PATH + "pipe_extractor_inactive.png";
-	public static final String PIPE_FILLER_ACTIVE = RENDER_PATH + "pipe_filler_active.png";
-	public static final String PIPE_FILLER_INACTIVE = RENDER_PATH + "pipe_filler_inactive.png";
-	public static final String BANK = RENDER_PATH + "bank.png";
-	public static final String SOUL_FORGE = RENDER_PATH + "forge.png";
-	
-	//Guis
-	public static final String WORK_TABLE = GUI_PATH + "work.png";
-	public static final String EDUCATION_BASIC = GUI_PATH + "education_basic.png";
-	public static final String EDUCATION_MOUDLE = GUI_PATH + "education_module.png";
-	public static final String BANK_GUI = GUI_PATH + "bank.png";
-	public static final String CRAFTING_GUI = GUI_PATH + "crafting.png";
-	public static final String SOUL_FORGE_INV = GUI_PATH + "soul_forge_inv.png";
-	public static final String SOUL_FORGE_CRAFT = GUI_PATH + "soul_forge_craft.png";
-	public static final String BAG = GUI_PATH + "bag.png";
 	
 	//Particles
-	public static final String DIMENSION_CRACK_FX = PARTICLE_PATH + "dimension_crack.png";
-	public static final String WORK_TABLE_FX_0 = PARTICLE_PATH + "worktable0.png";
-	public static final String WORK_TABLE_FX_3 = PARTICLE_PATH + "worktable3.png";
-	public static final String WORK_TABLE_FX_6 = PARTICLE_PATH + "worktable6.png";
-	public static final String WORK_TABLE_FX_10 = PARTICLE_PATH + "worktable10.png";
-	public static final String STAR_FX = PARTICLE_PATH + "star.png";
+	public static final ResourceLocation STAR_FX = ResourceLocationHelper.getResourceLocation(PARTICLE_PATH + "star.png");
 	
-	// GUI Buttons
-	public static final String BUTTON_WORK_TABLE_LEFT = GUI_PATH + "work_table_button_left.png";
-	public static final String BUTTON_WORK_TABLE_RIGHT = GUI_PATH + "work_table_button_right.png";
 	
-	// Color Icons
-	public static final String RED = GUI_PATH + "red.png";
-	public static final String GREEN = GUI_PATH + "green.png";
-	public static final String ORANGE = GUI_PATH + "orange.png";
-	public static final String GRAY = GUI_PATH + "gray.png";
-
-	
-	// Liquids
-	public static final String ESSENCE = TEXTURE_PATH + "blocks/essence.png";
-
-	
-	//Others
-	public static final String OVERLAY = TEXTURE_PATH + "others/overlay.png";
-	public static final String OVERLAY_START = TEXTURE_PATH + "others/overlay_start";
-	public static final String DANGER_OVERLAY = TEXTURE_PATH + "others/overlay_danger.png";
-	public static final String MODUS_OVERLAY = TEXTURE_PATH + "others/overlay_modus.png";
-	public static final String GLASSES = TEXTURE_PATH + "others/glasses.png";
-	
-	//Scrolls
-	public static final String SCROLL = SCROLL_PATH + "scroll.png";
-	public static final String SCROLL_GLASSES = SCROLL_PATH + "scroll_glasses.png";
-	public static final String SCROLL_CRAFTING = SCROLL_PATH + "scroll_crafting.png";
 	
 	
 }

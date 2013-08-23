@@ -123,7 +123,7 @@ public class TileEntityInventory extends TileEntity implements IInventory{
 	}
 
 	@Override
-	public boolean isStackValidForSlot(int i, ItemStack itemstack) {
+	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		return true;
 	}
 }

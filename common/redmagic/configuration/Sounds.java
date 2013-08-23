@@ -1,8 +1,8 @@
 package redmagic.configuration;
 
 public class Sounds {
-	private static final String SOUND_RESOURCE_LOCATION = "mods/redmagic/sound/";
-    private static final String SOUND_PREFIX = "mods.redmagic.sound.";
+	private static final String SOUND_RESOURCE_LOCATION = Reference.MOD_ID +":";
+    private static final String SOUND_PREFIX = Reference.MOD_ID + ":";
 
     public static String[] soundFiles = {
            SOUND_RESOURCE_LOCATION + "hammer.wav",

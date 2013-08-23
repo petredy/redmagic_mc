@@ -2,12 +2,16 @@ package redmagic.entities.particle;
 
 import org.lwjgl.opengl.GL11;
 
+import redmagic.configuration.Texture;
+import redmagic.helpers.ResourceLocationHelper;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 public class EntityCustomFX extends EntityFX{
@@ -16,7 +20,7 @@ public class EntityCustomFX extends EntityFX{
 	public float yStart = 0F;
 	public float xEnd = 1F;
 	public float yEnd = 1F;
-	public String texture;
+	public ResourceLocation resourceLocation;
 	
 	public EntityCustomFX(World world, double x, double y, double z) {
 		super(world, x, y, z);
@@ -32,7 +36,7 @@ public class EntityCustomFX extends EntityFX{
 		Tessellator tessellator1 = new Tessellator();
         tessellator1.startDrawingQuads();
         tessellator1.setBrightness(getBrightnessForRender(par2));
-        GL11.glBindTexture(GL11.GL_TEXTURE_2D, Minecraft.getMinecraft().renderEngine.getTexture(this.texture));
+        Minecraft.getMinecraft().func_110434_K().func_110577_a(resourceLocation);
         float f = xStart;
         float f1 = xEnd;
         float f2 = yStart;

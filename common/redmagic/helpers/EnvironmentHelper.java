@@ -11,7 +11,6 @@ public class EnvironmentHelper {
 	public int air = 0;
 	public int water = 0;
 	public int lava = 0;
-	public int avg = 0;
 	
 	public EnvironmentHelper(World world, int x, int y, int z, int range){
 		this.world = world;
@@ -41,7 +40,6 @@ public class EnvironmentHelper {
 		this.scanAir();
 		this.scanWater();
 		this.scanLava();
-		avg = (int) ((air * LogicIndex.FILTER_AIR_RAITING + water * LogicIndex.FILTER_WATER_RAITING + lava * LogicIndex.FILTER_LEAVES_RAITING) / 3);
 	}
 
 	public void scanAir() {

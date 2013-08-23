@@ -5,7 +5,7 @@ import java.io.DataInputStream;
 
 import redmagic.configuration.PacketIndex;
 import redmagic.configuration.Reference;
-import redmagic.core.Logger;
+import redmagic.helpers.LogHelper;
 
 
 import net.minecraft.network.INetworkManager;

@@ -1,12 +1,14 @@
 package redmagic.network;
 
+import java.io.DataInput;
+import java.io.DataOutput;
 import java.io.DataOutputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 
 import redmagic.api.items.IKeyBound;
 import redmagic.configuration.PacketIndex;
-import redmagic.core.Logger;
+import redmagic.helpers.LogHelper;
 
 import cpw.mods.fml.common.network.Player;
 
@@ -27,12 +29,12 @@ public class PacketKeyPressed extends PacketRedMagic {
 	}
 
 	@Override
-	public void writePacketData(DataOutputStream data) throws IOException {
+	public void writePacketData(DataOutput data) throws IOException {
 		data.writeUTF(key);
 	}
 	
 	@Override
-	public void readPacketData(DataInputStream data) throws IOException {
+	public void readPacketData(DataInput data) throws IOException {
 		this.key = data.readUTF();
 	}
 
@@ -42,7 +44,7 @@ public class PacketKeyPressed extends PacketRedMagic {
 
 	public void execute(INetworkManager manager, Player player) {
 		EntityPlayer thePlayer = (EntityPlayer) player;
-		Logger.log("execute KeyPressed");
+		LogHelper.log("execute KeyPressed");
 		if ((thePlayer.getCurrentEquippedItem() != null) && (thePlayer.getCurrentEquippedItem().getItem() instanceof IKeyBound)) {
 		    ((IKeyBound) thePlayer.getCurrentEquippedItem().getItem()).doKeyBindingAction(thePlayer, thePlayer.getCurrentEquippedItem(), this.key);
 		}else{
