@@ -13,6 +13,7 @@ import redmagic.helpers.KeyBindingHelper;
 import redmagic.helpers.LogHelper;
 import redmagic.items.ItemManager;
 import redmagic.tileentities.TileEntityAltar;
+import redmagic.tileentities.TileEntityConstructionTable;
 import redmagic.tileentities.TileEntityRune;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
@@ -45,15 +46,18 @@ public class ClientProxy extends CommonProxy{
     public void initRendering() {
 		RenderIndex.RUNE = RenderingRegistry.getNextAvailableRenderId();
 		RenderIndex.ALTAR = RenderingRegistry.getNextAvailableRenderId();
+		RenderIndex.CONSTRUCTION_TABLE = RenderingRegistry.getNextAvailableRenderId();
 	}
 	
 	@Override
     public void registerRendering(){	
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityRune.class, new RenderRune());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAltar.class, new RenderAltar());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityConstructionTable.class, new RenderConstruction());
 		
 		RenderingRegistry.registerBlockHandler(new RenderRune());
 		RenderingRegistry.registerBlockHandler(new RenderAltar());
+		RenderingRegistry.registerBlockHandler(new RenderConstruction());
 		
 		MinecraftForgeClient.registerItemRenderer(ItemManager.artifact.itemID, new ItemBlockRenderer());
 	}

@@ -14,18 +14,20 @@ public class BlockManager {
 	public static Block rune;
 	public static Block rheniumOre;
 	public static Block altar;
-	
+	public static Block construction;
 	
 	public static void init(){
 		decoration = new BlockDecoration(BlockIndex.DECORATION_ID);
 		rune = new BlockRune(BlockIndex.RUNE_ID);
 		rheniumOre = new BlockRheniumOre(BlockIndex.RHENIUM_ID);
 		altar = new BlockAltar(BlockIndex.ALTAR_ID);
+		construction = new BlockConstructionTable(BlockIndex.CONSTRUCTION_TABLE_ID);
 
 		GameRegistry.registerBlock(decoration, ItemBlockDecoration.class, BlockIndex.DECORATION_NAME);
 		GameRegistry.registerBlock(rune, ItemBlockRune.class, BlockIndex.RUNE_NAME);
 		GameRegistry.registerBlock(rheniumOre, BlockIndex.RHENIUM_NAME);
 		GameRegistry.registerBlock(altar, BlockIndex.ALTAR_NAME);
+		GameRegistry.registerBlock(construction, BlockIndex.CONSTRUCTION_TABLE_NAME);
 		
 		registerRecipes();
 	}
@@ -47,6 +49,7 @@ public class BlockManager {
 		BlockIndex.RUNE_ID = config.getBlock(BlockIndex.RUNE_NAME, BlockIndex.RUNE_DEFAULT_ID).getInt(BlockIndex.RUNE_DEFAULT_ID);
 		BlockIndex.RHENIUM_ID = config.getBlock(BlockIndex.RHENIUM_NAME, BlockIndex.RHENIUM_DEFAULT_ID).getInt(BlockIndex.RHENIUM_DEFAULT_ID);
 		BlockIndex.ALTAR_ID = config.getBlock(BlockIndex.ALTAR_NAME, BlockIndex.ALTAR_DEFAULT_ID).getInt(BlockIndex.ALTAR_DEFAULT_ID);
+		BlockIndex.CONSTRUCTION_TABLE_ID = config.getBlock(BlockIndex.CONSTRUCTION_TABLE_NAME, BlockIndex.CONSTRUCTION_TABLE_DEFAULT_ID).getInt(BlockIndex.CONSTRUCTION_TABLE_DEFAULT_ID);
 	}
 	
 }

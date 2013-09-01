@@ -6,5 +6,6 @@ public class RenderIndex {
 	
 	public static int RUNE;
 	public static int ALTAR;
+	public static int CONSTRUCTION_TABLE;
 	
 }

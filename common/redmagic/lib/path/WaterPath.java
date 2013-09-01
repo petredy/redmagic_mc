@@ -7,6 +7,7 @@ import redmagic.configuration.AbilityIndex;
 import redmagic.configuration.PathIndex;
 import redmagic.helpers.PlayerInformationHelper;
 import redmagic.lib.abilities.AltarAbility;
+import redmagic.lib.abilities.ConstructionTableAbility;
 import redmagic.lib.abilities.life.SelfHealAbility;
 import redmagic.lib.player.PlayerInformation;
 import redmagic.lib.talent.Talent;
@@ -15,6 +16,7 @@ public class WaterPath extends Path{
 
 	public WaterPath(){
 		this.registerAbility(AbilityIndex.ALTAR + "." + PathIndex.WATER, new AltarAbility(PathIndex.WATER));
+		this.registerAbility(AbilityIndex.CONSTRUCTION_TABLE + "." + PathIndex.WATER, new ConstructionTableAbility(PathIndex.WATER));
 		this.name = PathIndex.WATER;
 	}
 	
@@ -30,8 +32,8 @@ public class WaterPath extends Path{
 	
 	
 	@Override
-	public void unlock(EntityPlayer player) {
-		super.unlock(player);
+	public void unlock(EntityPlayer player, boolean byClick) {
+		super.unlock(player, byClick);
 		PlayerInformation info = PlayerInformationHelper.getPlayerInformation(player);
 		info.pathManager.setTalentUnlockable(Talent.waterAltar);
 		PlayerInformationHelper.setPlayerInformation(info, player.worldObj);

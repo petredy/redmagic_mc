@@ -8,6 +8,7 @@ public class AbilityIndex {
 	 */
 	
 	public static final String ALTAR = "altar";
+	public static final String CONSTRUCTION_TABLE = "construction";
 	
 	/**
 	 * -----------------------------------------------------------------------------------------------------------------
@@ -22,5 +23,7 @@ public class AbilityIndex {
 	 */
 	
 	public static final String COMPRESS = "compress";
+
+	
 	
 }

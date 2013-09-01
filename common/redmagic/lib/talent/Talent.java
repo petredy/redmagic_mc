@@ -10,6 +10,7 @@ import redmagic.configuration.PathIndex;
 import redmagic.configuration.TalentIndex;
 import redmagic.items.ItemManager;
 import redmagic.lib.abilities.AltarAbility;
+import redmagic.lib.abilities.ConstructionTableAbility;
 import redmagic.lib.abilities.earth.CompressAbility;
 import redmagic.lib.abilities.life.SelfHealAbility;
 import redmagic.lib.path.EarthPath;
@@ -25,9 +26,9 @@ import net.minecraft.util.StatCollector;
 public class Talent {
 	public static List<Talent> talents = new ArrayList<Talent>();
 	
-	public static Talent life, lifeAltar, selfHeal;
-	public static Talent earth, earthAltar, compress;
-	public static Talent water, waterAltar;
+	public static Talent life, lifeAltar, lifeConstructionTable, selfHeal;
+	public static Talent earth, earthAltar, earthConstructionTable, compress;
+	public static Talent water, waterAltar, waterConstructionTable;
 
 	public static int minDisplayColumn;
 
@@ -62,7 +63,10 @@ public class Talent {
 		lifeAltar = new Talent(AbilityIndex.ALTAR + "." + PathIndex.LIFE, new ItemStack(BlockManager.altar), 5, 4, life, new AltarAbility(PathIndex.LIFE)); 
 		talents.add(lifeAltar);
 		
-		selfHeal = new Talent(AbilityIndex.SELFHEAL, new ItemStack(ItemManager.redhole), 5, 6, lifeAltar, new SelfHealAbility());
+		lifeConstructionTable = new Talent(AbilityIndex.CONSTRUCTION_TABLE + "." + PathIndex.LIFE, new ItemStack(BlockManager.construction), 5, 6, lifeAltar, new ConstructionTableAbility(PathIndex.LIFE));
+		talents.add(lifeConstructionTable);
+		
+		selfHeal = new Talent(AbilityIndex.SELFHEAL, new ItemStack(ItemManager.redhole), 5, 8, lifeConstructionTable, new SelfHealAbility());
 		talents.add(selfHeal);
 		
 		
@@ -81,7 +85,10 @@ public class Talent {
 		earthAltar = new Talent(AbilityIndex.ALTAR + "." + PathIndex.EARTH, new ItemStack(BlockManager.altar), 7 , 4, earth, new AltarAbility(PathIndex.EARTH));
 		talents.add(earthAltar);
 		
-		compress = new Talent(AbilityIndex.COMPRESS, new ItemStack(Block.pistonBase), 7, 6, earthAltar, new CompressAbility());
+		earthConstructionTable = new Talent(AbilityIndex.CONSTRUCTION_TABLE + "." + PathIndex.EARTH, new ItemStack(BlockManager.construction), 7, 6, earthAltar, new ConstructionTableAbility(PathIndex.EARTH));
+		talents.add(earthConstructionTable);
+		
+		compress = new Talent(AbilityIndex.COMPRESS, new ItemStack(Block.pistonBase), 7, 8, earthConstructionTable, new CompressAbility());
 		talents.add(compress);
 		
 		// --------------------------------------------------------------------------------------------------------------------
@@ -98,6 +105,9 @@ public class Talent {
 		
 		waterAltar = new Talent(AbilityIndex.ALTAR + "." + PathIndex.WATER, new ItemStack(BlockManager.altar), 9, 4, water, new AltarAbility(PathIndex.WATER));
 		talents.add(waterAltar);
+		
+		waterConstructionTable = new Talent(AbilityIndex.CONSTRUCTION_TABLE + "." + PathIndex.WATER, new ItemStack(BlockManager.construction), 9, 6, waterAltar, new ConstructionTableAbility(PathIndex.WATER));
+		talents.add(waterConstructionTable);
 		
 		// --------------------------------------------------------------------------------------------------------------------
 		
@@ -173,6 +183,10 @@ public class Talent {
 	
 	public String getNameForDisplay(){
 		return StatCollector.translateToLocal(this.name);
+	}
+
+	public boolean isTalent(Talent talent) {
+		return this.unlockableName.equals(talent.unlockableName);
 	}
 	
 }

@@ -11,13 +11,13 @@ import redmagic.helpers.PlayerInformationHelper;
 import redmagic.lib.player.PlayerInformation;
 import redmagic.lib.talent.Talent;
 
-public class AltarAbility extends Ability{
+public class ConstructionTableAbility extends Ability{
 
 	public String path = null;
 	
-	public AltarAbility(String path) {
+	public ConstructionTableAbility(String path) {
 		this.path = path;
-		this.name = AbilityIndex.ALTAR + "." + path;
+		this.name = AbilityIndex.CONSTRUCTION_TABLE + "." + path;
 	}
 	
 	@Override
@@ -25,21 +25,19 @@ public class AltarAbility extends Ability{
 		if(!byClick){
 			PlayerInformation information = PlayerInformationHelper.getPlayerInformation(player);
 			if(path.equals(PathIndex.LIFE)){
-				information.pathManager.setTalentUnlocked(Talent.lifeAltar);
-				information.pathManager.setTalentUnlockable(Talent.lifeConstructionTable);
+				information.pathManager.setTalentUnlocked(Talent.lifeConstructionTable);
+				information.pathManager.setTalentUnlockable(Talent.selfHeal);
 			}
 			if(path.equals(PathIndex.EARTH)){
-				information.pathManager.setTalentUnlocked(Talent.earthAltar);
-				information.pathManager.setTalentUnlockable(Talent.earthConstructionTable);
+				information.pathManager.setTalentUnlocked(Talent.earthConstructionTable);
+				information.pathManager.setTalentUnlockable(Talent.compress);
 			}
 			if(path.equals(PathIndex.WATER)){
-				information.pathManager.setTalentUnlocked(Talent.waterAltar);
-				information.pathManager.setTalentUnlockable(Talent.waterConstructionTable);
+				information.pathManager.setTalentUnlocked(Talent.waterConstructionTable);
 			}
 			PlayerInformationHelper.setPlayerInformation(information, player.worldObj);
 			this.syncClient(information, (Player) player);
 		}
 	}
-
 
 }

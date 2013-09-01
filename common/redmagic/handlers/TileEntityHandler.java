@@ -15,5 +15,6 @@ public class TileEntityHandler {
 
 		GameRegistry.registerTileEntity(TileEntityRune.class, "redmagic.TileEntityRune");
 		GameRegistry.registerTileEntity(TileEntityAltar.class, "redmagic.TileEntityAltar");
+		GameRegistry.registerTileEntity(TileEntityConstructionTable.class, "redmagic.TileEntityConstructionTable");
 	}
 }

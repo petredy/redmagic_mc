@@ -7,6 +7,7 @@ import redmagic.helpers.LogHelper;
 import redmagic.helpers.PlayerInformationHelper;
 import redmagic.lib.abilities.Ability;
 import redmagic.lib.abilities.AltarAbility;
+import redmagic.lib.abilities.ConstructionTableAbility;
 import redmagic.lib.abilities.life.*;
 import redmagic.lib.player.PlayerInformation;
 import redmagic.lib.talent.Talent;
@@ -21,6 +22,7 @@ public class LifePath extends Path{
 	
 	public LifePath(){ 
 		this.registerAbility(AbilityIndex.ALTAR + "." + PathIndex.LIFE, new AltarAbility(PathIndex.LIFE));
+		this.registerAbility(AbilityIndex.CONSTRUCTION_TABLE + "." + PathIndex.LIFE, new ConstructionTableAbility(PathIndex.LIFE));
 		this.registerAbility(AbilityIndex.SELFHEAL, new SelfHealAbility());
 		this.name = PathIndex.LIFE;
 	}
@@ -36,8 +38,8 @@ public class LifePath extends Path{
 	}
 	
 	@Override
-	public void unlock(EntityPlayer player) {
-		super.unlock(player);
+	public void unlock(EntityPlayer player, boolean byClick) {
+		super.unlock(player, byClick);
 		PlayerInformation info = PlayerInformationHelper.getPlayerInformation(player);
 		info.pathManager.setTalentUnlockable(Talent.lifeAltar);
 		PlayerInformationHelper.setPlayerInformation(info, player.worldObj);

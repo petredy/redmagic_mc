@@ -51,6 +51,7 @@ public class PathManager {
 	
 	public void setTalentUnlockable(Talent talent){
 		if(this.hasPath()){
+			LogHelper.log("unlockable " + talent.unlockableName);
 			Ability ability = this.path.abilities.get(talent.unlockableName);
 			if(ability != null){
 				ability.setUnlockable();

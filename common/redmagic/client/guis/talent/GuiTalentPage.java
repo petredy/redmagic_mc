@@ -153,7 +153,7 @@ public class GuiTalentPage extends GuiScreen{
 			int y = talent.row * 24;
 			if(localMouseX > x && localMouseX < x + 24 && localMouseY > y && localMouseY < y + 24){
 				if(this.pathManager.isTalentUnlockable(talent) && !this.pathManager.isTalentUnlocked(talent) && par3 == 0){
-	    				talent.unlockable.unlock(player);
+	    				talent.unlockable.unlock(player, true);
 	    				PacketDispatcher.sendPacketToServer(PacketHandler.populatePacket(new PacketTalentUnlocked(talent.name)));
 	    	            
 				}else if(par3 == 1){

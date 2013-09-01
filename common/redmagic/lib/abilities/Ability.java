@@ -2,6 +2,9 @@ package redmagic.lib.abilities;
 
 import java.util.Iterator;
 
+import cpw.mods.fml.common.network.PacketDispatcher;
+import cpw.mods.fml.common.network.Player;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.StatCollector;
@@ -9,6 +12,8 @@ import redmagic.api.talent.IUnlockable;
 import redmagic.helpers.LogHelper;
 import redmagic.helpers.PlayerInformationHelper;
 import redmagic.lib.player.PlayerInformation;
+import redmagic.network.PacketHandler;
+import redmagic.network.PacketSyncPlayerInformation;
 
 public class Ability implements IUnlockable {
 
@@ -51,7 +56,7 @@ public class Ability implements IUnlockable {
 	
 
 	@Override
-	public void unlock(EntityPlayer player) {
+	public void unlock(EntityPlayer player, boolean byClick) {
 		PlayerInformation info = PlayerInformationHelper.getPlayerInformation(player);
 		info.pathManager.path.abilities.get(this.name).setUnlocked();
 		PlayerInformationHelper.setPlayerInformation(info, player.worldObj);
@@ -60,6 +65,10 @@ public class Ability implements IUnlockable {
 	@Override
 	public String getHelp() {
 		return StatCollector.translateToLocal("talent." + this.name + ".help");
+	}
+	
+	public void syncClient(PlayerInformation info, Player player){
+		PacketDispatcher.sendPacketToPlayer(PacketHandler.populatePacket(new PacketSyncPlayerInformation(info)), player);
 	}
 	
 	

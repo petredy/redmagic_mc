@@ -41,7 +41,7 @@ public class PacketTalentUnlocked extends PacketRedMagic{
 		EntityPlayer thePlayer = (EntityPlayer)player;
 		for(Talent talent: Talent.talents){
 			if(talent.name.equals(this.talent)){
-				talent.unlockable.unlock(thePlayer);
+				talent.unlockable.unlock(thePlayer, true);
 				break;
 			}
 		}

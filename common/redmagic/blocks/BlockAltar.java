@@ -72,8 +72,7 @@ public class BlockAltar extends BlockContainer{
 				ArtifactInformation artifact = ArtifactHelper.getArtifactInformation(current);
 				altar.setPath(artifact.getPath());
 				// Unlock Altar Talent
-				AltarAbility alt = (AltarAbility) Talent.getTalent(AbilityIndex.ALTAR + "." + artifact.getPath().unlockableName).unlockable;
-				alt.unlockAltar(player);
+				Talent.getTalent(AbilityIndex.ALTAR + "." + artifact.getPath().unlockableName).unlockable.unlock(player, false);
 				TalentRenderHandler.guiTalent.queueTakenTalent(Talent.getTalent(AbilityIndex.ALTAR + "." + artifact.getPath().unlockableName));
 				
 				player.inventory.setInventorySlotContents(player.inventory.currentItem, null);

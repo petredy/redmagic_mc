@@ -81,4 +81,16 @@ public class BlockIndex {
 	//---------------------------------------------------------------------------
 	
 	
+	/***
+	 * --------------------------------------------------------------------------
+	 * Block Construction Table
+	 */
+	public static final String CONSTRUCTION_TABLE_NAME = "construction";
+	public static final int CONSTRUCTION_TABLE_DEFAULT_ID = 3304;
+	public static  int CONSTRUCTION_TABLE_ID;
+	
+	
+	//---------------------------------------------------------------------------
+	
+	
 }

@@ -2,7 +2,6 @@ package redmagic.blocks;
 
 import redmagic.configuration.BlockIndex;
 import redmagic.helpers.LogHelper;
-import redmagic.helpers.MarkerHelper;
 import redmagic.tileentities.TileEntityRune;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;

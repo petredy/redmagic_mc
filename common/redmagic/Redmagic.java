@@ -97,6 +97,9 @@ public class Redmagic{
   		//Initialise Blocks
   		BlockManager.init();
   		
+  		//Initialise Custom Crafting Registration
+      	CraftingHandler.init();
+  		
   		//Configurate LogicElements, KeyBindings, etc.
       	ConfigHandler.config(config);
         

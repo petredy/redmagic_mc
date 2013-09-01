@@ -9,6 +9,7 @@ import redmagic.configuration.PathIndex;
 import redmagic.helpers.LogHelper;
 import redmagic.helpers.PlayerInformationHelper;
 import redmagic.lib.abilities.AltarAbility;
+import redmagic.lib.abilities.ConstructionTableAbility;
 import redmagic.lib.abilities.earth.*;
 import redmagic.lib.player.PlayerInformation;
 import redmagic.lib.talent.Talent;
@@ -19,6 +20,7 @@ public class EarthPath extends Path{
 	
 	public EarthPath(){
 		this.registerAbility(AbilityIndex.ALTAR + "." + PathIndex.EARTH, new AltarAbility(PathIndex.EARTH));
+		this.registerAbility(AbilityIndex.CONSTRUCTION_TABLE + "." + PathIndex.EARTH, new ConstructionTableAbility(PathIndex.EARTH));
 		this.registerAbility(AbilityIndex.COMPRESS, new CompressAbility());
 		this.name = PathIndex.EARTH;
 	}
@@ -34,8 +36,8 @@ public class EarthPath extends Path{
 	}
 	
 	@Override
-	public void unlock(EntityPlayer player) {
-		super.unlock(player);
+	public void unlock(EntityPlayer player, boolean byClick) {
+		super.unlock(player, byClick);
 		
 		PlayerInformation info = PlayerInformationHelper.getPlayerInformation(player);
 		info.pathManager.setTalentUnlockable(Talent.earthAltar);

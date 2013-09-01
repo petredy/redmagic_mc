@@ -350,7 +350,6 @@ public class InventoryHelper {
 	public static void dropItemStack(ItemStack drop, World worldObj, double xCoord, double yCoord, double zCoord) {
 		EntityItem item = new EntityItem(worldObj, xCoord, yCoord, zCoord, drop);
 		worldObj.spawnEntityInWorld(item);
-		
 	}
 
 	public static IInventory getNextInventory(World world, int x, int y, int z, boolean top) {

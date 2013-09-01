@@ -85,7 +85,7 @@ public class Path implements IUnlockable{
 	 * IUnlockable
 	 */
 	@Override
-	public void unlock(EntityPlayer player) {
+	public void unlock(EntityPlayer player, boolean byClick) {
 		PlayerInformation information = PlayerInformationHelper.getPlayerInformation(player);
 		if(information != null){
 			information.pathManager.choosePath(name);

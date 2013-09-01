@@ -73,4 +73,30 @@ public class BlockHelper {
 		int l = MathHelper.floor_double((double)(par4EntityLiving.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 		return l == 0 ? 2 : (l == 1 ? 5 : (l == 2 ? 3 : (l == 3 ? 4 : 0)));
 	}
+	
+	public static int getHitIndex4x4(float x, float z){
+		int count = 0;
+		for(int j = 1; j <= 4; j++){
+			for(int i = 1; i <= 4; i++){
+				if(x < i * 0.25f && x > i * 0.25f - 0.25f && z > j * 0.25f - 0.25f && z < j * 0.25f){
+					return count; 
+				}
+				count++;
+			}
+		}
+		return -1;
+	}
+	
+	public static int getHitIndex3x3(float x, float z){
+		int count = 0;
+		for(int j = 1; j <= 3; j++){
+			for(int i = 1; i <= 3; i++){
+				if(x < i * 0.33f && x > i * 0.33f - 0.33f && z > j * 0.33f - 0.33f && z < j * 0.33f){
+					return count; 
+				}
+				count++;
+			}
+		}
+		return -1;
+	}
 }

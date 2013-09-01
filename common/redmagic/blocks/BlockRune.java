@@ -8,9 +8,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 import redmagic.Redmagic;
 import redmagic.configuration.BlockIndex;
 import redmagic.configuration.RenderIndex;
+import redmagic.helpers.BlockHelper;
 import redmagic.helpers.InventoryHelper;
 import redmagic.helpers.LogHelper;
-import redmagic.helpers.MarkerHelper;
 import redmagic.items.ItemManager;
 import redmagic.lib.rune.Marker;
 import redmagic.tileentities.TileEntityRune;
@@ -74,7 +74,7 @@ public class BlockRune extends BlockContainer{
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float offX, float offY, float offZ)
     {
 		TileEntityRune rune = (TileEntityRune) world.getBlockTileEntity(x, y, z);
-		int count = MarkerHelper.getHitIndex(offX, offZ);
+		int count = BlockHelper.getHitIndex4x4(offX, offZ);
 		if(count >= 0){
 			ItemStack current = player.getCurrentEquippedItem();
 			if(rune.isMarker(count) && ((current != null && current.itemID == BlockManager.rune.blockID && current.getItemDamage() > BlockIndex.RUNE_TABLE_METADATA) || current == null || (current != null && (current.getItem() instanceof ItemBlock)) == false)){
