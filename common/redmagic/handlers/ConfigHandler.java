@@ -27,6 +27,12 @@ public class ConfigHandler {
 		
 		Redmagic.proxy.setKeyBinding(Reference.KEY_EXTRA_NAME, Reference.KEY_EXTRA_ID);
 		
+		Property keyMenu = config.get("general", Reference.KEY_TALENT_MENU_NAME, Reference.KEY_TALENT_MENU_DEFAULT);
+		keyMenu.comment = Comments.KEY_TALENT_MENU;
+		Reference.KEY_TALENT_MENU_ID = keyMenu.getInt(Reference.KEY_TALENT_MENU_DEFAULT);
+		
+		Redmagic.proxy.setKeyBinding(Reference.KEY_TALENT_MENU_NAME, Reference.KEY_TALENT_MENU_ID);
+		
 		//.........................................................................
 		
 	}

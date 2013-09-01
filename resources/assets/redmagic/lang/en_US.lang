@@ -8,3 +8,11 @@ itemGroup.Redmagic=Redmagic
 item.redhole.name=Redhole
 item.artifact.name=Artifact
 
+
+talent.requires=This talent requires %s.
+talent.taken=You got it right dude.
+
+talent.life.name=Path of Life
+talent.selfheal.name=Self Heal
+talent.life.desc=Choose the path of life
+talent.selfheal.desc=Heals your self for 1 point

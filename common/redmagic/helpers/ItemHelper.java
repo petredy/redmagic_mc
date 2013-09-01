@@ -1,5 +1,6 @@
 package redmagic.helpers;
 
+import redmagic.entities.EntityRedmagicItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -58,5 +59,14 @@ public class ItemHelper {
 	public static int getInteger(ItemStack stack, String key){
 		initNBT(stack);
 		return stack.stackTagCompound.getInteger(key);
+	}
+	
+	public static void spawnRedmagicItem(EntityPlayer player, ItemStack stack){
+		double x = player.getLookVec().xCoord * 2 + player.posX;
+		double y = player.getLookVec().yCoord * 2 + player.posY + 1;
+		double z = player.getLookVec().zCoord * 2 + player.posZ;
+		EntityRedmagicItem item = new EntityRedmagicItem(player.worldObj, x, y, z, stack);
+		player.worldObj.spawnEntityInWorld(item);
+		player.inventory.decrStackSize(player.inventory.currentItem, 1);
 	}
 }

@@ -27,7 +27,11 @@ public class LogHelper {
 	}
 
 	public static void log(Object message){
-		info(message.toString());
+		if(message == null){
+			info(null);
+		}else{
+			info(message.toString());
+		}
 	}
 	
     public static void log(Level logLevel, String message) {

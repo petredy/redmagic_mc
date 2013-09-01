@@ -7,10 +7,12 @@ import redmagic.api.items.IKeyBound;
 import redmagic.configuration.ItemIndex;
 import redmagic.configuration.Reference;
 import redmagic.helpers.LogHelper;
+import redmagic.helpers.PlayerInformationHelper;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
@@ -32,6 +34,10 @@ public class ItemRedhole extends Item implements IKeyBound{
 	
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
     {
+		PlayerInformationHelper.setPlayerInformation(PlayerInformationHelper.initialisePlayerInformation(player), player.worldObj);
+		if(!world.isRemote){
+			MinecraftServer.getServer().worldServers[0].setWorldTime(0);
+		}
         return stack;
     }
 	

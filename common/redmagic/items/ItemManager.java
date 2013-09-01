@@ -10,7 +10,7 @@ import net.minecraftforge.common.Configuration;
 public class ItemManager {
 	
 	public static ItemRedhole redhole;
-	public static ItemArtifact artifact; 
+	public static ItemArtifact artifact;
 	
 	public static void init(){
 		redhole = new ItemRedhole(ItemIndex.REDHOLE_ID);

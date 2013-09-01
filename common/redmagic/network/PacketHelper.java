@@ -1,9 +1,14 @@
 package redmagic.network;
 
 import java.io.ByteArrayOutputStream;
+import java.io.DataInput;
+import java.io.DataOutput;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompressedStreamTools;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet250CustomPayload;
 
@@ -12,62 +17,33 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 public class PacketHelper {
 
 	
-	public static Packet getServerUpdatePaket(int[] data)
+	public static NBTTagCompound readFromNBT(DataInput par0DataInput) throws IOException
 	{
-		ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-		DataOutputStream dos = new DataOutputStream(bytes);
-
-		try
+		short short1 = par0DataInput.readShort();
+		
+		if (short1 < 0)
 		{
-			for (int i = 0; i < data.length; i++)
-			{
-				dos.writeInt(data[i]);
-			}
-
-		} catch (IOException e)
-		{
+			return null;
 		}
-
-		Packet250CustomPayload pkt = new Packet250CustomPayload();
-		pkt.channel = "RedMagic_Server";
-		pkt.data = bytes.toByteArray();
-		pkt.length = bytes.size();
-		pkt.isChunkDataPacket = true;
-
-		return pkt;
+		else
+		{
+			byte[] abyte = new byte[short1];
+			par0DataInput.readFully(abyte);
+			return CompressedStreamTools.decompress(abyte);
+		}
 	}
-	
-	public static Packet getClientUpdatePaket(int[] data)
+
+	public static void writeToNBT(NBTTagCompound par0NBTTagCompound, DataOutput par1DataOutput) throws IOException
 	{
-		ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-		DataOutputStream dos = new DataOutputStream(bytes);
-
-		try
+		if (par0NBTTagCompound == null)
 		{
-			for (int i = 0; i < data.length; i++)
-			{
-				dos.writeInt(data[i]);
-			}
-
-		} catch (IOException e)
-		{
+			par1DataOutput.writeShort(-1);
 		}
-
-		Packet250CustomPayload pkt = new Packet250CustomPayload();
-		pkt.channel = "RedMagic_Client";
-		pkt.data = bytes.toByteArray();
-		pkt.length = bytes.size();
-		pkt.isChunkDataPacket = true;
-
-		return pkt;
+		else
+		{
+			byte[] abyte = CompressedStreamTools.compress(par0NBTTagCompound);
+			par1DataOutput.writeShort((short)abyte.length);
+			par1DataOutput.write(abyte);
+		}
 	}
-	
-	public static void sendPacketToClosestPlayers(int x, int y, int z, int dimension, int[] data){
-		PacketDispatcher.sendPacketToAllAround(x, y, z, 256, dimension, getClientUpdatePaket(data));
-	}
-	
-	public static void sendPacketToServer(int[] data){
-		PacketDispatcher.sendPacketToServer(getServerUpdatePaket(data));
-	}
-
 }

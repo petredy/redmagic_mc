@@ -4,12 +4,16 @@ import java.util.EnumSet;
 
 import redmagic.Redmagic;
 import redmagic.api.items.IKeyBound;
+import redmagic.client.guis.talent.GuiTalentPage;
 import redmagic.configuration.Comments;
+import redmagic.configuration.PathIndex;
 import redmagic.configuration.Reference;
 import redmagic.helpers.KeyBindingHelper;
+import redmagic.lib.path.PathManager;
 import redmagic.network.PacketHandler;
 import redmagic.network.PacketKeyPressed;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -44,6 +48,11 @@ public class KeyBindingHandler extends KeyBindingRegistry.KeyHandler{
                 if (player != null) {
                     ItemStack currentItem = FMLClientHandler.instance().getClient().thePlayer.getCurrentEquippedItem();
 
+                    if(kb.keyDescription.equals(Reference.KEY_TALENT_MENU_NAME)){
+                    	Minecraft.getMinecraft().displayGuiScreen(new GuiTalentPage(player));
+                    	return;
+                    }
+                    
                     if (currentItem != null) {
                         if (currentItem.getItem() instanceof IKeyBound) {
                             PacketDispatcher.sendPacketToServer(PacketHandler.populatePacket(new PacketKeyPressed(kb.keyDescription)));

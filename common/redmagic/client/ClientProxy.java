@@ -1,15 +1,19 @@
 package redmagic.client;
 
-import redmagic.client.renderers.ItemBlockRenderer;
+import redmagic.client.renderers.*;
 import redmagic.configuration.ItemIndex;
 import redmagic.configuration.Reference;
 import redmagic.configuration.RenderIndex;
 import redmagic.core.CommonProxy;
+import redmagic.entities.EntityRedmagicItem;
+import redmagic.entities.particle.EntityCustomFX;
 import redmagic.entities.particle.EntityStarFX;
 import redmagic.handlers.KeyBindingHandler;
 import redmagic.helpers.KeyBindingHelper;
 import redmagic.helpers.LogHelper;
 import redmagic.items.ItemManager;
+import redmagic.tileentities.TileEntityAltar;
+import redmagic.tileentities.TileEntityRune;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.KeyBindingRegistry;
@@ -39,19 +43,18 @@ public class ClientProxy extends CommonProxy{
 	
 	@Override
     public void initRendering() {
-//		RenderIndex.BANK = RenderingRegistry.getNextAvailableRenderId();
-//		RenderIndex.PIPE = RenderingRegistry.getNextAvailableRenderId();
+		RenderIndex.RUNE = RenderingRegistry.getNextAvailableRenderId();
+		RenderIndex.ALTAR = RenderingRegistry.getNextAvailableRenderId();
 	}
 	
 	@Override
-    public void registerRendering(){
-//		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPipe.class, new RenderPipe());
-//		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBank.class, new RenderBank());
-//		
-//		RenderingRegistry.registerBlockHandler(new RenderPipe());
-//		RenderingRegistry.registerBlockHandler(new RenderBank());
-//		
-		//RenderingRegistry.registerEntityRenderingHandler(EntityPlayer.class, new RenderSoulPlayer());
+    public void registerRendering(){	
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityRune.class, new RenderRune());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAltar.class, new RenderAltar());
+		
+		RenderingRegistry.registerBlockHandler(new RenderRune());
+		RenderingRegistry.registerBlockHandler(new RenderAltar());
+		
 		MinecraftForgeClient.registerItemRenderer(ItemManager.artifact.itemID, new ItemBlockRenderer());
 	}
 	
@@ -65,13 +68,17 @@ public class ClientProxy extends CommonProxy{
 	public void addEffect(String name, World world, double d1, double d2, double d3, Object...data) {
 		EntityFX efx = null;
 
-		if(name == "crack")
+		if(name == "custom")
 		{
-			//efx = new EntityCrackFX(world, d1, d2, d3);
+			efx = new EntityCustomFX(world, d1, d2, d3, (ResourceLocation) data[0]);
 		}else if(name.equals("worktable")){
 			//efx = new EntityWorkTableFX(world, d1, d2, d3, (Integer)data[0], (ItemStack)data[1]);
 		}else if(name.equals("star")){
-			efx = new EntityStarFX(world, d1, d2, d3, (Double)data[0], (Double)data[1], (Double)data[2]);
+			if(data != null){
+				efx = new EntityStarFX(world, d1, d2, d3, (Double)data[0], (Double)data[1], (Double)data[2]);
+			}else{
+				efx = new EntityStarFX(world, d1, d2, d3, d1, d2, d3);
+			}
 		}
 
 		if(efx != null)

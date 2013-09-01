@@ -21,6 +21,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockDecoration extends BlockContainer{
 
+	public Icon[] icons = new Icon[ItemBlockDecoration.subNames.length];
+	
 	public BlockDecoration(int par1) {
 		super(par1, Material.rock);
 		this.setCreativeTab(Redmagic.tabRedmagic);
@@ -40,7 +42,10 @@ public class BlockDecoration extends BlockContainer{
 	
 	
 	public void registerIcons(IconRegister par1IconRegister) {
-        
+        int count = 0;
+		for(String name: ItemBlockDecoration.subNames){
+        	this.icons[count++] = par1IconRegister.registerIcon(Reference.MOD_ID + ":" + name);
+        }
 	}
 	
 	public Icon getBlockTexture(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
@@ -49,12 +54,12 @@ public class BlockDecoration extends BlockContainer{
     }
 	
 	public Icon getMultiIcon(int side, int metadata, TileEntity entity){
-		return null;
+		return getIcon(side, metadata);
 	}
 	
 	public Icon getIcon(int side, int metadata)
     {
-		return null;
+		return this.icons[metadata];
     }
 	
 	public int idDropped(int metadata, Random par2Random, int par3)

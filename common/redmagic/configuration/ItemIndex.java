@@ -20,4 +20,6 @@ public class ItemIndex {
 	public static int ARTIFACT_ID;
 	
 	
+	
+	
 }

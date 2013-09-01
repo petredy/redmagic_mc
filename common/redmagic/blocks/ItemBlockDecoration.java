@@ -7,7 +7,9 @@ import net.minecraft.item.ItemStack;
 public class ItemBlockDecoration extends ItemBlock{
 	
 	public final static String[] subNames = {
-		
+		BlockIndex.MARBLE_NAME,
+		BlockIndex.MARBLE_BRICKS_NAME,
+		BlockIndex.GRANITE_NAME
 	};
 
 	public ItemBlockDecoration(int id) {

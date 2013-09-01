@@ -22,7 +22,8 @@ public class Reference {
 	public static final int KEY_EXTRA_DEFAULT = 48;
 	public static int KEY_EXTRA_ID;
 	
-	//Storage
-	public static final int SAVE_INTERVAL = 10000;
-	public static final String BANK_TOKEN = MOD_ID + "_bank";
+	public static final String KEY_TALENT_MENU_NAME = "Talent Menu";
+	public static final int KEY_TALENT_MENU_DEFAULT = 25; // P
+	public static int KEY_TALENT_MENU_ID;
+	
 }

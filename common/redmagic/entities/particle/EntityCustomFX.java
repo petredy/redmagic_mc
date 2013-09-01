@@ -26,6 +26,12 @@ public class EntityCustomFX extends EntityFX{
 		super(world, x, y, z);
 	}
 	
+	public EntityCustomFX(World world, double x, double y, double z, ResourceLocation location){
+		this(world, x, y, z);
+		this.resourceLocation = location;
+		this.particleScale = 20;
+	}
+	
 	public void onUpdate()
     {
 		super.onUpdate();
@@ -33,6 +39,7 @@ public class EntityCustomFX extends EntityFX{
 	
 	public void renderParticle(Tessellator par1Tessellator, float par2, float par3, float par4, float par5, float par6, float par7)
     {
+		GL11.glPushMatrix();
 		Tessellator tessellator1 = new Tessellator();
         tessellator1.startDrawingQuads();
         tessellator1.setBrightness(getBrightnessForRender(par2));
@@ -52,6 +59,9 @@ public class EntityCustomFX extends EntityFX{
         tessellator1.addVertexWithUV(f5 + par3 * f4 + par6 * f4, f6 + par4 * f4, f7 + par5 * f4 + par7 * f4, f, f2);
         tessellator1.addVertexWithUV((f5 + par3 * f4) - par6 * f4, f6 - par4 * f4, (f7 + par5 * f4) - par7 * f4, f, f3);
         tessellator1.draw();
+        GL11.glPopMatrix();
+        
+        Minecraft.getMinecraft().func_110434_K().func_110577_a(new ResourceLocation("textures/particle/particles.png"));
     }
 }
 

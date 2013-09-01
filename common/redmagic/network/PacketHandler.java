@@ -33,6 +33,7 @@ public class PacketHandler implements IPacketHandler {
 		PacketRedMagic packet = null;
 		try {
 			packet = (PacketRedMagic) PacketIndex.PACKETS[selector].getConstructor().newInstance();
+			LogHelper.log("Build new " + PacketIndex.PACKETS[selector].getSimpleName());
 		} catch (Exception e) {
 			e.printStackTrace(System.err);
 		}
