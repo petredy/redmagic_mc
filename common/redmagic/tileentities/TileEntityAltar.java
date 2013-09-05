@@ -1,5 +1,6 @@
 package redmagic.tileentities;
 
+import redmagic.helpers.LogHelper;
 import redmagic.lib.gods.GodManager;
 import redmagic.lib.gods.Sphere;
 import redmagic.lib.talent.Talent;
@@ -19,7 +20,7 @@ public class TileEntityAltar extends TileEntity{
 	
 	public void setPath(Talent path){
 		this.path = path;
-		GodManager.addSphere(new Sphere(this.xCoord, this.yCoord, this.zCoord));
+		GodManager.addSphere(new Sphere(this.xCoord, this.yCoord, this.zCoord, path));
 	}
 	
 	public void unsetPath(){

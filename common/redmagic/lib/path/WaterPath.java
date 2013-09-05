@@ -8,7 +8,6 @@ import redmagic.configuration.PathIndex;
 import redmagic.helpers.PlayerInformationHelper;
 import redmagic.lib.abilities.AltarAbility;
 import redmagic.lib.abilities.ConstructionTableAbility;
-import redmagic.lib.abilities.life.SelfHealAbility;
 import redmagic.lib.player.PlayerInformation;
 import redmagic.lib.talent.Talent;
 

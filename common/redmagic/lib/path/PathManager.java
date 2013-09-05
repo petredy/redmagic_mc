@@ -49,6 +49,15 @@ public class PathManager {
 		return this.path != null;
 	}
 	
+	public void useAbility(String name, Object[] data){
+		if(this.hasPath()){
+			Ability ab = path.abilities.get(name);
+			if(ab != null){
+				ab.use(data);
+			}
+		}
+	}
+	
 	public void setTalentUnlockable(Talent talent){
 		if(this.hasPath()){
 			LogHelper.log("unlockable " + talent.unlockableName);

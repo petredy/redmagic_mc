@@ -150,7 +150,7 @@ public class BlockConstructionTable extends BlockContainer{
 		if(par5EntityLivingBase instanceof EntityPlayer){
 			EntityPlayer player = (EntityPlayer) par5EntityLivingBase;
 			PlayerInformation info = PlayerInformationHelper.getPlayerInformation(player);
-			if(info.pathManager.hasPath() && info.pathManager.isTalentUnlocked(Talent.getTalent(AbilityIndex.CONSTRUCTION_TABLE + "." + info.pathManager.path.name)) && !info.pathManager.isTalentUnlocked(Talent.getTalent(AbilityIndex.CONSTRUCTION_TABLE + "." + info.pathManager.path.name))){
+			if(info.pathManager.hasPath() && info.pathManager.isTalentUnlockable(Talent.getTalent(AbilityIndex.CONSTRUCTION_TABLE + "." + info.pathManager.path.name)) && !info.pathManager.isTalentUnlocked(Talent.getTalent(AbilityIndex.CONSTRUCTION_TABLE + "." + info.pathManager.path.name))){
 				Talent talent = Talent.getTalent(AbilityIndex.CONSTRUCTION_TABLE + "." + info.pathManager.path.name);
 				talent.unlockable.unlock(player, false);
 				TalentRenderHandler.guiTalent.queueTakenTalent(talent);

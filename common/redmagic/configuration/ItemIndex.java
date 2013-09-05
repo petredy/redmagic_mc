@@ -28,4 +28,12 @@ public class ItemIndex {
 	public static final int CONSTRUCTION_TOOL_DEFAULT_ID = 13002;
 	public static int CONSTRUCTION_TOOL_ID;
 	
+	
+	/**
+	 * Staff
+	 */
+	
+	public static final String STAFF_NAME = "staff";
+	public static final int STAFF_DEFAULT_ID = 13003;
+	public static int STAFF_ID;
 }

@@ -16,6 +16,7 @@ public class AbilityIndex {
 	 */
 	
 	public static final String SELFHEAL = "selfheal";
+	public static final String EXORCISM = "exorcism";
 	
 	/**
 	 * -----------------------------------------------------------------------------------------------------------------

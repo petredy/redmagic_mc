@@ -12,11 +12,11 @@ import redmagic.items.ItemManager;
 import redmagic.lib.abilities.AltarAbility;
 import redmagic.lib.abilities.ConstructionTableAbility;
 import redmagic.lib.abilities.earth.CompressAbility;
+import redmagic.lib.abilities.life.ExorcismAbility;
 import redmagic.lib.abilities.life.SelfHealAbility;
 import redmagic.lib.path.EarthPath;
 import redmagic.lib.path.LifePath;
 import redmagic.lib.path.WaterPath;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -26,8 +26,8 @@ import net.minecraft.util.StatCollector;
 public class Talent {
 	public static List<Talent> talents = new ArrayList<Talent>();
 	
-	public static Talent life, lifeAltar, lifeConstructionTable, selfHeal;
-	public static Talent earth, earthAltar, earthConstructionTable, compress;
+	public static Talent life, lifeAltar, lifeConstructionTable, lifeSelfHeal, lifeExorcism;
+	public static Talent earth, earthAltar, earthConstructionTable, earthCompress;
 	public static Talent water, waterAltar, waterConstructionTable;
 
 	public static int minDisplayColumn;
@@ -55,20 +55,22 @@ public class Talent {
 		 * Path of Life
 		 */
 		
-		life = new Talent(PathIndex.LIFE, new ItemStack(Item.seeds), 5, 2, null, new LifePath());
+		life = new Talent(PathIndex.LIFE, new ItemStack(Item.seeds), 2, 2, null, new LifePath());
 		life.setSpecial();
 		life.setPath();
 		talents.add(life);
 		
-		lifeAltar = new Talent(AbilityIndex.ALTAR + "." + PathIndex.LIFE, new ItemStack(BlockManager.altar), 5, 4, life, new AltarAbility(PathIndex.LIFE)); 
+		lifeAltar = new Talent(AbilityIndex.ALTAR + "." + PathIndex.LIFE, new ItemStack(BlockManager.altar), 2, 4, life, new AltarAbility(PathIndex.LIFE)); 
 		talents.add(lifeAltar);
 		
-		lifeConstructionTable = new Talent(AbilityIndex.CONSTRUCTION_TABLE + "." + PathIndex.LIFE, new ItemStack(BlockManager.construction), 5, 6, lifeAltar, new ConstructionTableAbility(PathIndex.LIFE));
+		lifeConstructionTable = new Talent(AbilityIndex.CONSTRUCTION_TABLE + "." + PathIndex.LIFE, new ItemStack(BlockManager.construction), 2, 6, lifeAltar, new ConstructionTableAbility(PathIndex.LIFE));
 		talents.add(lifeConstructionTable);
 		
-		selfHeal = new Talent(AbilityIndex.SELFHEAL, new ItemStack(ItemManager.redhole), 5, 8, lifeConstructionTable, new SelfHealAbility());
-		talents.add(selfHeal);
+		lifeSelfHeal = new Talent(AbilityIndex.SELFHEAL, new ItemStack(Item.appleGold), 1, 7, lifeConstructionTable, new SelfHealAbility());
+		talents.add(lifeSelfHeal);
 		
+		lifeExorcism = new Talent(AbilityIndex.EXORCISM, new ItemStack(Item.diamond), 3, 7, lifeConstructionTable, new ExorcismAbility());
+		talents.add(lifeExorcism);
 		
 		//---------------------------------------------------------------------------------------------------------------------
 		
@@ -88,8 +90,8 @@ public class Talent {
 		earthConstructionTable = new Talent(AbilityIndex.CONSTRUCTION_TABLE + "." + PathIndex.EARTH, new ItemStack(BlockManager.construction), 7, 6, earthAltar, new ConstructionTableAbility(PathIndex.EARTH));
 		talents.add(earthConstructionTable);
 		
-		compress = new Talent(AbilityIndex.COMPRESS, new ItemStack(Block.pistonBase), 7, 8, earthConstructionTable, new CompressAbility());
-		talents.add(compress);
+		earthCompress = new Talent(AbilityIndex.COMPRESS, new ItemStack(Block.pistonBase), 7, 8, earthConstructionTable, new CompressAbility());
+		talents.add(earthCompress);
 		
 		// --------------------------------------------------------------------------------------------------------------------
 		

@@ -12,11 +12,13 @@ public class ItemManager {
 	public static ItemRedhole redhole;
 	public static ItemArtifact artifact;
 	public static ItemConstructionTool constructionTool;
+	public static ItemStaff staff;
 	
 	public static void init(){
 		redhole = new ItemRedhole(ItemIndex.REDHOLE_ID);
 		artifact = new ItemArtifact(ItemIndex.ARTIFACT_ID);
 		constructionTool = new ItemConstructionTool(ItemIndex.CONSTRUCTION_TOOL_ID);
+		staff = new ItemStaff(ItemIndex.STAFF_ID);
 		
 		registerRecipes();
 		registerSmelting();
@@ -34,6 +36,6 @@ public class ItemManager {
 		ItemIndex.REDHOLE_ID = config.getItem(ItemIndex.REDHOLE_NAME, ItemIndex.REDHOLE_DEFAULT_ID).getInt(ItemIndex.REDHOLE_DEFAULT_ID);
 		ItemIndex.ARTIFACT_ID = config.getItem(ItemIndex.ARTIFACT_NAME, ItemIndex.ARTIFACT_DEFAULT_ID).getInt(ItemIndex.ARTIFACT_DEFAULT_ID);
 		ItemIndex.CONSTRUCTION_TOOL_ID = config.getItem(ItemIndex.CONSTRUCTION_TOOL_NAME, ItemIndex.CONSTRUCTION_TOOL_DEFAULT_ID).getInt(ItemIndex.CONSTRUCTION_TOOL_DEFAULT_ID);
-		
+		ItemIndex.STAFF_ID = config.getItem(ItemIndex.STAFF_NAME, ItemIndex.STAFF_DEFAULT_ID).getInt(ItemIndex.STAFF_DEFAULT_ID);
 	}
 }

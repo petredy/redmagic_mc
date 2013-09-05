@@ -19,7 +19,7 @@ public class SelfHealAbility extends Ability{
 	@Override
 	public void unlock(EntityPlayer player, boolean byClick) {
 		super.unlock(player, byClick);
-		TalentRenderHandler.guiTalent.queueTakenTalent(Talent.selfHeal);
+		TalentRenderHandler.guiTalent.queueTakenTalent(Talent.lifeSelfHeal);
 	}
 
 }

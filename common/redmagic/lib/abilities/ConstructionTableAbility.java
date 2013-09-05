@@ -26,11 +26,12 @@ public class ConstructionTableAbility extends Ability{
 			PlayerInformation information = PlayerInformationHelper.getPlayerInformation(player);
 			if(path.equals(PathIndex.LIFE)){
 				information.pathManager.setTalentUnlocked(Talent.lifeConstructionTable);
-				information.pathManager.setTalentUnlockable(Talent.selfHeal);
+				information.pathManager.setTalentUnlockable(Talent.lifeSelfHeal);
+				information.pathManager.setTalentUnlockable(Talent.lifeExorcism);
 			}
 			if(path.equals(PathIndex.EARTH)){
 				information.pathManager.setTalentUnlocked(Talent.earthConstructionTable);
-				information.pathManager.setTalentUnlockable(Talent.compress);
+				information.pathManager.setTalentUnlockable(Talent.earthCompress);
 			}
 			if(path.equals(PathIndex.WATER)){
 				information.pathManager.setTalentUnlocked(Talent.waterConstructionTable);

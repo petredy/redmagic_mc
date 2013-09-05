@@ -24,6 +24,7 @@ public class LifePath extends Path{
 		this.registerAbility(AbilityIndex.ALTAR + "." + PathIndex.LIFE, new AltarAbility(PathIndex.LIFE));
 		this.registerAbility(AbilityIndex.CONSTRUCTION_TABLE + "." + PathIndex.LIFE, new ConstructionTableAbility(PathIndex.LIFE));
 		this.registerAbility(AbilityIndex.SELFHEAL, new SelfHealAbility());
+		this.registerAbility(AbilityIndex.EXORCISM, new ExorcismAbility());
 		this.name = PathIndex.LIFE;
 	}
 	

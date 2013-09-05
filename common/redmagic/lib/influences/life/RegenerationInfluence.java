@@ -16,7 +16,7 @@ public class RegenerationInfluence extends PassiveInfluence{
 	@Override
 	public void act(World world, EntityPlayer player){
 		PlayerInformation information = PlayerInformationHelper.getPlayerInformation(player);
-		if(information.pathManager.hasPath() && information.pathManager.path.name.equals(Talent.life.unlockableName) && information.pathManager.isTalentUnlocked(Talent.selfHeal)){
+		if(information.pathManager.hasPath() && information.pathManager.path.name.equals(Talent.life.unlockableName) && information.pathManager.isTalentUnlocked(Talent.lifeSelfHeal)){
 			player.addPotionEffect(new PotionEffect(Redmagic.redmagicPotion.id, 10, 1));
 		}
 	}

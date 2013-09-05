@@ -26,6 +26,10 @@ public class Ability implements IUnlockable {
 		unlockable = false;
 	}
 	
+	public void use(Object[] data){
+		
+	}
+	
 	public boolean isUnlocked(){
 		return unlocked;
 	}
