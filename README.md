@@ -1,4 +1,0 @@
-redmagic
-========
-
-A Minecraftforge mod
