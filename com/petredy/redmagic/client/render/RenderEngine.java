@@ -2,8 +2,10 @@ package com.petredy.redmagic.client.render;
 
 import org.lwjgl.opengl.GL11;
 
+import com.petredy.redmagic.Redmagic;
 import com.petredy.redmagic.client.ModelEngine;
 import com.petredy.redmagic.lib.Rendering;
+import com.petredy.redmagic.lib.Textures;
 import com.petredy.redmagic.tileentities.TileEntityEngine;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
@@ -40,7 +42,7 @@ public class RenderEngine extends TileEntitySpecialRenderer implements ISimpleBl
 		}else if(entity.side == ForgeDirection.SOUTH){
 			GL11.glRotatef(90, 1, 0, 0);
 		}
-		
+		Redmagic.proxy.bindTexture(Textures.ENGINE);
 		engine.renderAll();
 		
 		GL11.glPopMatrix();
@@ -49,7 +51,7 @@ public class RenderEngine extends TileEntitySpecialRenderer implements ISimpleBl
 	@Override
 	public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
 		GL11.glPushMatrix();
-		
+		Redmagic.proxy.bindTexture(Textures.ENGINE);
 		engine.renderAll();
 		
 		GL11.glPopMatrix();

@@ -34,7 +34,6 @@ public class BlockBasicEngine extends BlockContainer{
 		if(par5EntityLivingBase instanceof EntityPlayer){
 			TileEntityEngine engine = (TileEntityEngine)par1World.getBlockTileEntity(par2, par3, par4);
 			engine.side = BlockUtils.getRotation(par1World, par2, par3, par4, par5EntityLivingBase);
-			LogUtils.log(engine.side);
 		}
 	}
 	
