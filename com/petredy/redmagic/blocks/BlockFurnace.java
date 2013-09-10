@@ -2,6 +2,7 @@ package com.petredy.redmagic.blocks;
 
 import com.petredy.redmagic.Redmagic;
 import com.petredy.redmagic.lib.BlockIndex;
+import com.petredy.redmagic.lib.Rendering;
 import com.petredy.redmagic.tileentities.TileEntityFurnace;
 
 import net.minecraft.block.BlockContainer;

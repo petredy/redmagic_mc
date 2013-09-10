@@ -5,12 +5,14 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeDirection;
 
 public class BlockUtils {
 	public static void breakBlock(World world, int x, int y, int z, int forcedLifespan, boolean drop) {
@@ -57,21 +59,21 @@ public class BlockUtils {
 	}
 	
 	
-	public static int getRotation(World par0World, int par1, int par2, int par3, EntityLiving par4EntityLiving){
-		double d0 = par4EntityLiving.posY + 1.82D - (double)par4EntityLiving.yOffset; 
+	public static ForgeDirection getRotation(World par0World, int par1, int par2, int par3, EntityLivingBase par5EntityLivingBase){
+		double d0 = par5EntityLivingBase.posY + 1.82D - (double)par5EntityLivingBase.yOffset; 
 		
 		if (d0 - (double)par2 > 2.0D)
 		{
-			return 1;
+			return ForgeDirection.UP;
 		}
 		
 		if ((double)par2 - d0 > 0.0D)
 		{
-		    return 0;
+		    return ForgeDirection.DOWN;
 		}
 		
-		int l = MathHelper.floor_double((double)(par4EntityLiving.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
-		return l == 0 ? 2 : (l == 1 ? 5 : (l == 2 ? 3 : (l == 3 ? 4 : 0)));
+		int l = MathHelper.floor_double((double)(par5EntityLivingBase.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+		return l == 0 ? ForgeDirection.NORTH : (l == 1 ? ForgeDirection.EAST : (l == 2 ? ForgeDirection.SOUTH : (l == 3 ? ForgeDirection.WEST : ForgeDirection.DOWN)));
 	}
 	
 	public static int getHitIndex4x4(float x, float z){
