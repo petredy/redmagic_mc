@@ -19,7 +19,7 @@ public class TileEntityInventory extends TileEntity implements IInventory{
 	
 	public int getSizeInventory()
     {
-        return 27;
+        return this.inv.length;
     }
 
     /**

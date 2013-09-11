@@ -1,5 +1,7 @@
 package com.petredy.redmagic.blocks;
 
+import buildcraft.api.tools.IToolWrench;
+
 import com.petredy.redmagic.Redmagic;
 import com.petredy.redmagic.lib.BlockIndex;
 import com.petredy.redmagic.lib.Rendering;
@@ -15,6 +17,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeDirection;
 
 public class BlockBasicEngine extends BlockContainer{
 
@@ -54,5 +57,23 @@ public class BlockBasicEngine extends BlockContainer{
 		return false;
     }
 	
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float par7, float par8, float par9)
+    {
+		
+		if(player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof IToolWrench){
+			TileEntityEngine engine = (TileEntityEngine) world.getBlockTileEntity(x, y, z);
+			if(player.isSneaking()){
+				engine.side = engine.side.getOpposite();
+			}else{
+				if(engine.side == ForgeDirection.UP)engine.side = ForgeDirection.DOWN;
+				else if(engine.side == ForgeDirection.DOWN)engine.side = ForgeDirection.EAST;
+				else if(engine.side == ForgeDirection.EAST)engine.side = ForgeDirection.WEST;
+				else if(engine.side == ForgeDirection.WEST)engine.side = ForgeDirection.NORTH;
+				else if(engine.side == ForgeDirection.NORTH)engine.side = ForgeDirection.SOUTH;
+				else if(engine.side == ForgeDirection.SOUTH)engine.side = ForgeDirection.UP;
+			}
+		}
+        return false;
+    }
 
 }

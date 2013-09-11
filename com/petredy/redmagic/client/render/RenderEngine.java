@@ -7,6 +7,7 @@ import com.petredy.redmagic.client.ModelEngine;
 import com.petredy.redmagic.lib.Rendering;
 import com.petredy.redmagic.lib.Textures;
 import com.petredy.redmagic.tileentities.TileEntityEngine;
+import com.petredy.redmagic.utils.LogUtils;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import net.minecraft.block.Block;
@@ -32,13 +33,34 @@ public class RenderEngine extends TileEntitySpecialRenderer implements ISimpleBl
 		
 		TileEntityEngine entity = (TileEntityEngine)tileentity;
 		
+		double x = 0.5;
+		double y = 0.85;
+		double z = 0.5;
+		
+		
+		if(entity.side == ForgeDirection.DOWN){
+			y = 0.15;
+		}else if(entity.side == ForgeDirection.WEST){
+			y = 0.5;
+			x = 0.15;
+		}else if(entity.side == ForgeDirection.EAST){
+			y = 0.5;
+			x = 0.85;
+		}else if(entity.side == ForgeDirection.NORTH){
+			y = 0.5;
+			z = 0.15;
+		}else if(entity.side == ForgeDirection.SOUTH){
+			y = 0.5;
+			z = 0.85;
+		}
+		
 		RenderCustomItemStack itemRenderer = new RenderCustomItemStack();
 		itemRenderer.setRenderManager(RenderManager.instance);
 		
 		EntityItem item = new EntityItem(entity.worldObj);
 		item.setEntityItemStack(new ItemStack(Block.dirt));
 		GL11.glPushMatrix();
-		itemRenderer.doRenderItem(item, d0 + 0.5, d1 + 0.85, d2 + 0.5, 0, entity.rotate++);
+		itemRenderer.doRenderItem(item, d0 + x, d1 + y, d2 + z, 0, entity.rotate += entity.speed);
 		if(entity.rotate > 360)entity.rotate = 0;
 		GL11.glPopMatrix();
 		
@@ -46,7 +68,6 @@ public class RenderEngine extends TileEntitySpecialRenderer implements ISimpleBl
 		GL11.glPushMatrix();
 		
 		GL11.glTranslated(d0 + 0.5, d1 + 0.5, d2 + 0.5);
-		
 		
 		if(entity.side == ForgeDirection.DOWN){
 			GL11.glRotatef(180, 0, 0, -1);
@@ -59,6 +80,7 @@ public class RenderEngine extends TileEntitySpecialRenderer implements ISimpleBl
 		}else if(entity.side == ForgeDirection.SOUTH){
 			GL11.glRotatef(90, 1, 0, 0);
 		}
+		
 		Redmagic.proxy.bindTexture(Textures.ENGINE);
 		engine.render("Engine");
 		
