@@ -13,7 +13,7 @@ import net.minecraftforge.common.ForgeDirection;
 public class TileEntityEngine extends TileEntityInventory implements IPowerEmitter{
 
 	public ForgeDirection side;
-	
+	public float rotate = 0;
 	public TileEntityEngine() {
 		super(BlockIndex.ENGINE_NAME, 1);
 		// TODO Auto-generated constructor stub

@@ -12,6 +12,6 @@ public class Textures {
 	public static final String TEXTURE_PATH = "textures/";
 	
 	//Renders
-	public static final ResourceLocation ENGINE = ResourceLocationUtils.getResourceLocation(Reference.ASSETS + Reference.MOD_ID + "models/engine/engine.png");
+	public static final ResourceLocation ENGINE = ResourceLocationUtils.getResourceLocation("models/engine/engine.png");
 			
 }
