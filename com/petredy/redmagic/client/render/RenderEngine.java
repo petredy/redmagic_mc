@@ -3,7 +3,7 @@ package com.petredy.redmagic.client.render;
 import org.lwjgl.opengl.GL11;
 
 import com.petredy.redmagic.Redmagic;
-import com.petredy.redmagic.client.ModelEngine;
+import com.petredy.redmagic.client.models.ModelEngine;
 import com.petredy.redmagic.lib.Rendering;
 import com.petredy.redmagic.lib.Textures;
 import com.petredy.redmagic.tileentities.TileEntityEngine;

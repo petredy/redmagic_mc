@@ -28,9 +28,11 @@ import com.petredy.redmagic.core.CommonProxy;
 import com.petredy.redmagic.core.CreativeTabRedMagic;
 import com.petredy.redmagic.handlers.ConfigHandler;
 import com.petredy.redmagic.handlers.LanguageHandler;
+import com.petredy.redmagic.handlers.RedvalueConfigurationHandler;
 import com.petredy.redmagic.handlers.TileEntityHandler;
 import com.petredy.redmagic.lib.*;
 import com.petredy.redmagic.network.PacketHandler;
+import com.petredy.redmagic.redvalue.RedvalueDictionary;
 import com.petredy.redmagic.utils.LogUtils;
 @Mod( modid = Reference.MOD_ID, name=Reference.MOD_NAME, version=Reference.VERSION)
 @NetworkMod(channels = { Reference.PACKET_CHANNEL },clientSideRequired = true, serverSideRequired = true, packetHandler = PacketHandler.class)
@@ -67,6 +69,8 @@ public class Redmagic{
       	
       	//Initialise TileEntity registration
       	TileEntityHandler.init();
+      	
+      	RedvalueConfigurationHandler.init();
       	
       	//Initialise block configuration
       	Blocks.config(config);
@@ -108,5 +112,6 @@ public class Redmagic{
     public void postInit(FMLPostInitializationEvent event)
     {
 		// Addons
+		RedvalueDictionary.initialise();
     }
 }

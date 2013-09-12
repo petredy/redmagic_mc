@@ -1,4 +1,4 @@
-package com.petredy.redmagic.client;
+package com.petredy.redmagic.client.models;
 
 import org.bouncycastle.asn1.x509.qualified.Iso4217CurrencyCode;
 
