@@ -33,6 +33,7 @@ import com.petredy.redmagic.handlers.TileEntityHandler;
 import com.petredy.redmagic.lib.*;
 import com.petredy.redmagic.network.PacketHandler;
 import com.petredy.redmagic.redvalue.RedvalueDictionary;
+import com.petredy.redmagic.trading.TradingManager;
 import com.petredy.redmagic.utils.LogUtils;
 @Mod( modid = Reference.MOD_ID, name=Reference.MOD_NAME, version=Reference.VERSION)
 @NetworkMod(channels = { Reference.PACKET_CHANNEL },clientSideRequired = true, serverSideRequired = true, packetHandler = PacketHandler.class)
@@ -113,5 +114,6 @@ public class Redmagic{
     {
 		// Addons
 		RedvalueDictionary.initialise();
+		TradingManager.initialise();
     }
 }

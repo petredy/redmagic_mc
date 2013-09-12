@@ -3,9 +3,11 @@ package com.petredy.redmagic.core;
 
 import com.petredy.redmagic.client.SoundHandler;
 import com.petredy.redmagic.client.render.RenderEngine;
+import com.petredy.redmagic.client.render.RenderTradingChest;
 import com.petredy.redmagic.handlers.KeyBindingHandler;
 import com.petredy.redmagic.lib.Rendering;
 import com.petredy.redmagic.tileentities.TileEntityEngine;
+import com.petredy.redmagic.tileentities.TileEntityTradingChest;
 import com.petredy.redmagic.utils.KeyBindingUtils;
 
 import cpw.mods.fml.client.FMLClientHandler;
@@ -38,12 +40,16 @@ public class ClientProxy extends CommonProxy{
 	@Override
     public void initRendering() {
 		Rendering.ENGINE_ID = RenderingRegistry.getNextAvailableRenderId();
+		Rendering.TRADING_CHEST_ID = RenderingRegistry.getNextAvailableRenderId();
 	}
 	
 	@Override
     public void registerRendering(){	
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEngine.class, new RenderEngine());
 		RenderingRegistry.registerBlockHandler(new RenderEngine());
+		
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTradingChest.class, new RenderTradingChest());
+		RenderingRegistry.registerBlockHandler(new RenderTradingChest());
 	}
 	
 	

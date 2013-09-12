@@ -1,13 +1,15 @@
 package com.petredy.redmagic.tileentities;
 
-import redmagic.blocks.BlockManager;
-import redmagic.configuration.Sounds;
+import com.petredy.redmagic.blocks.Blocks;
+import com.petredy.redmagic.lib.Sounds;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.StatCollector;
 
 public class TileEntityTradingChest extends TileEntity implements IInventory{
 	/** The current angle of the chest lid (between 0 and 1) */
@@ -87,7 +89,7 @@ public class TileEntityTradingChest extends TileEntity implements IInventory{
     @Override
     public String getInvName() {
 
-        return "Bank";
+        return Blocks.trading.getUnlocalizedName();
     }
 
     @Override
@@ -115,14 +117,14 @@ public class TileEntityTradingChest extends TileEntity implements IInventory{
     public void openChest() {
 
         ++numUsingPlayers;
-        worldObj.addBlockEvent(xCoord, yCoord, zCoord, BlockManager.bank.blockID, 1, numUsingPlayers);
+        worldObj.addBlockEvent(xCoord, yCoord, zCoord, Blocks.trading.blockID, 1, numUsingPlayers);
     }
 
     @Override
     public void closeChest() {
 
         --numUsingPlayers;
-        worldObj.addBlockEvent(xCoord, yCoord, zCoord, BlockManager.bank.blockID, 1, numUsingPlayers);
+        worldObj.addBlockEvent(xCoord, yCoord, zCoord, Blocks.trading.blockID, 1, numUsingPlayers);
     }
 
     /**
@@ -214,7 +216,7 @@ public class TileEntityTradingChest extends TileEntity implements IInventory{
     }
 
     @Override
-    public boolean isStackValidForSlot(int side, ItemStack itemStack) {
+    public boolean isItemValidForSlot(int i, ItemStack itemstack){
 
         return true;
     }
@@ -223,4 +225,5 @@ public class TileEntityTradingChest extends TileEntity implements IInventory{
 	public boolean isUseableByPlayer(EntityPlayer entityplayer) {
 		return true;
 	}
+
 }

@@ -1,21 +1,23 @@
 package com.petredy.redmagic.container;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+
+import com.petredy.redmagic.container.slot.SlotNoInteraction;
+import com.petredy.redmagic.lib.Sounds;
+import com.petredy.redmagic.network.PacketBuyItem;
+import com.petredy.redmagic.network.PacketHandler;
+import com.petredy.redmagic.network.PacketSellItem;
+import com.petredy.redmagic.tileentities.TileEntityTradingChest;
+import com.petredy.redmagic.trading.TradingItem;
+import com.petredy.redmagic.trading.TradingManager;
+import com.petredy.redmagic.utils.TradingUtils;
 
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
 
-import redmagic.configuration.Sounds;
-import redmagic.core.Logger;
-import redmagic.helpers.BankHelper;
-import redmagic.helpers.InventoryHelper;
-import redmagic.lib.bank.BankManager;
-import redmagic.network.PacketBuyItem;
-import redmagic.network.PacketHandler;
-import redmagic.network.PacketSellItem;
-import redmagic.slots.SlotNoInteraction;
-import redmagic.tileentities.bank.TileEntityBank;
 import net.minecraft.client.gui.inventory.GuiContainerCreative;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -30,7 +32,7 @@ public class ContainerTradingChest extends Container{
 	
 	public InventoryBasic inv = new InventoryBasic("tmp", true, 45);
 	
-	public List<ItemStack> list = BankManager.getAllItems();
+	public Object[] list = TradingManager.getAllItems().toArray();
 	
 	public ContainerTradingChest(EntityPlayer player, TileEntityTradingChest tileEntity){
 		super();
@@ -72,9 +74,9 @@ public class ContainerTradingChest extends Container{
 	}
 	
 	@Override
-    public void onCraftGuiClosed(EntityPlayer entityPlayer) {
+    public void onContainerClosed(EntityPlayer entityPlayer) {
 
-        super.onCraftGuiClosed(entityPlayer);
+        super.onContainerClosed(entityPlayer);
         this.entity.closeChest();
     }
 	
@@ -115,15 +117,15 @@ public class ContainerTradingChest extends Container{
     }
 	
 	public ItemStack buy(ItemStack stack, ItemStack crystal, int amount, EntityPlayer player){
-		float costs = BankManager.getItemPrice(stack.itemID, stack.getItemDamage()) * amount;
-		if(player.worldObj.isRemote && BankHelper.getMoney(crystal) >= costs && BankManager.getItemAmount(stack.itemID, stack.getItemDamage()) > 0){
+		float costs = TradingManager.getItemPrice(stack) * amount;
+		if(player.worldObj.isRemote && TradingUtils.getMoney(crystal) >= costs && TradingManager.getItemAmount(stack) >= amount){
 			
-			PacketDispatcher.sendPacketToServer(PacketHandler.populatePacket(new PacketBuyItem(stack.itemID, stack.getItemDamage(), amount, this.entity.xCoord, this.entity.yCoord, this.entity.zCoord)));
+			PacketDispatcher.sendPacketToServer(PacketHandler.populatePacket(new PacketBuyItem(stack, amount, this.entity.xCoord, this.entity.yCoord, this.entity.zCoord)));
 			
-			BankHelper.setMoney(crystal, BankHelper.getMoney(crystal) - costs);
+			TradingUtils.setMoney(crystal, TradingUtils.getMoney(crystal) - costs);
 			ItemStack output = new ItemStack(stack.itemID, amount, stack.getItemDamage());
 			player.playSound(Sounds.CHEST_CLOSE, 1.0F, 1.0F);
-			InventoryHelper.addItemStackToInventory(player.inventory, output);
+			player.inventory.addItemStackToInventory(output);
 			player.inventory.setItemStack(null);
 			return output;
 		}
@@ -131,12 +133,12 @@ public class ContainerTradingChest extends Container{
 	}
 	
 	public ItemStack sell(ItemStack stack, ItemStack crystal, EntityPlayer player){
-		float money = BankManager.getItemPrice(stack.itemID, stack.getItemDamage()) * stack.stackSize;
-		if(BankManager.getItemTradeable(stack.itemID, stack.getItemDamage()) && player.worldObj.isRemote){
+		float money = TradingManager.getItemPrice(stack) * stack.stackSize;
+		if(player.worldObj.isRemote){
 			
-			PacketDispatcher.sendPacketToServer(PacketHandler.populatePacket(new PacketSellItem(stack.itemID, stack.getItemDamage(), stack.stackSize, this.entity.xCoord, this.entity.yCoord, this.entity.zCoord)));
+			PacketDispatcher.sendPacketToServer(PacketHandler.populatePacket(new PacketSellItem(stack, stack.stackSize, this.entity.xCoord, this.entity.yCoord, this.entity.zCoord)));
 			player.playSound(Sounds.CHEST_CLOSE, 1.0F, 1.0F);
-			BankHelper.setMoney(crystal, BankHelper.getMoney(crystal) + money);
+			TradingUtils.setMoney(crystal, TradingUtils.getMoney(crystal) + money);
 			return null;
 		}
 		return stack;
@@ -149,7 +151,7 @@ public class ContainerTradingChest extends Container{
 	
 	public void scrollTo(float par1)
     {
-        int i = list.size() / 9 - 5 + 1;
+        int i = list.length / 9 - 5 + 1;
         int j = (int)((double)(par1 * (float)i) + 0.5D);
 
         if (j < 0)
@@ -163,9 +165,10 @@ public class ContainerTradingChest extends Container{
             {
                 int i1 = l + (k + j) * 9;
                 
-                if (i1 >= 0 && i1 < list.size())
+                if (i1 >= 0 && i1 < list.length)
                 {
-                    this.inv.setInventorySlotContents(l + k * 9, (ItemStack)list.get(i1));
+                	int count = 0;
+                    this.inv.setInventorySlotContents(l + k * 9, list[i1] instanceof ItemStack ? (ItemStack)list[i1] : ((TradingItem)list[i1]).item);
                 }
                 else
                 {

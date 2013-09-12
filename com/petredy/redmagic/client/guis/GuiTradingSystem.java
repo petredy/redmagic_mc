@@ -9,6 +9,14 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
+import com.petredy.redmagic.Redmagic;
+import com.petredy.redmagic.blocks.Blocks;
+import com.petredy.redmagic.container.ContainerTradingChest;
+import com.petredy.redmagic.lib.Textures;
+import com.petredy.redmagic.tileentities.TileEntityTradingChest;
+import com.petredy.redmagic.trading.TradingItem;
+import com.petredy.redmagic.trading.TradingManager;
+
 import cpw.mods.fml.common.network.PacketDispatcher;
 
 import net.minecraft.client.Minecraft;
@@ -29,15 +37,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
-import redmagic.client.guis.button.ButtonCustom;
-import redmagic.configuration.Texture;
-import redmagic.containers.ContainerBank;
-import redmagic.core.Logger;
-import redmagic.helpers.BankHelper;
-import redmagic.lib.bank.BankManager;
-import redmagic.network.PacketHandler;
-import redmagic.tileentities.bank.TileEntityBank;
 
 public class GuiTradingSystem extends GuiContainer{
 	private static int field_94069_F = 0;
@@ -105,7 +106,7 @@ public class GuiTradingSystem extends GuiContainer{
         
         if (i != 0)
         {
-            int j = BankManager.getAllItems().size() / 9 - 5 + 1;
+            int j = TradingManager.getAllItems().size() / 9 - 5 + 1;
 
             if (i > 0)
             {
@@ -136,13 +137,13 @@ public class GuiTradingSystem extends GuiContainer{
 
 	@Override
 	public void drawGuiContainerForegroundLayer(int par1, int par2){		
-		fontRenderer.drawString(this.entity.getInvName(), 8, 6, 4210752);
+		fontRenderer.drawString(StatCollector.translateToLocal(Blocks.trading.getUnlocalizedName()), 8, 6, 4210752);
 	}
 	
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float var1, int var2, int var3) {
 		GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-		this.mc.renderEngine.bindTexture(Texture.BANK_GUI);
+		this.mc.renderEngine.bindTexture(Textures.TRADING_CHEST_GUI);
 		int x = (this.width - this.xSize) / 2;
 		int y = (this.height - this.ySize) / 2;
 		this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
@@ -153,7 +154,7 @@ public class GuiTradingSystem extends GuiContainer{
         int i1 = this.guiLeft + 175;
         int k = this.guiTop + 18;
         int l = k + 112;
-		this.mc.renderEngine.bindTexture("/gui/allitems.png");
+		Redmagic.proxy.bindTexture(Textures.ALL_ITEMS);
         this.drawTexturedModalRect(i1, k + (int)((float)(l - k - 17) * this.currentScroll), 232 + 12, 0, 12, 15);
 	}
 	
@@ -173,27 +174,33 @@ public class GuiTradingSystem extends GuiContainer{
     }
 
 	private void updateSearch() {
-		ContainerTradingChest bank = (ContainerTradingChest)this.inventorySlots;
-		Iterator iterator;
-		if(bank.list.size() > 0){
-			iterator= bank.list.iterator();
+		ContainerTradingChest chest = (ContainerTradingChest)this.inventorySlots;
+		Object[] theList;
+		if(chest.list.length > 0){
+			theList= chest.list;
 		}else{
-			iterator = BankManager.getAllItems().iterator();
+			theList = TradingManager.getAllItems().toArray();
 		}
 		List<ItemStack> newList = new ArrayList<ItemStack>();
 		String search = this.searchField.getText().toLowerCase();
 		if(!search.equals("")){
-			while(iterator.hasNext()){
-				ItemStack stack = (ItemStack) iterator.next();
+			for(Object item: theList){
+				ItemStack stack = null;
+				if(item instanceof TradingItem){
+					TradingItem tradItem = (TradingItem)item;
+					stack = (ItemStack)tradItem.item;
+				}else{
+					stack = (ItemStack)item;
+				}
 				String name = StatCollector.translateToLocal(stack.getDisplayName().toLowerCase());
 				if(name.matches(".*"+search+".*")){
 					newList.add(stack);
 				}
 			}
-			bank.list = newList;
-			bank.scrollTo(0.0F);
+			chest.list = newList.toArray();
+			chest.scrollTo(0.0F);
 		}else{
-			bank.list = BankManager.getAllItems();
+			chest.list = TradingManager.getAllItems().toArray();
 		}
 	}
 	
@@ -204,7 +211,7 @@ public class GuiTradingSystem extends GuiContainer{
         
         //Add Costs to the tooltip of every item
         list.add("Costs");
-        float price = BankManager.getItemPrice(par1ItemStack.itemID, par1ItemStack.getItemDamage());
+        float price = TradingManager.getItemPrice(par1ItemStack);
         float stack = price * par1ItemStack.getMaxStackSize();
         
         list.add("One: " + (price > 0.01 ? String.format("%.2f", price) : "<0.01") + "C");
@@ -230,7 +237,7 @@ public class GuiTradingSystem extends GuiContainer{
     {
 		if(stack != null){
 			list.add("Costs");
-			float price = BankManager.getItemPrice(stack.itemID, stack.getItemDamage());
+			float price = TradingManager.getItemPrice(stack);
 	        float stackPrice = price * stack.getMaxStackSize();
 	        
 	        list.add("One: " + (price > 0.01 ? String.format("%.2f", price) : "<0.01") + "C");
@@ -306,7 +313,7 @@ public class GuiTradingSystem extends GuiContainer{
 	            if (icon != null)
 	            {
 	                GL11.glDisable(GL11.GL_LIGHTING);
-	                this.mc.renderEngine.bindTexture("/gui/items.png");
+	                Redmagic.proxy.bindTexture(new ResourceLocation("/gui/items.png"));
 	                this.drawTexturedModelRectFromIcon(i, j, icon, 16, 16);
 	                GL11.glEnable(GL11.GL_LIGHTING);
 	                flag1 = true;
@@ -324,7 +331,7 @@ public class GuiTradingSystem extends GuiContainer{
 	            if(itemstack != null){
 		            itemRenderer.renderItemAndEffectIntoGUI(this.fontRenderer, this.mc.renderEngine, itemstack, i, j);
 		            if(stack != null){
-		            	int amount = BankManager.getItemAmount(stack.itemID, stack.getItemDamage());
+		            	int amount = TradingManager.getItemAmount(stack);
 		            	s = amount < 1000 ? String.valueOf(amount) : String.valueOf(amount / 1000) + "k";
 		            }
 		            itemRenderer.renderItemOverlayIntoGUI(this.fontRenderer, this.mc.renderEngine, itemstack, i, j, s);
