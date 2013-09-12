@@ -13,6 +13,7 @@ import com.petredy.redmagic.network.PacketSellItem;
 import com.petredy.redmagic.tileentities.TileEntityTradingChest;
 import com.petredy.redmagic.trading.TradingItem;
 import com.petredy.redmagic.trading.TradingManager;
+import com.petredy.redmagic.utils.LogUtils;
 import com.petredy.redmagic.utils.TradingUtils;
 
 import cpw.mods.fml.common.network.PacketDispatcher;
@@ -41,10 +42,8 @@ public class ContainerTradingChest extends Container{
 		
 		this.addSlotToContainer(new Slot(this.entity, 0, 173, 150));
 		
-		for (int i = 0; i < 5; ++i)
-        {
-            for (int j = 0; j < 9; ++j)
-            {
+		for (int i = 0; i < 5; ++i){
+            for (int j = 0; j < 9; ++j){
                 this.addSlotToContainer(new SlotNoInteraction(this.inv, i * 9 + j, 9 + j * 18, 18 + i * 18));
             }
         }
@@ -135,7 +134,6 @@ public class ContainerTradingChest extends Container{
 	public ItemStack sell(ItemStack stack, ItemStack crystal, EntityPlayer player){
 		float money = TradingManager.getItemPrice(stack) * stack.stackSize;
 		if(player.worldObj.isRemote){
-			
 			PacketDispatcher.sendPacketToServer(PacketHandler.populatePacket(new PacketSellItem(stack, stack.stackSize, this.entity.xCoord, this.entity.yCoord, this.entity.zCoord)));
 			player.playSound(Sounds.CHEST_CLOSE, 1.0F, 1.0F);
 			TradingUtils.setMoney(crystal, TradingUtils.getMoney(crystal) + money);

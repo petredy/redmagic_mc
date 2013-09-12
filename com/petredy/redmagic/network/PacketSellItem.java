@@ -49,6 +49,7 @@ public class PacketSellItem extends PacketRedMagic {
 	@Override
 	public void writePacketData(DataOutput data) throws IOException {
 		NBTTagCompound tag = new NBTTagCompound();
+		stack.writeToNBT(tag);
 		this.writeNBTTagCompound(tag, data);
 		data.writeInt(amount);
 		data.writeInt(x);

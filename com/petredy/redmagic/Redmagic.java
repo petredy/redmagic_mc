@@ -30,6 +30,8 @@ import com.petredy.redmagic.handlers.ConfigHandler;
 import com.petredy.redmagic.handlers.LanguageHandler;
 import com.petredy.redmagic.handlers.RedvalueConfigurationHandler;
 import com.petredy.redmagic.handlers.TileEntityHandler;
+import com.petredy.redmagic.handlers.WorldLoadingHandler;
+import com.petredy.redmagic.items.Items;
 import com.petredy.redmagic.lib.*;
 import com.petredy.redmagic.network.PacketHandler;
 import com.petredy.redmagic.redvalue.RedvalueDictionary;
@@ -76,9 +78,14 @@ public class Redmagic{
       	//Initialise block configuration
       	Blocks.config(config);
       	
+      	//Initialise item configuration
+      	Items.config(config);
+      	
       	//Initialise block registration
       	Blocks.init();
       	
+      	//Initialise item registration
+      	Items.init();
       	
         //Register GuiHandler
         NetworkRegistry.instance().registerGuiHandler(instance, this.proxy);
@@ -103,7 +110,8 @@ public class Redmagic{
 		proxy.registerKeyBinding();
 		proxy.registerRendering();
 		
-		
+		//Register TradingSystem loading/saving
+		MinecraftForge.EVENT_BUS.register(new WorldLoadingHandler());
 		
     }
 	
@@ -114,6 +122,5 @@ public class Redmagic{
     {
 		// Addons
 		RedvalueDictionary.initialise();
-		TradingManager.initialise();
     }
 }

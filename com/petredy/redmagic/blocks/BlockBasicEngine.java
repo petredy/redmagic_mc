@@ -60,8 +60,10 @@ public class BlockBasicEngine extends BlockContainer{
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float par7, float par8, float par9)
     {
 		
-		if(player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof IToolWrench){
-			TileEntityEngine engine = (TileEntityEngine) world.getBlockTileEntity(x, y, z);
+		ItemStack current = player.getCurrentEquippedItem();
+		TileEntityEngine engine = (TileEntityEngine) world.getBlockTileEntity(x, y, z);
+		if(current != null && current.getItem() instanceof IToolWrench){
+			
 			if(player.isSneaking()){
 				engine.side = engine.side.getOpposite();
 			}else{
@@ -72,7 +74,15 @@ public class BlockBasicEngine extends BlockContainer{
 				else if(engine.side == ForgeDirection.NORTH)engine.side = ForgeDirection.SOUTH;
 				else if(engine.side == ForgeDirection.SOUTH)engine.side = ForgeDirection.UP;
 			}
+			return true;
+		}else if(current != null && !engine.hasItem()){
+			ItemStack item = current.copy();
+			item.stackSize = 1;
+			engine.setInventorySlotContents(0, item);
+			player.inventory.decrStackSize(player.inventory.currentItem, 1);
+			return true;
 		}
+			
         return false;
     }
 

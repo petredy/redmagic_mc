@@ -4,7 +4,9 @@ import com.google.common.base.Throwables;
 import com.petredy.redmagic.client.guis.GuiTradingSystem;
 import com.petredy.redmagic.container.ContainerTradingChest;
 import com.petredy.redmagic.lib.Guis;
+import com.petredy.redmagic.network.PacketTradingSync;
 import com.petredy.redmagic.tileentities.TileEntityTradingChest;
+import com.petredy.redmagic.trading.TradingManager;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -31,6 +33,7 @@ public class CommonProxy implements IGuiHandler{
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
 		if(ID == Guis.TRADING_CHEST){
+			PacketDispatcher.sendPacketToPlayer(new PacketTradingSync(TradingManager.getData()), (Player) player);
 			return new ContainerTradingChest(player,(TileEntityTradingChest)tileEntity);
 		}
 		return null;

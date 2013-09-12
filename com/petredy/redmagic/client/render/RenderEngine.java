@@ -53,17 +53,17 @@ public class RenderEngine extends TileEntitySpecialRenderer implements ISimpleBl
 			y = 0.5;
 			z = 0.85;
 		}
-		
-		RenderCustomItemStack itemRenderer = new RenderCustomItemStack();
-		itemRenderer.setRenderManager(RenderManager.instance);
-		
-		EntityItem item = new EntityItem(entity.worldObj);
-		item.setEntityItemStack(new ItemStack(Block.dirt));
-		GL11.glPushMatrix();
-		itemRenderer.doRenderItem(item, d0 + x, d1 + y, d2 + z, 0, entity.rotate += entity.speed);
-		if(entity.rotate > 360)entity.rotate = 0;
-		GL11.glPopMatrix();
-		
+		if(entity.getItem() != null){
+			RenderCustomItemStack itemRenderer = new RenderCustomItemStack();
+			itemRenderer.setRenderManager(RenderManager.instance);
+			
+			EntityItem item = new EntityItem(entity.worldObj);
+			item.setEntityItemStack(entity.getItem());
+			GL11.glPushMatrix();
+			itemRenderer.doRenderItem(item, d0 + x, d1 + y, d2 + z, 0, entity.rotate += entity.speed);
+			if(entity.rotate > 360)entity.rotate = 0;
+			GL11.glPopMatrix();
+		}
 		
 		GL11.glPushMatrix();
 		
@@ -94,7 +94,7 @@ public class RenderEngine extends TileEntitySpecialRenderer implements ISimpleBl
 	public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
 		GL11.glPushMatrix();
 		Redmagic.proxy.bindTexture(Textures.ENGINE);
-		engine.renderAll();
+		engine.render("Engine");
 		
 		GL11.glPopMatrix();
 	}
