@@ -29,6 +29,7 @@ import com.petredy.redmagic.core.CreativeTabRedMagic;
 import com.petredy.redmagic.handlers.ConfigHandler;
 import com.petredy.redmagic.handlers.LanguageHandler;
 import com.petredy.redmagic.handlers.RedvalueConfigurationHandler;
+import com.petredy.redmagic.handlers.ServerTickHandler;
 import com.petredy.redmagic.handlers.TileEntityHandler;
 import com.petredy.redmagic.handlers.WorldLoadingHandler;
 import com.petredy.redmagic.items.Items;
@@ -112,6 +113,8 @@ public class Redmagic{
 		
 		//Register TradingSystem loading/saving
 		MinecraftForge.EVENT_BUS.register(new WorldLoadingHandler());
+		
+		TickRegistry.registerTickHandler(new ServerTickHandler(), Side.SERVER);
 		
     }
 	

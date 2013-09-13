@@ -56,11 +56,6 @@ public class TileEntityEngine extends TileEntityInventory implements IPowerEmitt
 			}
 			count++;
 			production = (float) Math.max(5, Math.sqrt(RedvalueDictionary.getRedvalue(getItem())));
-			LogUtils.log("---------");
-			LogUtils.log(need);
-			LogUtils.log(count);
-			LogUtils.log(speed);
-			LogUtils.log(production);
 			
 		}else{
 			speed = production = count = 0;
