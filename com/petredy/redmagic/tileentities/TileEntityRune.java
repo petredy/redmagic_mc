@@ -1,6 +1,9 @@
 package com.petredy.redmagic.tileentities;
 
+import java.util.Collection;
+
 import com.petredy.redmagic.rune.Marker;
+import com.petredy.redmagic.rune.Pattern;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -12,6 +15,7 @@ import net.minecraft.tileentity.TileEntity;
 public class TileEntityRune extends TileEntity{
 
 	protected Marker[] markers = new Marker[16];
+	protected Pattern pattern = null;
 	public int side;
 	
 	public Marker[] getMarkers() {
@@ -20,8 +24,21 @@ public class TileEntityRune extends TileEntity{
 	
 	public void setMarker(int index, int id){
 		this.markers[index] = new Marker(id);
+		this.pattern = this.findPattern();
 	}
 	
+	private Pattern findPattern() {
+		Collection<Pattern> patterns = Pattern.getAll();
+		for(Pattern pat: patterns){
+			if(pat.matches(side, markers))return pat;
+		}
+		return null;
+	}
+	
+	public String getPatternName(){
+		return pattern != null ? pattern.name : null;
+	}
+
 	public boolean isMarker(int index){
 		return this.markers[index] != null;
 	}

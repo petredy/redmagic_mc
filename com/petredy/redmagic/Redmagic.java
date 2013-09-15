@@ -29,6 +29,7 @@ import com.petredy.redmagic.core.CreativeTabRedMagic;
 import com.petredy.redmagic.handlers.ConfigHandler;
 import com.petredy.redmagic.handlers.EntityHandler;
 import com.petredy.redmagic.handlers.LanguageHandler;
+import com.petredy.redmagic.handlers.PatternHandler;
 import com.petredy.redmagic.handlers.PlayerSleepHandler;
 import com.petredy.redmagic.handlers.PlayerTracker;
 import com.petredy.redmagic.handlers.RedvalueConfigurationHandler;
@@ -77,6 +78,9 @@ public class Redmagic{
       	
       	//Initialise Entity Registration
       	EntityHandler.init();
+      	
+      	//Initialise Pattern Registration
+      	PatternHandler.init();
       	
       	//Initilase Redvalue configuration
       	RedvalueConfigurationHandler.init();

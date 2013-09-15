@@ -119,9 +119,8 @@ public class StructureSoulCatcher {
 				layer.notifyBlocks(worldObj, null);
 				layers.remove(layer);
 			}
-			if(layers.size() == 0)structures.put(id, false);
-			
 		}
+		if(layers.size() == 0)structures.put(id, false);
 	}
 	
 	public void update(World world){

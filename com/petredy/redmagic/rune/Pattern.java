@@ -1,7 +1,25 @@
 package com.petredy.redmagic.rune;
 
+import java.util.Collection;
+import java.util.HashMap;
+
 public class Pattern {
 
+	protected static HashMap<String, Pattern>patterns = new HashMap<String, Pattern>();
+	
+	public static void register(String name, Pattern pattern){
+		pattern.name = name;
+		patterns.put(name, pattern);
+	}
+	
+	public static Pattern getPattern(String name){
+		return patterns.get(name);
+	}
+	
+	public static Collection<Pattern> getAll(){
+		return patterns.values();
+	}
+	
 	public Marker[] markers = new Marker[16];
 	
 	public int[] directionalMarkerIndexNorth = new int[]{
@@ -31,9 +49,21 @@ public class Pattern {
 		1, 5, 9, 13,
 		0, 4, 8, 12
 	};
+
+	public boolean ignoreColors;
+	public String name;
 	
-	public Pattern(Marker[] markers){
+	public Pattern(Marker[] markers, boolean ignoreColors){
 		this.markers = markers;
+		this.ignoreColors = ignoreColors;
+	}
+	
+	public static Pattern create(int[] ids, boolean colors){
+		Marker[] markers = new Marker[ids.length];
+		for(int i = 0; i < ids.length; i++){
+			markers[i] = ids[i] > -1 ? new Marker(ids[i]) : null;
+		}
+		return new Pattern(markers, colors);
 	}
 	
 	public boolean matches(int side, Marker[] markers){
@@ -44,7 +74,7 @@ public class Pattern {
 		if(side == 2)range = directionalMarkerIndexWest;
 		int count = 0;
 		for(int index: range){
-			if((markers[index] == null && this.markers[count] != null) || (markers[index] != null && this.markers[count] == null) || (!markers[index].equals(this.markers[count])))return false;
+			if((markers[index] == null && this.markers[count] != null) || (markers[index] != null && this.markers[count] == null) || (markers[index] != null && !markers[index].equals(this.markers[count])))return false;
 			count++;
 		}
 		return true;
