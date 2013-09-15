@@ -8,19 +8,19 @@ import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.model.ModelSnowMan;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.MathHelper;
 
 public class ModelSoulman extends ModelBiped{
-
-	public ModelRenderer bottomBody;
 	
+	/*
 	public ModelSoulman(){
 		super();
 		float f = 4.0F;
         float f1 = 0.0F;
         this.bipedHead = (new ModelRenderer(this, 0, 0)).setTextureSize(64, 64);
-        this.bipedHead.addBox(-4.0F, -7.0F, -4.0F, 8, 8, 8, f1 - 0.5F);
+        this.bipedHead.addBox(-3.0F, -6.0F, -3.0F, 6, 6, 6, f1 - 0.5F);
         this.bipedHead.setRotationPoint(0.0F, 0.0F + f, 0.0F);
         this.bipedRightArm = (new ModelRenderer(this, 32, 0)).setTextureSize(64, 64);
         this.bipedRightArm.addBox(-1.0F, 0.0F, -1.0F, 12, 2, 2, f1 - 0.5F);
@@ -29,11 +29,19 @@ public class ModelSoulman extends ModelBiped{
         this.bipedLeftArm.addBox(-1.0F, 0.0F, -1.0F, 12, 2, 2, f1 - 0.5F);
         this.bipedLeftArm.setRotationPoint(0.0F, 0.0F + f + 9.0F - 7.0F, 0.0F);
         this.bipedBody = (new ModelRenderer(this, 0, 16)).setTextureSize(64, 64);
-        this.bipedBody.addBox(-5.0F, -10.0F, -5.0F, 10, 10, 10, f1 - 0.5F);
+        this.bipedBody.addBox(-4.0F, -8.0F, -3.0F, 8, 8, 6, f1 - 0.5F);
         this.bipedBody.setRotationPoint(0.0F, 0.0F + f + 9.0F, 0.0F);
         this.bottomBody = (new ModelRenderer(this, 0, 36)).setTextureSize(64, 64);
-        this.bottomBody.addBox(-6.0F, -12.0F, -6.0F, 12, 12, 12, f1 - 0.5F);
-        this.bottomBody.setRotationPoint(0.0F, 0.0F + f + 20.0F, 0.0F);
+        //this.bottomBody.addBox(-6.0F, -12.0F, -6.0F, 12, 12, 12, f1 - 0.5F);
+        //this.bottomBody.setRotationPoint(0.0F, 0.0F + f + 20.0F, 0.0F);
+        
+        this.bipedRightLeg = new ModelRenderer(this, 0, 36).setTextureSize(64, 64);
+        this.bipedRightLeg.addBox(-1.0F, 0.0F, -1.0F, 2, 8, 2, f1);
+        this.bipedRightLeg.setRotationPoint(-1.9F, 12.0F + f, 0.0F);
+        this.bipedLeftLeg = new ModelRenderer(this, 0, 36).setTextureSize(64, 64);
+        //this.bipedLeftLeg.mirror = true;
+        this.bipedLeftLeg.addBox(-1.0F, 0.0F, -1.0F, 2, 8, 2, f1);
+        this.bipedLeftLeg.setRotationPoint(1.9F, 12.0F + f, 0.0F);
 	}
 	
 	
@@ -49,10 +57,12 @@ public class ModelSoulman extends ModelBiped{
         GL11.glScalef(1.0F / f6, 1.0F / f6, 1.0F / f6);
         GL11.glTranslatef(0.0F, 24.0F * par7, 0.0F);
         this.bipedBody.render(par7);
-        this.bottomBody.render(par7);
+        //this.bottomBody.render(par7);
         this.bipedRightArm.render(par7);
         this.bipedLeftArm.render(par7);
         this.bipedHeadwear.render(par7);
+        this.bipedRightLeg.render(par7);
+        this.bipedLeftLeg.render(par7);
         GL11.glPopMatrix();
     }
 	
@@ -193,6 +203,10 @@ public class ModelSoulman extends ModelBiped{
         
     }
 	
+	public void setLivingAnimations(EntityLivingBase par1EntityLivingBase, float par2, float par3, float par4) {
+		
+	}
+	
 	public void renderPart(String part, Entity par1Entity, float par2, float par3, float par4, float par5, float par6, float par7){
     	this.setRotationAngles(par2, par3, par4, par5, par6, par7, par1Entity);
     	float f6 = 2.0F;
@@ -212,6 +226,6 @@ public class ModelSoulman extends ModelBiped{
     	
     	GL11.glPopMatrix();
     }
-
+	*/
 	
 }

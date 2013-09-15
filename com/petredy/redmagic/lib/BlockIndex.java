@@ -20,6 +20,10 @@ public class BlockIndex {
 	public static final int SOUL_CATCHER_DEFAULT_ID = 3303;
 	public static int SOUL_CATCHER_ID;
 	
+	public static final String RUNE_NAME = "rune";
+	public static final int RUNE_DEFAULT_ID = 3304;
+	public static int RUNE_ID;
+	
 	/**
 	 * --------------------------------------------------------------
 	 * Multi Block
