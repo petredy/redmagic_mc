@@ -10,6 +10,8 @@ import net.minecraft.world.World;
 
 public class TradingUtils {
 
+	public static boolean loaded;
+	
 	public static float getMoney(ItemStack crystal) {
 		if(crystal.stackTagCompound != null)return crystal.stackTagCompound.getFloat("money");
 		return 0;
@@ -21,11 +23,16 @@ public class TradingUtils {
 	}
 
 	public static void load(World world){
-		TradingData trading = (TradingData) world.loadItemData(TradingData.class, Reference.MOD_ID + ".trading");
-		if(trading != null){
-			TradingManager.setData(trading.data);
-		}else{
-			TradingManager.initialise();
+		if(!loaded){
+			TradingData trading = (TradingData) world.loadItemData(TradingData.class, Reference.MOD_ID + ".trading");
+			if(trading != null){
+				LogUtils.log("load Trading data");
+				TradingManager.setData(trading.data);
+			}else{
+				LogUtils.log("initialise Trading data");
+				TradingManager.initialise();
+			}
+			loaded = true;
 		}
 	}
 	

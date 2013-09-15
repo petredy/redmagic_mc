@@ -3,7 +3,10 @@ package com.petredy.redmagic.core;
 
 import com.petredy.redmagic.client.SoundHandler;
 import com.petredy.redmagic.client.render.RenderEngine;
+import com.petredy.redmagic.client.render.RenderSoulman;
 import com.petredy.redmagic.client.render.RenderTradingChest;
+import com.petredy.redmagic.entities.EntitySoulman;
+import com.petredy.redmagic.entities.particle.EntityStarFX;
 import com.petredy.redmagic.handlers.KeyBindingHandler;
 import com.petredy.redmagic.lib.Rendering;
 import com.petredy.redmagic.tileentities.TileEntityEngine;
@@ -14,6 +17,7 @@ import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.KeyBindingRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.registry.EntityRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.entity.player.EntityPlayer;
@@ -50,6 +54,8 @@ public class ClientProxy extends CommonProxy{
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTradingChest.class, new RenderTradingChest());
 		RenderingRegistry.registerBlockHandler(new RenderTradingChest());
+		
+		RenderingRegistry.registerEntityRenderingHandler(EntitySoulman.class, new RenderSoulman());
 	}
 	
 	
@@ -62,9 +68,8 @@ public class ClientProxy extends CommonProxy{
 	public void addEffect(String name, World world, double d1, double d2, double d3, Object...data) {
 		EntityFX efx = null;
 
-		if(name == "custom")
-		{
-			
+		if(name.equals("star")){
+			efx = new EntityStarFX(world, d1, d2, d3, (Double)data[0], (Double)data[1], (Double)data[2]);
 		}
 
 		if(efx != null)

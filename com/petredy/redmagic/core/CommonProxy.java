@@ -1,11 +1,11 @@
 package com.petredy.redmagic.core;
 
 import com.google.common.base.Throwables;
-import com.petredy.redmagic.client.guis.GuiTradingSystem;
-import com.petredy.redmagic.container.ContainerTradingChest;
+import com.petredy.redmagic.client.guis.*;
+import com.petredy.redmagic.container.*;
 import com.petredy.redmagic.lib.Guis;
 import com.petredy.redmagic.network.PacketTradingSync;
-import com.petredy.redmagic.tileentities.TileEntityTradingChest;
+import com.petredy.redmagic.tileentities.*;
 import com.petredy.redmagic.trading.TradingManager;
 
 import net.minecraft.client.Minecraft;
@@ -35,6 +35,8 @@ public class CommonProxy implements IGuiHandler{
 		if(ID == Guis.TRADING_CHEST){
 			PacketDispatcher.sendPacketToPlayer(new PacketTradingSync(TradingManager.getData()), (Player) player);
 			return new ContainerTradingChest(player,(TileEntityTradingChest)tileEntity);
+		}else if(ID == Guis.SOUL_CATCHER){
+			return new ContainerSoulCatcher(player, (TileEntitySoulCatcher)tileEntity);
 		}
 		return null;
 	}
@@ -44,6 +46,8 @@ public class CommonProxy implements IGuiHandler{
 		TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
 		if(ID == Guis.TRADING_CHEST){
 			return new GuiTradingSystem(player, (TileEntityTradingChest)tileEntity);
+		}else if(ID == Guis.SOUL_CATCHER){
+			return new GuiSoulCatcher(player, (TileEntitySoulCatcher)tileEntity);
 		}
 		return null;
 	}

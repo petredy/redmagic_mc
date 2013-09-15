@@ -18,7 +18,7 @@ import com.petredy.redmagic.structures.soulcatcher.StructureSoulCatcherLayer;
 import com.petredy.redmagic.utils.LogUtils;
 import com.petredy.redmagic.utils.WorldSavedDataUtils;
 
-public class TileEntitySoulCatcher extends TileEntityInventory implements IPowerReceptor{
+public class TileEntitySoulCatcher extends TileEntityInventory{
 
 	public int id;
 	
@@ -97,31 +97,6 @@ public class TileEntitySoulCatcher extends TileEntityInventory implements IPower
 			WorldSavedDataUtils.saveData(worldObj, structure.TOKEN_PREFIX + id, tag);
 		}
 		
-	}
-	
-	
-	/**
-	 * IPowerReceptor
-	 */
-	
-	@Override
-	public PowerReceiver getPowerReceiver(ForgeDirection side) {
-		if(id >= 0){
-			StructureSoulCatcher structure = StructureSoulCatcher.loadFromNBT(WorldSavedDataUtils.loadData(worldObj, StructureSoulCatcher.TOKEN_PREFIX + id));
-			return structure.getNextPowerReceiver(worldObj);
-		}
-		return null;
-	}
-
-	@Override
-	public void doWork(PowerHandler workProvider) {
-		LogUtils.log("work");
-		workProvider.update();
-	}
-
-	@Override
-	public World getWorld() {
-		return worldObj;
 	}
 	
 	

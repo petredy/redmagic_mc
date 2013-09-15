@@ -2,7 +2,10 @@ package com.petredy.redmagic.handlers;
 
 import java.util.EnumSet;
 
+import com.petredy.redmagic.Redmagic;
 import com.petredy.redmagic.api.IKeyBound;
+import com.petredy.redmagic.lib.Guis;
+import com.petredy.redmagic.lib.Keys;
 import com.petredy.redmagic.lib.Reference;
 import com.petredy.redmagic.network.PacketHandler;
 import com.petredy.redmagic.network.PacketKeyPressed;

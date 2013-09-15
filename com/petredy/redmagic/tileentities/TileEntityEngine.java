@@ -46,21 +46,9 @@ public class TileEntityEngine extends TileEntityInventory implements IPowerEmitt
 	public void updateEntity(){
 		if(worldObj.getStrongestIndirectPower(xCoord, yCoord, zCoord) > 0 && this.getItem() != null){
 			speed = (float)worldObj.getStrongestIndirectPower(xCoord, yCoord, zCoord) / 7.5f;
-			if(count >= need){
-				if(count == need)providerPowerOnSide(side);
-				count = 0;
-			}else{
-				float value = RedvalueDictionary.getRedvalue(getItem());
-				count += speed * (value > 0 ? (value > 100 ? (value > 1000 ? plusT3 : plusT2): plusT1): 0);
-				speed += Math.sqrt(count);
-			}
-			count++;
+			providerPowerOnSide(side);
 			production = (float) Math.max(5, Math.sqrt(RedvalueDictionary.getRedvalue(getItem())));
-			
-		}else{
-			speed = production = count = 0;
 		}
-		
 	}
 
 	private void providerPowerOnSide(ForgeDirection direction) {

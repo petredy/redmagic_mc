@@ -27,10 +27,14 @@ import com.petredy.redmagic.blocks.Blocks;
 import com.petredy.redmagic.core.CommonProxy;
 import com.petredy.redmagic.core.CreativeTabRedMagic;
 import com.petredy.redmagic.handlers.ConfigHandler;
+import com.petredy.redmagic.handlers.EntityHandler;
 import com.petredy.redmagic.handlers.LanguageHandler;
+import com.petredy.redmagic.handlers.PlayerSleepHandler;
+import com.petredy.redmagic.handlers.PlayerTracker;
 import com.petredy.redmagic.handlers.RedvalueConfigurationHandler;
 import com.petredy.redmagic.handlers.ServerTickHandler;
 import com.petredy.redmagic.handlers.TileEntityHandler;
+import com.petredy.redmagic.handlers.WorldGenerationHandler;
 import com.petredy.redmagic.handlers.WorldLoadingHandler;
 import com.petredy.redmagic.items.Items;
 import com.petredy.redmagic.lib.*;
@@ -65,15 +69,16 @@ public class Redmagic{
         //Initialise Logger
         LogUtils.init(config);
         
-        //Initialise configuration
-        ConfigHandler.config(config);
-        
         //Initialise Language Handling
       	LanguageHandler.init();
       	
       	//Initialise TileEntity registration
       	TileEntityHandler.init();
       	
+      	//Initialise Entity Registration
+      	EntityHandler.init();
+      	
+      	//Initilase Redvalue configuration
       	RedvalueConfigurationHandler.init();
       	
       	//Initialise block configuration
@@ -87,6 +92,9 @@ public class Redmagic{
       	
       	//Initialise item registration
       	Items.init();
+      	
+      	//Initialise configuration
+        ConfigHandler.config(config);
       	
         //Register GuiHandler
         NetworkRegistry.instance().registerGuiHandler(instance, this.proxy);
@@ -114,7 +122,17 @@ public class Redmagic{
 		//Register TradingSystem loading/saving
 		MinecraftForge.EVENT_BUS.register(new WorldLoadingHandler());
 		
+		//Register Instant Sleep Ability
+		MinecraftForge.EVENT_BUS.register(new PlayerSleepHandler());
+		
+		//Register Multi Structure ticking
 		TickRegistry.registerTickHandler(new ServerTickHandler(), Side.SERVER);
+		
+		//Register World Generation
+		GameRegistry.registerWorldGenerator(new WorldGenerationHandler());
+		
+		//Register Player loading/saving
+		GameRegistry.registerPlayerTracker(new PlayerTracker());
 		
     }
 	

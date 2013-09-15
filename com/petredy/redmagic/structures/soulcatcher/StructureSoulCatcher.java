@@ -3,20 +3,24 @@ package com.petredy.redmagic.structures.soulcatcher;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 import buildcraft.api.power.PowerHandler;
 import buildcraft.api.power.PowerHandler.PowerReceiver;
 
+import com.petredy.redmagic.items.Items;
 import com.petredy.redmagic.tileentities.TileEntitySoulCatcher;
 import com.petredy.redmagic.utils.InventoryUtils;
 import com.petredy.redmagic.utils.LogUtils;
 import com.petredy.redmagic.utils.WorldSavedDataUtils;
 
 import net.minecraft.inventory.InventoryBasic;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeDirection;
 
 public class StructureSoulCatcher {
 
@@ -27,6 +31,8 @@ public class StructureSoulCatcher {
 	public List<StructureSoulCatcherLayer> layers = new ArrayList<StructureSoulCatcherLayer>();
 	public int id;
 	public InventoryBasic inv = new InventoryBasic(TOKEN_PREFIX + "inventory", false, 9);
+	public int neededTicks = 300;
+	public int ticks = 0;
 	
 	public static StructureSoulCatcher find(TileEntity entity){
 		if(StructureSoulCatcherBlock.isSoulCatcherBlock(entity)){
@@ -61,6 +67,7 @@ public class StructureSoulCatcher {
 		NBTTagCompound invTag = (NBTTagCompound) tag.getTag("inv");
 		if(invTag != null)InventoryUtils.readFromNBT(inv, invTag);
 		StructureSoulCatcher.structures.put(id, true);
+		this.ticks = tag.getInteger("ticks");
 	}
 	
 	public static StructureSoulCatcher loadFromNBT(NBTTagCompound tag){
@@ -81,7 +88,7 @@ public class StructureSoulCatcher {
 		NBTTagCompound invTag = new NBTTagCompound();
 		InventoryUtils.writeToNBT(inv, invTag);
 		tag.setTag("inv", invTag);
-		StructureSoulCatcher.structures.put(id, false);
+		tag.setInteger("ticks", ticks);
 	}
 	
 	public void addLayer(World world, StructureSoulCatcherLayer layer) {
@@ -97,6 +104,7 @@ public class StructureSoulCatcher {
 		StructureSoulCatcher structure = new StructureSoulCatcher();
 		structure.layers.add(layer);
 		structure.id = WorldSavedDataUtils.createUniqueToken(worldObj, TOKEN_PREFIX);
+		StructureSoulCatcher.structures.put(structure.id, true);
 		NBTTagCompound tag = new NBTTagCompound();
 		structure.writeToNBT(tag);
 		WorldSavedDataUtils.saveData(worldObj, TOKEN_PREFIX + structure.id, tag);
@@ -109,21 +117,23 @@ public class StructureSoulCatcher {
 		for(StructureSoulCatcherLayer layer: layers){
 			if(layer.y >= yCoord){
 				layer.notifyBlocks(worldObj, null);
+				layers.remove(layer);
 			}
+			if(layers.size() == 0)structures.put(id, false);
+			
 		}
 	}
 	
 	public void update(World world){
 		
-	}
-
-
-	public PowerReceiver getNextPowerReceiver(World world) {
-		for(StructureSoulCatcherLayer layer: layers){
-			PowerReceiver receiver = layer.getNextPowerReceiver(world);
-			if(receiver != null)return receiver;
+		if(ticks < neededTicks && !world.isRemote){
+			ticks++;
+		}else if(!world.isRemote){
+			ticks = 0;
+			Random rand = new java.util.Random();
+			if(rand.nextInt(1000 - ((int)Math.pow(this.layers.size(), 2) < 1000 ? (int) Math.pow(this.layers.size(), 2) : 999)) < 5)InventoryUtils.addItemStackToInventory(inv, new ItemStack(Items.soul));
 		}
-		return null;
 	}
+
 
 }

@@ -1,9 +1,12 @@
 package com.petredy.redmagic.blocks;
 
+import java.util.Random;
+
 import buildcraft.api.power.PowerHandler.PowerReceiver;
 
 import com.petredy.redmagic.Redmagic;
 import com.petredy.redmagic.lib.BlockIndex;
+import com.petredy.redmagic.lib.Guis;
 import com.petredy.redmagic.lib.Reference;
 import com.petredy.redmagic.structures.soulcatcher.StructureSoulCatcher;
 import com.petredy.redmagic.tileentities.TileEntitySoulCatcher;
@@ -46,7 +49,7 @@ public class BlockSoulCatcher extends BlockContainer{
 	
 	public void breakBlock(World world, int x, int y, int z, int par5, int par6){
 		TileEntitySoulCatcher entity = (TileEntitySoulCatcher) world.getBlockTileEntity(x, y, z);
-		if(entity != null && !world.isRemote)entity.breakLayer();
+		if(entity != null && !world.isRemote && entity.id > -1)entity.breakLayer();
 		super.breakBlock(world, x, y, z, par5, par6);
 	}
 	
@@ -64,14 +67,11 @@ public class BlockSoulCatcher extends BlockContainer{
 	
 	public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9){
 		TileEntitySoulCatcher entity = (TileEntitySoulCatcher) par1World.getBlockTileEntity(par2, par3, par4);
-		if(entity != null){
-			LogUtils.log(entity.id);
-			if(entity.getPowerReceiver(ForgeDirection.UNKNOWN) != null){
-				PowerReceiver receiver = StructureSoulCatcher.loadFromNBT(WorldSavedDataUtils.loadData(par1World, StructureSoulCatcher.TOKEN_PREFIX + entity.id)).getNextPowerReceiver(par1World);
-				if(receiver != null)LogUtils.log(receiver.getEnergyStored());
-			}
+		if(entity != null && entity.id >= 0){
+			par5EntityPlayer.openGui(Redmagic.instance, Guis.SOUL_CATCHER, par1World, par2, par3, par4);
+			return true;
 		}
         return false;
     }
-
+	
 }

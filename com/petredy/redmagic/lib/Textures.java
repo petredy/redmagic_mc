@@ -14,10 +14,22 @@ public class Textures {
 	
 	//Renders
 	public static final ResourceLocation ENGINE = ResourceLocationUtils.getResourceLocation("models/engine/engine.png");
-	public static final ResourceLocation TRADING_CHEST = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "blocks/trading_chest.png");
+	public static final ResourceLocation TRADING_CHEST = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "blocks/" + BlockIndex.TRADING_CHEST_NAME + ".png");
 	
 	//Guis
-	public static final ResourceLocation TRADING_CHEST_GUI = ResourceLocationUtils.getResourceLocation(GUI_PATH + "trading_chest.png");
+	public static final ResourceLocation TRADING_CHEST_GUI = ResourceLocationUtils.getResourceLocation(GUI_PATH + BlockIndex.TRADING_CHEST_NAME + ".png");
 	public static final ResourceLocation ALL_ITEMS = ResourceLocationUtils.getResourceLocation(GUI_PATH + "allitems.png"); 
-			
+	public static final ResourceLocation SOUL_CATCHER = ResourceLocationUtils.getResourceLocation(GUI_PATH + BlockIndex.SOUL_CATCHER_NAME + ".png");
+	
+	//Glasses
+	public static final String GLASSES = TEXTURE_PATH + "glasses/glasses.png";
+	public static final ResourceLocation OVERLAY = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "glasses/overlay.png");
+	public static final ResourceLocation DANGER_OVERLAY = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "glasses/overlay.danger.png");
+	public static final ResourceLocation MODUS_OVERLAY = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "glasses/overlay.modus.png");
+	
+	//Entities
+	public static final ResourceLocation SOUL_MAN = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "entities/soulman.png");
+	
+	//Particles 
+	public static final ResourceLocation STAR_FX = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "entities/particles/star.png");;
 }

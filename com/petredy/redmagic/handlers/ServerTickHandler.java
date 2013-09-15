@@ -24,22 +24,26 @@ public class ServerTickHandler implements ITickHandler{
 	@Override
 	public void tickEnd(EnumSet<TickType> type, Object... tickData) {
 		if(type.contains(TickType.WORLD) && tickData[0] instanceof World){
-			Collection<Integer> ids = StructureSoulCatcher.structures.keySet();
-			for(Integer id: ids){
-				if(StructureSoulCatcher.structures.get(id)){
-					StructureSoulCatcher structure = StructureSoulCatcher.loadFromNBT(WorldSavedDataUtils.loadData((World) tickData[0], StructureSoulCatcher.TOKEN_PREFIX + id));
-					if(structure != null){
-						structure.update((World) tickData[0]);
-						NBTTagCompound tag = new NBTTagCompound();
-						structure.writeToNBT(tag);
-						WorldSavedDataUtils.saveData((World) tickData[0], StructureSoulCatcher.TOKEN_PREFIX + id, tag);
-					}else{
-						StructureSoulCatcher.structures.put(id, false);
-					}
+			this.updateStructureSoulCatcher((World) tickData[0]);
+		}
+		
+	}
+	
+	public void updateStructureSoulCatcher(World world){
+		Collection<Integer> ids = StructureSoulCatcher.structures.keySet();
+		for(Integer id: ids){
+			if(StructureSoulCatcher.structures.get(id)){
+				StructureSoulCatcher structure = StructureSoulCatcher.loadFromNBT(WorldSavedDataUtils.loadData(world, StructureSoulCatcher.TOKEN_PREFIX + id));
+				if(structure != null && structure.layers.size() > 0){
+					structure.update(world);
+					NBTTagCompound tag = new NBTTagCompound();
+					structure.writeToNBT(tag);
+					WorldSavedDataUtils.saveData(world, StructureSoulCatcher.TOKEN_PREFIX + id, tag);
+				}else{
+					StructureSoulCatcher.structures.put(id, false);
 				}
 			}
 		}
-		
 	}
 
 	@Override

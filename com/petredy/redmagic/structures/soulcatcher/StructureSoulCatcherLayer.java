@@ -1,9 +1,6 @@
 package com.petredy.redmagic.structures.soulcatcher;
 
-import buildcraft.api.power.PowerHandler.PowerReceiver;
-
 import com.petredy.redmagic.tileentities.TileEntitySoulCatcher;
-import com.petredy.redmagic.tileentities.TileEntitySoulCatcherStorage;
 import com.petredy.redmagic.utils.LogUtils;
 
 import net.minecraft.nbt.NBTTagCompound;
@@ -103,16 +100,6 @@ public class StructureSoulCatcherLayer {
 		}
 		tag.setTag("blocks", list);
 		tag.setInteger("y", y);
-	}
-
-
-	public PowerReceiver getNextPowerReceiver(World world) {
-		for(StructureSoulCatcherBlock block: blocks){
-			if(world.getBlockTileEntity(block.x, block.y, block.z) instanceof TileEntitySoulCatcherStorage){
-				return ((TileEntitySoulCatcherStorage)world.getBlockTileEntity(block.x, block.y, block.z)).getPowerReceiver(ForgeDirection.UNKNOWN);
-			}
-		}
-		return null;
 	}
 	
 }
