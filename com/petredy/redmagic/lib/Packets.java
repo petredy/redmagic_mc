@@ -9,8 +9,7 @@ public class Packets {
 		PacketBuyItem.class,
 		PacketSellItem.class,
 		PacketNBTSync.class,
-		PacketTradingSync.class,
-		PacketSoulCatcherSync.class
+		PacketTradingSync.class
 	};
 	
 	public static final byte KEY = 0;
@@ -18,5 +17,4 @@ public class Packets {
 	public static final byte SELL = 2;
 	public static final byte SYNC = 3;
 	public static final byte SYNC_TRADING = 4;
-	public static final byte SYNC_SOUL_CATCHER = 5;
 }

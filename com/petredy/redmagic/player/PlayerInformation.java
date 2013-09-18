@@ -8,6 +8,8 @@ public class PlayerInformation {
 	public static final String TOKEN_PREFIX = "feature.manager.";
 	public EntityPlayer player;
 	
+	public int dimensionID;
+	
 	public PlayerInformation(EntityPlayer player){
 		this.player = player;
 	}
@@ -16,6 +18,7 @@ public class PlayerInformation {
 	}
 	
 	public void readFromNBT(NBTTagCompound tag){
+		this.dimensionID = tag.getInteger("dimension");
 	}
 	
 	public static PlayerInformation loadFromNBT(NBTTagCompound tag){
@@ -25,6 +28,7 @@ public class PlayerInformation {
 	}
 	
 	public void writeToNBT(NBTTagCompound tag){
+		tag.setInteger("dimension", dimensionID);
 	}
 	
 }

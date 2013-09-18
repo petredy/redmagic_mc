@@ -1,5 +1,7 @@
 package com.petredy.redmagic.handlers;
 
+import com.petredy.redmagic.player.PlayerInformation;
+import com.petredy.redmagic.utils.LogUtils;
 import com.petredy.redmagic.utils.PlayerUtils;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -9,7 +11,7 @@ public class PlayerTracker implements IPlayerTracker{
 
 	@Override
 	public void onPlayerLogin(EntityPlayer player) {
-		PlayerUtils.load(player);
+		PlayerUtils.setPlayerInformation(player, PlayerUtils.load(player));
 	}
 
 	@Override
@@ -19,6 +21,7 @@ public class PlayerTracker implements IPlayerTracker{
 
 	@Override
 	public void onPlayerChangedDimension(EntityPlayer player) {
+		LogUtils.log("spawn in dimension");
 		PlayerUtils.setPlayerInformation(player, PlayerUtils.load(player));
 	}
 

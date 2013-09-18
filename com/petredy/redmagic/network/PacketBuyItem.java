@@ -61,6 +61,7 @@ public class PacketBuyItem extends PacketRedMagic {
 		EntityPlayer thePlayer = (EntityPlayer) player;
 		float costs = TradingManager.getItemPrice(stack) * amount;
 		if(TradingManager.removeItemAmount(stack, amount)){
+			stack.stackSize = amount;
 			thePlayer.inventory.setItemStack(stack);
 			TileEntityTradingChest bank = (TileEntityTradingChest) thePlayer.worldObj.getBlockTileEntity(x, y, z);
 			ItemStack crystal = bank.getStackInSlot(0);
@@ -74,6 +75,7 @@ public class PacketBuyItem extends PacketRedMagic {
 			amount = TradingManager.getItemAmount(stack);
 			if(TradingManager.removeItemAmount(stack, amount)){
 				costs = TradingManager.getItemPrice(stack) * amount;
+				stack.stackSize = amount;
 				thePlayer.inventory.setItemStack(stack);
 				TileEntityTradingChest bank = (TileEntityTradingChest) thePlayer.worldObj.getBlockTileEntity(x, y, z);
 				ItemStack crystal = bank.getStackInSlot(0);

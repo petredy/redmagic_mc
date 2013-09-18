@@ -59,6 +59,7 @@ public class RedvalueDictionary {
 		List<RedvalueItem> list = new ArrayList<RedvalueItem>();
 		list.addAll(recipes.values());
 		list.addAll(values.values());
+		LogUtils.log(list);
 		return list;
 	}
 	

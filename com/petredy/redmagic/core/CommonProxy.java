@@ -35,8 +35,6 @@ public class CommonProxy implements IGuiHandler{
 		if(ID == Guis.TRADING_CHEST){
 			PacketDispatcher.sendPacketToPlayer(new PacketTradingSync(TradingManager.getData()), (Player) player);
 			return new ContainerTradingChest(player,(TileEntityTradingChest)tileEntity);
-		}else if(ID == Guis.SOUL_CATCHER){
-			return new ContainerSoulCatcher(player, (TileEntitySoulCatcher)tileEntity);
 		}
 		return null;
 	}
@@ -46,8 +44,6 @@ public class CommonProxy implements IGuiHandler{
 		TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
 		if(ID == Guis.TRADING_CHEST){
 			return new GuiTradingSystem(player, (TileEntityTradingChest)tileEntity);
-		}else if(ID == Guis.SOUL_CATCHER){
-			return new GuiSoulCatcher(player, (TileEntitySoulCatcher)tileEntity);
 		}
 		return null;
 	}

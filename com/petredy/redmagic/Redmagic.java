@@ -1,8 +1,6 @@
 package com.petredy.redmagic;
 
 
-import java.io.File;
-
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.stats.Achievement;
 import net.minecraft.stats.AchievementList;
@@ -27,13 +25,10 @@ import com.petredy.redmagic.blocks.Blocks;
 import com.petredy.redmagic.core.CommonProxy;
 import com.petredy.redmagic.core.CreativeTabRedMagic;
 import com.petredy.redmagic.handlers.ConfigHandler;
-import com.petredy.redmagic.handlers.EntityHandler;
 import com.petredy.redmagic.handlers.LanguageHandler;
-import com.petredy.redmagic.handlers.PatternHandler;
 import com.petredy.redmagic.handlers.PlayerSleepHandler;
 import com.petredy.redmagic.handlers.PlayerTracker;
 import com.petredy.redmagic.handlers.RedvalueConfigurationHandler;
-import com.petredy.redmagic.handlers.ServerTickHandler;
 import com.petredy.redmagic.handlers.TileEntityHandler;
 import com.petredy.redmagic.handlers.WorldGenerationHandler;
 import com.petredy.redmagic.handlers.WorldLoadingHandler;
@@ -75,12 +70,6 @@ public class Redmagic{
       	
       	//Initialise TileEntity registration
       	TileEntityHandler.init();
-      	
-      	//Initialise Entity Registration
-      	EntityHandler.init();
-      	
-      	//Initialise Pattern Registration
-      	PatternHandler.init();
       	
       	//Initilase Redvalue configuration
       	RedvalueConfigurationHandler.init();
@@ -128,9 +117,6 @@ public class Redmagic{
 		
 		//Register Instant Sleep Ability
 		MinecraftForge.EVENT_BUS.register(new PlayerSleepHandler());
-		
-		//Register Multi Structure ticking
-		TickRegistry.registerTickHandler(new ServerTickHandler(), Side.SERVER);
 		
 		//Register World Generation
 		GameRegistry.registerWorldGenerator(new WorldGenerationHandler());

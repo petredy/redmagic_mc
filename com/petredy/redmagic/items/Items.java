@@ -20,13 +20,13 @@ public class Items {
 	public static void init(){
 		trading = new ItemTradingCrystal(ItemIndex.TRADING_CRYSTAL_ID);
 		soul = new ItemSoul(ItemIndex.SOUL_ID);
-		glasses = new ItemGlasses(ItemIndex.GLASSES_ID, ModLoader.addArmor(ItemIndex.GLASSES_NAME), 0);
+		glasses = new ItemGlasses(ItemIndex.GLASSES_ID, 0, 0);
 	}
 	
 	public static void config(Configuration config){
 		ItemIndex.TRADING_CRYSTAL_ID = config.getItem(ItemIndex.TRADING_CRYSTAL_NAME, ItemIndex.TRADING_CRYSTAL_DEFAULT_ID).getInt(ItemIndex.TRADING_CRYSTAL_DEFAULT_ID);
-		ItemIndex.SOUL_ID = config.getItem(ItemIndex.SOUL_NAME, ItemIndex.SOUL_DEFAULT_ID).getInt(ItemIndex.SOUL_DEFAULT_ID);
 		ItemIndex.GLASSES_ID = config.getItem(ItemIndex.GLASSES_NAME, ItemIndex.GLASSES_DEFAULT_ID).getInt(ItemIndex.GLASSES_DEFAULT_ID);
+		ItemIndex.SOUL_ID = config.getItem(ItemIndex.SOUL_NAME, ItemIndex.SOUL_DEFAULT_ID).getInt(ItemIndex.SOUL_DEFAULT_ID);
 		
 	}
 	

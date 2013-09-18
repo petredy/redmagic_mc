@@ -10,8 +10,7 @@ public class TileEntityHandler {
 		GameRegistry.registerTileEntity(TileEntityFurnace.class, "redmagic.TileEntityFurnace");
 		GameRegistry.registerTileEntity(TileEntityEngine.class, "redmagic.TileEntityEngine");
 		GameRegistry.registerTileEntity(TileEntityTradingChest.class, "redmagic.TileEntityTradingChest");
-		GameRegistry.registerTileEntity(TileEntitySoulCatcher.class, "redmagic.TileEntitySoulCatcher");
-		GameRegistry.registerTileEntity(TileEntityRune.class, "redmagic.TileEntityRune");
+		GameRegistry.registerTileEntity(TileEntityCage.class, "redmagic.TileEntityCage");
 	}
 	
 }

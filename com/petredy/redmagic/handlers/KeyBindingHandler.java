@@ -10,6 +10,7 @@ import com.petredy.redmagic.lib.Reference;
 import com.petredy.redmagic.network.PacketHandler;
 import com.petredy.redmagic.network.PacketKeyPressed;
 import com.petredy.redmagic.utils.KeyBindingUtils;
+import com.petredy.redmagic.utils.PlayerUtils;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
@@ -21,6 +22,7 @@ import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.KeyBindingRegistry;
 import cpw.mods.fml.common.TickType;
 import cpw.mods.fml.common.network.PacketDispatcher;
+import cpw.mods.fml.common.network.Player;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

@@ -10,6 +10,7 @@ import net.minecraft.nbt.NBTTagList;
 
 import com.petredy.redmagic.redvalue.RedvalueDictionary;
 import com.petredy.redmagic.redvalue.RedvalueItem;
+import com.petredy.redmagic.utils.LogUtils;
 
 public class TradingManager {
 	
@@ -22,6 +23,7 @@ public class TradingManager {
 	public static void initialise(){
 		List<RedvalueItem> list = RedvalueDictionary.getAllItems();
 		for(RedvalueItem item: list){
+			LogUtils.log(item.stack);
 			register(item.stack, item.getValue(), 0);
 		}
 	}

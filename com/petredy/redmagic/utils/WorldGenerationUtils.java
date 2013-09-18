@@ -43,4 +43,13 @@ public class WorldGenerationUtils {
 		}
 	}
 
+	public static void generateCage(World world, Random random, int blockX, int blockZ) {
+		int Xcoord = blockX + random.nextInt(16);
+		int Ycoord = random.nextInt(8);
+		int Zcoord = blockZ + random.nextInt(16);
+		if(random.nextFloat() < 0.1){
+			world.setBlock(Xcoord, Ycoord, Zcoord, Blocks.cage.blockID);
+		}
+	}
+
 }

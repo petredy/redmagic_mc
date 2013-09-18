@@ -9,6 +9,7 @@ import com.petredy.redmagic.utils.TradingUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public class ItemTradingCrystal extends Item {
 
@@ -24,5 +25,8 @@ public class ItemTradingCrystal extends Item {
 			par3List.add("Credits: " + TradingUtils.getMoney(par1ItemStack));
 		}
 	}
+	
+	
+	
 
 }

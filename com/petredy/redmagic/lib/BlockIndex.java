@@ -16,20 +16,12 @@ public class BlockIndex {
 	public static final int TRADING_CHEST_DEFAULT_ID = 3302;
 	public static int TRADING_CHEST_ID;
 	
-	public static final String SOUL_CATCHER_NAME = "soul.catcher";
-	public static final int SOUL_CATCHER_DEFAULT_ID = 3303;
-	public static int SOUL_CATCHER_ID;
-	
-	public static final String RUNE_NAME = "rune";
-	public static final int RUNE_DEFAULT_ID = 3304;
-	public static int RUNE_ID;
-	
 	/**
 	 * --------------------------------------------------------------
 	 * Multi Block
 	 */
 	public static final String DECORATION_NAME = "decoration";
-	public static final int DECORATION_DEFAULT_ID = 3305;
+	public static final int DECORATION_DEFAULT_ID = 3303;
 	public static int DECORATION_ID;
 	
 	public static final String MARBLE_NAME = "marble";
@@ -42,6 +34,10 @@ public class BlockIndex {
 	// --------------------------------------------------------------
 	
 	public static final String RHENIUM_ORE_NAME = "ore.rhenium";
-	public static final int RHENIUM_ORE_DEFAULT_ID = 3306;
+	public static final int RHENIUM_ORE_DEFAULT_ID = 3304;
 	public static int RHENIUM_ORE_ID;
+	
+	public static final String CAGE_NAME = "cage";
+	public static final int CAGE_DEFAULT_ID = 3305;
+	public static int CAGE_ID;
 }

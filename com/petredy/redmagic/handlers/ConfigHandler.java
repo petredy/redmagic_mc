@@ -11,6 +11,8 @@ import com.petredy.redmagic.lib.Keys;
 import com.petredy.redmagic.lib.Reference;
 import com.petredy.redmagic.utils.GlassesUtils;
 
+import cpw.mods.fml.common.registry.EntityRegistry;
+
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.Property;
 

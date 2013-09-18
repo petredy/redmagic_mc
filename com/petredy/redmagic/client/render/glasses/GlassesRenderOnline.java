@@ -21,7 +21,7 @@ public class GlassesRenderOnline extends GlassesRender{
 //		}else{
 			//Should be in an other mode
 			//GlassesUtils.renderMachineName(player, target, width, height);
-			
+		
 			ResourceLocation texture = this.getTexture(player);
 			
 			this.renderOverlay(width, height, texture);

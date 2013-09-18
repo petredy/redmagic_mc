@@ -31,6 +31,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.StatCollector;
+import net.minecraftforge.common.ForgeDirection;
 
 public class GlassesUtils {
 	public static final String[] MODES = new String[]{
@@ -98,6 +100,10 @@ public class GlassesUtils {
 		int[] nearest = new int[5];
 		while(it.hasNext()){
 			int[] block = it.next();
+			if(player.worldObj.getBlockId(block[0], block[1], block[2]) == Blocks.cage.blockID){
+				nearest = block;
+				break;
+			}
 			if(player.getDistance(block[0], block[1], block[2]) < player.getDistance(nearest[0], nearest[1], nearest[2])){
 				nearest = block;
 			}
@@ -137,6 +143,8 @@ public class GlassesUtils {
 		ores.add(153);
 		ores.add(0);
 		ores.add(Blocks.oreRhenium.blockID);
+		ores.add(0);
+		ores.add(Blocks.cage.blockID);
 		ores.add(0);
 		
 		/*
