@@ -1,6 +1,7 @@
 package com.petredy.redmagic.container;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -33,7 +34,7 @@ public class ContainerTradingChest extends Container{
 	
 	public InventoryBasic inv = new InventoryBasic("tmp", true, 45);
 	
-	public Object[] list = TradingManager.getAllItems().toArray();
+	public Object[] list = TradingManager.getAllItems();
 	
 	public ContainerTradingChest(EntityPlayer player, TileEntityTradingChest tileEntity){
 		super();

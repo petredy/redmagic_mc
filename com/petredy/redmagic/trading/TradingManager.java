@@ -1,5 +1,7 @@
 package com.petredy.redmagic.trading;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -12,7 +14,7 @@ import com.petredy.redmagic.redvalue.RedvalueDictionary;
 import com.petredy.redmagic.redvalue.RedvalueItem;
 import com.petredy.redmagic.utils.LogUtils;
 
-public class TradingManager {
+public class TradingManager{
 	
 	private static HashMap<String, TradingItem>items = new HashMap<String, TradingItem>();
 	
@@ -23,13 +25,18 @@ public class TradingManager {
 	public static void initialise(){
 		List<RedvalueItem> list = RedvalueDictionary.getAllItems();
 		for(RedvalueItem item: list){
-			LogUtils.log(item.stack);
 			register(item.stack, item.getValue(), 0);
 		}
 	}
 	
-	public static Collection<TradingItem> getAllItems(){
-		return items.values();
+	public static TradingItem[] getAllItems(){
+		TradingItem[] list = new TradingItem[items.values().size()];
+		int count = 0;
+		for(TradingItem item: items.values()){
+			list[count++] = item;
+		}
+		Arrays.sort(list);
+		return list;
 	}
 
 	public static float getItemPrice(ItemStack stack) {

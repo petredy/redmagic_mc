@@ -14,6 +14,7 @@ public class Blocks {
 	public static BlockDecoration decoration;
 	public static BlockRheniumOre oreRhenium;
 	public static BlockCage cage;
+	public static BlockCrystal crystal;
 	
 	public static void init(){
 		furnace = new BlockFurnace(BlockIndex.FURNACE_ID);
@@ -22,6 +23,7 @@ public class Blocks {
 		decoration = new BlockDecoration(BlockIndex.DECORATION_ID);
 		oreRhenium = new BlockRheniumOre(BlockIndex.RHENIUM_ORE_ID);
 		cage = new BlockCage(BlockIndex.CAGE_ID);
+		crystal = new BlockCrystal(BlockIndex.CRYSTAL_ID);
 		
 		GameRegistry.registerBlock(engine, BlockIndex.ENGINE_NAME);
 		GameRegistry.registerBlock(furnace, BlockIndex.FURNACE_NAME);
@@ -29,6 +31,7 @@ public class Blocks {
 		GameRegistry.registerBlock(decoration, ItemBlockDecoration.class, BlockIndex.DECORATION_NAME);
 		GameRegistry.registerBlock(oreRhenium, BlockIndex.RHENIUM_ORE_NAME);
 		GameRegistry.registerBlock(cage, BlockIndex.CAGE_NAME);
+		GameRegistry.registerBlock(crystal, ItemBlockCrystal.class, BlockIndex.CRYSTAL_NAME);
 	}
 	
 	
@@ -39,6 +42,7 @@ public class Blocks {
 		BlockIndex.DECORATION_ID = config.getBlock(BlockIndex.DECORATION_NAME, BlockIndex.DECORATION_DEFAULT_ID).getInt(BlockIndex.DECORATION_DEFAULT_ID);
 		BlockIndex.RHENIUM_ORE_ID = config.getBlock(BlockIndex.RHENIUM_ORE_NAME, BlockIndex.RHENIUM_ORE_DEFAULT_ID).getInt(BlockIndex.RHENIUM_ORE_DEFAULT_ID);
 		BlockIndex.CAGE_ID = config.getBlock(BlockIndex.CAGE_NAME, BlockIndex.CAGE_DEFAULT_ID).getInt(BlockIndex.CAGE_DEFAULT_ID);
+		BlockIndex.CRYSTAL_ID = config.getBlock(BlockIndex.CRYSTAL_NAME, BlockIndex.CRYSTAL_DEFAULT_ID).getInt(BlockIndex.CRYSTAL_DEFAULT_ID);
 		
 	}
 	

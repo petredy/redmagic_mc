@@ -7,6 +7,7 @@ import java.util.List;
 import com.petredy.redmagic.Redmagic;
 import com.petredy.redmagic.lib.Comments;
 import com.petredy.redmagic.lib.Configs;
+import com.petredy.redmagic.lib.Dimensions;
 import com.petredy.redmagic.lib.Keys;
 import com.petredy.redmagic.lib.Reference;
 import com.petredy.redmagic.utils.GlassesUtils;
@@ -40,6 +41,8 @@ public class ConfigHandler {
 	
 		
 		Configs.GLASSES_ORE_DIC = config.get("glasses", "ores", GlassesUtils.getOres(), "Always write id and metadata for your ore like the default values.").getIntList();
+		
+		Dimensions.DIMENSION_ID = config.get("general", "dimensionID", Dimensions.DIMENSION_ID, "This is the dimensionID for the Soul Dimension.").getInt(Dimensions.DIMENSION_ID);
 		
 	}
 }

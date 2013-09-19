@@ -40,4 +40,25 @@ public class BlockIndex {
 	public static final String CAGE_NAME = "cage";
 	public static final int CAGE_DEFAULT_ID = 3305;
 	public static int CAGE_ID;
+	
+	
+	/**
+	 * -------------------------------------------------------------
+	 * Crystal
+	 * MultiBlock
+	 */
+	public static final String CRYSTAL_NAME = "crystal";
+	public static final int CRYSTAL_DEFAULT_ID = 3306;
+	public static int CRYSTAL_ID;
+	
+	public static final String CRYSTAL_SMALL_NAME = "small";
+	public static final int CRYSTAL_SMALL_METADATA = 0;
+	public static final String CRYSTAL_MEDIUM_NAME = "medium";
+	public static final int CRYSTAL_MEDIUM_METADATA = 1;
+	public static final String CRYSTAL_LARGE_NAME = "large";
+	public static final int CRYSTAL_LARGE_METADATA = 2;
+	public static final String CRYSTAL_LEFTOVER_NAME = "leftover";
+	public static final int CRYSTAL_LEFTOVER_METADATA = 3;
+	
+	// ---------------------------------------------------------------
 }

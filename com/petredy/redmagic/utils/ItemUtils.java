@@ -59,4 +59,15 @@ public class ItemUtils {
 		initNBT(stack);
 		return stack.stackTagCompound.getInteger(key);
 	}
+
+	public static long getLong(ItemStack stack, String key) {
+		initNBT(stack);
+		return stack.stackTagCompound.getLong(key);
+	}
+
+	public static void setLong(ItemStack stack, String key, long value) {
+		initNBT(stack);
+		stack.stackTagCompound.setLong(key, value);
+		
+	}
 }

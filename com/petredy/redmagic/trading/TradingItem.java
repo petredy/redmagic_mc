@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
-public class TradingItem {
+public class TradingItem implements Comparable<TradingItem>{
 	
 	public float price;
 	public ItemStack item;
@@ -42,5 +42,14 @@ public class TradingItem {
 
 	public Float getPrice() {
 		return price;
+	}
+
+	@Override
+	public int compareTo(TradingItem item) {
+		if(item.amount > this.amount)return 1;
+		if(this.amount > item.amount)return -1;
+		if(this.price > item.price)return 1;
+		if(this.price < item.price)return -1;
+		return 0;
 	}
 }

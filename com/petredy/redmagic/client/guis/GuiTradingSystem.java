@@ -106,7 +106,7 @@ public class GuiTradingSystem extends GuiContainer{
         
         if (i != 0)
         {
-            int j = TradingManager.getAllItems().size() / 9 - 5 + 1;
+            int j = TradingManager.getAllItems().length / 9 - 5 + 1;
 
             if (i > 0)
             {
@@ -179,7 +179,7 @@ public class GuiTradingSystem extends GuiContainer{
 		if(chest.list.length > 0){
 			theList= chest.list;
 		}else{
-			theList = TradingManager.getAllItems().toArray();
+			theList = TradingManager.getAllItems();
 		}
 		List<ItemStack> newList = new ArrayList<ItemStack>();
 		String search = this.searchField.getText().toLowerCase();
@@ -200,7 +200,7 @@ public class GuiTradingSystem extends GuiContainer{
 			chest.list = newList.toArray();
 			chest.scrollTo(0.0F);
 		}else{
-			chest.list = TradingManager.getAllItems().toArray();
+			chest.list = TradingManager.getAllItems();
 		}
 	}
 	

@@ -11,6 +11,7 @@ public class TileEntityHandler {
 		GameRegistry.registerTileEntity(TileEntityEngine.class, "redmagic.TileEntityEngine");
 		GameRegistry.registerTileEntity(TileEntityTradingChest.class, "redmagic.TileEntityTradingChest");
 		GameRegistry.registerTileEntity(TileEntityCage.class, "redmagic.TileEntityCage");
+		GameRegistry.registerTileEntity(TileEntityCrystal.class, "redmagic.TileEntityCrystal");
 	}
 	
 }

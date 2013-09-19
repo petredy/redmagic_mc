@@ -100,5 +100,11 @@ public class BlockUtils {
 			}
 		}
 		return -1;
+
+	}
+	
+	
+	public static int forgeDirectionToInt(ForgeDirection direction){
+		return direction == ForgeDirection.UP ? 1 : direction == ForgeDirection.DOWN ? 0 : direction == ForgeDirection.NORTH ? 2 : direction == ForgeDirection.SOUTH ? 3 : direction == ForgeDirection.WEST ? 4 : 5;
 	}
 }

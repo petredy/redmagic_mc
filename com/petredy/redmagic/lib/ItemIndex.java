@@ -15,4 +15,8 @@ public class ItemIndex {
 	public static final int GLASSES_DEFAULT_ID = 13002;
 	public static int GLASSES_ID;
 	
+	public static final String REDHOLE_NAME = "redhole";
+	public static final int REDHOLE_DEFAULT_ID = 13003;
+	public static int REDHOLE_ID;
+	
 }
