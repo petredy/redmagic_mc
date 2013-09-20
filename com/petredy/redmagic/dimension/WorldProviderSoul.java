@@ -23,28 +23,23 @@ public class WorldProviderSoul extends WorldProvider{
 		return Dimensions.SOUL_DIMENSION_NAME;			
 	}
 
-	protected void registerWorldChunkManager()
-    {
+	protected void registerWorldChunkManager(){
         worldChunkMgr = new ChunkManagerSoul(worldObj);
     }
 
-    public IChunkProvider createChunkGenerator()
-    {
+    public IChunkProvider createChunkGenerator(){
         return new ChunkProviderSoul(worldObj);
     }
     
-    public float calculateCelestialAngle(long par1, float par3)
-    {
+    public float calculateCelestialAngle(long par1, float par3){
         return 0.0F;
     }
     
-    public float[] calcSunriseSunsetColors(float par1, float par2)
-    {
+    public float[] calcSunriseSunsetColors(float par1, float par2){
         return null;
     }
     
-    public Vec3 getFogColor(float par1, float par2)
-    {
+    public Vec3 getFogColor(float par1, float par2){
         int i = 10518688;
         float f2 = MathHelper.cos(par1 * (float)Math.PI * 2.0F) * 2.0F + 0.5F;
 
@@ -68,33 +63,27 @@ public class WorldProviderSoul extends WorldProvider{
     }
     
     @SideOnly(Side.CLIENT)
-    public boolean isSkyColored()
-    {
+    public boolean isSkyColored(){
         return false;
     }
     
-    public boolean isSurfaceWorld()
-    {
+    public boolean isSurfaceWorld(){
         return false;
     }
     
-    public float getCloudHeight()
-    {
+    public float getCloudHeight(){
         return 0.0F;
     }
     
-    public int getAverageGroundLevel()
-    {
+    public int getAverageGroundLevel(){
         return 128;
     }
     
-    public boolean doesXZShowFog(int par1, int par2)
-    {
+    public boolean doesXZShowFog(int par1, int par2){
         return true;
     }
     
-    public ChunkCoordinates getSpawnPoint()
-    {
+    public ChunkCoordinates getSpawnPoint(){
         return new ChunkCoordinates(0, 129, 0);
     }
 	

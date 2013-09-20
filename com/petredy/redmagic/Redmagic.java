@@ -26,6 +26,7 @@ import com.petredy.redmagic.core.CommonProxy;
 import com.petredy.redmagic.core.CreativeTabRedMagic;
 import com.petredy.redmagic.handlers.ConfigHandler;
 import com.petredy.redmagic.handlers.DimensionHandler;
+import com.petredy.redmagic.handlers.EntityHandler;
 import com.petredy.redmagic.handlers.LanguageHandler;
 import com.petredy.redmagic.handlers.PlayerSleepHandler;
 import com.petredy.redmagic.handlers.PlayerTracker;
@@ -73,22 +74,25 @@ public class Redmagic{
       	TileEntityHandler.init();
       	
       	//Intialise Dimension registration
-      	DimensionHandler.init();
+      	//DimensionHandler.init();
+      	
+      	//Initialise Entity registration
+      	EntityHandler.init();
       	
       	//Initilase Redvalue configuration
       	RedvalueConfigurationHandler.init();
       	
-      	//Initialise block configuration
-      	Blocks.config(config);
-      	
       	//Initialise item configuration
       	Items.config(config);
       	
-      	//Initialise block registration
-      	Blocks.init();
+      	//Initialise block configuration
+      	Blocks.config(config);
       	
       	//Initialise item registration
       	Items.init();
+      	
+      	//Initialise block registration
+      	Blocks.init();
       	
       	//Initialise configuration
         ConfigHandler.config(config);

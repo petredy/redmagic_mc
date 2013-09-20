@@ -19,4 +19,22 @@ public class ItemIndex {
 	public static final int REDHOLE_DEFAULT_ID = 13003;
 	public static int REDHOLE_ID;
 	
+	/**
+	 * ------------------------------------------------------------------------------
+	 * ItemCrafting
+	 * MultiItem
+	 */
+	
+	public static final String CRAFTING_NAME = "crafting";
+	public static final int CRAFTING_DEFAULT_ID = 13004;
+	public static int CRAFTING_ID;
+	
+	public static final String CRAFTING_INGOT_RHENIUM_NAME = "ingotRhenium";
+	public static final int CRAFTING_INGOT_RHENIUM_METADATA = 0;
+	public static final String CRAFTING_NUGGET_RHENIUM_NAME = "nuggetRhenium";
+	public static final int CRAFTING_NUGGET_RHENIUM_METADATA = 1;
+	public static final String CRAFTING_GEAR_RHENIUM_NAME = "gearRhenium";
+	public static final int CRAFTING_GEAR_RHENIUM_METADATA = 2;
+	
+	// ------------------------------------------------------------------------------
 }

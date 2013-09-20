@@ -61,4 +61,12 @@ public class BlockIndex {
 	public static final int CRYSTAL_LEFTOVER_METADATA = 3;
 	
 	// ---------------------------------------------------------------
+
+	public static final String SOUL_BASE_NAME = "soul.base";
+	public static final int SOUL_BASE_DEFAULT_ID = 3307;
+	public static int SOUL_BASE_ID;
+	
+	public static final String SOUL_CHEST_NAME = "soul.chest";
+	public static final int SOUL_CHEST_DEFAULT_ID = 3308;
+	public static int SOUL_CHEST_ID;
 }

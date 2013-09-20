@@ -13,7 +13,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.packet.Packet11PlayerPosition;
+import net.minecraft.network.packet.Packet201PlayerInfo;
+import net.minecraft.network.packet.Packet70GameEvent;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.src.ModLoader;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
 
@@ -29,22 +33,23 @@ public class ItemRedhole extends Item{
 		this.itemIcon = iconRegister.registerIcon(Reference.MOD_ID + ":" + ItemIndex.REDHOLE_NAME);
 	}
 	
-	
+	/*
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
 		if(!par2World.isRemote){
-			if(par2World.getTotalWorldTime() - ItemUtils.getLong(par1ItemStack, "time") > 100){
+			if(par2World.getTotalWorldTime() - ItemUtils.getLong(par1ItemStack, "time") > 30){
 				EntityPlayerMP player = (EntityPlayerMP) par3EntityPlayer;
 	        	MinecraftServer mServer = MinecraftServer.getServer();
 	        	if(player.isSneaking()){
 	        		player.mcServer.getConfigurationManager().transferPlayerToDimension(player, 0, new TeleporterOverworld(mServer.worldServerForDimension(0)));
 	        	}else{
 	        		player.mcServer.getConfigurationManager().transferPlayerToDimension(player, Dimensions.DIMENSION_ID, new TeleporterSoul(mServer.worldServerForDimension(Dimensions.DIMENSION_ID)));
+	        		player.playerNetServerHandler.setPlayerLocation(0.5, 129, 0.5, player.rotationYaw, 0);
 	        	}
 	        	ItemUtils.setLong(par1ItemStack, "time", par2World.getTotalWorldTime());
 			}
 		}
         return par1ItemStack;
     }
-	
+	*/
 }

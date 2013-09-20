@@ -14,11 +14,10 @@ public class PlayerSleepHandler {
 	
 	@ForgeSubscribe
 	public void onPlayerSleeps(PlayerSleepInBedEvent event){
-		EntityPlayer player = event.entityPlayer;
-		if(Reference.SLEEP && !player.worldObj.isDaytime()){
-			for (int j = 0; j < MinecraftServer.getServer().worldServers.length; ++j){
-	            WorldServer worldserver = MinecraftServer.getServer().worldServers[j];
-	            worldserver.setWorldTime(0);
+		if(Reference.SLEEP && !event.entityPlayer.worldObj.isRemote){
+			for (int j = 0; j < MinecraftServer.getServer().worldServers.length; j++){
+	            WorldServer server = MinecraftServer.getServer().worldServers[j];
+	            if(!server.isDaytime())server.setWorldTime(0);
 	        }
 		}
 	}

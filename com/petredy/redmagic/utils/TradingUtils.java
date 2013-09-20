@@ -37,6 +37,7 @@ public class TradingUtils {
 	}
 	
 	public static void save(World world){
+		LogUtils.log("Save Trading data");
 		TradingData trading = new TradingData(Reference.MOD_ID + ".trading");
 		trading.data = TradingManager.getData();
 		trading.markDirty();

@@ -24,14 +24,8 @@ public class TileEntityEngine extends TileEntityInventory implements IPowerEmitt
 	public ForgeDirection side;
 	public float rotate = 0;
 	public float speed = 0;
-	public float need = 100;
-	public float production;
-	public int count = 0;
-	
-	
-	public float plusT1 = 0.1f;
-	public float plusT2 = 1.0f;
-	public float plusT3 = 10.0f;
+	public float production = 2;
+	public float energy = 0;
 	
 	public TileEntityEngine() {
 		super(BlockIndex.ENGINE_NAME, 1);
@@ -44,10 +38,14 @@ public class TileEntityEngine extends TileEntityInventory implements IPowerEmitt
 	
 	@Override
 	public void updateEntity(){
-		if(worldObj.getStrongestIndirectPower(xCoord, yCoord, zCoord) > 0 && this.getItem() != null){
-			speed = (float)worldObj.getStrongestIndirectPower(xCoord, yCoord, zCoord) / 7.5f;
-			providerPowerOnSide(side);
-			production = (float) Math.max(5, Math.sqrt(RedvalueDictionary.getRedvalue(getItem())));
+		if(getItem() != null ){
+			if(energy >= production){
+				energy = 0;
+				providerPowerOnSide(side);
+			}
+			float pro = RedvalueDictionary.getRedvalue(getItem()) / 100000;
+			energy += Math.min(2, Math.max(0.001, pro));
+			speed = energy;
 		}
 	}
 

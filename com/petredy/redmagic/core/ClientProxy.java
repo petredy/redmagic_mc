@@ -3,11 +3,13 @@ package com.petredy.redmagic.core;
 
 import com.petredy.redmagic.client.SoundHandler;
 import com.petredy.redmagic.client.render.*;
+import com.petredy.redmagic.entities.EntitySoul;
 import com.petredy.redmagic.entities.particle.EntityStarFX;
 import com.petredy.redmagic.handlers.KeyBindingHandler;
 import com.petredy.redmagic.lib.Rendering;
 import com.petredy.redmagic.tileentities.TileEntityCage;
 import com.petredy.redmagic.tileentities.TileEntityEngine;
+import com.petredy.redmagic.tileentities.TileEntitySoulChest;
 import com.petredy.redmagic.tileentities.TileEntityTradingChest;
 import com.petredy.redmagic.utils.KeyBindingUtils;
 
@@ -44,6 +46,7 @@ public class ClientProxy extends CommonProxy{
 		Rendering.ENGINE_ID = RenderingRegistry.getNextAvailableRenderId();
 		Rendering.TRADING_CHEST_ID = RenderingRegistry.getNextAvailableRenderId();
 		Rendering.CAGE_ID = RenderingRegistry.getNextAvailableRenderId();
+		Rendering.SOUL_CHEST_ID = RenderingRegistry.getNextAvailableRenderId();
 	}
 	
 	@Override
@@ -56,6 +59,11 @@ public class ClientProxy extends CommonProxy{
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCage.class, new RenderCage());
 		RenderingRegistry.registerBlockHandler(new RenderCage());
+		
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySoulChest.class, new RenderSoulChest());
+		RenderingRegistry.registerBlockHandler(new RenderSoulChest());
+		
+		RenderingRegistry.registerEntityRenderingHandler(EntitySoul.class, new RenderEntitySoul());
 	}
 	
 	

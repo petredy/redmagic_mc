@@ -5,13 +5,18 @@ import com.petredy.redmagic.player.PlayerInformation;
 import com.petredy.redmagic.utils.LogUtils;
 import com.petredy.redmagic.utils.PlayerUtils;
 
+import cpw.mods.fml.common.network.PacketDispatcher;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.network.packet.Packet11PlayerPosition;
+import net.minecraft.network.packet.Packet9Respawn;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
+import net.minecraft.world.WorldType;
 
 public class TeleporterSoul extends Teleporter{
 	
@@ -35,7 +40,7 @@ public class TeleporterSoul extends Teleporter{
 	public boolean placeInExistingPortal(Entity par1Entity, double par2, double par4, double par6, float par8)
     {
 		if(server.isAirBlock(0, 128, 0)) return false;
-		par1Entity.setPosition(0.5, 129, 0.5);
+		par1Entity.setPositionAndRotation(0.5, 129, 0.5, par1Entity.rotationYaw, 0.0F);
 		par1Entity.motionX = par1Entity.motionY = par1Entity.motionZ = 0.0D;
 		return true;
 		

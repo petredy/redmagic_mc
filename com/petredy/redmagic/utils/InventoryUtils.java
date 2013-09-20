@@ -120,6 +120,7 @@ public class InventoryUtils {
 		if(stackToMove == null)return stackToMove;
 		for (int i = 0; i < inventory.getSizeInventory(); i++) {
 			ItemStack stack = inventory.getStackInSlot(i);
+			
 			if (stack == null && inventory.isItemValidForSlot(i, stackToMove)) {
 				inventory.setInventorySlotContents(i, stackToMove);
 				return null;
@@ -127,6 +128,8 @@ public class InventoryUtils {
 			if (stackToMove.itemID == stack.itemID && (stackToMove.getItem().isDamageable() || stackToMove.getItemDamage() == stack.getItemDamage()) && ItemStack.areItemStackTagsEqual(stack, stackToMove)) {
 				if (stackToMove.stackSize + stack.stackSize <= stack.getMaxStackSize()) {
 					stack.stackSize += stackToMove.stackSize;
+					LogUtils.log(stack);
+					inventory.setInventorySlotContents(i, stack);
 					return null;
 				}
 				int itemsToMove = stack.getMaxStackSize() - stack.stackSize;

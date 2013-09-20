@@ -14,6 +14,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -75,7 +76,7 @@ public class BlockBasicEngine extends BlockContainer{
 				else if(engine.side == ForgeDirection.SOUTH)engine.side = ForgeDirection.UP;
 			}
 			return true;
-		}else if(current != null && !engine.hasItem()){
+		}else if(current != null && !engine.hasItem() && current.getItem() instanceof ItemBlock){
 			ItemStack item = current.copy();
 			item.stackSize = 1;
 			engine.setInventorySlotContents(0, item);

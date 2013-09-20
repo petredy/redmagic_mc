@@ -13,5 +13,5 @@ public class Reference {
 	public static final String DEBUG = "debug";
 	public static final String ASSETS = "/assets/";
 	
-	public static Boolean SLEEP = true;
+	public static Boolean SLEEP = false;
 }
