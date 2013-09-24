@@ -27,6 +27,7 @@ public class TileEntityInventory extends TileEntity implements IInventory{
      */
     public ItemStack getStackInSlot(int par1)
     {
+    	this.onGetSlot(par1);
         return this.inv[par1];
     }
 
@@ -44,6 +45,7 @@ public class TileEntityInventory extends TileEntity implements IInventory{
             {
                 itemstack = this.inv[par1];
                 this.inv[par1] = null;
+                this.onInventoryChanged(par1);
                 this.onInventoryChanged();
                 return itemstack;
             }
@@ -55,7 +57,7 @@ public class TileEntityInventory extends TileEntity implements IInventory{
                 {
                     this.inv[par1] = null;
                 }
-
+                this.onInventoryChanged(par1);
                 this.onInventoryChanged();
                 return itemstack;
             }
@@ -95,11 +97,15 @@ public class TileEntityInventory extends TileEntity implements IInventory{
         {
             par2ItemStack.stackSize = this.getInventoryStackLimit();
         }
-
+        this.onInventoryChanged(par1);
         this.onInventoryChanged();
     }
 
-    /**
+    public void onInventoryChanged(int slot) {
+		
+	}
+
+	/**
      * Returns the name of the inventory.
      */
     public String getInvName()
@@ -191,5 +197,10 @@ public class TileEntityInventory extends TileEntity implements IInventory{
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		// TODO Auto-generated method stub
 		return true;
+	}
+
+	public void onGetSlot(int slot) {
+		// TODO Auto-generated method stub
+		
 	}
 }

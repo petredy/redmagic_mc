@@ -166,7 +166,6 @@ public class ContainerTradingChest extends Container{
                 
                 if (i1 >= 0 && i1 < list.length)
                 {
-                	int count = 0;
                     this.inv.setInventorySlotContents(l + k * 9, list[i1] instanceof ItemStack ? (ItemStack)list[i1] : ((TradingItem)list[i1]).item);
                 }
                 else

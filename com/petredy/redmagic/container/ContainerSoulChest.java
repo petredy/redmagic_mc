@@ -42,6 +42,7 @@ public class ContainerSoulChest extends Container{
 		super();
 		this.entity = tileEntity;
 		this.entity.openChest();
+		LogUtils.log(entity.soul);
 		list = entity.soul != null ? entity.soul.inventory.stacks.values().toArray() : new Object[0];
 		
 		for (int i = 0; i < 5; ++i){

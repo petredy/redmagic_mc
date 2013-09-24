@@ -12,6 +12,7 @@ import org.lwjgl.opengl.GL12;
 import com.petredy.redmagic.Redmagic;
 import com.petredy.redmagic.blocks.Blocks;
 import com.petredy.redmagic.container.ContainerSoulChest;
+import com.petredy.redmagic.lib.Guis;
 import com.petredy.redmagic.lib.Textures;
 import com.petredy.redmagic.soul.SoulStack;
 import com.petredy.redmagic.tileentities.TileEntitySoulChest;
@@ -137,7 +138,7 @@ public class GuiSoulChest extends GuiContainer{
 
 	@Override
 	public void drawGuiContainerForegroundLayer(int par1, int par2){		
-		fontRenderer.drawString(StatCollector.translateToLocal(Blocks.soulChest.getUnlocalizedName()), 8, 6, 4210752);
+		fontRenderer.drawString(StatCollector.translateToLocal(Blocks.soulChest.getUnlocalizedName()), 8, 6, Guis.DEFAULT_FONT_COLOR);
 	}
 	
 	@Override
@@ -206,8 +207,6 @@ public class GuiSoulChest extends GuiContainer{
 	
 	public void drawScreen(int par1, int par2, float par3)
     {
-		
-		updateSearch();
         boolean flag = Mouse.isButtonDown(0);
         int k = this.guiLeft;
         int l = this.guiTop;

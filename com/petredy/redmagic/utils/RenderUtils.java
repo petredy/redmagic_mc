@@ -1,22 +1,31 @@
 package com.petredy.redmagic.utils;
 
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
 
 import com.petredy.redmagic.lib.Textures;
+import com.petredy.redmagic.utils.BlockUtils.VirtualBlock;
+
+import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureManager;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.ForgeDirection;
 
 public class RenderUtils {
 	
 	private static int rotationAngle = 0;
+	
+	private static int pulse = 0;
+    private static boolean doInc = true;
 	
 	public static void renderRotatingBlockIntoGUI(FontRenderer fontRenderer, TextureManager renderEngine, ItemStack stack, int x, int y, float zLevel, float scale) {
 
@@ -98,4 +107,5 @@ public class RenderUtils {
         tessellator.addVertexWithUV(x + 0, y + 0, zLevel, icon.getMinU(), icon.getMinV());
         tessellator.draw();
     }
+    
 }

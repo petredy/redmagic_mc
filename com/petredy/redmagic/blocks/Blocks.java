@@ -13,7 +13,6 @@ import net.minecraftforge.common.Configuration;
 
 public class Blocks {
 
-	public static BlockFurnace furnace;
 	public static BlockBasicEngine engine;
 	public static BlockTradingChest trading;
 	public static BlockDecoration decoration;
@@ -22,9 +21,11 @@ public class Blocks {
 	public static BlockCrystal crystal;
 	public static BlockSoulBase base;
 	public static BlockSoulChest soulChest;
+	public static BlockWorkTable workTable;
+	public static BlockEarthwire earthwire;
+	public static BlockHole hole;
 	
 	public static void init(){
-		furnace = new BlockFurnace(BlockIndex.FURNACE_ID);
 		engine = new BlockBasicEngine(BlockIndex.ENGINE_ID);
 		trading = new BlockTradingChest(BlockIndex.TRADING_CHEST_ID);
 		decoration = new BlockDecoration(BlockIndex.DECORATION_ID);
@@ -33,22 +34,26 @@ public class Blocks {
 		crystal = new BlockCrystal(BlockIndex.CRYSTAL_ID);
 		base = new BlockSoulBase(BlockIndex.SOUL_BASE_ID);
 		soulChest = new BlockSoulChest(BlockIndex.SOUL_CHEST_ID);
+		workTable = new BlockWorkTable(BlockIndex.WORK_TABLE_ID);
+		earthwire = new BlockEarthwire(BlockIndex.EARTHWIRE_ID);
+		hole = new BlockHole(BlockIndex.HOLE_ID);
 		
 		GameRegistry.registerBlock(engine, BlockIndex.ENGINE_NAME);
-		GameRegistry.registerBlock(furnace, BlockIndex.FURNACE_NAME);
 		GameRegistry.registerBlock(trading, BlockIndex.TRADING_CHEST_NAME);
 		GameRegistry.registerBlock(decoration, ItemBlockDecoration.class, BlockIndex.DECORATION_NAME);
 		GameRegistry.registerBlock(oreRhenium, BlockIndex.RHENIUM_ORE_NAME);
 		GameRegistry.registerBlock(cage, BlockIndex.CAGE_NAME);
 		GameRegistry.registerBlock(crystal, ItemBlockCrystal.class, BlockIndex.CRYSTAL_NAME);
-		GameRegistry.registerBlock(base, BlockIndex.SOUL_BASE_NAME);
-		GameRegistry.registerBlock(soulChest, BlockIndex.SOUL_CHEST_NAME);
+		//GameRegistry.registerBlock(base, BlockIndex.SOUL_BASE_NAME);
+		//GameRegistry.registerBlock(soulChest, BlockIndex.SOUL_CHEST_NAME);
+		GameRegistry.registerBlock(workTable, BlockIndex.WORK_TABLE_NAME);
+		GameRegistry.registerBlock(earthwire, BlockIndex.EARTHWIRE_NAME);
+		GameRegistry.registerBlock(hole, BlockIndex.HOLE_NAME);
 		addRecipes();
 	}
 	
 	
 	public static void config(Configuration config){
-		BlockIndex.FURNACE_ID = config.getBlock(BlockIndex.FURNACE_NAME, BlockIndex.FURNACE_DEFAULT_ID).getInt(BlockIndex.FURNACE_DEFAULT_ID);
 		BlockIndex.ENGINE_ID = config.getBlock(BlockIndex.ENGINE_NAME, BlockIndex.ENGINE_DEFAULT_ID).getInt(BlockIndex.ENGINE_DEFAULT_ID);
 		BlockIndex.TRADING_CHEST_ID = config.getBlock(BlockIndex.TRADING_CHEST_NAME, BlockIndex.TRADING_CHEST_DEFAULT_ID).getInt(BlockIndex.TRADING_CHEST_DEFAULT_ID);
 		BlockIndex.DECORATION_ID = config.getBlock(BlockIndex.DECORATION_NAME, BlockIndex.DECORATION_DEFAULT_ID).getInt(BlockIndex.DECORATION_DEFAULT_ID);
@@ -57,6 +62,9 @@ public class Blocks {
 		BlockIndex.CRYSTAL_ID = config.getBlock(BlockIndex.CRYSTAL_NAME, BlockIndex.CRYSTAL_DEFAULT_ID).getInt(BlockIndex.CRYSTAL_DEFAULT_ID);
 		BlockIndex.SOUL_BASE_ID = config.getBlock(BlockIndex.SOUL_BASE_NAME, BlockIndex.SOUL_BASE_DEFAULT_ID).getInt(BlockIndex.SOUL_BASE_DEFAULT_ID);
 		BlockIndex.SOUL_CHEST_ID = config.getBlock(BlockIndex.SOUL_CHEST_NAME, BlockIndex.SOUL_CHEST_DEFAULT_ID).getInt(BlockIndex.SOUL_CHEST_DEFAULT_ID);
+		BlockIndex.WORK_TABLE_ID = config.getBlock(BlockIndex.WORK_TABLE_NAME, BlockIndex.WORK_TABLE_DEFAULT_ID).getInt(BlockIndex.WORK_TABLE_DEFAULT_ID);
+		BlockIndex.EARTHWIRE_ID = config.getBlock(BlockIndex.EARTHWIRE_NAME, BlockIndex.EARTHWIRE_DEFAULT_ID).getInt(BlockIndex.EARTHWIRE_DEFAULT_ID);
+		BlockIndex.HOLE_ID = config.getBlock(BlockIndex.HOLE_NAME, BlockIndex.HOLE_DEFAULT_ID).getInt(BlockIndex.HOLE_DEFAULT_ID);
 		
 	}
 	
@@ -66,7 +74,7 @@ public class Blocks {
 			"RRR",
 			" S ",
 			"GPG",
-			'S', new ItemStack(Items.soul),
+			'S', new ItemStack(Block.glass),
 			'R', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA),
 			'G', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_GEAR_RHENIUM_METADATA),
 			'P', Block.pistonBase
@@ -94,6 +102,15 @@ public class Blocks {
 			new ItemStack(crystal, 1, BlockIndex.CRYSTAL_MEDIUM_METADATA), new ItemStack(crystal, 1, BlockIndex.CRYSTAL_MEDIUM_METADATA)
 		});
 		
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.crafting, 5, ItemIndex.CRAFTING_NUGGET_RHENIUM_METADATA), new Object[]{
+			new ItemStack(oreRhenium)
+		});
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(decoration, 4, BlockIndex.MARBLE_BRICKS_METADATA), new Object[]{
+			new ItemStack(decoration, 1, BlockIndex.MARBLE_METADATA), new ItemStack(decoration, 1, BlockIndex.MARBLE_METADATA),
+			new ItemStack(decoration, 1, BlockIndex.MARBLE_METADATA), new ItemStack(decoration, 1, BlockIndex.MARBLE_METADATA)
+		});
+		/*
 		GameRegistry.addShapedRecipe(new ItemStack(base), new Object[]{
 			"GFG",
 			"FRF",
@@ -110,6 +127,24 @@ public class Blocks {
 			'I', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA),
 			'G', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_GEAR_RHENIUM_METADATA),
 			'C', new ItemStack(Block.chest)
+		});
+		*/
+		
+		GameRegistry.addShapedRecipe(new ItemStack(workTable), new Object[]{
+			"FFF",
+			"RRR",
+			"GWG",
+			'F', Item.flint,
+			'R', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA),
+			'G', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_GEAR_RHENIUM_METADATA),
+			'W', Block.workbench
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(earthwire), new Object[]{
+			" I ",
+			" I ",
+			"III",
+			'I', Item.ingotIron
 		});
 	}
 }

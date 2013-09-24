@@ -13,6 +13,7 @@ public class Textures {
 	public static final String GUI_PATH = TEXTURE_PATH + "gui/";
 	
 	//Renders
+	public static final ResourceLocation EFFECT_NOISE = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "effects/noise.png");
 	public static final ResourceLocation ENGINE = ResourceLocationUtils.getResourceLocation("models/engine/engine.png");
 	public static final ResourceLocation TRADING_CHEST = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "blocks/" + BlockIndex.TRADING_CHEST_NAME + ".png");
 	public static final ResourceLocation CAGE = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "blocks/" + BlockIndex.CAGE_NAME + ".png");
@@ -21,6 +22,9 @@ public class Textures {
 	//Guis
 	public static final ResourceLocation TRADING_CHEST_GUI = ResourceLocationUtils.getResourceLocation(GUI_PATH + BlockIndex.TRADING_CHEST_NAME + ".png");
 	public static final ResourceLocation ALL_ITEMS = ResourceLocationUtils.getResourceLocation(GUI_PATH + "allitems.png"); 
+	public static final ResourceLocation WORK_TABLE = ResourceLocationUtils.getResourceLocation(GUI_PATH + BlockIndex.WORK_TABLE_NAME + ".png");
+	public static final ResourceLocation WORK_TABLE_CHEST = ResourceLocationUtils.getResourceLocation(GUI_PATH + BlockIndex.WORK_TABLE_NAME + ".chest.png");
+	public static final ResourceLocation PLAYER_INVENTORY = ResourceLocationUtils.getResourceLocation(GUI_PATH + "player.inventory.png");
 	
 	//Glasses
 	public static final String GLASSES = TEXTURE_PATH + "glasses/glasses.png";
@@ -34,6 +38,11 @@ public class Textures {
 	
 	//Particles 
 	public static final ResourceLocation STAR_FX = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "entities/particles/star.png");
+	public static final ResourceLocation HOLE_FX = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "entities/particles/hole.png");
+	
+	
+	
+	
 	
 	
 }

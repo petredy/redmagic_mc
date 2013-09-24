@@ -90,7 +90,7 @@ public class InventoryUtils {
 		
 	}
 	
-	public static void reduceItemsInInventory(IInventory inv, ItemStack[] items){
+	public static ItemStack[] reduceItemsInInventory(IInventory inv, ItemStack[] items){
 		for(int i = 0; i < inv.getSizeInventory(); i++){
 			ItemStack slot = inv.getStackInSlot(i);
 			for(int j = 0; j < items.length; j++){
@@ -106,6 +106,7 @@ public class InventoryUtils {
 				}
 			}
 		}
+		return items;
 	}
 	
 	public static IInventory itemStacksToInventory(ItemStack[] stacks){
@@ -149,10 +150,12 @@ public class InventoryUtils {
 //	}
 	
 	public static ItemStack[] getSlots(IInventory inventory){
+		if(inventory == null)return new ItemStack[0];
 		return getSlots(inventory, 0, inventory.getSizeInventory());
 	}
 	
 	public static ItemStack[] getSlots(IInventory inventory, int start, int length){
+		if(inventory == null)return new ItemStack[0];
 		ItemStack[] stacks = new ItemStack[inventory.getSizeInventory()];
 		for(int i = start; i < start + length; i++){
 			stacks[i] = inventory.getStackInSlot(i);
@@ -395,5 +398,109 @@ public class InventoryUtils {
 		}
 		return null;
 	}
+	
+	public static IInventory[] getAdjecentInventories(World world, int x, int y, int z){
+		IInventory[] inventories = new IInventory[6];
+		inventories[0] = world.getBlockTileEntity(x, y - 1, z) instanceof IInventory ? (IInventory) world.getBlockTileEntity(x, y - 1, z) : null;
+		inventories[1] = world.getBlockTileEntity(x, y - 1, z) instanceof IInventory ? (IInventory) world.getBlockTileEntity(x, y + 1, z) : null;
+		inventories[2] = world.getBlockTileEntity(x, y - 1, z) instanceof IInventory ? (IInventory) world.getBlockTileEntity(x, y, z - 1) : null;
+		inventories[3] = world.getBlockTileEntity(x, y - 1, z) instanceof IInventory ? (IInventory) world.getBlockTileEntity(x, y, z + 1) : null;
+		inventories[4] = world.getBlockTileEntity(x, y - 1, z) instanceof IInventory ? (IInventory) world.getBlockTileEntity(x - 1, y, z) : null;
+		inventories[5] = world.getBlockTileEntity(x, y - 1, z) instanceof IInventory ? (IInventory) world.getBlockTileEntity(x + 1, y, z) : null;
+		return inventories;
+	}
+	
+	public static ItemStack[] inventoryToArray(IInventory[] invs){
+		
+		int size = InventoryUtils.getSizeOfInventories(invs);
+		ItemStack[] items = new ItemStack[size];
+		int count = 0;
+		for(int i = 0; i < invs.length; i++){
+			if(invs[i] != null){
+				ItemStack[] slots = InventoryUtils.getSlots(invs[i]);
+				for(int j = 0; j < slots.length; j++){
+					if(slots[j] != null){
+						items[count++] = slots[j];
+					}
+				}
+			}
+		}
+		return items;
+	}
+
+	public static boolean containInventoriesItems(IInventory[] invs, ItemStack[] items){
+		ItemStack[] restItems = getItemStackReducedByContainedItemsInInventories(invs, items);
+		for(int i = 0; i < restItems.length; i++){
+			if(restItems[i] != null)return false;
+		}
+		return true;
+	}
+	
+	public static ItemStack[] getItemStackReducedByContainedItemsInInventories(IInventory[] invs, ItemStack[] items) {
+		ItemStack[] containedItems = new ItemStack[items.length];
+		int invcount = 0;
+		for(IInventory inv: invs){
+			if(inv != null){
+				if(invcount == 1){
+					containedItems = InventoryUtils.containedItemsInInventory(inv, items);
+				}else{
+					containedItems = InventoryUtils.containedItemsInInventory(inv, containedItems);
+				}
+			}
+			invcount++;
+		}
+		return containedItems;
+	}
+	
+	public static boolean reduceItemsFromInventories(IInventory[] invs, ItemStack[] items){
+		for(IInventory inv: invs){
+			items = reduceItemsInInventory(inv, items);
+		}
+		for(int i = 0; i < items.length; i++){
+			if(items[i] != null)return false;
+		}
+		return true;
+	}
+
+	public static int getSizeOfInventories(IInventory[] inventories) {
+		int count = 0;
+		for(IInventory inv: inventories){
+			if(inv != null){
+				count += inv.getSizeInventory();
+			}
+		}
+		return count;
+	}
+
+	public static ItemStack getStackInSlotFromInventories(int slot, IInventory[] inventories) {
+		int count = 0;
+		for(IInventory inv: inventories){
+			if(inv != null){
+				if(slot < count + inv.getSizeInventory()){
+					LogUtils.log(inv.getStackInSlot(slot - count));
+					return inv.getStackInSlot(slot - count);
+				}
+				count += inv.getSizeInventory();
+			}
+		}
+		return null;
+	}
+
+	public static void setStackInSlotFromInventories(int slot, ItemStack stack, IInventory[] inventories) {
+		int count = 0;
+		for(IInventory inv: inventories){
+			if(inv != null){
+				if(slot < count + inv.getSizeInventory()){
+					inv.setInventorySlotContents(slot - count, stack);
+					break;
+				}
+				count += inv.getSizeInventory();
+			}
+		}
+	}
+	
+	
+	
+	
 	
 }

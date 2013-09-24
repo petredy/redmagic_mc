@@ -26,6 +26,7 @@ public class BlockBasicEngine extends BlockContainer{
 		super(par1, Material.piston);
 		this.setCreativeTab(Redmagic.tabRedmagic);
 		this.setUnlocalizedName(BlockIndex.ENGINE_NAME);
+		this.setHardness(BlockIndex.DEFAULT_HARDNESS);
 	}
 
 	@Override

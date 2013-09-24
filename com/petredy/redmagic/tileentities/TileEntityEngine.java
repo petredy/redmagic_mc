@@ -7,10 +7,10 @@ import buildcraft.api.power.PowerHandler.PowerReceiver;
 
 import com.petredy.redmagic.lib.BlockIndex;
 import com.petredy.redmagic.redvalue.RedvalueDictionary;
+import com.petredy.redmagic.utils.BlockUtils;
 import com.petredy.redmagic.utils.LogUtils;
 
 import net.minecraft.block.Block;
-import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;
@@ -19,12 +19,12 @@ import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 
-public class TileEntityEngine extends TileEntityInventory implements IPowerEmitter, ISidedInventory{
+public class TileEntityEngine extends TileEntityInventory implements IPowerEmitter{
 
 	public ForgeDirection side;
 	public float rotate = 0;
 	public float speed = 0;
-	public float production = 2;
+	public float production = 60;
 	public float energy = 0;
 	
 	public TileEntityEngine() {
@@ -45,7 +45,7 @@ public class TileEntityEngine extends TileEntityInventory implements IPowerEmitt
 			}
 			float pro = RedvalueDictionary.getRedvalue(getItem()) / 100000;
 			energy += Math.min(2, Math.max(0.001, pro));
-			speed = energy;
+			speed = energy / 10;
 		}
 	}
 
@@ -94,24 +94,6 @@ public class TileEntityEngine extends TileEntityInventory implements IPowerEmitt
 	@Override
 	public void setInventorySlotContents(int par1, ItemStack par2ItemStack){
 		if(inv[par1] == null)inv[par1] = par2ItemStack;
-	}
-
-	@Override
-	public int[] getAccessibleSlotsFromSide(int var1) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean canInsertItem(int i, ItemStack itemstack, int j) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean canExtractItem(int i, ItemStack itemstack, int j) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 	
 	public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt){

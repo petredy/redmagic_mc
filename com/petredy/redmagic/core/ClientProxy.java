@@ -4,10 +4,12 @@ package com.petredy.redmagic.core;
 import com.petredy.redmagic.client.SoundHandler;
 import com.petredy.redmagic.client.render.*;
 import com.petredy.redmagic.entities.EntitySoul;
+import com.petredy.redmagic.entities.particle.EntityHoleFX;
 import com.petredy.redmagic.entities.particle.EntityStarFX;
 import com.petredy.redmagic.handlers.KeyBindingHandler;
 import com.petredy.redmagic.lib.Rendering;
 import com.petredy.redmagic.tileentities.TileEntityCage;
+import com.petredy.redmagic.tileentities.TileEntityEarthwire;
 import com.petredy.redmagic.tileentities.TileEntityEngine;
 import com.petredy.redmagic.tileentities.TileEntitySoulChest;
 import com.petredy.redmagic.tileentities.TileEntityTradingChest;
@@ -78,6 +80,10 @@ public class ClientProxy extends CommonProxy{
 
 		if(name.equals("star")){
 			efx = new EntityStarFX(world, d1, d2, d3, (Double)data[0], (Double)data[1], (Double)data[2]);
+		}
+		
+		if(name.equals("hole")){
+			efx = new EntityHoleFX(world, d1, d2, d3, (String)data[0]);
 		}
 
 		if(efx != null)

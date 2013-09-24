@@ -34,6 +34,7 @@ public class BlockCrystal extends BlockContainer{
 		this.setHardness(100F);
 		this.setUnlocalizedName(BlockIndex.CRYSTAL_NAME);
 		this.setCreativeTab(Redmagic.tabRedmagic);
+		this.setHardness(BlockIndex.DEFAULT_HARDNESS);
 	}
 	
 	public void registerIcons(IconRegister iconRegister){

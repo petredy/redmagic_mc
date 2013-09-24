@@ -1,14 +1,21 @@
 package com.petredy.redmagic.items;
 
+import java.util.List;
+
 import com.petredy.redmagic.Redmagic;
 import com.petredy.redmagic.dimension.TeleporterOverworld;
 import com.petredy.redmagic.dimension.TeleporterSoul;
 import com.petredy.redmagic.lib.Dimensions;
 import com.petredy.redmagic.lib.ItemIndex;
+import com.petredy.redmagic.lib.Redholes;
 import com.petredy.redmagic.lib.Reference;
+import com.petredy.redmagic.redhole.Hole;
 import com.petredy.redmagic.utils.ItemUtils;
+import com.petredy.redmagic.utils.LogUtils;
+import com.petredy.redmagic.utils.RedholeUtils;
 
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
@@ -18,6 +25,8 @@ import net.minecraft.network.packet.Packet201PlayerInfo;
 import net.minecraft.network.packet.Packet70GameEvent;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.src.ModLoader;
+import net.minecraft.util.Icon;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
 
@@ -27,29 +36,43 @@ public class ItemRedhole extends Item{
 		super(id);
 		this.setUnlocalizedName(ItemIndex.REDHOLE_NAME);
 		this.setCreativeTab(Redmagic.tabRedmagic);
+		this.setMaxStackSize(1);
 	}
 	
 	public void registerIcons(IconRegister iconRegister){
 		this.itemIcon = iconRegister.registerIcon(Reference.MOD_ID + ":" + ItemIndex.REDHOLE_NAME);
 	}
 	
-	/*
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
-		if(!par2World.isRemote){
-			if(par2World.getTotalWorldTime() - ItemUtils.getLong(par1ItemStack, "time") > 30){
-				EntityPlayerMP player = (EntityPlayerMP) par3EntityPlayer;
-	        	MinecraftServer mServer = MinecraftServer.getServer();
-	        	if(player.isSneaking()){
-	        		player.mcServer.getConfigurationManager().transferPlayerToDimension(player, 0, new TeleporterOverworld(mServer.worldServerForDimension(0)));
-	        	}else{
-	        		player.mcServer.getConfigurationManager().transferPlayerToDimension(player, Dimensions.DIMENSION_ID, new TeleporterSoul(mServer.worldServerForDimension(Dimensions.DIMENSION_ID)));
-	        		player.playerNetServerHandler.setPlayerLocation(0.5, 129, 0.5, player.rotationYaw, 0);
-	        	}
-	        	ItemUtils.setLong(par1ItemStack, "time", par2World.getTotalWorldTime());
+		Hole hole = RedholeUtils.getHole(par1ItemStack);
+		if(hole != null){
+			hole.activate(par1ItemStack, par2World, par3EntityPlayer);
+			RedholeUtils.saveHole(par1ItemStack, hole);
+		}
+		return par1ItemStack;
+   	}
+	
+	public String getUnlocalizedName(ItemStack par1ItemStack)
+    {
+		String name = "";
+		Hole hole = RedholeUtils.getHole(par1ItemStack);
+		if(hole != null)name = "." + hole.name;
+        return this.getUnlocalizedName() + name;
+    }
+	
+	public void getSubItems(int par1, CreativeTabs par2CreativeTabs, List par3List)
+    {
+		par3List.add(new ItemStack(par1, 1, 0));
+		for(Class cl: Redholes.HOLES){
+			try{
+				ItemStack redhole = new ItemStack(par1, 1, 0);
+				RedholeUtils.saveHole(redhole, (Hole) cl.newInstance());
+				LogUtils.log("Creative Items: create redhole for hole " + cl.getSimpleName());
+				par3List.add(redhole);
+			}catch(Exception e){
+				e.printStackTrace();
 			}
 		}
-        return par1ItemStack;
-    }
-	*/
+	}
 }

@@ -32,7 +32,7 @@ public class ItemSoul extends Item{
 		if(location != null && !par2World.isRemote){
 			EntitySoul soul = new EntitySoul(par2World);
 			soul.setPosition(location.blockX + 0.5, location.blockY + 1, location.blockZ + 0.5);
-			par2World.spawnEntityInWorld(soul);
+			//par2World.spawnEntityInWorld(soul);
 			LogUtils.log("spawn");
 		}
 		return par1ItemStack;

@@ -38,6 +38,12 @@ public class CommonProxy implements IGuiHandler{
 		if(ID == Guis.SOUL_CHEST){
 			return new ContainerSoulChest(player, (TileEntitySoulChest)tileEntity);
 		}
+		if(ID == Guis.WORK_TABLE){
+			return new ContainerWorkTable(player, (TileEntityWorkTable)tileEntity);
+		}
+		if(ID == Guis.PLAYER_INVENTORY){
+			return new ContainerPlayerInventory(player);
+		}
 		return null;
 	}
 
@@ -49,6 +55,12 @@ public class CommonProxy implements IGuiHandler{
 		}
 		if(ID == Guis.SOUL_CHEST){
 			return new GuiSoulChest(player, (TileEntitySoulChest)tileEntity);
+		}
+		if(ID == Guis.WORK_TABLE){
+			return new GuiWorkTable(player, (TileEntityWorkTable)tileEntity);
+		}
+		if(ID == Guis.PLAYER_INVENTORY){
+			return new GuiPlayerInventory(player);
 		}
 		return null;
 	}

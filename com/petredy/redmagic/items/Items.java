@@ -63,7 +63,7 @@ public class Items {
 			"s s",
 			'P', Block.thinGlass,
 			's', Item.stick,
-			'S', new ItemStack(soul)
+			'S', new ItemStack(crafting, 1, ItemIndex.CRAFTING_GEAR_RHENIUM_METADATA)
 		});
 		
 		GameRegistry.addShapedRecipe(new ItemStack(redhole), new Object[]{

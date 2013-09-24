@@ -9,6 +9,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -106,5 +107,36 @@ public class BlockUtils {
 	
 	public static int forgeDirectionToInt(ForgeDirection direction){
 		return direction == ForgeDirection.UP ? 1 : direction == ForgeDirection.DOWN ? 0 : direction == ForgeDirection.NORTH ? 2 : direction == ForgeDirection.SOUTH ? 3 : direction == ForgeDirection.WEST ? 4 : 5;
+	}
+	
+	public static class VirtualBlock{
+		
+		public int x, y, z;
+		
+		public VirtualBlock(){}
+		
+		public VirtualBlock(int x, int y, int z){
+			this.x = x;
+			this.y = y;
+			this.z = z;
+		}
+		
+		public void readFromNBT(NBTTagCompound tag){
+			this.x = tag.getInteger("x");
+			this.y = tag.getInteger("y");
+			this.z = tag.getInteger("z");
+		}
+		
+		public static VirtualBlock loadFromNBT(NBTTagCompound tag){
+			VirtualBlock block = new VirtualBlock();
+			block.readFromNBT(tag);
+			return block;
+		}
+		
+		public void writeToNBT(NBTTagCompound tag){
+			tag.setInteger("x", x);
+			tag.setInteger("y", y);
+			tag.setInteger("z", z);
+		}
 	}
 }

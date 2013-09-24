@@ -12,6 +12,7 @@ import org.lwjgl.opengl.GL12;
 import com.petredy.redmagic.Redmagic;
 import com.petredy.redmagic.blocks.Blocks;
 import com.petredy.redmagic.container.ContainerTradingChest;
+import com.petredy.redmagic.lib.Guis;
 import com.petredy.redmagic.lib.Textures;
 import com.petredy.redmagic.tileentities.TileEntityTradingChest;
 import com.petredy.redmagic.trading.TradingItem;
@@ -99,7 +100,7 @@ public class GuiTradingSystem extends GuiContainer{
 		
 	}
 	
-	 public void handleMouseInput()
+	public void handleMouseInput()
     {
 		super.handleMouseInput();
         int i = Mouse.getEventDWheel();
@@ -137,7 +138,7 @@ public class GuiTradingSystem extends GuiContainer{
 
 	@Override
 	public void drawGuiContainerForegroundLayer(int par1, int par2){		
-		fontRenderer.drawString(StatCollector.translateToLocal(Blocks.trading.getUnlocalizedName()), 8, 6, 4210752);
+		fontRenderer.drawString(StatCollector.translateToLocal(Blocks.trading.getUnlocalizedName()), 8, 6, Guis.DEFAULT_FONT_COLOR);
 	}
 	
 	@Override

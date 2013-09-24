@@ -4,6 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
@@ -68,6 +69,28 @@ public class ItemUtils {
 	public static void setLong(ItemStack stack, String key, long value) {
 		initNBT(stack);
 		stack.stackTagCompound.setLong(key, value);
+		
+	}
+	
+	public static NBTTagCompound getData(ItemStack stack, String key) {
+		initNBT(stack);
+		return (NBTTagCompound) stack.stackTagCompound.getTag(key);
+	}
+
+	public static void setData(ItemStack stack, String key, NBTTagCompound tag) {
+		initNBT(stack);
+		stack.stackTagCompound.setTag(key, tag);
+		
+	}
+	
+	public static NBTTagList getDataList(ItemStack stack, String key) {
+		initNBT(stack);
+		return (NBTTagList) stack.stackTagCompound.getTag(key);
+	}
+
+	public static void setDataList(ItemStack stack, String key, NBTTagList tag) {
+		initNBT(stack);
+		stack.stackTagCompound.setTag(key, tag);
 		
 	}
 }

@@ -1,0 +1,32 @@
+language.name=English
+language.region=US
+language.code=en_US
+
+itemGroup.Redmagic=Redmagic
+
+tile.engine.name=Redmagic Engine
+tile.trading.chest.name=Trading Chest
+
+tile.decoration.marble.name=Marble
+tile.decoration.marble.bricks.name=Marble Bricks
+tile.decoration.granite.name=Granite
+
+tile.ore.rhenium.name=Rhenium Ore
+tile.cage.name=Soul Cage
+
+tile.crystal.small.name=Small Crystal
+tile.crystal.medium.name=Medium Crystal
+tile.crystal.large.name=Large Crystal
+tile.crystal.leftover.name=Leftover Crystal
+
+tile.soul.base.name=Soul Base
+tile.soul.chest.name=Soul Chest
+
+item.trading.crystal.name=Trading Crystal
+item.soul.name=Soul
+item.glasses.name=Virtual Reality Glasses
+item.redhole.name=Redhole
+
+item.crafting.ingotRhenium.name=Rhenium Ingot
+item.crafting.nuggetRhenium.name=Rhenium Nugget
+item.crafting.gearRhenium.name=Rhenium Gear

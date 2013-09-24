@@ -63,6 +63,8 @@ public class RedvalueConfigurationHandler {
 		RedvalueDictionary.registerNative(new ItemStack(Block.sapling, 1, 2), 32);
 		RedvalueDictionary.registerNative(new ItemStack(Block.sapling, 1, 3), 32);
 		RedvalueDictionary.registerNative(new ItemStack(Block.reed), 32);
+		RedvalueDictionary.registerNative(new ItemStack(Block.potato), 32);
+		RedvalueDictionary.registerNative(new ItemStack(Block.carrot), 32);
 		RedvalueDictionary.registerNative(new ItemStack(Item.egg), 32);
 		
 		RedvalueDictionary.registerNative(new ItemStack(Block.cloth, 1, 0), 48);

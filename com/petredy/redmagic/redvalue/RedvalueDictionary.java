@@ -69,10 +69,11 @@ public class RedvalueDictionary {
 		Map vanillaBurningRecipes = FurnaceRecipes.smelting().getSmeltingList();
 		int count = 0;
 		int runs = 0;
+		int maxRuns = 100;
 		do{
 			count = calculate(recipes, burningRecipes, vanillaBurningRecipes);
 			runs++;
-		}while(count > 0);
+		}while(count > 0 && runs <= maxRuns);
 		LogUtils.log("Registered all Redvalues in " + runs + " runs");
 		
 	}

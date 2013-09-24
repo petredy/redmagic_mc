@@ -2,10 +2,12 @@ package com.petredy.redmagic.tileentities;
 
 import com.petredy.redmagic.blocks.Blocks;
 import com.petredy.redmagic.lib.BlockIndex;
+import com.petredy.redmagic.redvalue.RedvalueDictionary;
 import com.petredy.redmagic.utils.BlockUtils;
 import com.petredy.redmagic.utils.LogUtils;
 
 import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
