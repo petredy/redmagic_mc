@@ -58,23 +58,24 @@ public class BlockIndex {
 	
 	// ---------------------------------------------------------------
 
-	public static final String SOUL_BASE_NAME = "soul.base";
-	public static final int SOUL_BASE_DEFAULT_ID = 3307;
-	public static int SOUL_BASE_ID;
-	
-	public static final String SOUL_CHEST_NAME = "soul.chest";
-	public static final int SOUL_CHEST_DEFAULT_ID = 3308;
-	public static int SOUL_CHEST_ID;
 	
 	public static final String WORK_TABLE_NAME = "work.table";
-	public static final int WORK_TABLE_DEFAULT_ID = 3309;
+	public static final int WORK_TABLE_DEFAULT_ID = 3307;
 	public static int WORK_TABLE_ID;
 	
 	public static final String EARTHWIRE_NAME = "earthwire";
-	public static final int EARTHWIRE_DEFAULT_ID = 3310;
+	public static final int EARTHWIRE_DEFAULT_ID = 3308;
 	public static int EARTHWIRE_ID;
 	
 	public static final String HOLE_NAME = "hole";
-	public static final int HOLE_DEFAULT_ID = 3311;
+	public static final int HOLE_DEFAULT_ID = 3309;
 	public static int HOLE_ID;
+	
+	public static final String SOUL_NAME = "soul";
+	public static final int SOUL_DEFAULT_ID = 3310;
+	public static int SOUL_ID;
+	
+	public static final String SOUL_ENERGY_ACCESS_NAME = "soul.energy.access";
+	public static final int SOUL_ENERGY_ACCESS_DEFAULT_ID = 3311;
+	public static int SOUL_ENERGY_ACCESS_ID;
 }

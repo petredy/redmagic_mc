@@ -19,7 +19,7 @@ import com.petredy.redmagic.utils.TradingUtils;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
 
-public class PacketBuyItem extends PacketRedMagic {
+public class PacketBuyItem extends PacketRedmagic {
 
 	public ItemStack stack;
 	public int amount, x, y, z;

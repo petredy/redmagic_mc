@@ -3,15 +3,14 @@ package com.petredy.redmagic.core;
 
 import com.petredy.redmagic.client.SoundHandler;
 import com.petredy.redmagic.client.render.*;
-import com.petredy.redmagic.entities.EntitySoul;
+import com.petredy.redmagic.entities.particle.EntityCustomFX;
 import com.petredy.redmagic.entities.particle.EntityHoleFX;
+import com.petredy.redmagic.entities.particle.EntitySoulFX;
 import com.petredy.redmagic.entities.particle.EntityStarFX;
 import com.petredy.redmagic.handlers.KeyBindingHandler;
 import com.petredy.redmagic.lib.Rendering;
 import com.petredy.redmagic.tileentities.TileEntityCage;
 import com.petredy.redmagic.tileentities.TileEntityEarthwire;
-import com.petredy.redmagic.tileentities.TileEntityEngine;
-import com.petredy.redmagic.tileentities.TileEntitySoulChest;
 import com.petredy.redmagic.tileentities.TileEntityTradingChest;
 import com.petredy.redmagic.utils.KeyBindingUtils;
 
@@ -45,7 +44,6 @@ public class ClientProxy extends CommonProxy{
 	
 	@Override
     public void initRendering() {
-		Rendering.ENGINE_ID = RenderingRegistry.getNextAvailableRenderId();
 		Rendering.TRADING_CHEST_ID = RenderingRegistry.getNextAvailableRenderId();
 		Rendering.CAGE_ID = RenderingRegistry.getNextAvailableRenderId();
 		Rendering.SOUL_CHEST_ID = RenderingRegistry.getNextAvailableRenderId();
@@ -53,19 +51,12 @@ public class ClientProxy extends CommonProxy{
 	
 	@Override
     public void registerRendering(){	
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEngine.class, new RenderEngine());
-		RenderingRegistry.registerBlockHandler(new RenderEngine());
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTradingChest.class, new RenderTradingChest());
 		RenderingRegistry.registerBlockHandler(new RenderTradingChest());
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCage.class, new RenderCage());
 		RenderingRegistry.registerBlockHandler(new RenderCage());
-		
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySoulChest.class, new RenderSoulChest());
-		RenderingRegistry.registerBlockHandler(new RenderSoulChest());
-		
-		RenderingRegistry.registerEntityRenderingHandler(EntitySoul.class, new RenderEntitySoul());
 	}
 	
 	
@@ -84,6 +75,16 @@ public class ClientProxy extends CommonProxy{
 		
 		if(name.equals("hole")){
 			efx = new EntityHoleFX(world, d1, d2, d3, (String)data[0]);
+		}
+		
+		if(name.equals("soul")){
+			efx = new EntitySoulFX(world, d1, d2, d3);
+		}
+		
+		if(name.equals("custom")){
+			efx = new EntityCustomFX(world, d1, d2, d3, (ResourceLocation)data[0]);
+			if(data[1] != null && data[1] instanceof Float)((EntityCustomFX)efx).setScale((Float)data[1]);
+			if(data[2] != null && data[2] instanceof Integer)((EntityCustomFX)efx).setScale((Integer)data[2]);
 		}
 
 		if(efx != null)

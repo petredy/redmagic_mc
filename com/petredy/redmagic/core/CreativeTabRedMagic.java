@@ -1,6 +1,6 @@
 package com.petredy.redmagic.core;
 
-import com.petredy.redmagic.items.Items;
+import com.petredy.redmagic.blocks.Blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
@@ -12,7 +12,7 @@ public class CreativeTabRedMagic extends CreativeTabs{
 	}
 	
 	public int getTabIconItemIndex() {
-        return Items.soul.itemID;
+        return Blocks.soul.blockID;
     }
 	
 	

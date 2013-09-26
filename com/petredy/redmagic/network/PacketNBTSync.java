@@ -12,7 +12,7 @@ import com.petredy.redmagic.trading.TradingManager;
 
 import cpw.mods.fml.common.network.Player;
 
-public class PacketNBTSync extends PacketRedMagic{
+public class PacketNBTSync extends PacketRedmagic{
 
 	public NBTTagCompound data;
 

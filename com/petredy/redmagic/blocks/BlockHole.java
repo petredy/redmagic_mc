@@ -20,9 +20,9 @@ public class BlockHole extends Block{
 
 	public BlockHole(int par1) {
 		super(par1, Material.coral);
-		this.setCreativeTab(Redmagic.tabRedmagic);
 		this.setUnlocalizedName(BlockIndex.HOLE_NAME);
 		this.setTickRandomly(true);
+		this.setBlockUnbreakable();
 	}
 	
 	public boolean renderAsNormalBlock(){
@@ -44,7 +44,6 @@ public class BlockHole extends Block{
 	
 	public void randomDisplayTick(World world, int x, int y, int z, Random par5Random) {
 		int blockMetadata = world.getBlockMetadata(x, y, z);
-		LogUtils.log("create hole effect");
 		Redmagic.proxy.addEffect("hole", world, x + 0.5, y + 0.5, z + 0.5, new Object[]{
 			Hole.getHole(blockMetadata).getHoleColor()
 		});

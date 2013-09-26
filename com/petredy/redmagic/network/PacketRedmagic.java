@@ -13,12 +13,12 @@ import net.minecraft.network.packet.Packet;
 
 import cpw.mods.fml.common.network.Player;
 
-public class PacketRedMagic extends Packet{
+public class PacketRedmagic extends Packet{
 	
 	protected byte packetType;
 	protected boolean isChunkDataPacket;
 
-	public PacketRedMagic(byte packetType, boolean isChunkDataPacket) {
+	public PacketRedmagic(byte packetType, boolean isChunkDataPacket) {
 		this.packetType = packetType;
 		this.isChunkDataPacket = isChunkDataPacket;
 	}

@@ -20,19 +20,19 @@ public class PacketHandler implements IPacketHandler {
 	
 	@Override
 	public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player player) {
-		PacketRedMagic packetRM = PacketHandler.buildPacket(packet.data);
+		PacketRedmagic packetRM = PacketHandler.buildPacket(packet.data);
 		
 		packetRM.execute(manager, player);
 	}
 	@SuppressWarnings("unchecked")
-	public static PacketRedMagic buildPacket(byte[] data) {
+	public static PacketRedmagic buildPacket(byte[] data) {
 		ByteArrayInputStream bis = new ByteArrayInputStream(data);
 		int selector = bis.read();
 		DataInputStream dis = new DataInputStream(bis);
 
-		PacketRedMagic packet = null;
+		PacketRedmagic packet = null;
 		try {
-			packet = (PacketRedMagic) Packets.PACKETS[selector].getConstructor().newInstance();
+			packet = (PacketRedmagic) Packets.PACKETS[selector].getConstructor().newInstance();
 			LogUtils.log("Build new " + Packets.PACKETS[selector].getSimpleName());
 		} catch (Exception e) {
 			e.printStackTrace(System.err);
@@ -43,7 +43,7 @@ public class PacketHandler implements IPacketHandler {
 		return packet;
 	}
 	
-	public static Packet populatePacket(PacketRedMagic packetRM) {
+	public static Packet populatePacket(PacketRedmagic packetRM) {
 		byte[] data = packetRM.populate();
 
 		Packet250CustomPayload packet250 = new Packet250CustomPayload();

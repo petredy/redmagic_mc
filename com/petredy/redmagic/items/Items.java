@@ -15,7 +15,6 @@ import net.minecraftforge.common.EnumHelper;
 public class Items {
 
 	public static ItemTradingCrystal trading;
-	public static ItemSoul soul;
 	public static ItemGlasses glasses;
 	public static ItemRedhole redhole;
 	public static ItemCrafting crafting;
@@ -26,7 +25,6 @@ public class Items {
 	
 	public static void init(){
 		trading = new ItemTradingCrystal(ItemIndex.TRADING_CRYSTAL_ID);
-		soul = new ItemSoul(ItemIndex.SOUL_ID);
 		glasses = new ItemGlasses(ItemIndex.GLASSES_ID, 0, 0);
 		redhole = new ItemRedhole(ItemIndex.REDHOLE_ID);
 		crafting = new ItemCrafting(ItemIndex.CRAFTING_ID);
@@ -37,7 +35,6 @@ public class Items {
 	public static void config(Configuration config){
 		ItemIndex.TRADING_CRYSTAL_ID = config.getItem(ItemIndex.TRADING_CRYSTAL_NAME, ItemIndex.TRADING_CRYSTAL_DEFAULT_ID).getInt(ItemIndex.TRADING_CRYSTAL_DEFAULT_ID);
 		ItemIndex.GLASSES_ID = config.getItem(ItemIndex.GLASSES_NAME, ItemIndex.GLASSES_DEFAULT_ID).getInt(ItemIndex.GLASSES_DEFAULT_ID);
-		ItemIndex.SOUL_ID = config.getItem(ItemIndex.SOUL_NAME, ItemIndex.SOUL_DEFAULT_ID).getInt(ItemIndex.SOUL_DEFAULT_ID);
 		ItemIndex.REDHOLE_ID = config.getItem(ItemIndex.REDHOLE_NAME, ItemIndex.REDHOLE_DEFAULT_ID).getInt(ItemIndex.REDHOLE_DEFAULT_ID);
 		ItemIndex.CRAFTING_ID = config.getItem(ItemIndex.CRAFTING_NAME, ItemIndex.CRAFTING_DEFAULT_ID).getInt(ItemIndex.CRAFTING_DEFAULT_ID);
 		
@@ -68,10 +65,10 @@ public class Items {
 		
 		GameRegistry.addShapedRecipe(new ItemStack(redhole), new Object[]{
 			"RRR",
-			"RSR",
+			"RDR",
 			"RRR",
 			'R', Item.redstone,
-			'S', new ItemStack(soul)
+			'D', Item.diamond
 		});
 		
 		GameRegistry.addShapedRecipe(new ItemStack(crafting, 1, ItemIndex.CRAFTING_GEAR_RHENIUM_METADATA), new Object[]{

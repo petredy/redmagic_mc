@@ -58,7 +58,7 @@ public class BlockCage extends BlockContainer{
 	
 	public int idDropped(int par1, Random par2Random, int par3)
     {
-        return Items.soul.itemID;
+        return Blocks.soul.blockID;
     }
 	
 	public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random) {

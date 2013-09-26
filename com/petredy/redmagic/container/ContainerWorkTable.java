@@ -84,6 +84,7 @@ public class ContainerWorkTable extends Container{
             {
                 slot.onSlotChanged();
             }
+			
 		}
 		return itemstack;
     }
@@ -106,6 +107,7 @@ public class ContainerWorkTable extends Container{
 			}else{
 				entity.build(player);
 				ItemStack stack = super.slotClick(id, 0, 0, player);
+				entity.setInventorySlotContents(entity.OUTPUT, null);
 				entity.onInventoryChanged(0);
 				return stack;
 			}

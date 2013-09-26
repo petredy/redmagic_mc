@@ -13,8 +13,7 @@ public class EntityHoleFX extends EntityCustomFX{
 	public String color;
 	
 	public EntityHoleFX(World world, double x, double y, double z, String color) {
-		super(world, x, y, z);
-		this.texture = Textures.HOLE_FX;
+		super(world, x, y, z, Textures.HOLE_FX);
 		this.particleScale = 10;
 		this.particleMaxAge = 5;
 		this.color = color;

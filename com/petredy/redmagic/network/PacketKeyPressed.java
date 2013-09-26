@@ -15,7 +15,7 @@ import cpw.mods.fml.common.network.Player;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.INetworkManager;
 
-public class PacketKeyPressed extends PacketRedMagic {
+public class PacketKeyPressed extends PacketRedmagic {
 
 	public String key;
 

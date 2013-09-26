@@ -28,6 +28,7 @@ public class BlockEarthwire extends BlockContainer{
 		super(par1, Material.rock);
 		this.setUnlocalizedName(BlockIndex.EARTHWIRE_NAME);
 		this.setCreativeTab(Redmagic.tabRedmagic);
+		this.setHardness(BlockIndex.DEFAULT_HARDNESS);
 		
 	}
 	

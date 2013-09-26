@@ -18,6 +18,7 @@ import net.minecraft.util.AxisAlignedBB;
 public class TileEntityEarthwire extends TileEntity {
 	
 	public Hole hole;
+	public static final int wireID = Block.fenceIron.blockID;
 	
 	
 	
@@ -75,7 +76,7 @@ public class TileEntityEarthwire extends TileEntity {
 		for(int k = yCoord + 1; k < 256; k++){
 			for(int j = zCoord - 1; j <= zCoord + 1; j++){
 				for(int i = xCoord - 1; i <= xCoord + 1; i++){
-					if(worldObj.getBlockId(i, k, j) == Block.fence.blockID){
+					if(worldObj.getBlockId(i, k, j) == wireID){
 						worldObj.destroyBlock(i, k, j, false);
 					}
 				}
@@ -101,7 +102,7 @@ public class TileEntityEarthwire extends TileEntity {
 	private int getLayers() {
 		int y = 1;
 		int count = 0;
-		while(count <= 50 && yCoord + y <= 256 && worldObj.getBlockId(xCoord, yCoord + y++, zCoord) == Block.fence.blockID){
+		while(count <= 50 && yCoord + y <= 256 && worldObj.getBlockId(xCoord, yCoord + y++, zCoord) == wireID){
 			count++;
 		}
 		return count;
@@ -110,9 +111,9 @@ public class TileEntityEarthwire extends TileEntity {
 
 
 	private boolean hasBase() {
-		return worldObj.getBlockId(xCoord + 1, yCoord + 1, zCoord) == Block.fence.blockID &&
-				worldObj.getBlockId(xCoord - 1, yCoord + 1, zCoord) == Block.fence.blockID &&
-				worldObj.getBlockId(xCoord, yCoord + 1, zCoord + 1) == Block.fence.blockID &&
-				worldObj.getBlockId(xCoord, yCoord + 1, zCoord - 1) == Block.fence.blockID;
+		return worldObj.getBlockId(xCoord + 1, yCoord + 1, zCoord) == wireID &&
+				worldObj.getBlockId(xCoord - 1, yCoord + 1, zCoord) == wireID &&
+				worldObj.getBlockId(xCoord, yCoord + 1, zCoord + 1) == wireID &&
+				worldObj.getBlockId(xCoord, yCoord + 1, zCoord - 1) ==wireID;
 	}
 }

@@ -7,7 +7,7 @@ public class EntityMovingABFX extends EntityCustomFX{
 	public double targetX, targetY, targetZ;
 	
 	public EntityMovingABFX(World world, double x, double y, double z, double targetX, double targetY, double targetZ) {
-		super(world, x, y, z);
+		super(world, x, y, z, null);
 		this.targetX = targetX;
 		this.targetY = targetY;
 		this.targetZ = targetZ;

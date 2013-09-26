@@ -35,12 +35,14 @@ public class RedvalueDictionary {
 	}
 	
 	public static float getNativeRedvalue(ItemStack item){
+		if(item == null || item.getItem() == null)return 0;
 		NativeRedvalueItem natItem = values.get(item.getUnlocalizedName());
 		if(natItem != null)return natItem.getValue();
 		return 0;
 	}
 	
 	public static float getBasicRedvalue(ItemStack item){
+		if(item == null || item.getItem() == null)return 0;
 		BasicRedvalueItem redItem = recipes.get(item.getUnlocalizedName());
 		if(redItem != null)return redItem.getValue();
 		return 0;

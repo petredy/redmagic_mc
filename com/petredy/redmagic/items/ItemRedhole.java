@@ -68,7 +68,6 @@ public class ItemRedhole extends Item{
 			try{
 				ItemStack redhole = new ItemStack(par1, 1, 0);
 				RedholeUtils.saveHole(redhole, (Hole) cl.newInstance());
-				LogUtils.log("Creative Items: create redhole for hole " + cl.getSimpleName());
 				par3List.add(redhole);
 			}catch(Exception e){
 				e.printStackTrace();

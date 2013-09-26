@@ -19,8 +19,17 @@ public class EntityCustomFX extends EntityFX{
 	public float yEnd = 1F;
 	public ResourceLocation texture;
 	
-	public EntityCustomFX(World world, double x, double y, double z) {
+	public EntityCustomFX(World world, double x, double y, double z, ResourceLocation texture) {
 		super(world, x, y, z);
+		this.texture = texture;
+	}
+	
+	public void setScale(float scale){
+		this.particleScale = scale;
+	}
+	
+	public void setMaxAge(int age){
+		this.particleMaxAge = age;
 	}
 	
 	public void onUpdate()
