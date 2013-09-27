@@ -2,7 +2,10 @@ package com.petredy.redmagic.tileentities;
 
 import java.util.Random;
 
+import com.petredy.redmagic.api.redenergy.IEnergyConsumer;
+import com.petredy.redmagic.api.redenergy.ILightningConsumer;
 import com.petredy.redmagic.blocks.Blocks;
+import com.petredy.redmagic.redenergy.EnergyMap;
 import com.petredy.redmagic.redhole.Hole;
 import com.petredy.redmagic.utils.EnvironmentUtils;
 import com.petredy.redmagic.utils.LogUtils;
@@ -15,58 +18,25 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 
-public class TileEntityEarthwire extends TileEntity {
+public class TileEntityEarthwire extends TileEntity implements IEnergyConsumer{
 	
 	public Hole hole;
 	public static final int wireID = Block.fenceIron.blockID;
+	public boolean loaded;
+	
+	public int range = 30;
 	
 	
 	
 	public void updateEntity(){
-		if(worldObj.isRaining() && !worldObj.isRemote){
-			ItemStack stack = EnvironmentUtils.surroundedOnLayerZByBlock(worldObj, xCoord, yCoord, zCoord);
-			if(stack != null){
-				hole = Hole.getHoleByNeededBlock(stack);
-				if(hole != null && hole.getMaxHeight() >= yCoord && stack.isItemEqual(hole.getSurroundingBlock())){
-					int layers = this.hasWire();
-					if(layers > 1){
-						this.createLightning(layers, zCoord);
-					}
-				}
-			}
+		if(!this.loaded){
+			EnergyMap.registerConsumer(xCoord, yCoord, zCoord, range);
+			loaded = true;
 		}
 	}
-
-
-
-	private void createLightning(int layers, int height) {
-		Random rand = new Random();
-		if(rand.nextInt(1000) < layers){
-			int x = rand.nextInt(256 - height) * (rand.nextFloat() < 0.5 ? -1 : 1);
-			int y = rand.nextInt(256 - height) * (rand.nextFloat() < 0.5 ? -1 : 1);
-			int z = rand.nextInt(256 - height) * (rand.nextFloat() < 0.5 ? -1 : 1);
-			if(x >= -10 && x <= 10 && z >= -10 && y <= 10){
-				this.onHit();
-				x = 0;
-				z = 0;
-				y = yCoord;
-			}
-			EntityLightningBolt bolt = new EntityLightningBolt(worldObj, xCoord + x, y, zCoord + z);
-			worldObj.addWeatherEffect(bolt);
-			
-		}
-	}
-
-
-
-	private void onHit() {
-		this.destroyWire();
-		this.createHole();
-	}
-
-
 
 	private void createHole() {
+		EnergyMap.removeConsumer(xCoord, yCoord, zCoord);
 		worldObj.setBlock(xCoord, yCoord, zCoord, Blocks.hole.blockID, hole.id, 3);
 	}
 
@@ -115,5 +85,36 @@ public class TileEntityEarthwire extends TileEntity {
 				worldObj.getBlockId(xCoord - 1, yCoord + 1, zCoord) == wireID &&
 				worldObj.getBlockId(xCoord, yCoord + 1, zCoord + 1) == wireID &&
 				worldObj.getBlockId(xCoord, yCoord + 1, zCoord - 1) ==wireID;
+	}
+
+
+
+	@Override
+	public void consume() {
+		if(worldObj.isRaining() && !worldObj.isRemote){
+			ItemStack stack = EnvironmentUtils.surroundedOnLayerZByBlock(worldObj, xCoord, yCoord, zCoord);
+			if(stack != null){
+				int layers = this.hasWire();
+				hole = Hole.getHoleByNeededBlock(stack);
+				if(hole != null){
+					if(hole.getMaxHeight() >= yCoord && stack.isItemEqual(hole.getSurroundingBlock())){
+						if(layers > hole.getMinLayers())
+							this.destroyWire();
+							this.createHole();
+						}
+				}else if(stack.isItemEqual(new ItemStack(Block.obsidian))){
+					this.useEnergy(layers);
+				}
+			}
+		}
+	}
+
+
+
+	private void useEnergy(int layers) {
+		TileEntity entity = worldObj.getBlockTileEntity(xCoord, yCoord - 1, zCoord);
+		if(entity instanceof ILightningConsumer){
+			((ILightningConsumer)entity).consume();
+		}
 	}
 }

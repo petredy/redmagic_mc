@@ -77,5 +77,9 @@ public class Hole {
 	public void writeToNBT(NBTTagCompound tag){
 		tag.setInteger("id", id);
 	}
+
+	public int getMinLayers() {
+		return 2;
+	}
 	
 }

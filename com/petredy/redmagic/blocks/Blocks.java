@@ -21,7 +21,8 @@ public class Blocks {
 	public static BlockEarthwire earthwire;
 	public static BlockHole hole;
 	public static BlockSoul soul;
-	public static BlockSoulEnergyAccess energyAccess;	
+	public static BlockSoulEnergyAccess energyAccess;
+	public static BlockEnergySummoner energySummoner;
 	
 	public static void init(){
 		trading = new BlockTradingChest(BlockIndex.TRADING_CHEST_ID);
@@ -33,6 +34,7 @@ public class Blocks {
 		hole = new BlockHole(BlockIndex.HOLE_ID);
 		soul = new BlockSoul(BlockIndex.SOUL_ID);
 		energyAccess = new BlockSoulEnergyAccess(BlockIndex.SOUL_ENERGY_ACCESS_ID);
+		energySummoner = new BlockEnergySummoner(BlockIndex.ENERGY_SUMMONER_ID);
 				
 		GameRegistry.registerBlock(trading, BlockIndex.TRADING_CHEST_NAME);
 		GameRegistry.registerBlock(decoration, ItemBlockDecoration.class, BlockIndex.DECORATION_NAME);
@@ -43,6 +45,7 @@ public class Blocks {
 		GameRegistry.registerBlock(hole, BlockIndex.HOLE_NAME);
 		GameRegistry.registerBlock(soul, BlockIndex.SOUL_NAME);
 		GameRegistry.registerBlock(energyAccess, BlockIndex.SOUL_ENERGY_ACCESS_NAME);
+		GameRegistry.registerBlock(energySummoner, BlockIndex.ENERGY_SUMMONER_NAME);
 		
 		
 		addRecipes();
@@ -60,6 +63,8 @@ public class Blocks {
 		BlockIndex.HOLE_ID = config.getBlock(BlockIndex.HOLE_NAME, BlockIndex.HOLE_DEFAULT_ID).getInt(BlockIndex.HOLE_DEFAULT_ID);
 		BlockIndex.SOUL_ID = config.getBlock(BlockIndex.SOUL_NAME, BlockIndex.SOUL_DEFAULT_ID).getInt(BlockIndex.SOUL_DEFAULT_ID);
 		BlockIndex.SOUL_ENERGY_ACCESS_ID = config.getBlock(BlockIndex.SOUL_ENERGY_ACCESS_NAME, BlockIndex.SOUL_ENERGY_ACCESS_DEFAULT_ID).getInt(BlockIndex.SOUL_ENERGY_ACCESS_DEFAULT_ID);
+		BlockIndex.ENERGY_SUMMONER_ID = config.getBlock(BlockIndex.ENERGY_SUMMONER_NAME, BlockIndex.ENERGY_SUMMONER_DEFAULT_ID).getInt(BlockIndex.ENERGY_SUMMONER_DEFAULT_ID);
+		
 	}
 	
 	
@@ -112,5 +117,13 @@ public class Blocks {
 			'G', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_GEAR_RHENIUM_METADATA),
 			'I', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA)
 		});;
+		
+		GameRegistry.addShapedRecipe(new ItemStack(energySummoner), new Object[]{
+			"NIN",
+			"NIN",
+			"NIN",
+			'N', Block.netherBrick,
+			'I', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA)
+		});
 	}
 }

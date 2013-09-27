@@ -73,4 +73,8 @@ public class BlockIndex {
 	public static final String SOUL_ENERGY_ACCESS_NAME = "soul.energy.access";
 	public static final int SOUL_ENERGY_ACCESS_DEFAULT_ID = 3311;
 	public static int SOUL_ENERGY_ACCESS_ID;
+	
+	public static final String ENERGY_SUMMONER_NAME = "energy.summoner";
+	public static final int ENERGY_SUMMONER_DEFAULT_ID = 3312;
+	public static int ENERGY_SUMMONER_ID;
 }

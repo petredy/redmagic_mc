@@ -96,12 +96,12 @@ public class TileEntityCrystal extends TileEntity {
 		int blockID = worldObj.getBlockId(x, y, z);
 		Block block = Block.blocksList[blockID];
 		if(blockMetadata == BlockIndex.CRYSTAL_LEFTOVER_METADATA){
-			if(block == null || block.isBlockReplaceable(worldObj, x, y, z)){
+			if(blockID != Blocks.crystal.blockID && (block == null || block.isBlockReplaceable(worldObj, x, y, z))){
 				worldObj.setBlock(x, y, z, id, metadata, 3);
 			}
 		}else{
-			if(blockID != Blocks.cage.blockID && blockID != Block.bedrock.blockID){
-				
+			if(blockID != Blocks.crystal.blockID && blockID != Blocks.cage.blockID && blockID != Block.bedrock.blockID){
+				worldObj.setBlock(x, y, z, id, metadata, 3);
 			}
 		}
 	}
