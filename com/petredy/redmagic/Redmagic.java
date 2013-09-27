@@ -74,7 +74,7 @@ public class Redmagic{
       	TileEntityHandler.init();
       	
       	//Intialise Dimension registration
-      	//DimensionHandler.init();
+      	DimensionHandler.init();
       	
       	//Initialise Entity registration
       	EntityHandler.init();

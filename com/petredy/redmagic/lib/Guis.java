@@ -5,6 +5,5 @@ public class Guis {
 	public static final int DEFAULT_FONT_COLOR = 4210752;
 	
 	public static final int TRADING_CHEST = 0;
-	public static final int WORK_TABLE = 1;
-	public static final int PLAYER_INVENTORY = 2;
+	public static final int PLAYER_INVENTORY = 1;
 }

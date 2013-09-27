@@ -57,11 +57,6 @@ public class BlockIndex {
 	public static final int CRYSTAL_LEFTOVER_METADATA = 3;
 	
 	// ---------------------------------------------------------------
-
-	
-	public static final String WORK_TABLE_NAME = "work.table";
-	public static final int WORK_TABLE_DEFAULT_ID = 3307;
-	public static int WORK_TABLE_ID;
 	
 	public static final String EARTHWIRE_NAME = "earthwire";
 	public static final int EARTHWIRE_DEFAULT_ID = 3308;

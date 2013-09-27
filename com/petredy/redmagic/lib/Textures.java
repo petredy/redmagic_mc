@@ -21,8 +21,6 @@ public class Textures {
 	//Guis
 	public static final ResourceLocation TRADING_CHEST_GUI = ResourceLocationUtils.getResourceLocation(GUI_PATH + BlockIndex.TRADING_CHEST_NAME + ".png");
 	public static final ResourceLocation ALL_ITEMS = ResourceLocationUtils.getResourceLocation(GUI_PATH + "allitems.png"); 
-	public static final ResourceLocation WORK_TABLE = ResourceLocationUtils.getResourceLocation(GUI_PATH + BlockIndex.WORK_TABLE_NAME + ".png");
-	public static final ResourceLocation WORK_TABLE_CHEST = ResourceLocationUtils.getResourceLocation(GUI_PATH + BlockIndex.WORK_TABLE_NAME + ".chest.png");
 	public static final ResourceLocation PLAYER_INVENTORY = ResourceLocationUtils.getResourceLocation(GUI_PATH + "player.inventory.png");
 	
 	//Glasses
@@ -34,12 +32,14 @@ public class Textures {
 	
 	//Entities
 	public static final ResourceLocation SOUL = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "entities/soul.png");;
+	public static final ResourceLocation SOULMAN = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "entities/soulman.png");
 	
 	//Particles 
 	public static final ResourceLocation STAR_FX = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "entities/particles/star.png");
 	public static final ResourceLocation HOLE_FX = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "entities/particles/hole.png");
 	public static final ResourceLocation SOUL_FX = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "entities/particles/soul.png");
-	public static final Object RING_FX = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "entities/particles/ring.png");;
+	public static final Object RING_FX = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "entities/particles/ring.png");
+	
 	
 	
 	

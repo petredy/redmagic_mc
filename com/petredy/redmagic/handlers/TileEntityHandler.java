@@ -10,7 +10,6 @@ public class TileEntityHandler {
 		GameRegistry.registerTileEntity(TileEntityTradingChest.class, "redmagic.TileEntityTradingChest");
 		GameRegistry.registerTileEntity(TileEntityCage.class, "redmagic.TileEntityCage");
 		GameRegistry.registerTileEntity(TileEntityCrystal.class, "redmagic.TileEntityCrystal");
-		GameRegistry.registerTileEntity(TileEntityWorkTable.class, "redmagic.TileEntityWorkTable");
 		GameRegistry.registerTileEntity(TileEntityEarthwire.class, "redmagic.TileEntityEarthwire");
 		GameRegistry.registerTileEntity(TileEntitySoul.class, "redmagic.TileEntitySoul");
 		GameRegistry.registerTileEntity(TileEntitySoulEnergyAccess.class, "redmagic.TileEntitySoulEnergyAccess");

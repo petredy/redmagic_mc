@@ -30,7 +30,13 @@ public class Hole {
 	}
 	
 	static{
-		register(new HoleStoreable());
+		for(Class cl: Redholes.HOLES){
+			try{
+				Hole.register((Hole) cl.newInstance());
+			}catch(Exception e){
+				LogUtils.log("Couldn't register the hole for the class: " + cl.getSimpleName());
+			}
+		}
 	}
 	
 	public String name;
