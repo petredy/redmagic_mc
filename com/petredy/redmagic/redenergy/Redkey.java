@@ -2,24 +2,24 @@ package com.petredy.redmagic.redenergy;
 
 public class Redkey {
 
-	public int x, y, z;
+	public int x, z, dimension;
 	
-	public Redkey(int x, int y, int z){
+	public Redkey(int dimension, int x, int z){
+		this.dimension = dimension;
 		this.x = x;
-		this.y = y;
 		this.z = z;
 	}
 	
 	
-	public static Redkey get(int x, int y, int z){
-		return new Redkey(x, y, z);
+	public static Redkey get(int dimension, int x, int z){
+		return new Redkey(dimension, x, z);
 	}
 	
 	@Override
     public int hashCode() {
 		int hash = 23;
+		hash = hash * 31 + dimension;
 		hash = hash * 31 + x;
-		hash = hash * 31 + y;
 		hash = hash * 31 + z;
 		return hash;
     }
@@ -30,8 +30,8 @@ public class Redkey {
         if (obj == null)return false;
         if (getClass() != obj.getClass())return false;
         Redkey other = (Redkey) obj;
+        if(dimension != other.dimension)return false;
         if(x != other.x)return false;
-        if(y != other.y)return false;
         if(z != other.z)return false;
         return true;
     }

@@ -123,8 +123,6 @@ public class Redmagic{
 		//Register Player loading/saving
 		GameRegistry.registerPlayerTracker(new PlayerTracker());
 		
-		TickRegistry.registerTickHandler(new RenderHandler(), Side.CLIENT);
-		
     }
 	
 	//----------------------------------------------------------------------------------------

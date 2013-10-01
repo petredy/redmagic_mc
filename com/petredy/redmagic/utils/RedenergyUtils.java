@@ -12,14 +12,11 @@ import net.minecraft.world.World;
 public class RedenergyUtils {
 
 	public static void load(World world){
-		if(!EnergyMap.loaded){
-			NBTTagCompound energyTag = WorldSavedDataUtils.loadData(world, "redmagic.energy");
-			if(energyTag != null){
-				LogUtils.log("Load EnergyMap");
-				EnergyMap.loaded = true;
-				EnergyMap.readFromNBT(energyTag);
-				//PacketDispatcher.sendPacketToAllPlayers(PacketHandler.populatePacket(new PacketEnergyMapSync(energyTag)));
-			}
+		NBTTagCompound energyTag = WorldSavedDataUtils.loadData(world, "redmagic.energy");
+		if(energyTag != null){
+			LogUtils.log("Load EnergyMap");
+			EnergyMap.readFromNBT(energyTag);
+			PacketDispatcher.sendPacketToAllPlayers(PacketHandler.populatePacket(new PacketEnergyMapSync(energyTag)));
 		}
 	}
 	

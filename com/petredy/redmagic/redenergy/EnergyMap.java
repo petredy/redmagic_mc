@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.petredy.redmagic.utils.LogUtils;
+
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
@@ -42,7 +44,7 @@ public class EnergyMap {
 
 	public static void removeConsumer(int xCoord, int yCoord, int zCoord) {
 		for(EnergyConsumer consumer: consumers){
-			if(consumer.x == xCoord && consumer.y == yCoord && consumer.z == zCoord){
+			if(consumer.x == xCoord && consumer.z == zCoord){
 				consumers.remove(consumer);
 				break;
 			}
@@ -50,7 +52,7 @@ public class EnergyMap {
 	}
 	
 	public static void addEnergy(RedEnergy energy){
-		RedEnergy en = getEnergy(Redkey.get(energy.x, energy.y, energy.z));
+		RedEnergy en = getEnergy(Redkey.get(energy.dimension, energy.x, energy.z));
 		en.amount += energy.amount;
 		setEnergy(en);
 	}
@@ -60,27 +62,37 @@ public class EnergyMap {
 	}
 	
 	public static void setEnergy(RedEnergy energy) {
-		EnergyMap.energy.put(Redkey.get(energy.x, energy.y, energy.z), energy);
+		EnergyMap.energy.put(Redkey.get(energy.dimension, energy.x,  energy.z), energy);
 	}
 	
 	
 	public static void readFromNBT(NBTTagCompound tag){
 		NBTTagList list = tag.getTagList("energy");
-		for(int i = 0; i < list.tagCount(); i++){
-			NBTTagCompound energyTag = (NBTTagCompound) list.tagAt(i);
-			RedEnergy en = RedEnergy.loadFromNBT(energyTag);
-			energy.put(Redkey.get(en.x, en.y, en.z), en);
+		if(list != null && list.tagCount() > 0){
+			for(int i = 0; i < list.tagCount(); i++){
+				NBTTagCompound energyTag = (NBTTagCompound) list.tagAt(i);
+				RedEnergy en = RedEnergy.loadFromNBT(energyTag);
+				energy.put(Redkey.get(en.dimension, en.x, en.z), en);
+			}
 		}
 	}
 	
 	public static void writeToNBT(NBTTagCompound tag){
 		NBTTagList list = new NBTTagList();
-		for(RedEnergy en: energy.values()){
-			if(en != null && en.amount > 0){
-				NBTTagCompound energyTag = new NBTTagCompound();
-				en.writeToNBT(energyTag);
-				list.appendTag(energyTag);
+		long count = 0;
+		try{
+			for(RedEnergy en: energy.values()){
+				if(en != null && en.amount > 0){
+					NBTTagCompound energyTag = new NBTTagCompound();
+					en.writeToNBT(energyTag);
+					list.appendTag(energyTag);
+					count++;
+				}
 			}
+		}catch(Exception e){
+			LogUtils.log("Error by saving EnergyMap:");
+			LogUtils.log("Saved "  + count + " of " + energy.size() + " chunks.");
+			//e.printStackTrace();
 		}
 		tag.setTag("energy", list);
 	}

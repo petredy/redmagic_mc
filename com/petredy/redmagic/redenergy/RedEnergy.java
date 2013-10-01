@@ -5,23 +5,23 @@ import net.minecraft.nbt.NBTTagCompound;
 public class RedEnergy {
 	
 	public float amount;
-	public int x, y, z;
+	public int x, z, dimension;
 	
 	public RedEnergy(){
 		amount = 0;
 	}
 	
-	public RedEnergy(int x, int y, int z, float amount){
+	public RedEnergy(int dimension, int x, int z, float amount){
+		this.dimension = dimension;
 		this.x = x;
-		this.y = y;
 		this.z = z;
 		this.amount = amount;
 	}
 	
 	public void readFromNBT(NBTTagCompound tag){
 		this.amount = tag.getFloat("amount");
+		this.dimension = tag.getInteger("dimension");
 		this.x = tag.getInteger("x");
-		this.y = tag.getInteger("y");
 		this.z = tag.getInteger("z");
 	}
 	
@@ -33,8 +33,8 @@ public class RedEnergy {
 	
 	public void writeToNBT(NBTTagCompound tag){
 		tag.setFloat("amount", amount);
+		tag.setInteger("dimension", dimension);
 		tag.setInteger("x", x);
-		tag.setInteger("y", y);
 		tag.setInteger("z", z);
 	}
 }

@@ -3,9 +3,11 @@ package com.petredy.redmagic.utils;
 import java.util.Random;
 
 import com.petredy.redmagic.blocks.Blocks;
-import com.petredy.redmagic.dimension.WorldGenEnergy;
 import com.petredy.redmagic.lib.BlockIndex;
 import com.petredy.redmagic.lib.Configs;
+import com.petredy.redmagic.lib.RedEnergyIndex;
+import com.petredy.redmagic.redenergy.EnergyMap;
+import com.petredy.redmagic.redenergy.RedEnergy;
 
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
@@ -53,12 +55,8 @@ public class WorldGenerationUtils {
 		}
 	}
 	
-	public static void generateEnergy(World world, Random random, int blockX, int blockZ) {
-		int Xcoord = blockX + random.nextInt(16);
-		int Ycoord = random.nextInt(75);
-		int Zcoord = blockZ + random.nextInt(16);
-		
-		(new WorldGenEnergy()).generate(world, random, Xcoord, Ycoord, Zcoord);
+	public static void generateEnergy(World world, Random random, int chunkX, int chunkZ) {
+		EnergyMap.setEnergy(new RedEnergy(world.provider.dimensionId, chunkX, chunkZ, RedEnergyIndex.chunk_min_energy + random.nextFloat() * (RedEnergyIndex.chunk_energy - RedEnergyIndex.chunk_min_energy)));
 	}
 
 }

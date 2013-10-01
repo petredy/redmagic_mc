@@ -29,6 +29,7 @@ public class WorldLoadingHandler {
 	@ForgeSubscribe
 	public void onSave(Save evt){
 		TradingUtils.save(evt.world);
+		RedenergyUtils.save(evt.world);
 	}
 	
 	

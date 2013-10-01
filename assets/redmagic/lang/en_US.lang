@@ -3,6 +3,7 @@ language.region=US
 language.code=en_US
 
 itemGroup.redmagic=Redmagic
+redmagic.player.inventory=Redhole Inventory
 
 tile.trading.chest.name=Trading Chest
 
@@ -19,7 +20,8 @@ tile.crystal.large.name=Large Crystal
 tile.crystal.leftover.name=Leftover Crystal
 
 tile.earthwire.name=Earthwire
-tile.soul.name=Soul
+tile.energy.summoner.name=Lightning Summoner
+tile.soul.name=Soul Block
 tile.soul.energy.access.name=Energy Access Block
 
 item.trading.crystal.name=Trading Crystal
@@ -31,3 +33,10 @@ item.crafting.gearRhenium.name=Rhenium Gear
 
 item.redhole.name=Redhole
 item.redhole.storeable.name=Storeable Redhole
+item.redhole.dimension.name=Dimensional Redhole
+
+item.soul.name=Soul
+
+item.pointer.name=Soulman Pointer
+
+item.redgauge.name=Redgauge

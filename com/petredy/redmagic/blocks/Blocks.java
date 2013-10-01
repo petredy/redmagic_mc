@@ -125,5 +125,9 @@ public class Blocks {
 			'N', Block.netherBrick,
 			'I', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA)
 		});
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(soul), new Object[]{
+			new ItemStack(Items.soul)
+		});
 	}
 }

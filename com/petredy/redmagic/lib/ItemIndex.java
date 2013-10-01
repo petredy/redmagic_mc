@@ -42,7 +42,7 @@ public class ItemIndex {
 	public static final int POINTER_DEFAULT_ID = 13005;
 	public static int POINTER_ID;
 	
-	public static final String REDGAUGE_NAME = "gauge";
+	public static final String REDGAUGE_NAME = "redgauge";
 	public static int REDGAUGE_DEFAULT_ID = 13006;
 	public static int REDGAUGE_ID;
 }
