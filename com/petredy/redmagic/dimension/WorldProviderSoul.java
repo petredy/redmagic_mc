@@ -9,6 +9,7 @@ import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.WorldProvider;
+import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.storage.WorldInfo;
 
@@ -85,6 +86,25 @@ public class WorldProviderSoul extends WorldProvider{
     
     public ChunkCoordinates getSpawnPoint(){
         return new ChunkCoordinates(0, 129, 0);
+    }
+    public void updateWeather()
+    {
+    	
+    }
+    
+    public boolean canBlockFreeze(int x, int y, int z, boolean byWater)
+    {
+        return false;
+    }
+
+    public boolean canSnowAt(int x, int y, int z)
+    {
+        return false;
+    }
+
+    public boolean canDoRainSnowIce(Chunk chunk)
+    {
+        return false;
     }
 	
 }

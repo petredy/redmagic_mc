@@ -22,16 +22,15 @@ public class TileEntityEarthwire extends TileEntity implements IEnergyConsumer{
 	
 	public Hole hole;
 	public static final int wireID = Block.fenceIron.blockID;
-	public boolean loaded;
 	
-	public int range = 30;
-	
+	public int lastLayers = 0;
 	
 	
 	public void updateEntity(){
-		if(!this.loaded){
-			EnergyMap.registerConsumer(xCoord, yCoord, zCoord, range);
-			loaded = true;
+		int layers = this.getLayers();
+		if(lastLayers != layers){
+			EnergyMap.registerConsumer(xCoord, yCoord, zCoord, (int)(layers * 1.5f));
+			lastLayers = layers;
 		}
 	}
 
@@ -72,7 +71,7 @@ public class TileEntityEarthwire extends TileEntity implements IEnergyConsumer{
 	private int getLayers() {
 		int y = 1;
 		int count = 0;
-		while(count <= 50 && yCoord + y <= 256 && worldObj.getBlockId(xCoord, yCoord + y++, zCoord) == wireID){
+		while(yCoord + y <= 256 && worldObj.getBlockId(xCoord, yCoord + y++, zCoord) == wireID){
 			count++;
 		}
 		return count;

@@ -119,7 +119,7 @@ public class TileEntityEnergySummoner extends TileEntity implements IPowerRecept
 	private int getLayers() {
 		int y = 1;
 		int count = 0;
-		while(count <= 50 && yCoord + y <= 256 && worldObj.getBlockId(xCoord, yCoord + y++, zCoord) == wireID){
+		while(yCoord + y <= 256 && worldObj.getBlockId(xCoord, yCoord + y++, zCoord) == wireID){
 			count++;
 		}
 		if(this.hasBase(yCoord + count - 1))return count;

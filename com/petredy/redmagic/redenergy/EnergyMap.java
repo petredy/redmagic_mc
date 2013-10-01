@@ -1,16 +1,30 @@
 package com.petredy.redmagic.redenergy;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 
 public class EnergyMap {
 
+	public static boolean loaded = false;
+	
 	public static List<EnergyConsumer> consumers = new ArrayList<EnergyConsumer>();
+	public static HashMap<Redkey, RedEnergy> energy = new HashMap<Redkey, RedEnergy>();
 	
 	public static void registerConsumer(int x, int y, int z, int range){
 		if(!existsConsumer(x, y, z))consumers.add(new EnergyConsumer(x, y, z, range));
+		else overwriteConsumer(new EnergyConsumer(x, y, z, range));
 	}
 	
+	private static void overwriteConsumer(EnergyConsumer energyConsumer) {
+		for(EnergyConsumer consumer: consumers){
+			if(consumer.x == energyConsumer.x && consumer.y == energyConsumer.y && consumer.z == energyConsumer.z)consumer = energyConsumer;
+		}
+	}
+
 	public static boolean existsConsumer(int x, int y, int z){
 		for(EnergyConsumer consumer: consumers){
 			if(consumer.x == x && consumer.y == y && consumer.z == z)return true;
@@ -34,5 +48,42 @@ public class EnergyMap {
 			}
 		}
 	}
+	
+	public static void addEnergy(RedEnergy energy){
+		RedEnergy en = getEnergy(Redkey.get(energy.x, energy.y, energy.z));
+		en.amount += energy.amount;
+		setEnergy(en);
+	}
+	
+	public static RedEnergy getEnergy(Redkey key){
+		return EnergyMap.energy.get(key);
+	}
+	
+	public static void setEnergy(RedEnergy energy) {
+		EnergyMap.energy.put(Redkey.get(energy.x, energy.y, energy.z), energy);
+	}
+	
+	
+	public static void readFromNBT(NBTTagCompound tag){
+		NBTTagList list = tag.getTagList("energy");
+		for(int i = 0; i < list.tagCount(); i++){
+			NBTTagCompound energyTag = (NBTTagCompound) list.tagAt(i);
+			RedEnergy en = RedEnergy.loadFromNBT(energyTag);
+			energy.put(Redkey.get(en.x, en.y, en.z), en);
+		}
+	}
+	
+	public static void writeToNBT(NBTTagCompound tag){
+		NBTTagList list = new NBTTagList();
+		for(RedEnergy en: energy.values()){
+			if(en != null && en.amount > 0){
+				NBTTagCompound energyTag = new NBTTagCompound();
+				en.writeToNBT(energyTag);
+				list.appendTag(energyTag);
+			}
+		}
+		tag.setTag("energy", list);
+	}
+
 	
 }

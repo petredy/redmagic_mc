@@ -19,8 +19,9 @@ public class Items {
 	public static ItemGlasses glasses;
 	public static ItemRedhole redhole;
 	public static ItemCrafting crafting;
+	public static ItemPointer pointer;
 	
-	
+	public static ItemRedgauge gauge;
 	
 	//Armor
 	public static EnumArmorMaterial glassMaterial = EnumHelper.addArmorMaterial(ItemIndex.GLASSES_NAME, 1000, new int[]{2, 2, 2, 2, 2}, 30);
@@ -32,7 +33,9 @@ public class Items {
 		glasses = new ItemGlasses(ItemIndex.GLASSES_ID, 0, 0);
 		redhole = new ItemRedhole(ItemIndex.REDHOLE_ID);
 		crafting = new ItemCrafting(ItemIndex.CRAFTING_ID);
+		pointer = new ItemPointer(ItemIndex.POINTER_ID);
 		
+		gauge = new ItemRedgauge(ItemIndex.REDGAUGE_ID);
 		addRecipes();
 	}
 	
@@ -42,6 +45,8 @@ public class Items {
 		ItemIndex.GLASSES_ID = config.getItem(ItemIndex.GLASSES_NAME, ItemIndex.GLASSES_DEFAULT_ID).getInt(ItemIndex.GLASSES_DEFAULT_ID);
 		ItemIndex.REDHOLE_ID = config.getItem(ItemIndex.REDHOLE_NAME, ItemIndex.REDHOLE_DEFAULT_ID).getInt(ItemIndex.REDHOLE_DEFAULT_ID);
 		ItemIndex.CRAFTING_ID = config.getItem(ItemIndex.CRAFTING_NAME, ItemIndex.CRAFTING_DEFAULT_ID).getInt(ItemIndex.CRAFTING_DEFAULT_ID);
+		ItemIndex.POINTER_ID = config.getItem(ItemIndex.POINTER_NAME, ItemIndex.POINTER_DEFAULT_ID).getInt(ItemIndex.POINTER_DEFAULT_ID);
+		ItemIndex.REDGAUGE_ID = config.getItem(ItemIndex.REDGAUGE_NAME, ItemIndex.REDGAUGE_DEFAULT_ID).getInt(ItemIndex.REDGAUGE_DEFAULT_ID);
 		
 	}
 	
@@ -84,6 +89,21 @@ public class Items {
 			'R', new ItemStack(crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA)
 		});
 		
+		GameRegistry.addShapedRecipe(new ItemStack(pointer), new Object[]{
+			"N  ",
+			" S ",
+			"  S",
+			'N', new ItemStack(crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA),
+			'S', Item.stick
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(gauge), new Object[]{
+			" I ",
+			"ICI",
+			" I ",
+			'I', new ItemStack(crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA),
+			'C', Item.compass
+		});
 	}
 	
 	

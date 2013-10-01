@@ -20,6 +20,13 @@ import com.petredy.redmagic.client.render.glasses.GlassesRenderMining;
 import com.petredy.redmagic.client.render.glasses.GlassesRenderOffline;
 import com.petredy.redmagic.client.render.glasses.GlassesRenderOnline;
 import com.petredy.redmagic.lib.Configs;
+import com.petredy.redmagic.network.PacketEnergySyncRequest;
+import com.petredy.redmagic.network.PacketHandler;
+import com.petredy.redmagic.redenergy.RedEnergy;
+import com.petredy.redmagic.redenergy.EnergyMap;
+import com.petredy.redmagic.redenergy.Redkey;
+
+import cpw.mods.fml.common.network.PacketDispatcher;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -87,9 +94,9 @@ public class GlassesUtils {
 
 	public static ItemStack renderOres(EntityPlayer player, int width, int height) {
 		List<int[]> blocks = new ArrayList<int[]>();
-		for(int i = -3; i <= 3; i++){
+		for(int i = -5; i <= 5; i++){
 			for(int j = -1; j <= 1; j++){
-				for(int k = -3; k <= 3; k++){
+				for(int k = -5; k <= 5; k++){
 					if(shouldFocusOnOre(player.worldObj.getBlockId((int)player.posX + i, (int)player.posY + j, (int)player.posZ + k), player.worldObj.getBlockMetadata((int)player.posX + i, (int)player.posY + j, (int)player.posZ + k))){
 						blocks.add(new int[]{(int)player.posX + i, (int)player.posY + j, (int)player.posZ + k, player.worldObj.getBlockId((int)player.posX + i, (int)player.posY + j, (int)player.posZ + k), player.worldObj.getBlockMetadata((int)player.posX + i, (int)player.posY + j, (int)player.posZ + k)});
 					}

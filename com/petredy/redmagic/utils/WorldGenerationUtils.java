@@ -3,6 +3,7 @@ package com.petredy.redmagic.utils;
 import java.util.Random;
 
 import com.petredy.redmagic.blocks.Blocks;
+import com.petredy.redmagic.dimension.WorldGenEnergy;
 import com.petredy.redmagic.lib.BlockIndex;
 import com.petredy.redmagic.lib.Configs;
 
@@ -50,6 +51,14 @@ public class WorldGenerationUtils {
 		if(random.nextFloat() < 0.2){
 			world.setBlock(Xcoord, Ycoord, Zcoord, Blocks.cage.blockID);
 		}
+	}
+	
+	public static void generateEnergy(World world, Random random, int blockX, int blockZ) {
+		int Xcoord = blockX + random.nextInt(16);
+		int Ycoord = random.nextInt(75);
+		int Zcoord = blockZ + random.nextInt(16);
+		
+		(new WorldGenEnergy()).generate(world, random, Xcoord, Ycoord, Zcoord);
 	}
 
 }

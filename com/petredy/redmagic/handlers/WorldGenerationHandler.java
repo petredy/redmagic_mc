@@ -19,6 +19,7 @@ public class WorldGenerationHandler implements IWorldGenerator
 			WorldGenerationUtils.generateGraniteVeines(world, random, chunkX*16, chunkZ*16);
 			WorldGenerationUtils.generateRheniumOre(world, random, chunkX*16, chunkZ*16);
 			WorldGenerationUtils.generateCage(world, random, chunkX*16, chunkZ*16);
+			WorldGenerationUtils.generateEnergy(world, random, chunkX*16, chunkZ*16);
 		}
 	}
 }

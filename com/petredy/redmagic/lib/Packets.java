@@ -9,7 +9,9 @@ public class Packets {
 		PacketBuyItem.class,
 		PacketSellItem.class,
 		PacketNBTSync.class,
-		PacketTradingSync.class
+		PacketTradingSync.class,
+		PacketEnergyMapSync.class,
+		PacketEnergySyncRequest.class
 	};
 	
 	public static final byte KEY = 0;
@@ -17,4 +19,6 @@ public class Packets {
 	public static final byte SELL = 2;
 	public static final byte SYNC = 3;
 	public static final byte SYNC_TRADING = 4;
+	public static final byte SYNC_ENERGY_MAP = 5;
+	public static final byte REQUEST_ENERGY_SYNC = 6;
 }

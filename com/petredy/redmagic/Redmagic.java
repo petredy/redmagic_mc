@@ -24,16 +24,7 @@ import cpw.mods.fml.relauncher.Side;
 import com.petredy.redmagic.blocks.Blocks;
 import com.petredy.redmagic.core.CommonProxy;
 import com.petredy.redmagic.core.CreativeTabRedMagic;
-import com.petredy.redmagic.handlers.ConfigHandler;
-import com.petredy.redmagic.handlers.DimensionHandler;
-import com.petredy.redmagic.handlers.EntityHandler;
-import com.petredy.redmagic.handlers.LanguageHandler;
-import com.petredy.redmagic.handlers.PlayerSleepHandler;
-import com.petredy.redmagic.handlers.PlayerTracker;
-import com.petredy.redmagic.handlers.RedvalueConfigurationHandler;
-import com.petredy.redmagic.handlers.TileEntityHandler;
-import com.petredy.redmagic.handlers.WorldGenerationHandler;
-import com.petredy.redmagic.handlers.WorldLoadingHandler;
+import com.petredy.redmagic.handlers.*;
 import com.petredy.redmagic.items.Items;
 import com.petredy.redmagic.lib.*;
 import com.petredy.redmagic.network.PacketHandler;
@@ -131,6 +122,8 @@ public class Redmagic{
 		
 		//Register Player loading/saving
 		GameRegistry.registerPlayerTracker(new PlayerTracker());
+		
+		TickRegistry.registerTickHandler(new RenderHandler(), Side.CLIENT);
 		
     }
 	

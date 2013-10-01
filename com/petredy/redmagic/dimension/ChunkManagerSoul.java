@@ -10,4 +10,9 @@ public class ChunkManagerSoul extends WorldChunkManager {
 		super(par1World);
     }
 	
+	
+	public float[] getRainfall(float[] par1ArrayOfFloat, int par2, int par3, int par4, int par5)
+    {
+		return new float[par1ArrayOfFloat.length];
+    }
 }

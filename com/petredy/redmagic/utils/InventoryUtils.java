@@ -142,13 +142,6 @@ public class InventoryUtils {
 		return stackToMove;
 	}
 	
-//	public static int addItemStackToInventorySide(ISidedInventory inventory, int side, ItemStack par1ItemStack){
-//		int start = inventory.getStartInventorySide(ForgeDirection.getOrientation(side));
-//		int length = inventory.getSizeInventorySide(ForgeDirection.getOrientation(side));
-//		//return addItemStackToInventory(getSlots(inventory, start, length), par1ItemStack);
-//		return 0;
-//	}
-	
 	public static ItemStack[] getSlots(IInventory inventory){
 		if(inventory == null)return new ItemStack[0];
 		return getSlots(inventory, 0, inventory.getSizeInventory());

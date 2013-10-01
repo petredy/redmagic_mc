@@ -32,7 +32,7 @@ public class Textures {
 	
 	//Entities
 	public static final ResourceLocation SOUL = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "entities/soul.png");;
-	public static final ResourceLocation SOULMAN = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "entities/soulman.png");
+	
 	
 	//Particles 
 	public static final ResourceLocation STAR_FX = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "entities/particles/star.png");
@@ -41,7 +41,11 @@ public class Textures {
 	public static final Object RING_FX = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "entities/particles/ring.png");
 	
 	
-	
+	//Soulman
+	public static final ResourceLocation SOULMAN = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "entities/soulman.png");
+	public static final ResourceLocation SOULMAN_0 = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "entities/soulman_0.png");
+	public static final ResourceLocation SOULMAN_1 = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "entities/soulman_1.png");
+	public static final ResourceLocation SOULMAN_2 = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "entities/soulman_2.png");
 	
 	
 	

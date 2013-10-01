@@ -33,12 +33,9 @@ public class TileEntityCrystal extends TileEntity {
 
 	private void move() {
 		int metadata = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
-		if(metadata != BlockIndex.CRYSTAL_LEFTOVER_METADATA && state >= 2){
-			worldObj.destroyBlock(xCoord, yCoord, zCoord, false);
-		}
-		if(state == 1){
-			this.createLeftOver();
-			state++;
+		LogUtils.log(state);
+		if(metadata != BlockIndex.CRYSTAL_LEFTOVER_METADATA && state >= 1){
+			this.createLeftoverBlock(xCoord, yCoord, zCoord);
 		}
 		if(state == 0 && moved < range){
 			if(direction == ForgeDirection.DOWN){
@@ -66,27 +63,6 @@ public class TileEntityCrystal extends TileEntity {
 		
 		
 	}
-	
-	private void createLeftOver() {
-		if(direction == ForgeDirection.DOWN || direction == ForgeDirection.UP){
-			createLeftoverBlock(xCoord + 1, yCoord, zCoord);
-			createLeftoverBlock(xCoord - 1, yCoord, zCoord);
-			createLeftoverBlock(xCoord, yCoord, zCoord + 1);
-			createLeftoverBlock(xCoord, yCoord, zCoord - 1);
-		}
-		if(direction == ForgeDirection.NORTH || direction == ForgeDirection.SOUTH){
-			createLeftoverBlock(xCoord + 1, yCoord, zCoord);
-			createLeftoverBlock(xCoord - 1, yCoord, zCoord);
-			createLeftoverBlock(xCoord, yCoord + 1, zCoord);
-			createLeftoverBlock(xCoord, yCoord - 1, zCoord);
-		}
-		if(direction == ForgeDirection.WEST || direction == ForgeDirection.EAST){
-			createLeftoverBlock(xCoord, yCoord + 1, zCoord);
-			createLeftoverBlock(xCoord, yCoord - 1, zCoord);
-			createLeftoverBlock(xCoord, yCoord, zCoord + 1);
-			createLeftoverBlock(xCoord, yCoord, zCoord - 1);
-		}
-	}
 
 	private void createLeftoverBlock(int x, int y, int z) {
 		this.setBlock(x, y, z, Blocks.crystal.blockID, BlockIndex.CRYSTAL_LEFTOVER_METADATA);
@@ -96,11 +72,11 @@ public class TileEntityCrystal extends TileEntity {
 		int blockID = worldObj.getBlockId(x, y, z);
 		Block block = Block.blocksList[blockID];
 		if(blockMetadata == BlockIndex.CRYSTAL_LEFTOVER_METADATA){
-			if(blockID != Blocks.crystal.blockID && (block == null || block.isBlockReplaceable(worldObj, x, y, z))){
+			if((block == null || block.isBlockReplaceable(worldObj, x, y, z))){
 				worldObj.setBlock(x, y, z, id, metadata, 3);
 			}
 		}else{
-			if(blockID != Blocks.crystal.blockID && blockID != Blocks.cage.blockID && blockID != Block.bedrock.blockID){
+			if(blockID != Blocks.cage.blockID && blockID != Block.bedrock.blockID){
 				worldObj.setBlock(x, y, z, id, metadata, 3);
 			}
 		}

@@ -1,6 +1,7 @@
 package com.petredy.redmagic.handlers;
 
 import com.petredy.redmagic.utils.PlayerUtils;
+import com.petredy.redmagic.utils.RedenergyUtils;
 import com.petredy.redmagic.utils.TradingUtils;
 
 import net.minecraft.client.Minecraft;
@@ -15,13 +16,14 @@ public class WorldLoadingHandler {
 
 	@ForgeSubscribe
 	public void onLoad(Load evt){
-		World world = evt.world;
-		TradingUtils.load(world);
+		TradingUtils.load(evt.world);
+		RedenergyUtils.load(evt.world);
 	}
 	
 	@ForgeSubscribe
 	public void onUnload(Unload evt){
 		TradingUtils.save(evt.world);
+		RedenergyUtils.save(evt.world);
 	}
 	
 	@ForgeSubscribe

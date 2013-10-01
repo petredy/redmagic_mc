@@ -37,4 +37,12 @@ public class ItemIndex {
 	public static final int CRAFTING_GEAR_RHENIUM_METADATA = 2;
 	
 	// ------------------------------------------------------------------------------
+	
+	public static final String POINTER_NAME = "pointer";
+	public static final int POINTER_DEFAULT_ID = 13005;
+	public static int POINTER_ID;
+	
+	public static final String REDGAUGE_NAME = "gauge";
+	public static int REDGAUGE_DEFAULT_ID = 13006;
+	public static int REDGAUGE_ID;
 }
