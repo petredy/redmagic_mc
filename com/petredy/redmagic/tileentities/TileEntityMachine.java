@@ -35,6 +35,7 @@ public class TileEntityMachine extends TileEntity implements IMachineHandler, IE
 				machine.update((IMachineHandler)this);
 			}
 		}
+		if(heat < 0)heat = 0;
 	}
 
 	public Machine getMachine(int metadata){
@@ -82,7 +83,21 @@ public class TileEntityMachine extends TileEntity implements IMachineHandler, IE
 	public World getWorld() {
 		return worldObj;
 	}
+	
+	@Override
+	public int getXCoord() {
+		return xCoord;
+	}
 
+	@Override
+	public int getYCoord() {
+		return yCoord;
+	}
+
+	@Override
+	public int getZCoord() {
+		return zCoord;
+	}
 	
 	@Override
 	public float collect(World world, float amount, int chunkX, int chunkZ) {
@@ -96,6 +111,15 @@ public class TileEntityMachine extends TileEntity implements IMachineHandler, IE
 		float released = EnergyMap.releaseEnergy(new RedEnergy(world.provider.dimensionId, chunkX, chunkZ, amount));
 		this.energy -= released;
 		return released;
+	}
+	
+	@Override
+	public float use(float amount) {
+		if(getStoredEnergy() >= amount){
+			this.energy -= amount;
+			return amount;
+		}
+		return 0;
 	}
 
 	@Override
@@ -132,7 +156,7 @@ public class TileEntityMachine extends TileEntity implements IMachineHandler, IE
 
 	public boolean activate(EntityPlayer player, int side, float offX, float offY, float offZ) {
 		if(machines[side] != null){
-			machines[side].activate(player, offX, offY, offZ);
+			machines[side].activate((IMachineHandler)this, player, offX, offY, offZ);
 			return true;
 		}
 		return false;
@@ -156,7 +180,6 @@ public class TileEntityMachine extends TileEntity implements IMachineHandler, IE
 	@Override
 	public void writeToNBT(NBTTagCompound tag){
 		super.writeToNBT(tag);
-		LogUtils.log("SAVE");
 		tag.setFloat("redmagic.energy", energy);
 		tag.setFloat("redmagic.heat", heat);
 		tag.setFloat("redmagic.maxHeat", maxHeat);

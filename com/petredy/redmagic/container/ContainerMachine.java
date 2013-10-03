@@ -9,7 +9,7 @@ public class ContainerMachine extends Container {
 
 	
 	public ContainerMachine(EntityPlayer player, TileEntityMachine machine){
-		
+		super();
 	}
 	
 	@Override

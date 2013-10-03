@@ -24,7 +24,9 @@ public class ItemMachine extends Item implements IMachineItem{
 	
 	public final static String[] subNames = {
 		BlockIndex.MACHINE_BLOCK_NAME,
-		BlockIndex.MACHINE_COLLECTOR_NAME
+		BlockIndex.MACHINE_COLLECTOR_NAME,
+		BlockIndex.MACHINE_CONTACT_COOLING_NAME,
+		BlockIndex.MACHINE_FURNACE_NAME
 	};
 	
 	public Icon[] icons = new Icon[ItemMachine.subNames.length];
@@ -42,9 +44,8 @@ public class ItemMachine extends Item implements IMachineItem{
 		}
 	}
 	
-	public Icon getIcon(int side, int metadata){
+	public Icon getIconFromDamage(int metadata){
 		metadata = Math.max(1, Math.min(subNames.length - 1, metadata));
-		LogUtils.log(metadata);
 		return icons[metadata];
 	}
 	

@@ -8,6 +8,8 @@ public interface IEnergyHandler {
 	
 	public float release(World world, float amount, int chunkX, int chunkZ);
 	
+	public float use(float amount);
+	
 	public float getStoredEnergy();
 	
 	public int getChunkX();

@@ -56,8 +56,12 @@ public class TradingManager{
 	public static void readFromNBT(NBTTagCompound tag){
 		NBTTagList list = tag.getTagList("items");
 		for(int i = 0; i < list.tagCount(); i++){
-			TradingItem item = TradingItem.loadFromNBT((NBTTagCompound) list.tagAt(i));
-			items.put(item.item.getUnlocalizedName(), item);
+			try{
+				TradingItem item = TradingItem.loadFromNBT((NBTTagCompound) list.tagAt(i));
+				items.put(item.item.getUnlocalizedName(), item);
+			}catch(Exception e){
+				LogUtils.log("Couldn't read an item from NBT. Maybe an item was deleted");
+			}
 		}
 	}
 	

@@ -80,7 +80,10 @@ public class BlockMachine extends BlockContainer{
 				}
 			}else{
 				if(machineBlock.activate(par5EntityPlayer, par6, par7, par8, par9))return true;
-				else par5EntityPlayer.openGui(Redmagic.instance, Guis.MACHINE, par1World, par2, par3, par4);
+				else {
+					par5EntityPlayer.openGui(Redmagic.instance, Guis.MACHINE, par1World, par2, par3, par4);
+					return true;
+				}
 			}
 		}
         return false;

@@ -93,6 +93,10 @@ public class BlockIndex {
 	public static final int MACHINE_BLOCK_METADATA = 0;
 	public static final String MACHINE_COLLECTOR_NAME = "collector";
 	public static final int MACHINE_COLLECTOR_METADATA = 1;
+	public static final String MACHINE_CONTACT_COOLING_NAME = "contact.cooling";
+	public static final int MACHINE_CONTACT_COOLING_METADATA = 2;
+	public static final String MACHINE_FURNACE_NAME = "furnace";
+	public static final int MACHINE_FURNACE_METADATA = 3;
 	
 	// ----------------------------------------------------------------------------
 }

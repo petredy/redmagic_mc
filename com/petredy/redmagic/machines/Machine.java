@@ -11,6 +11,8 @@ public class Machine {
 	public static Machine getMachine(int metadata) {
 		switch(metadata){
 		case BlockIndex.MACHINE_COLLECTOR_METADATA: return new MachineCollector();
+		case BlockIndex.MACHINE_CONTACT_COOLING_METADATA: return new MachineContactCooling();
+		case BlockIndex.MACHINE_FURNACE_METADATA: return new MachineFurnace();
 		default: return new Machine();
 		}
 	}
@@ -45,7 +47,7 @@ public class Machine {
 		this.side = side;
 	}
 	
-	public void activate(EntityPlayer player, float offX, float offY, float offZ) {
+	public void activate(IMachineHandler handler, EntityPlayer player, float offX, float offY, float offZ) {
 		
 	}
 	

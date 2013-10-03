@@ -21,4 +21,7 @@ public interface IMachineHandler {
 	
 	public World getWorld();
 	
+	public int getXCoord();
+	public int getYCoord();
+	public int getZCoord();
 }

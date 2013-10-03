@@ -72,6 +72,7 @@ public class EnergyMap {
 		if(en != null){
 			if(en.amount >= amount){
 				en.amount -= amount;
+				if(en.amount < 0)en.amount = 0;
 				setEnergy(en);
 				return amount;
 			}else{

@@ -22,7 +22,9 @@ public class Textures {
 	public static final ResourceLocation TRADING_CHEST_GUI = ResourceLocationUtils.getResourceLocation(GUI_PATH + BlockIndex.TRADING_CHEST_NAME + ".png");
 	public static final ResourceLocation ALL_ITEMS = ResourceLocationUtils.getResourceLocation(GUI_PATH + "allitems.png"); 
 	public static final ResourceLocation PLAYER_INVENTORY = ResourceLocationUtils.getResourceLocation(GUI_PATH + "player.inventory.png");
-	public static final ResourceLocation MACHINE = ResourceLocationUtils.getResourceLocation(GUI_PATH + "machine.png");;
+	public static final ResourceLocation MACHINE = ResourceLocationUtils.getResourceLocation(GUI_PATH + "machine.png");
+	public static final ResourceLocation FURNACE = ResourceLocationUtils.getResourceLocation(GUI_PATH + "furnace.png");
+	
 	//Glasses
 	public static final String GLASSES = TEXTURE_PATH + "glasses/glasses.png";
 	public static final ResourceLocation OVERLAY = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "glasses/overlay.png");
