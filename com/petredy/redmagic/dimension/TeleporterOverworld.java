@@ -33,6 +33,7 @@ public class TeleporterOverworld extends Teleporter {
 				player.setPosition(spawn.posX + 0.5, y + 1, spawn.posZ + 0.5);
 			}
 			player.motionX = player.motionY = player.motionZ = 0;
+			player.setSneaking(false);
 
 		}
     }

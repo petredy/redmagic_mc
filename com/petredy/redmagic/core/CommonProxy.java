@@ -38,6 +38,9 @@ public class CommonProxy implements IGuiHandler{
 		if(ID == Guis.PLAYER_INVENTORY){
 			return new ContainerPlayerInventory(player);
 		}
+		if(ID == Guis.MACHINE){
+			return new ContainerMachine(player, (TileEntityMachine)tileEntity);
+		}
 		return null;
 	}
 
@@ -49,6 +52,9 @@ public class CommonProxy implements IGuiHandler{
 		}
 		if(ID == Guis.PLAYER_INVENTORY){
 			return new GuiPlayerInventory(player);
+		}
+		if(ID == Guis.MACHINE){
+			return new GuiMachine(player, (TileEntityMachine)tileEntity);
 		}
 		return null;
 	}

@@ -39,10 +39,11 @@ public class ConfigHandler {
 		sleeprop.comment = Comments.SLEEP;
 		Reference.SLEEP = sleeprop.getBoolean(Reference.SLEEP);
 	
+		Dimensions.DIMENSION_ID = config.get("general", "dimensionID", Dimensions.DIMENSION_DEFAULT_ID, "This is the dimensionID for the Soul Dimension.").getInt(Dimensions.DIMENSION_DEFAULT_ID);
 		
+	}
+	
+	public static void postConfig(Configuration config){
 		Configs.GLASSES_ORE_DIC = config.get("glasses", "ores", GlassesUtils.getOres(), "Always write id and metadata for your ore like the default values.").getIntList();
-		
-		Dimensions.DIMENSION_ID = config.get("general", "dimensionID", Dimensions.DIMENSION_ID, "This is the dimensionID for the Soul Dimension.").getInt(Dimensions.DIMENSION_ID);
-		
 	}
 }

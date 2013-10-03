@@ -1,5 +1,6 @@
 package com.petredy.redmagic.blocks;
 
+import com.petredy.redmagic.items.ItemMachine;
 import com.petredy.redmagic.items.Items;
 import com.petredy.redmagic.lib.BlockIndex;
 import com.petredy.redmagic.lib.ItemIndex;
@@ -23,6 +24,7 @@ public class Blocks {
 	public static BlockSoul soul;
 	public static BlockSoulEnergyAccess energyAccess;
 	public static BlockEnergySummoner energySummoner;
+	public static BlockMachine machine;
 	
 	public static void init(){
 		trading = new BlockTradingChest(BlockIndex.TRADING_CHEST_ID);
@@ -35,7 +37,8 @@ public class Blocks {
 		soul = new BlockSoul(BlockIndex.SOUL_ID);
 		energyAccess = new BlockSoulEnergyAccess(BlockIndex.SOUL_ENERGY_ACCESS_ID);
 		energySummoner = new BlockEnergySummoner(BlockIndex.ENERGY_SUMMONER_ID);
-				
+		machine = new BlockMachine(BlockIndex.MACHINE_ID);
+		
 		GameRegistry.registerBlock(trading, BlockIndex.TRADING_CHEST_NAME);
 		GameRegistry.registerBlock(decoration, ItemBlockDecoration.class, BlockIndex.DECORATION_NAME);
 		GameRegistry.registerBlock(oreRhenium, BlockIndex.RHENIUM_ORE_NAME);
@@ -46,7 +49,7 @@ public class Blocks {
 		GameRegistry.registerBlock(soul, BlockIndex.SOUL_NAME);
 		GameRegistry.registerBlock(energyAccess, BlockIndex.SOUL_ENERGY_ACCESS_NAME);
 		GameRegistry.registerBlock(energySummoner, BlockIndex.ENERGY_SUMMONER_NAME);
-		
+		GameRegistry.registerBlock(machine, BlockIndex.MACHINE_NAME);
 		
 		addRecipes();
 	}
@@ -64,6 +67,7 @@ public class Blocks {
 		BlockIndex.SOUL_ID = config.getBlock(BlockIndex.SOUL_NAME, BlockIndex.SOUL_DEFAULT_ID).getInt(BlockIndex.SOUL_DEFAULT_ID);
 		BlockIndex.SOUL_ENERGY_ACCESS_ID = config.getBlock(BlockIndex.SOUL_ENERGY_ACCESS_NAME, BlockIndex.SOUL_ENERGY_ACCESS_DEFAULT_ID).getInt(BlockIndex.SOUL_ENERGY_ACCESS_DEFAULT_ID);
 		BlockIndex.ENERGY_SUMMONER_ID = config.getBlock(BlockIndex.ENERGY_SUMMONER_NAME, BlockIndex.ENERGY_SUMMONER_DEFAULT_ID).getInt(BlockIndex.ENERGY_SUMMONER_DEFAULT_ID);
+		BlockIndex.MACHINE_ID = config.getBlock(BlockIndex.MACHINE_NAME, BlockIndex.MACHINE_DEFAULT_ID).getInt(BlockIndex.MACHINE_DEFAULT_ID);
 		
 	}
 	
@@ -128,6 +132,14 @@ public class Blocks {
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(soul), new Object[]{
 			new ItemStack(Items.soul)
+		});
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(crystal, 64, BlockIndex.CRYSTAL_LEFTOVER_METADATA), new Object[]{
+			new ItemStack(crystal, 1, BlockIndex.CRYSTAL_MEDIUM_METADATA)
+		});
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(crystal, 32, BlockIndex.CRYSTAL_LEFTOVER_METADATA), new Object[]{
+			new ItemStack(crystal, 1, BlockIndex.CRYSTAL_SMALL_METADATA)
 		});
 	}
 }

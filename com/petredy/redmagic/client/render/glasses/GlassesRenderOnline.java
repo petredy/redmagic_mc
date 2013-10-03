@@ -19,8 +19,7 @@ public class GlassesRenderOnline extends GlassesRender{
 //		if(switchingTicks < GlassesHelper.SWITCHING_FINISHED ){
 //			this.switchToOnline(stack, player, width, height, switchingTicks);
 //		}else{
-			//Should be in an other mode
-			//GlassesUtils.renderMachineName(player, target, width, height);
+			
 		
 			ResourceLocation texture = this.getTexture(player);
 			

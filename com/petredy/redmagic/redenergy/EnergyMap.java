@@ -51,10 +51,12 @@ public class EnergyMap {
 		}
 	}
 	
-	public static void addEnergy(RedEnergy energy){
+	public static float releaseEnergy(RedEnergy energy){
 		RedEnergy en = getEnergy(Redkey.get(energy.dimension, energy.x, energy.z));
-		en.amount += energy.amount;
+		if(en != null)en.amount += energy.amount;
+		else en = energy;
 		setEnergy(en);
+		return energy.amount;
 	}
 	
 	public static RedEnergy getEnergy(Redkey key){
@@ -63,6 +65,23 @@ public class EnergyMap {
 	
 	public static void setEnergy(RedEnergy energy) {
 		EnergyMap.energy.put(Redkey.get(energy.dimension, energy.x,  energy.z), energy);
+	}
+	
+	public static float consumeEnergy(int dimension, int chunkX, int chunkZ, float amount) {
+		RedEnergy en = getEnergy(Redkey.get(dimension, chunkX, chunkZ));
+		if(en != null){
+			if(en.amount >= amount){
+				en.amount -= amount;
+				setEnergy(en);
+				return amount;
+			}else{
+				amount = en.amount;
+				en.amount = 0;
+				setEnergy(en);
+				return amount;
+			}
+		}
+		return 0;
 	}
 	
 	

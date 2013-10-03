@@ -60,15 +60,15 @@ public class BlockUtils {
 	}
 	
 	
-	public static ForgeDirection getRotation(World par0World, int par1, int par2, int par3, EntityLivingBase par5EntityLivingBase){
+	public static ForgeDirection getRotation(World par0World, int par1, int par2, int par3, EntityLivingBase par5EntityLivingBase, boolean upAndDown){
 		double d0 = par5EntityLivingBase.posY + 1.82D - (double)par5EntityLivingBase.yOffset; 
 		
-		if (d0 - (double)par2 > 2.0D)
+		if (upAndDown && d0 - (double)par2 > 2.0D)
 		{
 			return ForgeDirection.UP;
 		}
 		
-		if ((double)par2 - d0 > 0.0D)
+		if (upAndDown && (double)par2 - d0 > 0.0D)
 		{
 		    return ForgeDirection.DOWN;
 		}

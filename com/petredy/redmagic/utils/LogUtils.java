@@ -18,7 +18,7 @@ public class LogUtils {
 	private static Logger redLogger = Logger.getLogger(Reference.MOD_ID);
 	
 	public static void init(Configuration config){
-		Property propDebug = config.get(Configuration.CATEGORY_GENERAL, Reference.DEBUG, true);
+		Property propDebug = config.get(Configuration.CATEGORY_GENERAL, Reference.DEBUG, false);
 		propDebug.comment = Comments.DEBUG;
 		Redmagic.DEBUG = propDebug.getBoolean(true);
 		if (Redmagic.DEBUG){

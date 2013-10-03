@@ -58,6 +58,9 @@ public class Redmagic{
         //Initialise Logger
         LogUtils.init(config);
         
+      	//Initialise configuration
+        ConfigHandler.config(config);
+        
         //Initialise Language Handling
       	LanguageHandler.init();
       	
@@ -85,17 +88,14 @@ public class Redmagic{
       	//Initialise block registration
       	Blocks.init();
       	
-      	//Initialise configuration
-        ConfigHandler.config(config);
-      	
         //Register GuiHandler
         NetworkRegistry.instance().registerGuiHandler(instance, this.proxy);
         
         //Register Rendering IDs
         proxy.initRendering();
   		
-  		//Configurate LogicElements, KeyBindings, etc.
-      	ConfigHandler.config(config);
+  		//Configurate
+      	ConfigHandler.postConfig(config);
         
         config.save();
 	}

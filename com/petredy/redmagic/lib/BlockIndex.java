@@ -77,4 +77,22 @@ public class BlockIndex {
 	public static final String ENERGY_SUMMONER_NAME = "energy.summoner";
 	public static final int ENERGY_SUMMONER_DEFAULT_ID = 3312;
 	public static int ENERGY_SUMMONER_ID;
+	
+	
+	/**
+	 * ---------------------------------------------------------------------------
+	 * Block Machine
+	 * Multi Block
+	 */
+	
+	public static final String MACHINE_NAME = "machine";
+	public static final int MACHINE_DEFAULT_ID = 3313;
+	public static int MACHINE_ID;
+	
+	public static final String MACHINE_BLOCK_NAME = "block";
+	public static final int MACHINE_BLOCK_METADATA = 0;
+	public static final String MACHINE_COLLECTOR_NAME = "collector";
+	public static final int MACHINE_COLLECTOR_METADATA = 1;
+	
+	// ----------------------------------------------------------------------------
 }

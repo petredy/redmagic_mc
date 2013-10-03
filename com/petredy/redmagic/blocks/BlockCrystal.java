@@ -55,7 +55,7 @@ public class BlockCrystal extends BlockContainer{
 	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack) {
 		TileEntityCrystal crystal = (TileEntityCrystal)par1World.getBlockTileEntity(par2, par3, par4);
 		if(crystal != null){
-			crystal.direction = ForgeDirection.getOrientation(ForgeDirection.OPPOSITES[BlockUtils.forgeDirectionToInt(BlockUtils.getRotation(par1World, par2, par3, par4, par5EntityLivingBase))]);
+			crystal.direction = ForgeDirection.getOrientation(ForgeDirection.OPPOSITES[BlockUtils.forgeDirectionToInt(BlockUtils.getRotation(par1World, par2, par3, par4, par5EntityLivingBase, true))]);
 			if(crystal.blockMetadata == BlockIndex.CRYSTAL_SMALL_METADATA)crystal.range = 20;
 			if(crystal.blockMetadata == BlockIndex.CRYSTAL_MEDIUM_METADATA)crystal.range = 60;
 			if(crystal.blockMetadata == BlockIndex.CRYSTAL_LARGE_METADATA)crystal.range = 100;
@@ -64,7 +64,12 @@ public class BlockCrystal extends BlockContainer{
 	
 	public int idDropped(int par1, Random par2Random, int par3)
     {
-        return 0;
+        return this.blockID;
+    }
+	
+	public int damageDropped(int par1)
+    {
+        return BlockIndex.CRYSTAL_LEFTOVER_METADATA;
     }
 	
 	@SideOnly(Side.CLIENT)

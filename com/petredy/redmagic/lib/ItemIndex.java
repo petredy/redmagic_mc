@@ -42,7 +42,11 @@ public class ItemIndex {
 	public static final int POINTER_DEFAULT_ID = 13005;
 	public static int POINTER_ID;
 	
-	public static final String REDGAUGE_NAME = "redgauge";
-	public static int REDGAUGE_DEFAULT_ID = 13006;
-	public static int REDGAUGE_ID;
+	public static final String REDMETER_NAME = "redmeter";
+	public static int REDMETER_DEFAULT_ID = 13006;
+	public static int REDMETER_ID;
+	
+	public static final String MACHINE_NAME = "machine";
+	public static final int MACHINE_DEFAULT_ID = 13007;
+	public static int MACHINE_ID;
 }

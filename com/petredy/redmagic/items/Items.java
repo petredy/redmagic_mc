@@ -21,7 +21,8 @@ public class Items {
 	public static ItemCrafting crafting;
 	public static ItemPointer pointer;
 	
-	public static ItemRedgauge gauge;
+	public static ItemMachine machine;
+	public static ItemRedmeter meter;
 	
 	//Armor
 	public static EnumArmorMaterial glassMaterial = EnumHelper.addArmorMaterial(ItemIndex.GLASSES_NAME, 1000, new int[]{2, 2, 2, 2, 2}, 30);
@@ -35,7 +36,8 @@ public class Items {
 		crafting = new ItemCrafting(ItemIndex.CRAFTING_ID);
 		pointer = new ItemPointer(ItemIndex.POINTER_ID);
 		
-		gauge = new ItemRedgauge(ItemIndex.REDGAUGE_ID);
+		machine = new ItemMachine(ItemIndex.MACHINE_ID);
+		meter = new ItemRedmeter(ItemIndex.REDMETER_ID);
 		addRecipes();
 	}
 	
@@ -46,7 +48,8 @@ public class Items {
 		ItemIndex.REDHOLE_ID = config.getItem(ItemIndex.REDHOLE_NAME, ItemIndex.REDHOLE_DEFAULT_ID).getInt(ItemIndex.REDHOLE_DEFAULT_ID);
 		ItemIndex.CRAFTING_ID = config.getItem(ItemIndex.CRAFTING_NAME, ItemIndex.CRAFTING_DEFAULT_ID).getInt(ItemIndex.CRAFTING_DEFAULT_ID);
 		ItemIndex.POINTER_ID = config.getItem(ItemIndex.POINTER_NAME, ItemIndex.POINTER_DEFAULT_ID).getInt(ItemIndex.POINTER_DEFAULT_ID);
-		ItemIndex.REDGAUGE_ID = config.getItem(ItemIndex.REDGAUGE_NAME, ItemIndex.REDGAUGE_DEFAULT_ID).getInt(ItemIndex.REDGAUGE_DEFAULT_ID);
+		ItemIndex.REDMETER_ID = config.getItem(ItemIndex.REDMETER_NAME, ItemIndex.REDMETER_DEFAULT_ID).getInt(ItemIndex.REDMETER_DEFAULT_ID);
+		ItemIndex.MACHINE_ID = config.getItem(ItemIndex.MACHINE_NAME, ItemIndex.MACHINE_DEFAULT_ID).getInt(ItemIndex.MACHINE_DEFAULT_ID);
 		
 	}
 	
@@ -75,10 +78,10 @@ public class Items {
 		
 		GameRegistry.addShapedRecipe(new ItemStack(redhole), new Object[]{
 			"RRR",
-			"RDR",
+			"RGR",
 			"RRR",
 			'R', Item.redstone,
-			'D', Item.diamond
+			'G', new ItemStack(crafting, 1, ItemIndex.CRAFTING_GEAR_RHENIUM_METADATA)
 		});
 		
 		GameRegistry.addShapedRecipe(new ItemStack(crafting, 1, ItemIndex.CRAFTING_GEAR_RHENIUM_METADATA), new Object[]{
@@ -97,7 +100,7 @@ public class Items {
 			'S', Item.stick
 		});
 		
-		GameRegistry.addShapedRecipe(new ItemStack(gauge), new Object[]{
+		GameRegistry.addShapedRecipe(new ItemStack(meter), new Object[]{
 			" I ",
 			"ICI",
 			" I ",

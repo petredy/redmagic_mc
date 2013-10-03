@@ -42,6 +42,7 @@ public class TeleporterSoul extends Teleporter{
 		if(server.isAirBlock(0, 128, 0)) return false;
 		par1Entity.setPositionAndRotation(0.5, 129, 0.5, par1Entity.rotationYaw, 0.0F);
 		par1Entity.motionX = par1Entity.motionY = par1Entity.motionZ = 0.0D;
+		par1Entity.setSneaking(false);
 		return true;
 		
     }
