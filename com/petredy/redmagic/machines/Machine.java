@@ -5,14 +5,16 @@ import net.minecraft.nbt.NBTTagCompound;
 
 import com.petredy.redmagic.api.machines.IMachineHandler;
 import com.petredy.redmagic.lib.BlockIndex;
+import com.petredy.redmagic.lib.Machines;
 
 public class Machine {
 
 	public static Machine getMachine(int metadata) {
 		switch(metadata){
-		case BlockIndex.MACHINE_COLLECTOR_METADATA: return new MachineCollector();
-		case BlockIndex.MACHINE_CONTACT_COOLING_METADATA: return new MachineContactCooling();
-		case BlockIndex.MACHINE_FURNACE_METADATA: return new MachineFurnace();
+		case Machines.COLLECTOR_METADATA: return new MachineCollector();
+		case Machines.CONTACT_COOLING_METADATA: return new MachineContactCooling();
+		case Machines.FURNACE_METADATA: return new MachineFurnace();
+		case Machines.DEINTEGRATOR_METADATA: return new MachineDeintegrator();
 		default: return new Machine();
 		}
 	}
@@ -23,7 +25,7 @@ public class Machine {
 	
 	
 	
-	public void update(IMachineHandler machineHandler) {
+	public void update(IMachineHandler handler) {
 		
 	}
 	

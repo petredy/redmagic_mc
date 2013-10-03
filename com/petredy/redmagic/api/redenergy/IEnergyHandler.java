@@ -10,6 +10,8 @@ public interface IEnergyHandler {
 	
 	public float use(float amount);
 	
+	public float store(float store);
+	
 	public float getStoredEnergy();
 	
 	public int getChunkX();

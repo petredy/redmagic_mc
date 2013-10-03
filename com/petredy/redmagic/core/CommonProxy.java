@@ -44,6 +44,9 @@ public class CommonProxy implements IGuiHandler{
 		if(ID == Guis.FURNACE){
 			return new ContainerFurnace(player, (TileEntityMachine)tileEntity);
 		}
+		if(ID == Guis.DEINTEGRATOR){
+			return new ContainerDeintegrator(player, (TileEntityMachine)tileEntity);
+		}
 		return null;
 	}
 
@@ -61,6 +64,9 @@ public class CommonProxy implements IGuiHandler{
 		}
 		if(ID == Guis.FURNACE){
 			return new GuiFurnace(player, (TileEntityMachine)tileEntity);
+		}
+		if(ID == Guis.DEINTEGRATOR){
+			return new GuiDeintegrator(player, (TileEntityMachine)tileEntity);
 		}
 		return null;
 	}

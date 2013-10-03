@@ -3,7 +3,6 @@ package com.petredy.redmagic.core;
 
 import com.petredy.redmagic.client.SoundHandler;
 import com.petredy.redmagic.client.render.*;
-import com.petredy.redmagic.entities.EntitySoulman;
 import com.petredy.redmagic.entities.particle.EntityCustomFX;
 import com.petredy.redmagic.entities.particle.EntityHoleFX;
 import com.petredy.redmagic.entities.particle.EntitySoulFX;
@@ -57,8 +56,6 @@ public class ClientProxy extends CommonProxy{
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCage.class, new RenderCage());
 		RenderingRegistry.registerBlockHandler(new RenderCage());
-		
-		RenderingRegistry.registerEntityRenderingHandler(EntitySoulman.class, new RenderSoulman());
 	}
 	
 	

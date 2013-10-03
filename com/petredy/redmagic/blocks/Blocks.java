@@ -130,10 +130,6 @@ public class Blocks {
 			'I', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA)
 		});
 		
-		GameRegistry.addShapelessRecipe(new ItemStack(soul), new Object[]{
-			new ItemStack(Items.soul)
-		});
-		
 		GameRegistry.addShapelessRecipe(new ItemStack(crystal, 64, BlockIndex.CRYSTAL_LEFTOVER_METADATA), new Object[]{
 			new ItemStack(crystal, 1, BlockIndex.CRYSTAL_MEDIUM_METADATA)
 		});

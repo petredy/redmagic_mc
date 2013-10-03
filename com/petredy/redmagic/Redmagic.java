@@ -67,12 +67,6 @@ public class Redmagic{
       	//Initialise TileEntity registration
       	TileEntityHandler.init();
       	
-      	//Intialise Dimension registration
-      	DimensionHandler.init();
-      	
-      	//Initialise Entity registration
-      	EntityHandler.init();
-      	
       	//Initilase Redvalue configuration
       	RedvalueConfigurationHandler.init();
       	

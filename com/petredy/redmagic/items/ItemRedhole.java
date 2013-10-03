@@ -3,9 +3,6 @@ package com.petredy.redmagic.items;
 import java.util.List;
 
 import com.petredy.redmagic.Redmagic;
-import com.petredy.redmagic.dimension.TeleporterOverworld;
-import com.petredy.redmagic.dimension.TeleporterSoul;
-import com.petredy.redmagic.lib.Dimensions;
 import com.petredy.redmagic.lib.ItemIndex;
 import com.petredy.redmagic.lib.Redholes;
 import com.petredy.redmagic.lib.Reference;

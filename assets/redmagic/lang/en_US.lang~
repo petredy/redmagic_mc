@@ -36,8 +36,3 @@ item.redhole.storeable.name=Storeable Redhole
 item.redhole.portable.name=Portable Redhole
 
 item.redmeter.name=Redmeter
-
-item.machine.collector.name=Collector Unit
-item.machine.contact.cooling.name=Contact Cooling Unit
-item.machine.furnace.name=Furnace Unit
-item.machine.deintegrator.name=Deintegrator Unit

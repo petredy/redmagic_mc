@@ -7,6 +7,7 @@ import com.petredy.redmagic.api.machines.IMachineItem;
 import com.petredy.redmagic.blocks.Blocks;
 import com.petredy.redmagic.lib.BlockIndex;
 import com.petredy.redmagic.lib.ItemIndex;
+import com.petredy.redmagic.lib.Machines;
 import com.petredy.redmagic.lib.Reference;
 import com.petredy.redmagic.utils.ItemUtils;
 import com.petredy.redmagic.utils.LogUtils;
@@ -23,10 +24,11 @@ import net.minecraft.world.World;
 public class ItemMachine extends Item implements IMachineItem{
 	
 	public final static String[] subNames = {
-		BlockIndex.MACHINE_BLOCK_NAME,
-		BlockIndex.MACHINE_COLLECTOR_NAME,
-		BlockIndex.MACHINE_CONTACT_COOLING_NAME,
-		BlockIndex.MACHINE_FURNACE_NAME
+		Machines.BLOCK_NAME,
+		Machines.COLLECTOR_NAME,
+		Machines.CONTACT_COOLING_NAME,
+		Machines.FURNACE_NAME,
+		Machines.DEINTEGRATOR_NAME
 	};
 	
 	public Icon[] icons = new Icon[ItemMachine.subNames.length];

@@ -7,7 +7,6 @@ import java.util.List;
 import com.petredy.redmagic.Redmagic;
 import com.petredy.redmagic.lib.Comments;
 import com.petredy.redmagic.lib.Configs;
-import com.petredy.redmagic.lib.Dimensions;
 import com.petredy.redmagic.lib.Keys;
 import com.petredy.redmagic.lib.Reference;
 import com.petredy.redmagic.utils.GlassesUtils;
@@ -38,9 +37,7 @@ public class ConfigHandler {
 		Property sleeprop = config.get("general", "sleep", Reference.SLEEP);
 		sleeprop.comment = Comments.SLEEP;
 		Reference.SLEEP = sleeprop.getBoolean(Reference.SLEEP);
-	
-		Dimensions.DIMENSION_ID = config.get("general", "dimensionID", Dimensions.DIMENSION_DEFAULT_ID, "This is the dimensionID for the Soul Dimension.").getInt(Dimensions.DIMENSION_DEFAULT_ID);
-		
+			
 	}
 	
 	public static void postConfig(Configuration config){

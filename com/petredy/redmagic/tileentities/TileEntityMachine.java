@@ -102,15 +102,13 @@ public class TileEntityMachine extends TileEntity implements IMachineHandler, IE
 	@Override
 	public float collect(World world, float amount, int chunkX, int chunkZ) {
 		float collected = EnergyMap.consumeEnergy(world.provider.dimensionId, chunkX, chunkZ, amount);
-		this.energy += collected;
-		return collected;
+		return store(collected);
 	}
 
 	@Override
 	public float release(World world, float amount, int chunkX, int chunkZ) {
 		float released = EnergyMap.releaseEnergy(new RedEnergy(world.provider.dimensionId, chunkX, chunkZ, amount));
-		this.energy -= released;
-		return released;
+		return use(released);
 	}
 	
 	@Override
@@ -120,6 +118,12 @@ public class TileEntityMachine extends TileEntity implements IMachineHandler, IE
 			return amount;
 		}
 		return 0;
+	}
+	
+	@Override
+	public float store(float amount){
+		this.energy += amount;
+		return amount;
 	}
 
 	@Override

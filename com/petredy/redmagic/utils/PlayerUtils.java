@@ -6,7 +6,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.src.ModLoader;
 import net.minecraftforge.common.DimensionManager;
-import com.petredy.redmagic.lib.Dimensions;
 import com.petredy.redmagic.player.PlayerInformation;
 
 public class PlayerUtils {

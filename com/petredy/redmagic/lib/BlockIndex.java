@@ -88,15 +88,7 @@ public class BlockIndex {
 	public static final String MACHINE_NAME = "machine";
 	public static final int MACHINE_DEFAULT_ID = 3313;
 	public static int MACHINE_ID;
-	
-	public static final String MACHINE_BLOCK_NAME = "block";
-	public static final int MACHINE_BLOCK_METADATA = 0;
-	public static final String MACHINE_COLLECTOR_NAME = "collector";
-	public static final int MACHINE_COLLECTOR_METADATA = 1;
-	public static final String MACHINE_CONTACT_COOLING_NAME = "contact.cooling";
-	public static final int MACHINE_CONTACT_COOLING_METADATA = 2;
-	public static final String MACHINE_FURNACE_NAME = "furnace";
-	public static final int MACHINE_FURNACE_METADATA = 3;
+
 	
 	// ----------------------------------------------------------------------------
 }

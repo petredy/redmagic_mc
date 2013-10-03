@@ -49,4 +49,23 @@ public class ItemIndex {
 	public static final String MACHINE_NAME = "machine";
 	public static final int MACHINE_DEFAULT_ID = 13007;
 	public static int MACHINE_ID;
+	
+	/**
+	 * ---------------------------------------------------------------------------------
+	 * Matter
+	 * MultiItem
+	 */
+	
+	public static final String MATTER_NAME = "matter";
+	public static final int MATTER_DEFAULT_ID = 13008;
+	public static int MATTER_ID;
+	
+	public static final String MATTER_LEFTOVER_NAME = "leftover";
+	public static final int MATTER_LEFTOVER_METADATA = 0;
+	public static final String MATTER_INSTABLE_NAME = "instable";
+	public static final int MATTER_INSTABLE_METADATA = 1;
+	public static final String MATTER_STABLE_NAME = "stable";
+	public static final int MATTER_STABLE_METADATA = 2;
+	
+	// ---------------------------------------------------------------------------------
 }

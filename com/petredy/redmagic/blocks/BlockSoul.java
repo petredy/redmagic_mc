@@ -4,7 +4,6 @@ import java.util.Random;
 
 import com.petredy.redmagic.Redmagic;
 import com.petredy.redmagic.lib.BlockIndex;
-import com.petredy.redmagic.lib.Dimensions;
 import com.petredy.redmagic.lib.Reference;
 import com.petredy.redmagic.lib.Textures;
 import com.petredy.redmagic.tileentities.TileEntitySoul;
@@ -62,13 +61,6 @@ public class BlockSoul extends BlockContainer{
 	public boolean isBlockReplaceable(World world, int x, int y, int z)
     {
         return false;
-    }
-	
-	public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4)
-    {
-        int l = par1World.getBlockId(par2, par3, par4);
-        Block block = Block.blocksList[l];
-        return (block == null || block.isBlockReplaceable(par1World, par2, par3, par4)) && par1World.provider.dimensionId == Dimensions.DIMENSION_ID;
     }
 
 }

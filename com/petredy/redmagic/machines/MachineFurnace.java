@@ -10,6 +10,7 @@ import com.petredy.redmagic.Redmagic;
 import com.petredy.redmagic.api.machines.IMachineHandler;
 import com.petredy.redmagic.lib.BlockIndex;
 import com.petredy.redmagic.lib.Guis;
+import com.petredy.redmagic.lib.Machines;
 import com.petredy.redmagic.utils.InventoryUtils;
 import com.petredy.redmagic.utils.LogUtils;
 
@@ -23,8 +24,8 @@ public class MachineFurnace extends Machine{
 	public ItemStack burningStack;
 	
 	public MachineFurnace(){
-		this.inventory = new InventoryBasic(BlockIndex.MACHINE_FURNACE_NAME, false, 2);
-		this.metadata = BlockIndex.MACHINE_FURNACE_METADATA;
+		this.inventory = new InventoryBasic(Machines.FURNACE_NAME, false, 2);
+		this.metadata = Machines.FURNACE_METADATA;
 	}
 	
 	public void update(IMachineHandler machineHandler) {

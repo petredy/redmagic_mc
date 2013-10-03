@@ -16,7 +16,6 @@ public class RedenergyUtils {
 		if(energyTag != null){
 			LogUtils.log("Load EnergyMap");
 			EnergyMap.readFromNBT(energyTag);
-			//PacketDispatcher.sendPacketToAllPlayers(PacketHandler.populatePacket(new PacketEnergyMapSync(energyTag)));
 		}
 	}
 	
