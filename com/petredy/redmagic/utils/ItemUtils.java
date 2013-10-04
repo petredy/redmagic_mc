@@ -94,4 +94,14 @@ public class ItemUtils {
 		stack.stackTagCompound.setTag(key, tag);
 		
 	}
+
+	public static float getFloat(ItemStack stack, String key) {
+		initNBT(stack);
+		return stack.stackTagCompound.getFloat(key);
+	}
+	
+	public static void setFloat(ItemStack stack, String key, float value){
+		initNBT(stack);
+		stack.stackTagCompound.setFloat(key, value);
+	}
 }

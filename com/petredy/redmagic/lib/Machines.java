@@ -11,4 +11,10 @@ public class Machines {
 	public static final int FURNACE_METADATA = 3;
 	public static final String DEINTEGRATOR_NAME = "deintegrator";
 	public static final int DEINTEGRATOR_METADATA = 4;
+	public static final String CHARGER_NAME = "charger";
+	public static final int CHARGER_METADATA = 5;
+	public static final String REFRIGERATOR_NAME = "refrigerator";
+	public static final int REFRIGERATOR_METADATA = 6;
+	public static final String FREEZER_NAME = "freezer";
+	public static final int FREEZER_METADATA = 7;
 }

@@ -11,6 +11,7 @@ public class MachineCollector extends Machine{
 	
 	public MachineCollector(){
 		this.metadata = Machines.COLLECTOR_METADATA;
+		this.size = 1;
 	}
 	
 	public void update(IMachineHandler machineHandler) {

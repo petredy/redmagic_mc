@@ -107,27 +107,25 @@ public class Blocks {
 		
 		GameRegistry.addShapedRecipe(new ItemStack(earthwire), new Object[]{
 			"FIF",
-			"FIF",
-			"FIF",
+			"PIP",
+			"SCS",
 			'I', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA),
-			'F', Item.flint
-		});
-		
-		GameRegistry.addShapedRecipe(new ItemStack(energyAccess, 2), new Object[]{
-			"FIF",
-			"IGI",
-			"FIF",
 			'F', Item.flint,
-			'G', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_GEAR_RHENIUM_METADATA),
-			'I', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA)
-		});;
+			'S', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_LOGIC_STORAGE_METADATA),
+			'C', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_LOGIC_CORE_METADATA),
+			'P', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_PLATE_RHENIUM_METADATA)
+		});
 		
 		GameRegistry.addShapedRecipe(new ItemStack(energySummoner), new Object[]{
 			"NIN",
-			"NIN",
-			"NIN",
+			"PcP",
+			"SCS",
 			'N', Block.netherBrick,
-			'I', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA)
+			'I', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA),
+			'c', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_ENERGY_CONDENSER_METADATA),
+			'S', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_LOGIC_STORAGE_METADATA),
+			'C', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_LOGIC_CORE_METADATA),
+			'P', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_PLATE_RHENIUM_METADATA)
 		});
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(crystal, 64, BlockIndex.CRYSTAL_LEFTOVER_METADATA), new Object[]{
@@ -137,5 +135,16 @@ public class Blocks {
 		GameRegistry.addShapelessRecipe(new ItemStack(crystal, 32, BlockIndex.CRYSTAL_LEFTOVER_METADATA), new Object[]{
 			new ItemStack(crystal, 1, BlockIndex.CRYSTAL_SMALL_METADATA)
 		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(machine), new Object[]{
+			"PSP",
+			"PCP",
+			"PSP",
+			'P', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_PLATE_RHENIUM_METADATA),
+			'C', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_LOGIC_CORE_METADATA),
+			'S', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_LOGIC_STORAGE_METADATA)
+		});
+		
+		
 	}
 }

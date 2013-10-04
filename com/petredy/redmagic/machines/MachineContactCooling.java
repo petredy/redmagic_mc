@@ -13,15 +13,16 @@ public class MachineContactCooling extends Machine{
 	
 	public MachineContactCooling(){
 		this.metadata = Machines.CONTACT_COOLING_METADATA;
+		this.size = 1;
 	}
 	
 	public void update(IMachineHandler machineHandler) {
-		if(isAttackedBlockWater(machineHandler.getWorld(), this.side, machineHandler.getXCoord(), machineHandler.getYCoord(), machineHandler.getZCoord())){
+		if(machineHandler.getHeat() > 0 && isAttachedBlockWater(machineHandler.getWorld(), this.side, machineHandler.getXCoord(), machineHandler.getYCoord(), machineHandler.getZCoord())){
 			machineHandler.setHeat(machineHandler.getHeat() - cooling);
 		}
 	}
 
-	private boolean isAttackedBlockWater(World world, int side, int xCoord, int yCoord, int zCoord) {
+	private boolean isAttachedBlockWater(World world, int side, int xCoord, int yCoord, int zCoord) {
 		switch(side){
 		case 0: return world.getBlockId(xCoord, yCoord - 1, zCoord) == Block.waterStill.blockID;
 		case 1: return world.getBlockId(xCoord, yCoord + 1, zCoord) == Block.waterStill.blockID;

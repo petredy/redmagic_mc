@@ -3,12 +3,16 @@ package com.petredy.redmagic.blocks;
 import java.util.List;
 
 import com.petredy.redmagic.Redmagic;
+import com.petredy.redmagic.api.IScrewdriver;
 import com.petredy.redmagic.api.machines.IMachineItem;
 import com.petredy.redmagic.items.ItemMachine;
 import com.petredy.redmagic.lib.BlockIndex;
 import com.petredy.redmagic.lib.Guis;
 import com.petredy.redmagic.lib.Reference;
+import com.petredy.redmagic.lib.Sounds;
 import com.petredy.redmagic.tileentities.TileEntityMachine;
+import com.petredy.redmagic.utils.InventoryUtils;
+import com.petredy.redmagic.utils.ItemUtils;
 import com.petredy.redmagic.utils.LogUtils;
 
 import cpw.mods.fml.relauncher.Side;
@@ -78,6 +82,14 @@ public class BlockMachine extends BlockContainer{
 					par5EntityPlayer.inventory.decrStackSize(par5EntityPlayer.inventory.currentItem, 1);
 					return true;
 				}
+			}else if(current != null && current.getItem() instanceof IScrewdriver){
+				if(par5EntityPlayer.isSneaking()){
+					machineBlock.removeMachine(par5EntityPlayer, par6, par7, par8, par9);
+					return true;
+				}else{
+					par5EntityPlayer.openGui(Redmagic.instance, Guis.MACHINE, par1World, par2, par3, par4);
+					return true;
+				}
 			}else{
 				if(machineBlock.activate(par5EntityPlayer, par6, par7, par8, par9))return true;
 				else {
@@ -87,6 +99,15 @@ public class BlockMachine extends BlockContainer{
 			}
 		}
         return false;
+    }
+	
+	public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6)
+    {
+		TileEntityMachine machineBlock = (TileEntityMachine) par1World.getBlockTileEntity(par2, par3, par4);
+		if(machineBlock != null){
+			machineBlock.onBreak();
+		}
+		super.breakBlock(par1World, par2, par3, par4, par5, par6);
     }
 	
 }

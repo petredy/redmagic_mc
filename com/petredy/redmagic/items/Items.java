@@ -1,6 +1,7 @@
 package com.petredy.redmagic.items;
 
 import com.petredy.redmagic.lib.ItemIndex;
+import com.petredy.redmagic.lib.Machines;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -22,6 +23,7 @@ public class Items {
 	public static ItemMachine machine;
 	public static ItemRedmeter meter;
 	public static ItemMatter matter;
+	public static ItemScrewdriver screwdriver;
 	
 	//Armor
 	public static EnumArmorMaterial glassMaterial = EnumHelper.addArmorMaterial(ItemIndex.GLASSES_NAME, 1000, new int[]{2, 2, 2, 2, 2}, 30);
@@ -36,6 +38,7 @@ public class Items {
 		machine = new ItemMachine(ItemIndex.MACHINE_ID);
 		meter = new ItemRedmeter(ItemIndex.REDMETER_ID);
 		matter = new ItemMatter(ItemIndex.MATTER_ID);
+		screwdriver = new ItemScrewdriver(ItemIndex.SCREWDRIVER_ID);
 		addRecipes();
 	}
 	
@@ -47,6 +50,7 @@ public class Items {
 		ItemIndex.REDMETER_ID = config.getItem(ItemIndex.REDMETER_NAME, ItemIndex.REDMETER_DEFAULT_ID).getInt(ItemIndex.REDMETER_DEFAULT_ID);
 		ItemIndex.MACHINE_ID = config.getItem(ItemIndex.MACHINE_NAME, ItemIndex.MACHINE_DEFAULT_ID).getInt(ItemIndex.MACHINE_DEFAULT_ID);
 		ItemIndex.MATTER_ID = config.getItem(ItemIndex.MATTER_NAME, ItemIndex.MATTER_DEFAULT_ID).getInt(ItemIndex.MATTER_DEFAULT_ID);
+		ItemIndex.SCREWDRIVER_ID = config.getItem(ItemIndex.SCREWDRIVER_NAME, ItemIndex.SCREWDRIVER_DEFAULT_ID).getInt(ItemIndex.SCREWDRIVER_DEFAULT_ID);
 		
 	}
 	
@@ -70,32 +74,63 @@ public class Items {
 			"s s",
 			'P', Block.thinGlass,
 			's', Item.stick,
-			'S', new ItemStack(crafting, 1, ItemIndex.CRAFTING_GEAR_RHENIUM_METADATA)
+			'S', new ItemStack(crafting, 1, ItemIndex.CRAFTING_LOGIC_CORE_METADATA)
 		});
 		
 		GameRegistry.addShapedRecipe(new ItemStack(redhole), new Object[]{
 			"RRR",
-			"RGR",
+			"RCR",
 			"RRR",
 			'R', Item.redstone,
-			'G', new ItemStack(crafting, 1, ItemIndex.CRAFTING_GEAR_RHENIUM_METADATA)
+			'C', new ItemStack(crafting, 1, ItemIndex.CRAFTING_ENERGY_CONDENSER_METADATA)
 		});
 		
-		GameRegistry.addShapedRecipe(new ItemStack(crafting, 1, ItemIndex.CRAFTING_GEAR_RHENIUM_METADATA), new Object[]{
-			" R ",
+		GameRegistry.addShapedRecipe(new ItemStack(crafting, 1, ItemIndex.CRAFTING_LOGIC_CORE_METADATA), new Object[]{
+			"rRF",
 			"RIR",
-			" R ",
+			"FRr",
 			'I', Item.ingotIron,
-			'R', new ItemStack(crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA)
+			'R', new ItemStack(crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA),
+			'r', Item.redstone,
+			'F', Item.flint
 		});
 		
+		GameRegistry.addShapedRecipe(new ItemStack(crafting, 1, ItemIndex.CRAFTING_LOGIC_STORAGE_METADATA), new Object[]{
+			"IfI",
+			"rcr",
+			"IfI",
+			'C', new ItemStack(crafting, 1, ItemIndex.CRAFTING_LOGIC_CORE_METADATA),
+			'I', new ItemStack(crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA),
+			'r', Item.redstone,
+			'f', Item.flint
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(crafting, 1, ItemIndex.CRAFTING_ENERGY_CONDENSER_METADATA), new Object[]{
+			"fIf",
+			"p p",
+			"fIf",
+			'f', Item.flint,
+			'p', Block.thinGlass,
+			'd', Item.diamond,
+			'I', new ItemStack(crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA)
+			
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(crafting, 1, ItemIndex.CRAFTING_PLATE_RHENIUM_METADATA), new Object[]{
+			"IfI",
+			"iii",
+			"IfI",
+			'I', Item.ingotIron,
+			'f', Item.flint,
+			'i', new ItemStack(crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA)
+		});
 		
 		GameRegistry.addShapedRecipe(new ItemStack(meter), new Object[]{
 			" I ",
 			"ICI",
 			" I ",
 			'I', new ItemStack(crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA),
-			'C', Item.compass
+			'C', new ItemStack(crafting, 1, ItemIndex.CRAFTING_LOGIC_CORE_METADATA)
 		});
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(matter, 1, ItemIndex.MATTER_STABLE_METADATA), new Object[]{
@@ -107,6 +142,85 @@ public class Items {
 			new ItemStack(matter, 1, ItemIndex.MATTER_LEFTOVER_METADATA), new ItemStack(matter, 1, ItemIndex.MATTER_LEFTOVER_METADATA),
 			new ItemStack(matter, 1, ItemIndex.MATTER_LEFTOVER_METADATA), new ItemStack(matter, 1, ItemIndex.MATTER_LEFTOVER_METADATA)
 		});
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(screwdriver), new Object[]{
+			new ItemStack(Item.stick), new ItemStack(crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA)
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(machine, 1, Machines.COLLECTOR_METADATA), new Object[]{
+			"PFP",
+			"I I",
+			"ICI",
+			'P', new ItemStack(crafting, 1, ItemIndex.CRAFTING_PLATE_RHENIUM_METADATA),
+			'I', new ItemStack(crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA),
+			'F', Block.fenceIron,
+			'C', new ItemStack(crafting, 1, ItemIndex.CRAFTING_LOGIC_CORE_METADATA)
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(machine, 1, Machines.CONTACT_COOLING_METADATA), new Object[]{
+			"IPI",
+			"III",
+			"scs",
+			'I', new ItemStack(crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA),
+			'P',  new ItemStack(crafting, 1, ItemIndex.CRAFTING_PLATE_RHENIUM_METADATA),
+			's', new ItemStack(crafting, 1, ItemIndex.CRAFTING_LOGIC_STORAGE_METADATA),
+			'c', new ItemStack(crafting, 1, ItemIndex.CRAFTING_LOGIC_CORE_METADATA)
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(machine, 1, Machines.FURNACE_METADATA), new Object[]{
+			"PFP",
+			"ICI",
+			"IcI",
+			'I', new ItemStack(crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA),
+			'P', new ItemStack(crafting, 1, ItemIndex.CRAFTING_PLATE_RHENIUM_METADATA),
+			'F', Block.furnaceIdle,
+			'C', new ItemStack(crafting, 1, ItemIndex.CRAFTING_ENERGY_CONDENSER_METADATA),
+			'c', new ItemStack(crafting, 1, ItemIndex.CRAFTING_LOGIC_CORE_METADATA)
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(machine, 1, Machines.DEINTEGRATOR_METADATA), new Object[]{
+			" R ",
+			"PCP",
+			"ScS",
+			'R', new ItemStack(redhole),
+			'P', new ItemStack(crafting, 1, ItemIndex.CRAFTING_PLATE_RHENIUM_METADATA),
+			'C', new ItemStack(crafting, 1, ItemIndex.CRAFTING_ENERGY_CONDENSER_METADATA),
+			'S', new ItemStack(crafting, 1, ItemIndex.CRAFTING_LOGIC_STORAGE_METADATA),
+			'c', new ItemStack(crafting, 1, ItemIndex.CRAFTING_LOGIC_CORE_METADATA)
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(machine, 1, Machines.CHARGER_METADATA), new Object[]{
+			"I I",
+			"I I",
+			"PCP",
+			'P', new ItemStack(crafting, 1, ItemIndex.CRAFTING_PLATE_RHENIUM_METADATA),
+			'I', new ItemStack(crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA),
+			'F', Block.fenceIron,
+			'C', new ItemStack(crafting, 1, ItemIndex.CRAFTING_LOGIC_CORE_METADATA)
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(machine, 1, Machines.REFRIGERATOR_METADATA), new Object[]{
+			"iii",
+			"PPP",
+			"SCS",
+			'i', Block.ice,
+			'P', new ItemStack(crafting, 1, ItemIndex.CRAFTING_PLATE_RHENIUM_METADATA),
+			'S', new ItemStack(crafting, 1, ItemIndex.CRAFTING_LOGIC_STORAGE_METADATA),
+			'C', new ItemStack(crafting, 1, ItemIndex.CRAFTING_LOGIC_CORE_METADATA)	
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(machine, 1, Machines.FREEZER_METADATA), new Object[]{
+			"ini",
+			"fcf",
+			"iFi",
+			'i', Block.ice,
+			'f', Item.flint,
+			'F', Block.furnaceIdle,
+			'n', new ItemStack(crafting, 1, ItemIndex.CRAFTING_NUGGET_RHENIUM_METADATA),
+			'c', new ItemStack(crafting, 1, ItemIndex.CRAFTING_LOGIC_CORE_METADATA)
+		});
+		
+		
 	}
 	
 	

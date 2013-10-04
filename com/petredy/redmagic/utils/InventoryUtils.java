@@ -129,7 +129,6 @@ public class InventoryUtils {
 			if (stackToMove.itemID == stack.itemID && (stackToMove.getItem().isDamageable() || stackToMove.getItemDamage() == stack.getItemDamage()) && ItemStack.areItemStackTagsEqual(stack, stackToMove)) {
 				if (stackToMove.stackSize + stack.stackSize <= stack.getMaxStackSize()) {
 					stack.stackSize += stackToMove.stackSize;
-					LogUtils.log(stack);
 					inventory.setInventorySlotContents(i, stack);
 					return null;
 				}

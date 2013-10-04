@@ -13,11 +13,9 @@ public interface IMachineHandler {
 	
 	public float getHeat();
 	
+	public int getSize();
+	
 	public void setHeat(float heat);
-	
-	public float getMaxHeat();
-	
-	public void setMaxHeat(float heat);
 	
 	public World getWorld();
 	

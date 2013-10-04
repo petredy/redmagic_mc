@@ -9,5 +9,6 @@ public class Guis {
 	public static final int MACHINE = 2;
 	public static final int FURNACE = 3;
 	public static final int DEINTEGRATOR = 4;
+	public static final int FREEZER = 5;
 	
 }

@@ -1,5 +1,6 @@
 package com.petredy.redmagic.machines;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.item.ItemStack;
@@ -7,59 +8,45 @@ import net.minecraft.nbt.NBTTagCompound;
 
 import com.petredy.redmagic.Redmagic;
 import com.petredy.redmagic.api.machines.IMachineHandler;
-import com.petredy.redmagic.items.Items;
 import com.petredy.redmagic.lib.Guis;
-import com.petredy.redmagic.lib.ItemIndex;
 import com.petredy.redmagic.lib.Machines;
-import com.petredy.redmagic.redvalue.RedvalueDictionary;
 import com.petredy.redmagic.utils.InventoryUtils;
-import com.petredy.redmagic.utils.LogUtils;
 
-public class MachineDeintegrator extends Machine{
+public class MachineFreezer extends Machine{
 
 	public InventoryBasic inventory;
 	public ItemStack item;
 	
 	public int tick;
-	public int neededTicks = 100;
+	public int neededTicks = 1000;
 	
-	public MachineDeintegrator(){
-		this.metadata = Machines.DEINTEGRATOR_METADATA;
-		this.inventory = new InventoryBasic(Machines.DEINTEGRATOR_NAME, false, 2);
-		this.size = 2;
+	public MachineFreezer(){
+		this.metadata = Machines.FREEZER_METADATA;
+		this.size = 1;
+		this.inventory = new InventoryBasic(Machines.FREEZER_NAME, false, 2);
 	}
+	
 	
 	public void update(IMachineHandler handler) {
 		if(item != null){
-			float redvalue = RedvalueDictionary.getRedvalue(item);
-			float production = redvalue / neededTicks;
 			if(tick < neededTicks){
-				handler.getEnergyHandler().store(production);
-				float heat = production;
-				handler.setHeat(handler.getHeat() + heat);
 				tick++;
+				handler.setHeat(handler.getHeat() - (getCooling(item) / neededTicks));
 			}else{
 				tick = 0;
 				item = null;
-				if(new java.util.Random().nextFloat() < 1 / redvalue / 10){
-					if(inventory.getStackInSlot(1) != null){
-						inventory.getStackInSlot(1).stackSize++;
-					}else{
-						inventory.setInventorySlotContents(1, null);
-						inventory.setInventorySlotContents(1, new ItemStack(Items.matter, 1, ItemIndex.MATTER_LEFTOVER_METADATA));
-					}
-				}
 			}
 		}else{
-			if(handler.getHeat() < -100 && inventory.getStackInSlot(0) != null && RedvalueDictionary.getRedvalue(inventory.getStackInSlot(0)) > 0){
-				item = inventory.getStackInSlot(0);
+			if(inventory.getStackInSlot(0) != null && getCooling(inventory.getStackInSlot(0)) > 0){
+				item = inventory.getStackInSlot(0).copy();
+				item.stackSize = 1;
 				inventory.decrStackSize(0, 1);
 			}
 		}
 	}
 	
 	public void activate(IMachineHandler handler, EntityPlayer player, float offX, float offY, float offZ) {
-		player.openGui(Redmagic.instance, Guis.DEINTEGRATOR, player.worldObj, handler.getXCoord(), handler.getYCoord(), handler.getZCoord());
+		player.openGui(Redmagic.instance, Guis.FREEZER, player.worldObj, handler.getXCoord(), handler.getYCoord(), handler.getZCoord());
 	}
 	
 	public void remove(IMachineHandler handler) {
@@ -82,4 +69,8 @@ public class MachineDeintegrator extends Machine{
 		InventoryUtils.writeToNBT(inventory, tag);
 	}
 	
+	public float getCooling(ItemStack stack){
+		if(stack.isItemEqual(new ItemStack(Block.ice)))return 500F;
+		return 0;
+	}
 }

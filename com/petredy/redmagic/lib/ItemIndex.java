@@ -33,8 +33,14 @@ public class ItemIndex {
 	public static final int CRAFTING_INGOT_RHENIUM_METADATA = 0;
 	public static final String CRAFTING_NUGGET_RHENIUM_NAME = "nuggetRhenium";
 	public static final int CRAFTING_NUGGET_RHENIUM_METADATA = 1;
-	public static final String CRAFTING_GEAR_RHENIUM_NAME = "gearRhenium";
-	public static final int CRAFTING_GEAR_RHENIUM_METADATA = 2;
+	public static final String CRAFTING_LOGIC_CORE_NAME = "logic.core";
+	public static final int CRAFTING_LOGIC_CORE_METADATA = 2;
+	public static final String CRAFTING_LOGIC_STORAGE_NAME = "logic.storage";
+	public static final int CRAFTING_LOGIC_STORAGE_METADATA = 3;
+	public static final String CRAFTING_ENERGY_CONDENSER_NAME = "energy.condenser";
+	public static final int CRAFTING_ENERGY_CONDENSER_METADATA = 4;
+	public static final String CRAFTING_PLATE_RHENIUM_NAME = "plate.rhenium";
+	public static final int CRAFTING_PLATE_RHENIUM_METADATA = 5;
 	
 	// ------------------------------------------------------------------------------
 	
@@ -68,4 +74,8 @@ public class ItemIndex {
 	public static final int MATTER_STABLE_METADATA = 2;
 	
 	// ---------------------------------------------------------------------------------
+	
+	public static final String SCREWDRIVER_NAME = "screwdriver";
+	public static final int SCREWDRIVER_DEFAULT_ID = 13009;
+	public static int SCREWDRIVER_ID;
 }

@@ -12,6 +12,7 @@ import com.petredy.redmagic.Redmagic;
 import com.petredy.redmagic.lib.ItemIndex;
 import com.petredy.redmagic.lib.Machines;
 import com.petredy.redmagic.lib.Reference;
+import com.petredy.redmagic.utils.LogUtils;
 
 public class ItemMatter extends Item{
 
@@ -30,14 +31,16 @@ public class ItemMatter extends Item{
 		this.setHasSubtypes(true);
 	}
 	
+	@Override
 	public void registerIcons(IconRegister iconRegister){
 		for(int i = 0; i < subNames.length; i++){
-			icons[i] = iconRegister.registerIcon(Reference.MOD_ID + ":" + ItemIndex.MATTER_NAME + "." + ItemMachine.subNames[i]);
+			icons[i] = iconRegister.registerIcon(Reference.MOD_ID + ":" + ItemIndex.MATTER_NAME + "." + subNames[i]);
 		}
 	}
 	
+	@Override
 	public Icon getIconFromDamage(int metadata){
-		metadata = Math.max(1, Math.min(subNames.length - 1, metadata));
+		metadata = Math.max(0, Math.min(subNames.length - 1, metadata));
 		return icons[metadata];
 	}
 	

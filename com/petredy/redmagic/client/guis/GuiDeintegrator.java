@@ -32,7 +32,7 @@ public class GuiDeintegrator extends GuiContainer{
 	}
 	
 	protected void drawGuiContainerForegroundLayer(int par1, int par2) {
-		this.fontRenderer.drawString(StatCollector.translateToLocal(new ItemStack(Items.machine, 1, Machines.DEINTEGRATOR_METADATA).getUnlocalizedName()), 8, 4, Guis.DEFAULT_FONT_COLOR);
+		this.fontRenderer.drawString(new ItemStack(Items.machine, 1, Machines.DEINTEGRATOR_METADATA).getDisplayName(), 8, 4, Guis.DEFAULT_FONT_COLOR);
 	}
 	
 

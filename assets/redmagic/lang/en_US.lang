@@ -24,20 +24,33 @@ tile.energy.summoner.name=Lightning Summoner
 tile.soul.name=Soul
 tile.soul.energy.access.name=Energy Access Block
 
+tile.machine.name=Machine Block
+
 item.trading.crystal.name=Trading Crystal
 item.glasses.name=Virtual Reality Glasses
 
 item.crafting.ingotRhenium.name=Rhenium Ingot
 item.crafting.nuggetRhenium.name=Rhenium Nugget
-item.crafting.gearRhenium.name=Rhenium Gear
+item.crafting.logic.core.name=Logic Core
+item.crafting.logic.storage.name=Logic Memory
+item.crafting.energy.condenser.name=Energy Condenser
+item.crafting.plate.rhenium.name=Rhenium Plate
 
 item.redhole.name=Redhole
 item.redhole.storeable.name=Storeable Redhole
 item.redhole.portable.name=Portable Redhole
 
 item.redmeter.name=Redmeter
+item.screwdriver.name=Redmagic Screwdriver
+
+item.matter.leftover.name=Matter Leftover
+item.matter.instable.name=Instable Matter
+item.matter.stable.name=Stable Matter
 
 item.machine.collector.name=Collector Unit
 item.machine.contact.cooling.name=Contact Cooling Unit
 item.machine.furnace.name=Furnace Unit
 item.machine.deintegrator.name=Deintegrator Unit
+item.machine.charger.name=Charger Unit
+item.machine.refrigerator.name=Refrigerator Unit
+item.machine.freezer.name=Freezer Unit

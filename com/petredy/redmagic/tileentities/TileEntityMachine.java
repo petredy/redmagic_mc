@@ -27,7 +27,6 @@ public class TileEntityMachine extends TileEntity implements IMachineHandler, IE
 	public float energy;
 	
 	public float heat;
-	public float maxHeat = 200;
 	
 	public void updateEntity(){
 		for(Machine machine: machines){
@@ -35,7 +34,6 @@ public class TileEntityMachine extends TileEntity implements IMachineHandler, IE
 				machine.update((IMachineHandler)this);
 			}
 		}
-		if(heat < 0)heat = 0;
 	}
 
 	public Machine getMachine(int metadata){
@@ -53,6 +51,15 @@ public class TileEntityMachine extends TileEntity implements IMachineHandler, IE
 	public Machine getMachineOnSide(int i) {
 		return machines[i];
 	}
+	
+	@Override
+	public int getSize(){
+		int size = 0;
+		for(Machine machine: machines){
+			if(machine != null)size += machine.getSize();
+		}
+		return size;
+	}
 
 	@Override
 	public IEnergyHandler getEnergyHandler() {
@@ -67,16 +74,6 @@ public class TileEntityMachine extends TileEntity implements IMachineHandler, IE
 	@Override
 	public void setHeat(float heat) {
 		this.heat = heat;
-	}
-	
-	@Override
-	public float getMaxHeat() {
-		return maxHeat;
-	}
-
-	@Override
-	public void setMaxHeat(float heat) {
-		maxHeat = heat;
 	}
 	
 	@Override
@@ -146,7 +143,7 @@ public class TileEntityMachine extends TileEntity implements IMachineHandler, IE
 	public boolean setMachine(int metadata, int side, EntityPlayer player) {
 		if(machines[side] == null){
 			Machine machine = Machine.getMachine(metadata);
-			if(machine != null && !containsMachine(machine) && machine.canPlacedOnSide(side)){
+			if(machine != null && !containsMachine(machine) && machine.canPlacedOnSide(side) && getSize() + machine.getSize() <= 6){
 				machines[side] = machine;
 				machines[side].onPlacedByPlayer(this, side, player);
 				player.worldObj.markBlockForRenderUpdate(xCoord, yCoord, zCoord);
@@ -154,6 +151,15 @@ public class TileEntityMachine extends TileEntity implements IMachineHandler, IE
 			}
 		}
 		return false;
+	}
+	
+	public void removeMachine(EntityPlayer player, int side, float offX, float offY, float offZ) {
+		Machine machine = getMachineOnSide(side);
+		if(machine != null){
+			machine.removeByPlayer(this, player, offX, offY, offZ);
+			player.worldObj.markBlockForRenderUpdate(xCoord, yCoord, zCoord);
+			machines[side] = null;
+		}
 	}
 
 
@@ -172,7 +178,6 @@ public class TileEntityMachine extends TileEntity implements IMachineHandler, IE
 		super.readFromNBT(tag);
 		this.energy = tag.getFloat("redmagic.energy");
 		this.heat = tag.getFloat("redmagic.heat");
-		this.maxHeat = tag.getFloat("redmagic.maxHeat");
 		NBTTagList list = tag.getTagList("redmagic.machines");
 		for(int i = 0; i < list.tagCount(); i++){
 			NBTTagCompound machineTag = (NBTTagCompound) list.tagAt(i);
@@ -186,7 +191,6 @@ public class TileEntityMachine extends TileEntity implements IMachineHandler, IE
 		super.writeToNBT(tag);
 		tag.setFloat("redmagic.energy", energy);
 		tag.setFloat("redmagic.heat", heat);
-		tag.setFloat("redmagic.maxHeat", maxHeat);
 		NBTTagList list = new NBTTagList();
 		for(Machine machine: machines){
 			if(machine != null){
@@ -209,6 +213,21 @@ public class TileEntityMachine extends TileEntity implements IMachineHandler, IE
     {
 		this.readFromNBT(pkt.data);
     }
+
+	public void onBreak() {
+		for(int i = 0; i < 6; i++){
+			this.removeMachine(i);
+		}
+	}
+
+	public void removeMachine(int side) {
+		Machine machine = getMachineOnSide(side);
+		if(machine != null){
+			machine.remove(this);
+			worldObj.markBlockForRenderUpdate(xCoord, yCoord, zCoord);
+			machines[side] = null;
+		}
+	}
 	
 	
 }

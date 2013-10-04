@@ -26,6 +26,7 @@ public class MachineFurnace extends Machine{
 	public MachineFurnace(){
 		this.inventory = new InventoryBasic(Machines.FURNACE_NAME, false, 2);
 		this.metadata = Machines.FURNACE_METADATA;
+		this.size = 1;
 	}
 	
 	public void update(IMachineHandler machineHandler) {
@@ -66,6 +67,14 @@ public class MachineFurnace extends Machine{
 	
 	public void activate(IMachineHandler handler, EntityPlayer player, float offX, float offY, float offZ) {
 		player.openGui(Redmagic.instance, Guis.FURNACE, player.worldObj, handler.getXCoord(), handler.getYCoord(), handler.getZCoord());
+	}
+	
+	public void remove(IMachineHandler handler) {
+		if(!handler.getWorld().isRemote){
+			InventoryUtils.dropInventory(inventory, handler.getWorld(), handler.getXCoord(), handler.getYCoord(), handler.getZCoord());
+			if(burningStack != null)InventoryUtils.dropItemStack(burningStack, handler.getWorld(), handler.getXCoord(), handler.getYCoord(), handler.getZCoord());
+		}
+		super.remove(handler);
 	}
 	
 	public void readFromNBT(NBTTagCompound tag){
