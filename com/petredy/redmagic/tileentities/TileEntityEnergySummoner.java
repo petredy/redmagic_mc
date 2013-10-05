@@ -3,6 +3,7 @@ package com.petredy.redmagic.tileentities;
 import java.util.List;
 import java.util.Random;
 
+import com.petredy.redmagic.Redmagic;
 import com.petredy.redmagic.api.redenergy.IEnergyConsumer;
 import com.petredy.redmagic.api.redenergy.ILightningConsumer;
 import com.petredy.redmagic.redenergy.EnergyConsumer;
@@ -52,22 +53,29 @@ public class TileEntityEnergySummoner extends TileEntity implements IPowerRecept
 			int y = rand.nextInt(256 - height) * (rand.nextFloat() < 0.5 ? -1 : 1);
 			int z = rand.nextInt(256 - height) * (rand.nextFloat() < 0.5 ? -1 : 1);
 			List<EnergyConsumer> consumers = EnergyMap.getConsumerInNearOf(xCoord + x, y, zCoord + z);
-			EntityLightningBolt bolt = null;
-			if(consumers != null && consumers.size() > 0){
-				boolean created = false;
-				float chance = 1 / (float)consumers.size();
-				for(EnergyConsumer consumer: consumers){
-					if(rand.nextFloat() < chance){
-						bolt = new EntityLightningBolt(worldObj, consumer.x, consumer.y, consumer.z);
-						IEnergyConsumer con = (IEnergyConsumer) worldObj.getBlockTileEntity(consumer.x, consumer.y, consumer.z);
-						con.consume();
-						break;
+			try{
+				EntityLightningBolt bolt = null;
+				if(consumers != null && consumers.size() > 0){
+					boolean created = false;
+					float chance = 1 / (float)consumers.size();
+					for(EnergyConsumer consumer: consumers){
+						if(rand.nextFloat() < chance){
+							bolt = new EntityLightningBolt(worldObj, consumer.x, consumer.y, consumer.z);
+							IEnergyConsumer con = (IEnergyConsumer) worldObj.getBlockTileEntity(consumer.x, consumer.y, consumer.z);
+							con.consume();
+							break;
+						}
 					}
+				}else{
+					bolt = new EntityLightningBolt(worldObj, xCoord + x, y, zCoord + z);
 				}
-			}else{
-				bolt = new EntityLightningBolt(worldObj, xCoord + x, y, zCoord + z);
+				if(bolt != null)worldObj.addWeatherEffect(bolt);
+			}catch(Exception e){
+				LogUtils.log("LightningBolt couldn't be created at " + (xCoord + x) + "/" + y + "/" + (zCoord + z));
+				if(Redmagic.DEBUG){
+					e.printStackTrace();
+				}
 			}
-			if(bolt != null)worldObj.addWeatherEffect(bolt);
 			
 		}
 	}

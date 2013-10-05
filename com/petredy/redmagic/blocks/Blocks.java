@@ -21,8 +21,6 @@ public class Blocks {
 	public static BlockCrystal crystal;
 	public static BlockEarthwire earthwire;
 	public static BlockHole hole;
-	public static BlockSoul soul;
-	public static BlockSoulEnergyAccess energyAccess;
 	public static BlockEnergySummoner energySummoner;
 	public static BlockMachine machine;
 	
@@ -34,8 +32,6 @@ public class Blocks {
 		crystal = new BlockCrystal(BlockIndex.CRYSTAL_ID);
 		earthwire = new BlockEarthwire(BlockIndex.EARTHWIRE_ID);
 		hole = new BlockHole(BlockIndex.HOLE_ID);
-		soul = new BlockSoul(BlockIndex.SOUL_ID);
-		energyAccess = new BlockSoulEnergyAccess(BlockIndex.SOUL_ENERGY_ACCESS_ID);
 		energySummoner = new BlockEnergySummoner(BlockIndex.ENERGY_SUMMONER_ID);
 		machine = new BlockMachine(BlockIndex.MACHINE_ID);
 		
@@ -46,8 +42,6 @@ public class Blocks {
 		GameRegistry.registerBlock(crystal, ItemBlockCrystal.class, BlockIndex.CRYSTAL_NAME);
 		GameRegistry.registerBlock(earthwire, BlockIndex.EARTHWIRE_NAME);
 		GameRegistry.registerBlock(hole, BlockIndex.HOLE_NAME);
-		GameRegistry.registerBlock(soul, BlockIndex.SOUL_NAME);
-		GameRegistry.registerBlock(energyAccess, BlockIndex.SOUL_ENERGY_ACCESS_NAME);
 		GameRegistry.registerBlock(energySummoner, BlockIndex.ENERGY_SUMMONER_NAME);
 		GameRegistry.registerBlock(machine, BlockIndex.MACHINE_NAME);
 		
@@ -64,8 +58,6 @@ public class Blocks {
 		BlockIndex.CRYSTAL_ID = config.getBlock(BlockIndex.CRYSTAL_NAME, BlockIndex.CRYSTAL_DEFAULT_ID).getInt(BlockIndex.CRYSTAL_DEFAULT_ID);
 		BlockIndex.EARTHWIRE_ID = config.getBlock(BlockIndex.EARTHWIRE_NAME, BlockIndex.EARTHWIRE_DEFAULT_ID).getInt(BlockIndex.EARTHWIRE_DEFAULT_ID);
 		BlockIndex.HOLE_ID = config.getBlock(BlockIndex.HOLE_NAME, BlockIndex.HOLE_DEFAULT_ID).getInt(BlockIndex.HOLE_DEFAULT_ID);
-		BlockIndex.SOUL_ID = config.getBlock(BlockIndex.SOUL_NAME, BlockIndex.SOUL_DEFAULT_ID).getInt(BlockIndex.SOUL_DEFAULT_ID);
-		BlockIndex.SOUL_ENERGY_ACCESS_ID = config.getBlock(BlockIndex.SOUL_ENERGY_ACCESS_NAME, BlockIndex.SOUL_ENERGY_ACCESS_DEFAULT_ID).getInt(BlockIndex.SOUL_ENERGY_ACCESS_DEFAULT_ID);
 		BlockIndex.ENERGY_SUMMONER_ID = config.getBlock(BlockIndex.ENERGY_SUMMONER_NAME, BlockIndex.ENERGY_SUMMONER_DEFAULT_ID).getInt(BlockIndex.ENERGY_SUMMONER_DEFAULT_ID);
 		BlockIndex.MACHINE_ID = config.getBlock(BlockIndex.MACHINE_NAME, BlockIndex.MACHINE_DEFAULT_ID).getInt(BlockIndex.MACHINE_DEFAULT_ID);
 		
