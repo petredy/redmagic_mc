@@ -18,7 +18,6 @@ public class Blocks {
 	public static BlockDecoration decoration;
 	public static BlockRheniumOre oreRhenium;
 	public static BlockCage cage;
-	public static BlockCrystal crystal;
 	public static BlockEarthwire earthwire;
 	public static BlockHole hole;
 	public static BlockEnergySummoner energySummoner;
@@ -29,7 +28,6 @@ public class Blocks {
 		decoration = new BlockDecoration(BlockIndex.DECORATION_ID);
 		oreRhenium = new BlockRheniumOre(BlockIndex.RHENIUM_ORE_ID);
 		cage = new BlockCage(BlockIndex.CAGE_ID);
-		crystal = new BlockCrystal(BlockIndex.CRYSTAL_ID);
 		earthwire = new BlockEarthwire(BlockIndex.EARTHWIRE_ID);
 		hole = new BlockHole(BlockIndex.HOLE_ID);
 		energySummoner = new BlockEnergySummoner(BlockIndex.ENERGY_SUMMONER_ID);
@@ -39,23 +37,19 @@ public class Blocks {
 		GameRegistry.registerBlock(decoration, ItemBlockDecoration.class, BlockIndex.DECORATION_NAME);
 		GameRegistry.registerBlock(oreRhenium, BlockIndex.RHENIUM_ORE_NAME);
 		GameRegistry.registerBlock(cage, BlockIndex.CAGE_NAME);
-		GameRegistry.registerBlock(crystal, ItemBlockCrystal.class, BlockIndex.CRYSTAL_NAME);
 		GameRegistry.registerBlock(earthwire, BlockIndex.EARTHWIRE_NAME);
 		GameRegistry.registerBlock(hole, BlockIndex.HOLE_NAME);
 		GameRegistry.registerBlock(energySummoner, BlockIndex.ENERGY_SUMMONER_NAME);
 		GameRegistry.registerBlock(machine, BlockIndex.MACHINE_NAME);
-		
 		addRecipes();
 	}
 	
 	
 	public static void config(Configuration config){
-		BlockIndex.ENGINE_ID = config.getBlock(BlockIndex.ENGINE_NAME, BlockIndex.ENGINE_DEFAULT_ID).getInt(BlockIndex.ENGINE_DEFAULT_ID);
 		BlockIndex.TRADING_CHEST_ID = config.getBlock(BlockIndex.TRADING_CHEST_NAME, BlockIndex.TRADING_CHEST_DEFAULT_ID).getInt(BlockIndex.TRADING_CHEST_DEFAULT_ID);
 		BlockIndex.DECORATION_ID = config.getBlock(BlockIndex.DECORATION_NAME, BlockIndex.DECORATION_DEFAULT_ID).getInt(BlockIndex.DECORATION_DEFAULT_ID);
 		BlockIndex.RHENIUM_ORE_ID = config.getBlock(BlockIndex.RHENIUM_ORE_NAME, BlockIndex.RHENIUM_ORE_DEFAULT_ID).getInt(BlockIndex.RHENIUM_ORE_DEFAULT_ID);
 		BlockIndex.CAGE_ID = config.getBlock(BlockIndex.CAGE_NAME, BlockIndex.CAGE_DEFAULT_ID).getInt(BlockIndex.CAGE_DEFAULT_ID);
-		BlockIndex.CRYSTAL_ID = config.getBlock(BlockIndex.CRYSTAL_NAME, BlockIndex.CRYSTAL_DEFAULT_ID).getInt(BlockIndex.CRYSTAL_DEFAULT_ID);
 		BlockIndex.EARTHWIRE_ID = config.getBlock(BlockIndex.EARTHWIRE_NAME, BlockIndex.EARTHWIRE_DEFAULT_ID).getInt(BlockIndex.EARTHWIRE_DEFAULT_ID);
 		BlockIndex.HOLE_ID = config.getBlock(BlockIndex.HOLE_NAME, BlockIndex.HOLE_DEFAULT_ID).getInt(BlockIndex.HOLE_DEFAULT_ID);
 		BlockIndex.ENERGY_SUMMONER_ID = config.getBlock(BlockIndex.ENERGY_SUMMONER_NAME, BlockIndex.ENERGY_SUMMONER_DEFAULT_ID).getInt(BlockIndex.ENERGY_SUMMONER_DEFAULT_ID);
@@ -75,18 +69,6 @@ public class Blocks {
 			'C', Block.chest
 		});
 		
-		GameRegistry.addShapelessRecipe(new ItemStack(crystal, 1, BlockIndex.CRYSTAL_SMALL_METADATA), new Object[]{
-			new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA), new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA), 
-			new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA), new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA)
-		});
-		
-		GameRegistry.addShapelessRecipe(new ItemStack(crystal, 1, BlockIndex.CRYSTAL_MEDIUM_METADATA), new Object[]{
-			new ItemStack(crystal, 1, BlockIndex.CRYSTAL_SMALL_METADATA), new ItemStack(crystal, 1, BlockIndex.CRYSTAL_SMALL_METADATA)
-		});
-		
-		GameRegistry.addShapelessRecipe(new ItemStack(crystal, 1, BlockIndex.CRYSTAL_LARGE_METADATA), new Object[]{
-			new ItemStack(crystal, 1, BlockIndex.CRYSTAL_MEDIUM_METADATA), new ItemStack(crystal, 1, BlockIndex.CRYSTAL_MEDIUM_METADATA)
-		});
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.crafting, 5, ItemIndex.CRAFTING_NUGGET_RHENIUM_METADATA), new Object[]{
 			new ItemStack(oreRhenium)
@@ -118,14 +100,6 @@ public class Blocks {
 			'S', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_LOGIC_STORAGE_METADATA),
 			'C', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_LOGIC_CORE_METADATA),
 			'P', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_PLATE_RHENIUM_METADATA)
-		});
-		
-		GameRegistry.addShapelessRecipe(new ItemStack(crystal, 64, BlockIndex.CRYSTAL_LEFTOVER_METADATA), new Object[]{
-			new ItemStack(crystal, 1, BlockIndex.CRYSTAL_MEDIUM_METADATA)
-		});
-		
-		GameRegistry.addShapelessRecipe(new ItemStack(crystal, 32, BlockIndex.CRYSTAL_LEFTOVER_METADATA), new Object[]{
-			new ItemStack(crystal, 1, BlockIndex.CRYSTAL_SMALL_METADATA)
 		});
 		
 		GameRegistry.addShapedRecipe(new ItemStack(machine), new Object[]{

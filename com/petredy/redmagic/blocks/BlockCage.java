@@ -71,14 +71,6 @@ public class BlockCage extends BlockContainer{
         	this.sparkle(par1World, par2, par3, par4);
         }
     }
-	
-	public void onBlockClicked(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer) {
-		this.cry(par1World, par2, par3, par4, new Random());
-	}
-	
-    private void cry(World par1World, int par2, int par3, int par4, Random rand) {
-		par1World.playSoundEffect(par2, par3, par4, Sounds.SOUL_WHISPER, 1.0F, rand.nextFloat() * 0.1f + 0.9f);
-	}
 
 	private void sparkle(World par1World, int par2, int par3, int par4)
     {

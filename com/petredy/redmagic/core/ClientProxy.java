@@ -46,6 +46,7 @@ public class ClientProxy extends CommonProxy{
     public void initRendering() {
 		Rendering.TRADING_CHEST_ID = RenderingRegistry.getNextAvailableRenderId();
 		Rendering.CAGE_ID = RenderingRegistry.getNextAvailableRenderId();
+		Rendering.SHRINK_TABLE_ID = RenderingRegistry.getNextAvailableRenderId();
 	}
 	
 	@Override
