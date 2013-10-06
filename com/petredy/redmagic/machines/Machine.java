@@ -1,5 +1,7 @@
 package com.petredy.redmagic.machines;
 
+import java.util.Random;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -64,6 +66,10 @@ public class Machine {
 		this.remove(handler);
 	}
 	
+	public void onDisplayTick(IMachineHandler handler, Random rand) {
+		
+	}
+	
 	public void remove(IMachineHandler handler) {
 		if(!handler.getWorld().isRemote){
 			ItemStack stack = new ItemStack(Items.machine, 1, getMetadata());
@@ -91,6 +97,8 @@ public class Machine {
 		tag.setInteger("side", side);
 		tag.setInteger("metadata", metadata);
 	}
+
+	
 	
 	
 	

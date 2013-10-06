@@ -7,6 +7,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class TileEntityHandler {
 
 	public static void init(){
+		GameRegistry.registerTileEntity(TileEntityEngineRhenium.class, "redmagic.TileEntityRhenium");
 		GameRegistry.registerTileEntity(TileEntityTradingChest.class, "redmagic.TileEntityTradingChest");
 		GameRegistry.registerTileEntity(TileEntityCage.class, "redmagic.TileEntityCage");
 		GameRegistry.registerTileEntity(TileEntityEarthwire.class, "redmagic.TileEntityEarthwire");

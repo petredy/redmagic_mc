@@ -25,7 +25,7 @@ public class Items {
 	public static ItemRedmeter meter;
 	public static ItemMatter matter;
 	public static ItemScrewdriver screwdriver;
-	
+		
 	//Armor
 	public static EnumArmorMaterial glassMaterial = EnumHelper.addArmorMaterial(ItemIndex.GLASSES_NAME, 1000, new int[]{2, 2, 2, 2, 2}, 30);
 		
@@ -41,6 +41,8 @@ public class Items {
 		meter = new ItemRedmeter(ItemIndex.REDMETER_ID);
 		matter = new ItemMatter(ItemIndex.MATTER_ID);
 		screwdriver = new ItemScrewdriver(ItemIndex.SCREWDRIVER_ID);
+		
+		
 		addRecipes();
 	}
 	
@@ -54,7 +56,6 @@ public class Items {
 		ItemIndex.MACHINE_ID = config.getItem(ItemIndex.MACHINE_NAME, ItemIndex.MACHINE_DEFAULT_ID).getInt(ItemIndex.MACHINE_DEFAULT_ID);
 		ItemIndex.MATTER_ID = config.getItem(ItemIndex.MATTER_NAME, ItemIndex.MATTER_DEFAULT_ID).getInt(ItemIndex.MATTER_DEFAULT_ID);
 		ItemIndex.SCREWDRIVER_ID = config.getItem(ItemIndex.SCREWDRIVER_NAME, ItemIndex.SCREWDRIVER_DEFAULT_ID).getInt(ItemIndex.SCREWDRIVER_DEFAULT_ID);
-		
 	}
 	
 	

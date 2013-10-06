@@ -1,5 +1,7 @@
 package com.petredy.redmagic.tileentities;
 
+import java.util.Random;
+
 import com.petredy.redmagic.Redmagic;
 import com.petredy.redmagic.api.glasses.IViewable;
 import com.petredy.redmagic.api.machines.IMachineHandler;
@@ -226,6 +228,12 @@ public class TileEntityMachine extends TileEntity implements IMachineHandler, IE
 			machine.remove(this);
 			worldObj.markBlockForRenderUpdate(xCoord, yCoord, zCoord);
 			machines[side] = null;
+		}
+	}
+
+	public void onDisplayTick(Random par5Random) {
+		for(Machine machine: machines){
+			if(machine != null)machine.onDisplayTick((IMachineHandler)this, par5Random);
 		}
 	}
 	

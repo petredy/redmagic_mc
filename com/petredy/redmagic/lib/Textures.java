@@ -14,9 +14,14 @@ public class Textures {
 	
 	//Renders
 	public static final ResourceLocation EFFECT_NOISE = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "effects/noise.png");
-	public static final ResourceLocation ENGINE = ResourceLocationUtils.getResourceLocation("models/engine/engine.png");
 	public static final ResourceLocation TRADING_CHEST = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "blocks/" + BlockIndex.TRADING_CHEST_NAME + ".png");
 	public static final ResourceLocation CAGE = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "blocks/" + BlockIndex.CAGE_NAME + ".png");
+	
+	//Engine
+	public static final ResourceLocation ENGINE_BASE = ResourceLocationUtils.getResourceLocation("models/engine/base.png");
+	public static final ResourceLocation ENGINE_GENERATOR = ResourceLocationUtils.getResourceLocation("models/engine/generator.png");
+	public static final ResourceLocation ENGINE_ROTATING = ResourceLocationUtils.getResourceLocation("models/engine/rotating.png");
+	public static final ResourceLocation ENGINE_TOP = ResourceLocationUtils.getResourceLocation("models/engine/top.png");
 	
 	//Guis
 	public static final ResourceLocation TRADING_CHEST_GUI = ResourceLocationUtils.getResourceLocation(GUI_PATH + BlockIndex.TRADING_CHEST_NAME + ".png");

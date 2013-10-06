@@ -1,6 +1,7 @@
 package com.petredy.redmagic.blocks;
 
 import java.util.List;
+import java.util.Random;
 
 import com.petredy.redmagic.Redmagic;
 import com.petredy.redmagic.api.IScrewdriver;
@@ -109,5 +110,12 @@ public class BlockMachine extends BlockContainer{
 		}
 		super.breakBlock(par1World, par2, par3, par4, par5, par6);
     }
+	
+	public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random) {
+		TileEntityMachine machineBlock = (TileEntityMachine) par1World.getBlockTileEntity(par2, par3, par4);
+		if(machineBlock != null){
+			machineBlock.onDisplayTick(par5Random);
+		}
+	}
 	
 }
