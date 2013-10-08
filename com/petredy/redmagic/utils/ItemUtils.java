@@ -61,6 +61,16 @@ public class ItemUtils {
 		initNBT(stack);
 		return stack.stackTagCompound.getInteger(key);
 	}
+	
+	public static void setIntegerArray(ItemStack stack, String key, int[] data){
+		initNBT(stack);
+		stack.stackTagCompound.setIntArray(key, data);
+	}
+	
+	public static int[] getIntegerArray(ItemStack stack, String key){
+		initNBT(stack);
+		return stack.stackTagCompound.getIntArray(key);
+	}
 
 	public static long getLong(ItemStack stack, String key) {
 		initNBT(stack);

@@ -79,7 +79,9 @@ public class ItemIndex {
 	public static final int SCREWDRIVER_DEFAULT_ID = 13009;
 	public static int SCREWDRIVER_ID;
 	
-	
+	public static final String ARTIFACT_NAME = "artifact";
+	public static final int ARTIFACT_DEFAULT_ID = 13010;
+	public static int ARTIFACT_ID;
 	
 	
 }

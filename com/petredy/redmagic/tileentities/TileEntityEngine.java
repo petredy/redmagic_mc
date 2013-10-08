@@ -32,12 +32,13 @@ public abstract class TileEntityEngine extends TileEntity implements IPowerEmitt
 	public int modifier = 1;
 	public ForgeDirection side;
 	
-	public float power = 100;
+	public float power = 50;
 	public float energy;
 	public float speed = 1.0f;
+	
 	@Override
 	public boolean canEmitPowerFrom(ForgeDirection side){
-		return side == this.side;
+		return true;
 	}
 	
 	@Override
@@ -46,21 +47,25 @@ public abstract class TileEntityEngine extends TileEntity implements IPowerEmitt
 			if(moving >= 100){
 				this.sendPower();
 				modifier = -1;
-			}else if(moving <= 0)modifier = 1;
+			}else if(moving <= 0){
+				modifier = 1;
+			}
 		}else{
 			if(moving >= 100){
 				this.sendPower();
 				modifier = -1;
 			}
-			if(moving <= 0)modifier = 0;
+			if(moving <= 0){
+				modifier = 0;
+				speed = 1.0f;
+			}
 		}
 		moving += modifier * speed;
+		speed += 0.01f;
+		if(speed > 2.0f)speed = 2.0f;
 	}
 
 	private void sendPower() {
-		speed += 0.1f;
-		if(speed > 2.0f)speed = 2.0f;
-		LogUtils.log(speed);
 		energy = 0;
 		switch(BlockUtils.forgeDirectionToInt(side)){
 		case 0: {
@@ -93,8 +98,11 @@ public abstract class TileEntityEngine extends TileEntity implements IPowerEmitt
 	private void providePower(TileEntity blockTileEntity) {
 		if(blockTileEntity instanceof IPowerReceptor){
 			IPowerReceptor receptor = (IPowerReceptor)blockTileEntity;
-			LogUtils.log("provider power");
-			receptor.getPowerReceiver(ForgeDirection.getOrientation(ForgeDirection.OPPOSITES[BlockUtils.forgeDirectionToInt(side)])).receiveEnergy(PowerHandler.Type.ENGINE, power, side);
+			if(receptor != null && !blockTileEntity.worldObj.isRemote){
+				LogUtils.log("provider power");
+				float energy = receptor.getPowerReceiver(side.getOpposite()).receiveEnergy(PowerHandler.Type.ENGINE, power, side.getOpposite());
+				LogUtils.log(energy);
+			}
 		}
 	}
 

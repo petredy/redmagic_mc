@@ -25,6 +25,8 @@ public class Items {
 	public static ItemRedmeter meter;
 	public static ItemMatter matter;
 	public static ItemScrewdriver screwdriver;
+	
+	public static ItemArtifact artifact;
 		
 	//Armor
 	public static EnumArmorMaterial glassMaterial = EnumHelper.addArmorMaterial(ItemIndex.GLASSES_NAME, 1000, new int[]{2, 2, 2, 2, 2}, 30);
@@ -42,6 +44,8 @@ public class Items {
 		matter = new ItemMatter(ItemIndex.MATTER_ID);
 		screwdriver = new ItemScrewdriver(ItemIndex.SCREWDRIVER_ID);
 		
+		artifact = new ItemArtifact(ItemIndex.ARTIFACT_ID);
+		
 		
 		addRecipes();
 	}
@@ -56,6 +60,8 @@ public class Items {
 		ItemIndex.MACHINE_ID = config.getItem(ItemIndex.MACHINE_NAME, ItemIndex.MACHINE_DEFAULT_ID).getInt(ItemIndex.MACHINE_DEFAULT_ID);
 		ItemIndex.MATTER_ID = config.getItem(ItemIndex.MATTER_NAME, ItemIndex.MATTER_DEFAULT_ID).getInt(ItemIndex.MATTER_DEFAULT_ID);
 		ItemIndex.SCREWDRIVER_ID = config.getItem(ItemIndex.SCREWDRIVER_NAME, ItemIndex.SCREWDRIVER_DEFAULT_ID).getInt(ItemIndex.SCREWDRIVER_DEFAULT_ID);
+		ItemIndex.ARTIFACT_ID = config.getItem(ItemIndex.ARTIFACT_NAME, ItemIndex.ARTIFACT_DEFAULT_ID).getInt(ItemIndex.ARTIFACT_DEFAULT_ID);
+		
 	}
 	
 	
@@ -222,6 +228,16 @@ public class Items {
 			'F', Block.furnaceIdle,
 			'n', new ItemStack(crafting, 1, ItemIndex.CRAFTING_NUGGET_RHENIUM_METADATA),
 			'c', new ItemStack(crafting, 1, ItemIndex.CRAFTING_LOGIC_CORE_METADATA)
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(artifact), new Object[]{
+			"SrS",
+			"IRI",
+			"SrS",
+			'S', Block.sandStone,
+			'R', Item.redstone,
+			'I', Item.ingotIron,
+			'r', new ItemStack(crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA)
 		});
 		
 		

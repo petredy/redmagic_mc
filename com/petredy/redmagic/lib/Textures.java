@@ -30,30 +30,26 @@ public class Textures {
 	public static final ResourceLocation MACHINE = ResourceLocationUtils.getResourceLocation(GUI_PATH + "machine.png");
 	public static final ResourceLocation FURNACE = ResourceLocationUtils.getResourceLocation(GUI_PATH + "furnace.png");
 	public static final ResourceLocation DEINTEGRATOR = ResourceLocationUtils.getResourceLocation(GUI_PATH + "deintegrator.png");
-
+	public static final ResourceLocation KNOWLEDGE_TRANSCEIVER = ResourceLocationUtils.getResourceLocation(GUI_PATH + "knowledge.main.png");
+	
+	
+	//Symbols
+	public static final ResourceLocation SYMBOLS = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "symbols/symbols.png");
+	public static final ResourceLocation KNOWLEDGE_BASIC = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "symbols/knowledge.basic.png");
 	//Glasses
 	public static final String GLASSES = TEXTURE_PATH + "glasses/glasses.png";
 	public static final ResourceLocation OVERLAY = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "glasses/overlay.png");
 	public static final ResourceLocation DANGER_OVERLAY = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "glasses/overlay.danger.png");
 	public static final ResourceLocation MODUS_OVERLAY = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "glasses/overlay.modus.png");
 	
-	
-	//Entities
-	public static final ResourceLocation SOUL = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "entities/soul.png");;
-	
-	
 	//Particles 
 	public static final ResourceLocation STAR_FX = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "entities/particles/star.png");
 	public static final ResourceLocation HOLE_FX = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "entities/particles/hole.png");
 	public static final ResourceLocation SOUL_FX = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "entities/particles/soul.png");
-	public static final Object RING_FX = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "entities/particles/ring.png");
+	public static final ResourceLocation RING_FX = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "entities/particles/ring.png");
 	
 	
-	//Soulman
-	public static final ResourceLocation SOULMAN = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "entities/soulman.png");
-	public static final ResourceLocation SOULMAN_0 = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "entities/soulman_0.png");
-	public static final ResourceLocation SOULMAN_1 = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "entities/soulman_1.png");
-	public static final ResourceLocation SOULMAN_2 = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "entities/soulman_2.png");
+
 	
 	
 	

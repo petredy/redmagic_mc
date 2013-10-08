@@ -19,6 +19,7 @@ import com.petredy.redmagic.client.render.glasses.GlassesRender;
 import com.petredy.redmagic.client.render.glasses.GlassesRenderMining;
 import com.petredy.redmagic.client.render.glasses.GlassesRenderOffline;
 import com.petredy.redmagic.client.render.glasses.GlassesRenderOnline;
+import com.petredy.redmagic.items.ItemGlasses;
 import com.petredy.redmagic.lib.Configs;
 import com.petredy.redmagic.network.PacketEnergySyncRequest;
 import com.petredy.redmagic.network.PacketHandler;
@@ -54,12 +55,25 @@ public class GlassesUtils {
 	public static final int ONLINE = 1;
 	public static final int MINING = 2;
 	
+	public static void initialse(ItemStack stack){
+		setModeActive(stack, OFFLINE);
+		setModeActive(stack, ONLINE);
+	}
+	
 	public static void setMode(ItemStack stack, int mode){
 		ItemUtils.setInteger(stack, "redmagic.glasses.mode", mode);
 	}
 	
 	public static int getMode(ItemStack stack){
 		return ItemUtils.getInteger(stack, "redmagic.glasses.mode");
+	}
+	
+	public static void setModeActive(ItemStack stack, int mode){
+		ItemUtils.setInteger(stack, "redmagic.glasses.mode." + mode, 1);
+	}
+	
+	public static boolean isModeActive(ItemStack stack, int mode){
+		return ItemUtils.getInteger(stack, "redmagic.glasses.mode." + mode) == 1;
 	}
 	
 	public static void setSwitchingStatus(ItemStack stack, int status){
@@ -73,9 +87,19 @@ public class GlassesUtils {
 	public static void switchMode(ItemStack stack){
 		int mode = getMode(stack);
 		if(mode + 1 >= MODES.length)mode = 0;
-		else mode++;
+		else mode = getNextAvailableMode(stack);
+		LogUtils.log(mode);
 		setMode(stack, mode);
 		setSwitchingStatus(stack, 0);
+	}
+	
+	public static int getNextAvailableMode(ItemStack stack){
+		int mode = getMode(stack);
+		for(int i = ++mode; i < MODES.length; i++){
+			LogUtils.log(i + " " + isModeActive(stack,i));
+			if(isModeActive(stack, i))return i;
+		}
+		return 0;
 	}
 	
 	public static GlassesRender getRenderByStack(ItemStack stack){

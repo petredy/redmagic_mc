@@ -3,7 +3,6 @@ package com.petredy.redmagic.tileentities;
 import java.util.Random;
 
 import com.petredy.redmagic.Redmagic;
-import com.petredy.redmagic.api.glasses.IViewable;
 import com.petredy.redmagic.api.machines.IMachineHandler;
 import com.petredy.redmagic.api.machines.IMachineItem;
 import com.petredy.redmagic.api.redenergy.IEnergyHandler;

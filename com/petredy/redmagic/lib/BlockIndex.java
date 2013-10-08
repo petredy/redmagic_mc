@@ -70,4 +70,8 @@ public class BlockIndex {
 	
 	// ----------------------------------------------------------------------------
 	
+	public static final String KNOWLEDGE_TRANSCEIVER_NAME = "konwledge.transceiver";
+	public static final int KNOWLEDGE_TRANSCEIVER_DEFAULT_ID = 3314;
+	public static int KNOWLEDGE_TRANSCEIVER_ID;
+	
 }

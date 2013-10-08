@@ -1,10 +1,13 @@
 package com.petredy.redmagic.items;
 
 
+import java.util.List;
+
 import com.petredy.redmagic.Redmagic;
 import com.petredy.redmagic.api.IKeyBound;
 import com.petredy.redmagic.api.glasses.IViewable;
 import com.petredy.redmagic.client.render.glasses.RenderGlassesOverlay;
+import com.petredy.redmagic.lib.Guis;
 import com.petredy.redmagic.lib.ItemIndex;
 import com.petredy.redmagic.lib.Keys;
 import com.petredy.redmagic.lib.Reference;
@@ -13,9 +16,11 @@ import com.petredy.redmagic.utils.GlassesUtils;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -54,9 +59,9 @@ public class ItemGlasses extends ItemArmor implements IKeyBound{
 	public void doKeyBindingAction(EntityPlayer player, ItemStack stack, String keyBinding) {
 		if(keyBinding.equals(Keys.KEY_EXTRA_NAME)){
 			if(player.isSneaking() && GlassesUtils.getMode(stack) != GlassesUtils.OFFLINE){
-				MovingObjectPosition position = this.getMovingObjectPositionFromPlayer(player.worldObj, player, true);
-				if(position != null){
-					TileEntity entity = player.worldObj.getBlockTileEntity(position.blockX, position.blockY, position.blockZ);
+				MovingObjectPosition location = this.getMovingObjectPositionFromPlayer(player.worldObj, player, true);
+				if(location != null){
+					TileEntity entity = player.worldObj.getBlockTileEntity(location.blockX, location.blockY, location.blockZ);
 					if(entity instanceof IViewable){
 						((IViewable)entity).view(player, stack);
 					}
@@ -77,4 +82,14 @@ public class ItemGlasses extends ItemArmor implements IKeyBound{
 		return par1ItemStack;
     }
 
+	public void getSubItems(int par1, CreativeTabs par2CreativeTabs, List par3List)
+    {
+		ItemStack glasses = new ItemStack(par1, 1, 0);
+		GlassesUtils.initialse(glasses);
+        par3List.add(glasses);
+    }
+	
+	public void onCreated(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
+		GlassesUtils.initialse(par1ItemStack);
+	}
 }

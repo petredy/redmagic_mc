@@ -24,6 +24,8 @@ public class Blocks {
 	public static BlockEnergySummoner energySummoner;
 	public static BlockMachine machine;
 	
+	public static BlockKnowledgeTransceiver transceiver;
+	
 	public static void init(){
 		engine = new BlockEngine(BlockIndex.ENGINE_ID);
 		trading = new BlockTradingChest(BlockIndex.TRADING_CHEST_ID);
@@ -34,6 +36,7 @@ public class Blocks {
 		hole = new BlockHole(BlockIndex.HOLE_ID);
 		energySummoner = new BlockEnergySummoner(BlockIndex.ENERGY_SUMMONER_ID);
 		machine = new BlockMachine(BlockIndex.MACHINE_ID);
+		transceiver = new BlockKnowledgeTransceiver(BlockIndex.KNOWLEDGE_TRANSCEIVER_ID);
 		
 		GameRegistry.registerBlock(engine, ItemBlockEngine.class, BlockIndex.ENGINE_NAME);
 		GameRegistry.registerBlock(trading, BlockIndex.TRADING_CHEST_NAME);
@@ -44,7 +47,10 @@ public class Blocks {
 		GameRegistry.registerBlock(hole, BlockIndex.HOLE_NAME);
 		GameRegistry.registerBlock(energySummoner, BlockIndex.ENERGY_SUMMONER_NAME);
 		GameRegistry.registerBlock(machine, BlockIndex.MACHINE_NAME);
+		GameRegistry.registerBlock(transceiver, BlockIndex.KNOWLEDGE_TRANSCEIVER_NAME);
+		
 		addRecipes();
+		
 	}
 	
 	
@@ -58,7 +64,7 @@ public class Blocks {
 		BlockIndex.HOLE_ID = config.getBlock(BlockIndex.HOLE_NAME, BlockIndex.HOLE_DEFAULT_ID).getInt(BlockIndex.HOLE_DEFAULT_ID);
 		BlockIndex.ENERGY_SUMMONER_ID = config.getBlock(BlockIndex.ENERGY_SUMMONER_NAME, BlockIndex.ENERGY_SUMMONER_DEFAULT_ID).getInt(BlockIndex.ENERGY_SUMMONER_DEFAULT_ID);
 		BlockIndex.MACHINE_ID = config.getBlock(BlockIndex.MACHINE_NAME, BlockIndex.MACHINE_DEFAULT_ID).getInt(BlockIndex.MACHINE_DEFAULT_ID);
-		
+		BlockIndex.KNOWLEDGE_TRANSCEIVER_ID = config.getBlock(BlockIndex.KNOWLEDGE_TRANSCEIVER_NAME, BlockIndex.KNOWLEDGE_TRANSCEIVER_DEFAULT_ID).getInt(BlockIndex.KNOWLEDGE_TRANSCEIVER_DEFAULT_ID);
 	}
 	
 	
@@ -113,6 +119,15 @@ public class Blocks {
 			'P', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_PLATE_RHENIUM_METADATA),
 			'C', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_LOGIC_CORE_METADATA),
 			'S', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_LOGIC_STORAGE_METADATA)
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(transceiver), new Object[]{
+			"IPI",
+			"PCP",
+			"IPI",
+			'I', Item.ingotIron,
+			'P', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_PLATE_RHENIUM_METADATA),
+			'C', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_LOGIC_CORE_METADATA)
 		});
 		
 		

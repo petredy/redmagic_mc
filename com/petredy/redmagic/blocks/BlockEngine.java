@@ -73,7 +73,6 @@ public class BlockEngine extends BlockContainer {
 	}
 
 
-
 	@Override
 	public int damageDropped(int i) {
 		return i;
