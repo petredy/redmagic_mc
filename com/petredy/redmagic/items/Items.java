@@ -71,6 +71,10 @@ public class Items {
 			new ItemStack(crafting, 1, ItemIndex.CRAFTING_NUGGET_RHENIUM_METADATA), new ItemStack(crafting, 1, ItemIndex.CRAFTING_NUGGET_RHENIUM_METADATA)			
 		});
 		
+		GameRegistry.addShapelessRecipe(new ItemStack(crafting, 4, ItemIndex.CRAFTING_NUGGET_RHENIUM_METADATA), new Object[]{
+			new ItemStack(crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA)
+		});
+		
 		GameRegistry.addShapedRecipe(new ItemStack(trading), new Object[]{
 			"XXX",
 			"X X",

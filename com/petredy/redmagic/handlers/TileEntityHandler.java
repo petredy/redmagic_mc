@@ -13,7 +13,9 @@ public class TileEntityHandler {
 		GameRegistry.registerTileEntity(TileEntityEarthwire.class, "redmagic.TileEntityEarthwire");
 		GameRegistry.registerTileEntity(TileEntityEnergySummoner.class, "redmagic.TileEntityEnergySummoner");
 		GameRegistry.registerTileEntity(TileEntityMachine.class, "redmagic.TileEntityMachine");
-		GameRegistry.registerTileEntity(TileEntityKnowledgeTransceiver.class, "redmagic.KNOWLEDGE_TRANSCEIVER");
+		GameRegistry.registerTileEntity(TileEntityKnowledgeTransceiver.class, "redmagic.TileEntityKnowledgeTransceiver");
+		GameRegistry.registerTileEntity(TileEntityCrafter.class, "redmagic.TileEntityCrafter");
+		
 	}
 	
 }

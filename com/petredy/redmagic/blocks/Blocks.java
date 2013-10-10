@@ -25,6 +25,7 @@ public class Blocks {
 	public static BlockMachine machine;
 	
 	public static BlockKnowledgeTransceiver transceiver;
+	public static BlockCrafter crafter;
 	
 	public static void init(){
 		engine = new BlockEngine(BlockIndex.ENGINE_ID);
@@ -37,6 +38,7 @@ public class Blocks {
 		energySummoner = new BlockEnergySummoner(BlockIndex.ENERGY_SUMMONER_ID);
 		machine = new BlockMachine(BlockIndex.MACHINE_ID);
 		transceiver = new BlockKnowledgeTransceiver(BlockIndex.KNOWLEDGE_TRANSCEIVER_ID);
+		crafter = new BlockCrafter(BlockIndex.CRAFTER_ID);
 		
 		GameRegistry.registerBlock(engine, ItemBlockEngine.class, BlockIndex.ENGINE_NAME);
 		GameRegistry.registerBlock(trading, BlockIndex.TRADING_CHEST_NAME);
@@ -48,6 +50,7 @@ public class Blocks {
 		GameRegistry.registerBlock(energySummoner, BlockIndex.ENERGY_SUMMONER_NAME);
 		GameRegistry.registerBlock(machine, BlockIndex.MACHINE_NAME);
 		GameRegistry.registerBlock(transceiver, BlockIndex.KNOWLEDGE_TRANSCEIVER_NAME);
+		GameRegistry.registerBlock(crafter, BlockIndex.CRAFTER_NAME);
 		
 		addRecipes();
 		
@@ -65,6 +68,7 @@ public class Blocks {
 		BlockIndex.ENERGY_SUMMONER_ID = config.getBlock(BlockIndex.ENERGY_SUMMONER_NAME, BlockIndex.ENERGY_SUMMONER_DEFAULT_ID).getInt(BlockIndex.ENERGY_SUMMONER_DEFAULT_ID);
 		BlockIndex.MACHINE_ID = config.getBlock(BlockIndex.MACHINE_NAME, BlockIndex.MACHINE_DEFAULT_ID).getInt(BlockIndex.MACHINE_DEFAULT_ID);
 		BlockIndex.KNOWLEDGE_TRANSCEIVER_ID = config.getBlock(BlockIndex.KNOWLEDGE_TRANSCEIVER_NAME, BlockIndex.KNOWLEDGE_TRANSCEIVER_DEFAULT_ID).getInt(BlockIndex.KNOWLEDGE_TRANSCEIVER_DEFAULT_ID);
+		BlockIndex.CRAFTER_ID = config.getBlock(BlockIndex.CRAFTER_NAME, BlockIndex.CRAFTER_DEFAULT_ID).getInt(BlockIndex.CRAFTER_DEFAULT_ID);
 	}
 	
 	

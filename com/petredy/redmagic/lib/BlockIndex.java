@@ -74,4 +74,8 @@ public class BlockIndex {
 	public static final int KNOWLEDGE_TRANSCEIVER_DEFAULT_ID = 3314;
 	public static int KNOWLEDGE_TRANSCEIVER_ID;
 	
+	public static final String CRAFTER_NAME = "crafter";
+	public static final int CRAFTER_DEFAULT_ID = 3315;
+	public static int CRAFTER_ID;
+	
 }

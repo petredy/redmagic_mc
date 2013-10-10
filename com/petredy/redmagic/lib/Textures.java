@@ -30,12 +30,15 @@ public class Textures {
 	public static final ResourceLocation MACHINE = ResourceLocationUtils.getResourceLocation(GUI_PATH + "machine.png");
 	public static final ResourceLocation FURNACE = ResourceLocationUtils.getResourceLocation(GUI_PATH + "furnace.png");
 	public static final ResourceLocation DEINTEGRATOR = ResourceLocationUtils.getResourceLocation(GUI_PATH + "deintegrator.png");
-	public static final ResourceLocation KNOWLEDGE_TRANSCEIVER = ResourceLocationUtils.getResourceLocation(GUI_PATH + "knowledge.main.png");
-	
+	public static final ResourceLocation KNOWLEDGES = ResourceLocationUtils.getResourceLocation(GUI_PATH + "knowledges.png");
+	public static final ResourceLocation KNOWLEDGE_OVERVIEW = ResourceLocationUtils.getResourceLocation(GUI_PATH + "knowledge.overview.png");
+	public static final ResourceLocation KNOWLEDGE_DESCRIPTION = ResourceLocationUtils.getResourceLocation(GUI_PATH + "knowledge.description.png");
+	public static final ResourceLocation CRAFTER = ResourceLocationUtils.getResourceLocation(GUI_PATH + "crafter.png");
 	
 	//Symbols
 	public static final ResourceLocation SYMBOLS = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "symbols/symbols.png");
 	public static final ResourceLocation KNOWLEDGE_BASIC = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "symbols/knowledge.basic.png");
+	
 	//Glasses
 	public static final String GLASSES = TEXTURE_PATH + "glasses/glasses.png";
 	public static final ResourceLocation OVERLAY = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "glasses/overlay.png");
@@ -47,6 +50,9 @@ public class Textures {
 	public static final ResourceLocation HOLE_FX = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "entities/particles/hole.png");
 	public static final ResourceLocation SOUL_FX = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "entities/particles/soul.png");
 	public static final ResourceLocation RING_FX = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "entities/particles/ring.png");
+	
+	
+	
 	
 	
 

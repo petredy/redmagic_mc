@@ -15,6 +15,7 @@ import com.petredy.redmagic.utils.LogUtils;
 import buildcraft.api.power.IPowerEmitter;
 import buildcraft.api.power.IPowerReceptor;
 import buildcraft.api.power.PowerHandler;
+import buildcraft.api.power.PowerHandler.PowerReceiver;
 import buildcraft.api.power.PowerHandler.Type;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -98,10 +99,10 @@ public abstract class TileEntityEngine extends TileEntity implements IPowerEmitt
 	private void providePower(TileEntity blockTileEntity) {
 		if(blockTileEntity instanceof IPowerReceptor){
 			IPowerReceptor receptor = (IPowerReceptor)blockTileEntity;
-			if(receptor != null && !blockTileEntity.worldObj.isRemote){
-				LogUtils.log("provider power");
-				float energy = receptor.getPowerReceiver(side.getOpposite()).receiveEnergy(PowerHandler.Type.ENGINE, power, side.getOpposite());
-				LogUtils.log(energy);
+			if(receptor != null && !blockTileEntity.worldObj.isRemote && side != null){
+				float energy = 0;
+				PowerReceiver receiver = receptor.getPowerReceiver(side.getOpposite());
+				if(receiver != null)energy = receiver.receiveEnergy(PowerHandler.Type.ENGINE, power, side.getOpposite());
 			}
 		}
 	}

@@ -3,31 +3,42 @@ package com.petredy.redmagic.knowledge;
 import java.util.Collection;
 import java.util.HashMap;
 
+import com.petredy.redmagic.tileentities.TileEntityKnowledgeTransceiver;
+import com.petredy.redmagic.utils.ArtifactUtils;
+
 public class KnowledgeSystem {
 
-	protected static HashMap<String, KnowledgeGroup> groups = new HashMap<String, KnowledgeGroup>();
+	protected static HashMap<String, Knowledge> knowledges = new HashMap<String, Knowledge>();
+	public static int minDisplayColumn;
+	public static int minDisplayRow;
+	public static int maxDisplayColumn;
+	public static int maxDisplayRow;
 	
-	
-	public static Collection<KnowledgeGroup> getGroups(){
-		return groups.values();
+	public static Collection<Knowledge> getAll(){
+		return knowledges.values();
 	}
 	
-	public static KnowledgeGroup getGroup(String name){
-		return groups.get(name);
+	public static void addKnowledge(Knowledge k){
+		knowledges.put(k.name, k);
 	}
 	
-	public static void addGroup(String name, KnowledgeGroup group){
-		groups.put(name, group);
+	public static Knowledge getKnowledge(String name){
+		return knowledges.get(name);
 	}
-	
-	public static void addKnowledge(String group, Knowledge knowledge){
-		KnowledgeGroup g = groups.get(group);
-		if(g != null)g.addKnowledge(knowledge);
+
+	public static boolean hasKnowledgeUnlocked(Knowledge knowledge) {
+		return knowledge.progress >= 100f;
 	}
-	
-	public Knowledge getKnowledge(String group, String name){
-		KnowledgeGroup g = groups.get(group);
-		if(g != null)return g.get(name);
-		return null;
+
+	public static boolean canUnlockKnowledge(Knowledge knowledge) {
+		if(knowledge.parent == null)return true;
+		return hasKnowledgeUnlocked(knowledge.parent);
+	}
+
+	public static boolean isActive(Knowledge knowledge, TileEntityKnowledgeTransceiver entity) {
+		if(entity != null){
+			return ArtifactUtils.isKnowledge(entity.artifact, knowledge);
+		}
+		return false;
 	}
 }

@@ -9,7 +9,7 @@ import com.petredy.redmagic.blocks.Blocks;
 import com.petredy.redmagic.items.Items;
 import com.petredy.redmagic.knowledge.Knowledge;
 import com.petredy.redmagic.knowledge.KnowledgeCrafting;
-import com.petredy.redmagic.knowledge.KnowledgeGroup;
+import com.petredy.redmagic.knowledge.KnowledgeItem;
 import com.petredy.redmagic.knowledge.KnowledgeSystem;
 import com.petredy.redmagic.lib.Comments;
 import com.petredy.redmagic.lib.Configs;
@@ -17,6 +17,7 @@ import com.petredy.redmagic.lib.ItemIndex;
 import com.petredy.redmagic.lib.Keys;
 import com.petredy.redmagic.lib.KnowledgeIndex;
 import com.petredy.redmagic.lib.Reference;
+import com.petredy.redmagic.lib.Textures;
 import com.petredy.redmagic.utils.GlassesUtils;
 
 import cpw.mods.fml.common.registry.EntityRegistry;
@@ -57,12 +58,10 @@ public class ConfigHandler {
 	}
 	
 	private static void configKnowledge(Configuration config) {
-		KnowledgeSystem.addGroup(KnowledgeIndex.G_BASIC, new KnowledgeGroup());
-		KnowledgeSystem.addKnowledge(KnowledgeIndex.G_BASIC, new Knowledge(KnowledgeIndex.K_ORE, 100));
-		KnowledgeSystem.addKnowledge(KnowledgeIndex.G_BASIC, new Knowledge(KnowledgeIndex.K_ENERGY, 0));
-		
-		KnowledgeSystem.addGroup(KnowledgeIndex.G_CRAFTING, new KnowledgeGroup());
-		KnowledgeSystem.addKnowledge(KnowledgeIndex.G_CRAFTING, new KnowledgeCrafting(KnowledgeIndex.K_CRAFTER, 100, new ItemStack(Blocks.decoration, 1, 0), new ItemStack[]{
+		KnowledgeSystem.addKnowledge(new KnowledgeItem(KnowledgeIndex.ORE, 100, 10, 0, null, new ItemStack(Blocks.oreRhenium)));
+		KnowledgeSystem.addKnowledge(new Knowledge(KnowledgeIndex.ENERGY, 0, 8, 0, null, Textures.KNOWLEDGE_BASIC));
+
+		KnowledgeSystem.addKnowledge(new KnowledgeCrafting(KnowledgeIndex.CRAFTER, 100, 10, 2, KnowledgeSystem.getKnowledge(KnowledgeIndex.ORE), new ItemStack(Blocks.crafter), new ItemStack[]{
 			new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA), new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA), new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA), 
 			new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA), new ItemStack(Block.workbench), new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA), 
 			new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA), new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA), new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA)

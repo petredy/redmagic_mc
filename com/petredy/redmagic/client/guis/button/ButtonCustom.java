@@ -18,6 +18,8 @@ public class ButtonCustom extends GuiButton{
 	public ButtonCustom(int par1, int par2, int par3, int u, int v, int u2, int v2, int par4, int par5, ResourceLocation texture) {
 		super(par1, par2, par3, par4, par5, "");
 		this.texture = texture;
+		this.u = u;
+		this.v = v;
 		this.u2 = u2;
 		this.v2 = v2;
 	}
@@ -40,18 +42,6 @@ public class ButtonCustom extends GuiButton{
             }
             
             this.mouseDragged(par1Minecraft, par2, par3);
-            int l = 14737632;
-
-            if (!this.enabled)
-            {
-                l = -6250336;
-            }
-            else if (this.field_82253_i)
-            {
-                l = 16777120;
-            }
-
-            this.drawCenteredString(fontrenderer, this.displayString, this.xPosition + this.width / 2, this.yPosition + (this.height - 8) / 2, l);
         }
     }
 }
