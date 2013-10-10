@@ -3,6 +3,7 @@ package com.petredy.redmagic.knowledge;
 import com.petredy.redmagic.client.guis.knowledge.GuiKnowledge;
 
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 
@@ -15,6 +16,7 @@ public class Knowledge {
 	public String name;
 	
 	public float progress;
+	public float speed = 0.0001f;
 
 	public int displayColumn;
 
@@ -62,6 +64,15 @@ public class Knowledge {
 
 	public String getDescription() {
 		return StatCollector.translateToLocal(PREFIX + name + ".description");
+	}
+	
+	public void readFromNBT(NBTTagCompound tag){
+		this.progress = tag.getFloat("progress");
+	}
+	
+	public void writeToNBT(NBTTagCompound tag){
+		tag.setFloat("progress", progress);
+		tag.setString("name", name);
 	}
 	
 }

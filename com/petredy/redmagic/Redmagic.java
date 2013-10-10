@@ -117,6 +117,9 @@ public class Redmagic{
 		//Register Player loading/saving
 		GameRegistry.registerPlayerTracker(new PlayerTracker());
 		
+		//Register Knowledge Update Ticker
+		TickRegistry.registerTickHandler(new KnowledgeSystemHandler(), Side.SERVER);
+		
     }
 	
 	//----------------------------------------------------------------------------------------
