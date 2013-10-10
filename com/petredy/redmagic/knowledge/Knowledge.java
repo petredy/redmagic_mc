@@ -1,6 +1,6 @@
 package com.petredy.redmagic.knowledge;
 
-import com.petredy.redmagic.client.guis.knowledge.GuiKnowledge;
+import com.petredy.redmagic.client.guis.knowledge.GuiKnowledgeDescription;
 
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.nbt.NBTTagCompound;
@@ -26,7 +26,7 @@ public class Knowledge {
 	public ResourceLocation texture;
 
 
-	public Class gui = GuiKnowledge.class;
+	public Class gui = GuiKnowledgeDescription.class;
 	
 	public Knowledge(String name, float progress, int col, int row, Knowledge parent, ResourceLocation texture) {
 		this.name = name;

@@ -131,8 +131,8 @@ public class GuiKnowledges extends GuiScreen
 			if(localMouseX > x && localMouseX < x + 24 && localMouseY > y && localMouseY < y + 24){
 				if(par3 == 0){
 					try {
-						GuiKnowledge gui;
-						gui = (GuiKnowledge) knowledge.gui.newInstance();
+						GuiKnowledgeDescription gui;
+						gui = (GuiKnowledgeDescription) knowledge.gui.newInstance();
 						gui.knowledge = knowledge;
 						this.mc.displayGuiScreen(gui);
 					} catch (InstantiationException e) {

@@ -59,8 +59,8 @@ public class ConfigHandler {
 	
 	private static void configKnowledge(Configuration config) {
 		KnowledgeSystem.addKnowledge(new KnowledgeItem(KnowledgeIndex.ORE, 100, 10, 0, null, new ItemStack(Blocks.oreRhenium)));
-		KnowledgeSystem.addKnowledge(new Knowledge(KnowledgeIndex.ENERGY, 0, 8, 0, null, Textures.KNOWLEDGE_BASIC));
-
+		KnowledgeSystem.addKnowledge(new Knowledge(KnowledgeIndex.ENERGY, 100, 8, 0, null, Textures.KNOWLEDGE_BASIC));
+		
 		KnowledgeSystem.addKnowledge(new KnowledgeCrafting(KnowledgeIndex.CRAFTER, 100, 10, 2, KnowledgeSystem.getKnowledge(KnowledgeIndex.ORE), new ItemStack(Blocks.crafter), new ItemStack[]{
 			new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA), new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA), new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA), 
 			new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA), new ItemStack(Block.workbench), new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA), 
