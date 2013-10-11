@@ -147,7 +147,7 @@ public class TileEntityMachine extends TileEntity implements IMachineHandler, IE
 			if(machine != null && !containsMachine(machine) && machine.canPlacedOnSide(side) && getSize() + machine.getSize() <= 6){
 				machines[side] = machine;
 				machines[side].onPlacedByPlayer(this, side, player);
-				player.worldObj.markBlockForRenderUpdate(xCoord, yCoord, zCoord);
+				player.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 				return true;
 			}
 		}
@@ -158,7 +158,7 @@ public class TileEntityMachine extends TileEntity implements IMachineHandler, IE
 		Machine machine = getMachineOnSide(side);
 		if(machine != null){
 			machine.removeByPlayer(this, player, offX, offY, offZ);
-			player.worldObj.markBlockForRenderUpdate(xCoord, yCoord, zCoord);
+			player.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 			machines[side] = null;
 		}
 	}

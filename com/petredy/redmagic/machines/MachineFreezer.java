@@ -70,7 +70,7 @@ public class MachineFreezer extends Machine{
 	}
 	
 	public float getCooling(ItemStack stack){
-		if(stack.isItemEqual(new ItemStack(Block.ice)))return 500F;
+		if(stack.isItemEqual(new ItemStack(Block.ice)))return 200F;
 		return 0;
 	}
 }

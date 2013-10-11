@@ -9,14 +9,14 @@ public class RedholeUtils {
 
 	
 	public static Hole getHole(ItemStack stack){
-		NBTTagCompound data = ItemUtils.getData(stack, "redmagic.modifier");
+		NBTTagCompound data = ItemUtils.getData(stack, "redmagic.hole");
 		return Hole.loadFromNBT(data);
 	}
 	
 	public static void saveHole(ItemStack stack, Hole mod){
 		NBTTagCompound data = new NBTTagCompound();
 		mod.writeToNBT(data);
-		ItemUtils.setData(stack, "redmagic.modifier", data);
+		ItemUtils.setData(stack, "redmagic.hole", data);
 	}
 	
 	

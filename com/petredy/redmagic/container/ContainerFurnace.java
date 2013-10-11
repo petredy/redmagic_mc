@@ -21,10 +21,10 @@ public class ContainerFurnace extends Container {
 	public ContainerFurnace(EntityPlayer player, TileEntityMachine machine){
 		this.machine = machine;
 		MachineFurnace furnace = (MachineFurnace) machine.getMachine(Machines.FURNACE_METADATA);
-		
-		this.addSlotToContainer(new Slot(furnace.inventory, 0, 56, 34));
-		this.addSlotToContainer(new SlotOutput(furnace.inventory, 1, 116, 35));
-		
+		if(furnace != null){
+			this.addSlotToContainer(new Slot(furnace.inventory, 0, 56, 34));
+			this.addSlotToContainer(new SlotOutput(furnace.inventory, 1, 116, 35));
+		}
 		
 		this.bindPlayerInventory(player.inventory);
 	}

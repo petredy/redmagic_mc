@@ -3,9 +3,20 @@ package com.petredy.redmagic.lib;
 public class BlockIndex {
 	public static final float DEFAULT_HARDNESS = 1.0f;
 	
-	public static final String ENGINE_NAME = "engine";
+	
+	/**
+	 * -------------------------------------------------------------
+	 * Engine
+	 * Multi Block
+	 */
+	public static final String ENGINE_NAME = "redmagic.engine";
 	public static final int ENGINE_DEFAULT_ID = 3301;
 	public static int ENGINE_ID;
+	
+	public static final String ENGINE_RHENIUM_NAME = "rhenium";
+	public static final int ENGINE_RHENIUM_METADATA = 0;
+	
+	// -------------------------------------------------------------
 	
 	public static final String TRADING_CHEST_NAME = "trading.chest";
 	public static final int TRADING_CHEST_DEFAULT_ID = 3302;
@@ -44,14 +55,6 @@ public class BlockIndex {
 	public static final int HOLE_DEFAULT_ID = 3309;
 	public static int HOLE_ID;
 	
-	public static final String SOUL_NAME = "soul";
-	public static final int SOUL_DEFAULT_ID = 3310;
-	public static int SOUL_ID;
-	
-	public static final String SOUL_ENERGY_ACCESS_NAME = "soul.energy.access";
-	public static final int SOUL_ENERGY_ACCESS_DEFAULT_ID = 3311;
-	public static int SOUL_ENERGY_ACCESS_ID;
-	
 	public static final String ENERGY_SUMMONER_NAME = "energy.summoner";
 	public static final int ENERGY_SUMMONER_DEFAULT_ID = 3312;
 	public static int ENERGY_SUMMONER_ID;
@@ -69,13 +72,5 @@ public class BlockIndex {
 
 	
 	// ----------------------------------------------------------------------------
-	
-	public static final String KNOWLEDGE_TRANSCEIVER_NAME = "konwledge.transceiver";
-	public static final int KNOWLEDGE_TRANSCEIVER_DEFAULT_ID = 3314;
-	public static int KNOWLEDGE_TRANSCEIVER_ID;
-	
-	public static final String CRAFTER_NAME = "crafter";
-	public static final int CRAFTER_DEFAULT_ID = 3315;
-	public static int CRAFTER_ID;
 	
 }

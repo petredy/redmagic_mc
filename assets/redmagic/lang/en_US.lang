@@ -5,6 +5,8 @@ language.code=en_US
 itemGroup.redmagic=Redmagic
 redmagic.player.inventory=Redhole Inventory
 
+tile.redmagic.engine.rhenium.name=Rhenium Engine
+
 tile.trading.chest.name=Trading Chest
 
 tile.decoration.marble.name=Marble
@@ -35,6 +37,8 @@ item.crafting.logic.core.name=Logic Core
 item.crafting.logic.storage.name=Logic Memory
 item.crafting.energy.condenser.name=Energy Condenser
 item.crafting.plate.rhenium.name=Rhenium Plate
+
+item.soul.name=Soul
 
 item.redhole.name=Redhole
 item.redhole.storeable.name=Storeable Redhole

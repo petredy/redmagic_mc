@@ -11,9 +11,7 @@ public class Packets {
 		PacketNBTSync.class,
 		PacketTradingSync.class,
 		PacketEnergyMapSync.class,
-		PacketEnergySyncRequest.class,
-		PacketActivateArtifact.class,
-		PacketCraft.class
+		PacketEnergySyncRequest.class
 	};
 	
 	public static final byte KEY = 0;
@@ -23,6 +21,4 @@ public class Packets {
 	public static final byte SYNC_TRADING = 4;
 	public static final byte SYNC_ENERGY_MAP = 5;
 	public static final byte REQUEST_ENERGY_SYNC = 6;
-	public static final byte ACTIVATE_ARTIFACT = 7;
-	public static final byte CRAFT = 8;
 }

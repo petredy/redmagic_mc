@@ -18,7 +18,7 @@ public class WorldGenerationUtils {
 	public static void generateRheniumOre(World world, Random random, int blockX, int blockZ) {
 		for(int a = 0; a < Configs.RHENIUMORE_DEPOSITS; a++){
 			int Xcoord = blockX + random.nextInt(16);
-			int Ycoord = random.nextInt(10);
+			int Ycoord = random.nextInt(30);
 			int Zcoord = blockZ + random.nextInt(16);
 			
 			(new WorldGenMinable(Blocks.oreRhenium.blockID, Configs.RHENIUMORE_DEPOSIT_AMOUNT)).generate(world, random, Xcoord, Ycoord, Zcoord);

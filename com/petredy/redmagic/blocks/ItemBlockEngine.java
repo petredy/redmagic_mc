@@ -9,11 +9,17 @@
 
 package com.petredy.redmagic.blocks;
 
-import buildcraft.core.ItemBlockBuildCraft;
+import com.petredy.redmagic.lib.BlockIndex;
+
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
-public class ItemBlockEngine extends ItemBlockBuildCraft {
+public class ItemBlockEngine extends ItemBlock {
 
+	public final static String[] subNames = {
+		BlockIndex.ENGINE_RHENIUM_NAME
+	};
+	
 	public ItemBlockEngine(int i) {
 		super(i);
 		setMaxDamage(0);
@@ -27,11 +33,6 @@ public class ItemBlockEngine extends ItemBlockBuildCraft {
 
 	@Override
 	public String getUnlocalizedName(ItemStack itemstack) {
-		if (itemstack.getItemDamage() == 0)
-			return "tile.engineWood";
-		else if (itemstack.getItemDamage() == 1)
-			return "tile.engineStone";
-		else
-			return "tile.engineIron";
+		return this.getUnlocalizedName() + "." + subNames[itemstack.getItemDamage()];
 	}
 }

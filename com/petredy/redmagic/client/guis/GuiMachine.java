@@ -13,6 +13,7 @@ import com.petredy.redmagic.tileentities.TileEntityMachine;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 
 public class GuiMachine extends GuiContainer{
@@ -26,7 +27,7 @@ public class GuiMachine extends GuiContainer{
 	
 	protected void drawGuiContainerForegroundLayer(int par1, int par2) {
 		
-		this.fontRenderer.drawString(StatCollector.translateToLocal(Blocks.machine.getUnlocalizedName()), 8, 4, Guis.DEFAULT_FONT_COLOR);
+		this.fontRenderer.drawString(StatCollector.translateToLocal(new ItemStack(Blocks.machine).getUnlocalizedName()), 8, 4, Guis.DEFAULT_FONT_COLOR);
 		
 		String energy = "Red: " + machine.energy;
 		

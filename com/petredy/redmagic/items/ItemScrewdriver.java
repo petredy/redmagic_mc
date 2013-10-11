@@ -5,9 +5,13 @@ import com.petredy.redmagic.api.IScrewdriver;
 import com.petredy.redmagic.lib.ItemIndex;
 import com.petredy.redmagic.lib.Reference;
 
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeDirection;
 
 public class ItemScrewdriver extends Item implements IScrewdriver{
 

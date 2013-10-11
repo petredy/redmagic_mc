@@ -19,10 +19,10 @@ public class ContainerDeintegrator extends Container {
 	public ContainerDeintegrator(EntityPlayer player, TileEntityMachine machine){
 		this.machine = machine;
 		MachineDeintegrator deintegrator = (MachineDeintegrator) machine.getMachine(Machines.DEINTEGRATOR_METADATA);
-		
-		this.addSlotToContainer(new Slot(deintegrator.inventory, 0, 80, 35));
-		this.addSlotToContainer(new SlotOutput(deintegrator.inventory, 1, 80, 54));
-		
+		if(deintegrator != null){
+			this.addSlotToContainer(new Slot(deintegrator.inventory, 0, 80, 35));
+			this.addSlotToContainer(new SlotOutput(deintegrator.inventory, 1, 80, 55));
+		}
 		this.bindPlayerInventory(player.inventory);
 	}
 	

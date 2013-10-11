@@ -17,6 +17,7 @@ public class BlockEnergySummoner extends BlockContainer{
 		super(par1, Material.piston);
 		this.setUnlocalizedName(BlockIndex.ENERGY_SUMMONER_NAME);
 		this.setCreativeTab(Redmagic.tabRedmagic);
+		this.setHardness(BlockIndex.DEFAULT_HARDNESS);
 	}
 
 	@Override

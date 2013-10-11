@@ -19,10 +19,10 @@ public class ContainerFreezer extends Container {
 	public ContainerFreezer(EntityPlayer player, TileEntityMachine machine){
 		this.machine = machine;
 		MachineFreezer freezer = (MachineFreezer) machine.getMachine(Machines.FREEZER_METADATA);
-		
-		this.addSlotToContainer(new Slot(freezer.inventory, 0, 80, 35));
-		this.addSlotToContainer(new SlotOutput(freezer.inventory, 1, 80, 54));
-		
+		if(freezer != null){
+			this.addSlotToContainer(new Slot(freezer.inventory, 0, 80, 35));
+			this.addSlotToContainer(new SlotOutput(freezer.inventory, 1, 80, 54));
+		}
 		this.bindPlayerInventory(player.inventory);
 	}
 	

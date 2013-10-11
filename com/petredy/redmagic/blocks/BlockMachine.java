@@ -39,6 +39,7 @@ public class BlockMachine extends BlockContainer{
 		super(par1, Material.piston);
 		this.setUnlocalizedName(BlockIndex.MACHINE_NAME);
 		this.setCreativeTab(Redmagic.tabRedmagic);
+		this.setHardness(BlockIndex.DEFAULT_HARDNESS);
 	}
 	
 	@Override

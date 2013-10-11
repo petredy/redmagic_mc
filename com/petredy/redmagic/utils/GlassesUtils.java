@@ -58,6 +58,7 @@ public class GlassesUtils {
 	public static void initialse(ItemStack stack){
 		setModeActive(stack, OFFLINE);
 		setModeActive(stack, ONLINE);
+		setModeActive(stack, MINING);
 	}
 	
 	public static void setMode(ItemStack stack, int mode){

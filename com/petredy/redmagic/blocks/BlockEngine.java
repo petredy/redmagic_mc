@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.petredy.redmagic.Redmagic;
+import com.petredy.redmagic.items.ItemScrewdriver;
 import com.petredy.redmagic.lib.BlockIndex;
 import com.petredy.redmagic.lib.Rendering;
 import com.petredy.redmagic.tileentities.TileEntityEngine;
@@ -36,7 +37,6 @@ public class BlockEngine extends BlockContainer {
 
 	public BlockEngine(int i) {
 		super(i, Material.iron);
-
 		setHardness(0.5F);
 		setCreativeTab(Redmagic.tabRedmagic);
 		setUnlocalizedName(BlockIndex.ENGINE_NAME);
@@ -67,7 +67,7 @@ public class BlockEngine extends BlockContainer {
 	public TileEntity createTileEntity(World world, int metadata) {
 		switch(metadata){
 		
-		case 0: return new TileEntityEngineRhenium();
+		case BlockIndex.ENGINE_RHENIUM_METADATA: return new TileEntityEngineRhenium();
 		default: return null;
 		}
 	}
@@ -84,8 +84,23 @@ public class BlockEngine extends BlockContainer {
 	}
 	
 	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack) {
-		ForgeDirection side = BlockUtils.getRotation(par1World, par2, par3, par4, par5EntityLivingBase, true);
 		TileEntityEngine engine = (TileEntityEngine) par1World.getBlockTileEntity(par2, par3, par4);
-		if(engine != null)engine.side = side;
+		if(engine != null)engine.switchOrientation();
 	}
+	
+	@Override
+	public boolean rotateBlock(World world, int x, int y, int z, ForgeDirection axis) {
+		TileEntity tile = world.getBlockTileEntity(x, y, z);
+		if (tile instanceof TileEntityEngine) {
+			return ((TileEntityEngine) tile).switchOrientation();
+		}
+		return false;
+	}
+	
+	public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
+    {
+		ItemStack current = par5EntityPlayer.getCurrentEquippedItem();
+		if(current != null && current.getItem() instanceof ItemScrewdriver)rotateBlock(par1World, par2, par3, par4, ForgeDirection.UNKNOWN);
+        return false;
+    }
 }

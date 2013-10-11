@@ -1,5 +1,6 @@
 package com.petredy.redmagic.items;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.petredy.redmagic.Redmagic;
@@ -29,16 +30,34 @@ import net.minecraft.world.World;
 
 public class ItemRedhole extends Item{
 
+	public HashMap<Integer, Icon>icons = new HashMap<Integer, Icon>();
+	
 	public ItemRedhole(int id){
 		super(id);
 		this.setUnlocalizedName(ItemIndex.REDHOLE_NAME);
 		this.setCreativeTab(Redmagic.tabRedmagic);
 		this.setMaxStackSize(1);
+		this.setHasSubtypes(true);
 	}
 	
 	public void registerIcons(IconRegister iconRegister){
 		this.itemIcon = iconRegister.registerIcon(Reference.MOD_ID + ":" + ItemIndex.REDHOLE_NAME);
+		
+		for(Class cl: Redholes.HOLES){
+			try{
+				Hole hole = (Hole) cl.newInstance();
+				icons.put(hole.id, iconRegister.registerIcon(Reference.MOD_ID + ":" + ItemIndex.REDHOLE_NAME  + "." + hole.name));
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
 	}
+	
+	public Icon getIconFromDamage(int par1)
+    {
+		if(par1 > 0)return icons.get(par1);
+        return this.itemIcon;
+    }
 	
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
@@ -63,9 +82,12 @@ public class ItemRedhole extends Item{
 		par3List.add(new ItemStack(par1, 1, 0));
 		for(Class cl: Redholes.HOLES){
 			try{
-				ItemStack redhole = new ItemStack(par1, 1, 0);
-				RedholeUtils.saveHole(redhole, (Hole) cl.newInstance());
-				par3List.add(redhole);
+				Hole hole = (Hole) cl.newInstance();
+				if(hole != null && hole.id > 0){
+					ItemStack redhole = new ItemStack(par1, 1, hole.id);
+					RedholeUtils.saveHole(redhole, hole);
+					par3List.add(redhole);
+				}
 			}catch(Exception e){
 				e.printStackTrace();
 			}

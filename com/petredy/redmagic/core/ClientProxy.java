@@ -60,6 +60,7 @@ public class ClientProxy extends CommonProxy{
 		RenderingRegistry.registerBlockHandler(new RenderCage());
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEngine.class, new RenderEngine());
+		RenderingRegistry.registerBlockHandler(new RenderEngine());
 	}
 	
 	

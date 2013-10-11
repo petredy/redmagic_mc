@@ -4,6 +4,7 @@ import java.util.Random;
 
 import com.petredy.redmagic.Redmagic;
 import com.petredy.redmagic.items.ItemRedhole;
+import com.petredy.redmagic.items.Items;
 import com.petredy.redmagic.lib.BlockIndex;
 import com.petredy.redmagic.lib.Rendering;
 import com.petredy.redmagic.redhole.Hole;
@@ -53,8 +54,12 @@ public class BlockHole extends Block{
 		int meta = par1World.getBlockMetadata(par2, par3, par4);
 		ItemStack current = par5EntityPlayer.getCurrentEquippedItem();
 		if(current != null && current.getItem() instanceof ItemRedhole){
-			RedholeUtils.saveHole(current, Hole.getHole(meta));
-			par1World.setBlockToAir(par2, par3, par4);
+			Hole hole = Hole.getHole(meta);
+			if(hole != null){
+				current.setItemDamage(hole.id);
+				RedholeUtils.saveHole(current, hole);
+				par1World.setBlockToAir(par2, par3, par4);
+			}
 		}
         return true;
     }

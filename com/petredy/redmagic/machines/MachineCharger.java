@@ -5,7 +5,7 @@ import com.petredy.redmagic.lib.Machines;
 
 public class MachineCharger extends Machine{
 
-	public float releaseEnergy = 0.2F;
+	public float releaseEnergy = 2F;
 	public float cooldown = 0.2F;
 	public MachineCharger(){
 		this.metadata = Machines.CHARGER_METADATA;

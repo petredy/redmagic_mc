@@ -9,9 +9,13 @@ package com.petredy.redmagic.tileentities;
 
 import java.util.LinkedList;
 
+import com.petredy.redmagic.redenergy.EnergyMap;
+import com.petredy.redmagic.redenergy.RedEnergy;
+import com.petredy.redmagic.redenergy.Redkey;
 import com.petredy.redmagic.utils.BlockUtils;
 import com.petredy.redmagic.utils.LogUtils;
 
+import buildcraft.api.core.Position;
 import buildcraft.api.power.IPowerEmitter;
 import buildcraft.api.power.IPowerReceptor;
 import buildcraft.api.power.PowerHandler;
@@ -23,6 +27,9 @@ import net.minecraft.inventory.ICrafting;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagFloat;
+import net.minecraft.network.INetworkManager;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.ForgeDirection;
@@ -34,12 +41,12 @@ public abstract class TileEntityEngine extends TileEntity implements IPowerEmitt
 	public ForgeDirection side;
 	
 	public float power = 50;
-	public float energy;
+	public float costs = 100;
 	public float speed = 1.0f;
 	
 	@Override
 	public boolean canEmitPowerFrom(ForgeDirection side){
-		return true;
+		return side == this.side;
 	}
 	
 	@Override
@@ -67,7 +74,6 @@ public abstract class TileEntityEngine extends TileEntity implements IPowerEmitt
 	}
 
 	private void sendPower() {
-		energy = 0;
 		switch(BlockUtils.forgeDirectionToInt(side)){
 		case 0: {
 			this.providePower(worldObj.getBlockTileEntity(xCoord, yCoord - 1, zCoord));
@@ -100,12 +106,55 @@ public abstract class TileEntityEngine extends TileEntity implements IPowerEmitt
 		if(blockTileEntity instanceof IPowerReceptor){
 			IPowerReceptor receptor = (IPowerReceptor)blockTileEntity;
 			if(receptor != null && !blockTileEntity.worldObj.isRemote && side != null){
-				float energy = 0;
-				PowerReceiver receiver = receptor.getPowerReceiver(side.getOpposite());
-				if(receiver != null)energy = receiver.receiveEnergy(PowerHandler.Type.ENGINE, power, side.getOpposite());
+				float energy = EnergyMap.consumeEnergy(worldObj.provider.dimensionId, xCoord / 16, zCoord / 16, costs);
+				if(energy >= costs){
+					PowerReceiver receiver = receptor.getPowerReceiver(side.getOpposite());
+					if(receiver != null)energy = receiver.receiveEnergy(PowerHandler.Type.ENGINE, power, side.getOpposite());
+				}
 			}
 		}
 	}
-
 	
+	public void readFromNBT(NBTTagCompound tag){
+		super.readFromNBT(tag);
+		this.side = ForgeDirection.getOrientation(tag.getInteger("side"));
+	}
+	
+	public void writeToNBT(NBTTagCompound tag){
+		super.writeToNBT(tag);
+		tag.setInteger("side", BlockUtils.forgeDirectionToInt(side));
+	}
+	
+	
+	public boolean switchOrientation() {
+		if(side == null)side = ForgeDirection.DOWN;
+		for (int i = side.ordinal() + 1; i <= side.ordinal() + 6; ++i) {
+			ForgeDirection o = ForgeDirection.VALID_DIRECTIONS[i % 6];
+
+			Position pos = new Position(xCoord, yCoord, zCoord, o);
+			pos.moveForwards(1);
+			TileEntity tile = worldObj.getBlockTileEntity((int) pos.x, (int) pos.y, (int) pos.z);
+
+			if (tile instanceof IPowerReceptor) {
+				side = o;
+				worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+				worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord, zCoord, worldObj.getBlockId(xCoord, yCoord, zCoord));
+
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public Packet getDescriptionPacket()
+    {
+        NBTTagCompound data = new NBTTagCompound();
+        this.writeToNBT(data);
+        return new Packet132TileEntityData(xCoord, yCoord, zCoord, 0, data);
+    }
+	
+	public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt)
+    {
+		this.readFromNBT(pkt.data);
+    }
 }
