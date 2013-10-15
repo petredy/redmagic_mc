@@ -28,10 +28,11 @@ public class ItemMachine extends Item implements IMachineItem{
 		Machines.COLLECTOR_NAME,
 		Machines.CONTACT_COOLING_NAME,
 		Machines.FURNACE_NAME,
-		Machines.DEINTEGRATOR_NAME,
+		Machines.DISINTEGRATOR_NAME,
 		Machines.CHARGER_NAME,
 		Machines.REFRIGERATOR_NAME,
-		Machines.FREEZER_NAME
+		Machines.FREEZER_NAME,
+		Machines.COMPACTOR_NAME
 	};
 	
 	public Icon[] icons = new Icon[ItemMachine.subNames.length];

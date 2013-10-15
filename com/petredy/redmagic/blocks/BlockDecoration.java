@@ -31,6 +31,17 @@ public class BlockDecoration extends BlockContainer{
 		this.setHardness(BlockIndex.DEFAULT_HARDNESS);
 	}
 
+	public float getBlockHardness(World par1World, int par2, int par3, int par4)
+    {
+		int metadata = par1World.getBlockMetadata(par2, par3, par4);
+		switch(metadata){
+			case BlockIndex.GRANITE_METADATA: return 10F;
+			case BlockIndex.GRANITE_BRICKS_METADATA: return 15F;
+			case BlockIndex.COMPRESSED_OBSIDIAN_METADATA: return 80F;
+	        default: return this.blockHardness;
+		}
+    }
+	
 	@Override
 	public TileEntity createNewTileEntity(World world) {
 		return null;

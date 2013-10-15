@@ -13,6 +13,7 @@ public class TileEntityHandler {
 		GameRegistry.registerTileEntity(TileEntityEarthwire.class, "redmagic.TileEntityEarthwire");
 		GameRegistry.registerTileEntity(TileEntityEnergySummoner.class, "redmagic.TileEntityEnergySummoner");
 		GameRegistry.registerTileEntity(TileEntityMachine.class, "redmagic.TileEntityMachine");
+		GameRegistry.registerTileEntity(TileEntityStructure.class, "redmagic.TileEntityStructure");
 		
 	}
 	

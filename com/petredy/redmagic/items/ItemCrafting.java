@@ -21,7 +21,8 @@ public class ItemCrafting extends Item {
 		ItemIndex.CRAFTING_LOGIC_CORE_NAME,
 		ItemIndex.CRAFTING_LOGIC_STORAGE_NAME,
 		ItemIndex.CRAFTING_ENERGY_CONDENSER_NAME,
-		ItemIndex.CRAFTING_PLATE_RHENIUM_NAME
+		ItemIndex.CRAFTING_PLATE_RHENIUM_NAME,
+		ItemIndex.CRAFTING_CONCENTRATED_GRANITE_NAME
 	};
 	
 	public Icon[] icons = new Icon[subNames.length];

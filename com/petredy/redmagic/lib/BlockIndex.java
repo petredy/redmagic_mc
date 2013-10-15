@@ -36,6 +36,12 @@ public class BlockIndex {
 	public static final int MARBLE_BRICKS_METADATA = 1;
 	public static final String GRANITE_NAME = "granite";
 	public static final int GRANITE_METADATA = 2;
+	public static final String GRANITE_BRICKS_NAME = "granite.bricks";
+	public static final int GRANITE_BRICKS_METADATA = 3;
+	public static final String COMPRESSED_OBSIDIAN_NAME = "compressed.obsidian";
+	public static final int COMPRESSED_OBSIDIAN_METADATA = 4;
+	public static final String RHENIUM_BLOCK_NAME = "rhenium";
+	public static final int RHENIUM_BLOCK_METADATA = 5;
 	
 	// --------------------------------------------------------------
 	
@@ -73,4 +79,16 @@ public class BlockIndex {
 	
 	// ----------------------------------------------------------------------------
 	
+	
+	/**
+	 * Block Structure
+	 * Multi Block
+	 */
+	
+	public static final String RED_STRUCTURE_NAME = "red.structure";
+	public static final int RED_STRUCTURE_DEFAULT_ID = 3314;
+	public static int RED_STRUCTURE_ID;
+	
+	// -----------------------------------------------------------------------------
+
 }

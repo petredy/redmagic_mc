@@ -43,6 +43,10 @@ public class ConfigHandler {
 		Property sleeprop = config.get("general", "sleep", Reference.SLEEP);
 		sleeprop.comment = Comments.SLEEP;
 		Reference.SLEEP = sleeprop.getBoolean(Reference.SLEEP);
+		
+		Property alwaysSleeprop = config.get("general", "sleep_always", Reference.SLEEP_ALWAYS);
+		alwaysSleeprop.comment = Comments.SLEEP_ALWAYS;
+		Reference.SLEEP_ALWAYS = alwaysSleeprop.getBoolean(Reference.SLEEP_ALWAYS);
 	}
 
 	public static void postConfig(Configuration config){

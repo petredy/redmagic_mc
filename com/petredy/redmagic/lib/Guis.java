@@ -10,6 +10,7 @@ public class Guis {
 	public static final int FURNACE = 3;
 	public static final int DEINTEGRATOR = 4;
 	public static final int FREEZER = 5;
-	public static final int CRAFTER = 6;
+	public static final int MATERIALIZER = 6;
+	public static final int COMPACTOR = 7;
 	
 }

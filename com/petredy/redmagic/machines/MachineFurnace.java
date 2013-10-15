@@ -19,7 +19,7 @@ public class MachineFurnace extends Machine{
 	public InventoryBasic inventory;
 	public int burnTick;
 	public int needBurnTime = 100;
-	public float burnTickCost = 0.5f;
+	public float burnTickCost = 0.1f;
 	public float heatProduction = 0.1f;
 	public ItemStack burningStack;
 	

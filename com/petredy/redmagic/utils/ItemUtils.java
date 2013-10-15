@@ -124,4 +124,18 @@ public class ItemUtils {
 		initNBT(stack);
 		return stack.stackTagCompound.getString(key);
 	}
+	
+	public static void setItemStackData(ItemStack stack, String key, ItemStack value){
+		initNBT(stack);
+		NBTTagCompound tag = new NBTTagCompound();
+		value.writeToNBT(tag);
+		stack.stackTagCompound.setTag(key, tag);
+	}
+	
+	public static ItemStack getItemStackData(ItemStack stack, String key){
+		initNBT(stack);
+		NBTTagCompound tag = stack.stackTagCompound.getCompoundTag(key);
+		if(tag != null)return ItemStack.loadItemStackFromNBT(tag);
+		return null;
+	}
 }

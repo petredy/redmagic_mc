@@ -12,6 +12,8 @@ tile.trading.chest.name=Trading Chest
 tile.decoration.marble.name=Marble
 tile.decoration.marble.bricks.name=Marble Bricks
 tile.decoration.granite.name=Granite
+tile.decoration.granite.bricks.name=Granite Bricks
+tile.decoration.compressed.obsidian.name=Compressed Obsidian
 
 tile.ore.rhenium.name=Rhenium Ore
 tile.cage.name=Soul Cage
@@ -37,12 +39,14 @@ item.crafting.logic.core.name=Logic Core
 item.crafting.logic.storage.name=Logic Memory
 item.crafting.energy.condenser.name=Energy Condenser
 item.crafting.plate.rhenium.name=Rhenium Plate
+item.crafting.concentrated.granite.name=Concentrated Granite
 
 item.soul.name=Soul
 
 item.redhole.name=Redhole
 item.redhole.storeable.name=Storeable Redhole
 item.redhole.portable.name=Portable Redhole
+item.redhole.disintegrateable.name=Disintegrateable Redhole
 
 item.redmeter.name=Redmeter
 item.screwdriver.name=Redmagic Screwdriver
@@ -54,7 +58,8 @@ item.matter.stable.name=Stable Matter
 item.machine.collector.name=Collector Unit
 item.machine.contact.cooling.name=Contact Cooling Unit
 item.machine.furnace.name=Furnace Unit
-item.machine.deintegrator.name=Deintegrator Unit
+item.machine.disintegrator.name=Disintegrator Unit
 item.machine.charger.name=Charger Unit
 item.machine.refrigerator.name=Refrigerator Unit
 item.machine.freezer.name=Freezer Unit
+item.machine.compactor.name=Compactor Unit

@@ -50,6 +50,9 @@ public class CommonProxy implements IGuiHandler{
 		if(ID == Guis.FREEZER){
 			return new ContainerFreezer(player, (TileEntityMachine)tileEntity);
 		}
+		if(ID == Guis.COMPACTOR){
+			return new ContainerCompactor(player, (TileEntityMachine)tileEntity);
+		}
 		return null;
 	}
 
@@ -73,6 +76,9 @@ public class CommonProxy implements IGuiHandler{
 		}
 		if(ID == Guis.FREEZER){
 			return new GuiFreezer(player, (TileEntityMachine)tileEntity);
+		}
+		if(ID == Guis.COMPACTOR){
+			return new GuiCompactor(player, (TileEntityMachine)tileEntity);
 		}
 		return null;
 	}

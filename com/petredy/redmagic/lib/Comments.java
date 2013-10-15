@@ -5,6 +5,6 @@ public class Comments {
 	public static final String DEBUG = "ture: Debug for info/warning/error on. false: no debugging";
 	public static final String KEY_EXTRA = "Redmagic extra key for utilities";
 	public static final String SLEEP = "Alows one player to be able to sleep during nights, even when all other players don't do it";
-	public static final String KEY_SOUL = "Opens the Soul Page";
+	public static final String SLEEP_ALWAYS = "Allows all players to sleep at any time and set it to 0";
 	
 }

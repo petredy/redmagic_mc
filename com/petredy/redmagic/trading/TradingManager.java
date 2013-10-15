@@ -19,6 +19,8 @@ public class TradingManager{
 	private static HashMap<String, TradingItem>items = new HashMap<String, TradingItem>();
 	
 	public static void register(ItemStack stack, float price, int amount){
+		TradingItem item = items.get(stack.getUnlocalizedName());
+		if(item != null && item.amount > 0)amount += item.amount;
 		items.put(stack.getUnlocalizedName(), new TradingItem(stack, price, amount));
 	}
 	

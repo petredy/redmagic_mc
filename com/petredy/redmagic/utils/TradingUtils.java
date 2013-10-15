@@ -28,10 +28,9 @@ public class TradingUtils {
 			if(trading != null){
 				LogUtils.log("load Trading data");
 				TradingManager.setData(trading.data);
-			}else{
-				LogUtils.log("initialise Trading data");
-				TradingManager.initialise();
 			}
+			LogUtils.log("initialise Trading data");
+			TradingManager.initialise();
 			loaded = true;
 		}
 	}

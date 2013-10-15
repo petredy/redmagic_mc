@@ -187,7 +187,7 @@ public class Items {
 			'c', new ItemStack(crafting, 1, ItemIndex.CRAFTING_LOGIC_CORE_METADATA)
 		});
 		
-		GameRegistry.addShapedRecipe(new ItemStack(machine, 1, Machines.DEINTEGRATOR_METADATA), new Object[]{
+		GameRegistry.addShapedRecipe(new ItemStack(machine, 1, Machines.DISINTEGRATOR_METADATA), new Object[]{
 			" R ",
 			"PCP",
 			"ScS",

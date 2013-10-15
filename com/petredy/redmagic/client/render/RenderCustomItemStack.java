@@ -29,7 +29,7 @@ public class RenderCustomItemStack extends RenderItem{
 	private Random random = new Random();
 	private RenderBlocks itemRenderBlocks = new RenderBlocks();
 	
-	public void doRenderItem(EntityItem par1EntityItem, double par2, double par4, double par6, float par8, float par9)
+	public void doRenderItem(EntityItem par1EntityItem, double par2, double par4, double par6, float par8, float par9, float scale)
     {
         this.bindEntityTexture(par1EntityItem);
         this.random.setSeed(187L);
@@ -47,7 +47,7 @@ public class RenderCustomItemStack extends RenderItem{
             GL11.glEnable(GL12.GL_RESCALE_NORMAL);
 
             //Custom
-            GL11.glScalef(0.4f, 0.4f, 0.4f);
+            GL11.glScalef(scale, scale, scale);
             //----
             
             float f4;

@@ -23,6 +23,7 @@ public class Blocks {
 	public static BlockHole hole;
 	public static BlockEnergySummoner energySummoner;
 	public static BlockMachine machine;
+	public static BlockRedStructure structure;
 	
 	public static void init(){
 		engine = new BlockEngine(BlockIndex.ENGINE_ID);
@@ -34,6 +35,7 @@ public class Blocks {
 		hole = new BlockHole(BlockIndex.HOLE_ID);
 		energySummoner = new BlockEnergySummoner(BlockIndex.ENERGY_SUMMONER_ID);
 		machine = new BlockMachine(BlockIndex.MACHINE_ID);
+		structure = new BlockRedStructure(BlockIndex.RED_STRUCTURE_ID);
 		
 		GameRegistry.registerBlock(engine, ItemBlockEngine.class, BlockIndex.ENGINE_NAME);
 		GameRegistry.registerBlock(trading, BlockIndex.TRADING_CHEST_NAME);
@@ -44,6 +46,7 @@ public class Blocks {
 		GameRegistry.registerBlock(hole, BlockIndex.HOLE_NAME);
 		GameRegistry.registerBlock(energySummoner, BlockIndex.ENERGY_SUMMONER_NAME);
 		GameRegistry.registerBlock(machine, BlockIndex.MACHINE_NAME);
+		GameRegistry.registerBlock(structure, BlockIndex.RED_STRUCTURE_NAME);
 		
 		addRecipes();
 		
@@ -60,7 +63,8 @@ public class Blocks {
 		BlockIndex.HOLE_ID = config.getBlock(BlockIndex.HOLE_NAME, BlockIndex.HOLE_DEFAULT_ID).getInt(BlockIndex.HOLE_DEFAULT_ID);
 		BlockIndex.ENERGY_SUMMONER_ID = config.getBlock(BlockIndex.ENERGY_SUMMONER_NAME, BlockIndex.ENERGY_SUMMONER_DEFAULT_ID).getInt(BlockIndex.ENERGY_SUMMONER_DEFAULT_ID);
 		BlockIndex.MACHINE_ID = config.getBlock(BlockIndex.MACHINE_NAME, BlockIndex.MACHINE_DEFAULT_ID).getInt(BlockIndex.MACHINE_DEFAULT_ID);
-	
+		BlockIndex.RED_STRUCTURE_ID = config.getBlock(BlockIndex.RED_STRUCTURE_NAME, BlockIndex.RED_STRUCTURE_DEFAULT_ID).getInt(BlockIndex.RED_STRUCTURE_DEFAULT_ID);
+		
 	}
 	
 	
@@ -125,6 +129,22 @@ public class Blocks {
 			'G', Block.glass,
 			'C', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_ENERGY_CONDENSER_METADATA),
 			'p', Block.pistonBase
+		});
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.decoration, 4, BlockIndex.GRANITE_BRICKS_METADATA), new Object[]{
+			new ItemStack(decoration, 1, BlockIndex.GRANITE_METADATA), new ItemStack(decoration, 1, BlockIndex.GRANITE_METADATA), 
+			new ItemStack(decoration, 1, BlockIndex.GRANITE_METADATA), new ItemStack(decoration, 1, BlockIndex.GRANITE_METADATA)
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(decoration, 1, BlockIndex.RHENIUM_BLOCK_METADATA), new Object[]{
+			"III",
+			"III",
+			"III",
+			'I', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA)
+		});
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.crafting, 9, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA), new Object[]{
+			new ItemStack(decoration, 1, BlockIndex.RHENIUM_BLOCK_METADATA)
 		});
 		
 	}

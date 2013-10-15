@@ -119,4 +119,12 @@ public class BlockMachine extends BlockContainer{
 		}
 	}
 	
+	public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5) {
+		TileEntityMachine machineBlock = (TileEntityMachine)par1World.getBlockTileEntity(par2, par3, par4);
+		if(machineBlock != null){
+			machineBlock.onNeighborChange(par5);
+		}
+	}
+
+	
 }

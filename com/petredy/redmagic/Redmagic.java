@@ -90,6 +90,9 @@ public class Redmagic{
   		
   		//Configurate
       	ConfigHandler.postConfig(config);
+      	
+      	//Initialise Recipe registration
+      	RecipeHandler.init();
         
         config.save();
 	}

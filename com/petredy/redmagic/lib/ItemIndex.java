@@ -41,6 +41,8 @@ public class ItemIndex {
 	public static final int CRAFTING_ENERGY_CONDENSER_METADATA = 4;
 	public static final String CRAFTING_PLATE_RHENIUM_NAME = "plate.rhenium";
 	public static final int CRAFTING_PLATE_RHENIUM_METADATA = 5;
+	public static final String CRAFTING_CONCENTRATED_GRANITE_NAME = "concentrated.granite";
+	public static final int CRAFTING_CONCENTRADTED_GRANITE_METADATA = 6;
 	
 	// ------------------------------------------------------------------------------
 	

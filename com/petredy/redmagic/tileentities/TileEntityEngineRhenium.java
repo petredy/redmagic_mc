@@ -16,7 +16,7 @@ import buildcraft.core.proxy.CoreProxy;
 public class TileEntityEngineRhenium extends TileEntityEngine {
 
 	public float power = 50;
-	public float costs = 100;
+	public float costs = 10;
 
 	
 }

@@ -15,7 +15,7 @@ import com.petredy.redmagic.redvalue.RedvalueDictionary;
 import com.petredy.redmagic.utils.InventoryUtils;
 import com.petredy.redmagic.utils.LogUtils;
 
-public class MachineDeintegrator extends Machine{
+public class MachineDisintegrator extends Machine{
 
 	public InventoryBasic inventory;
 	public ItemStack item;
@@ -23,9 +23,9 @@ public class MachineDeintegrator extends Machine{
 	public int tick;
 	public int neededTicks = 100;
 	
-	public MachineDeintegrator(){
-		this.metadata = Machines.DEINTEGRATOR_METADATA;
-		this.inventory = new InventoryBasic(Machines.DEINTEGRATOR_NAME, false, 2);
+	public MachineDisintegrator(){
+		this.metadata = Machines.DISINTEGRATOR_METADATA;
+		this.inventory = new InventoryBasic(Machines.DISINTEGRATOR_NAME, false, 2);
 		this.size = 2;
 	}
 	

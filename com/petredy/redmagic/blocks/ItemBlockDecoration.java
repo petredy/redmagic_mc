@@ -10,7 +10,10 @@ public class ItemBlockDecoration extends ItemBlock{
 	public final static String[] subNames = {
 		BlockIndex.MARBLE_NAME,
 		BlockIndex.MARBLE_BRICKS_NAME,
-		BlockIndex.GRANITE_NAME
+		BlockIndex.GRANITE_NAME,
+		BlockIndex.GRANITE_BRICKS_NAME,
+		BlockIndex.COMPRESSED_OBSIDIAN_NAME,
+		BlockIndex.RHENIUM_BLOCK_NAME
 	};
 
 	public ItemBlockDecoration(int id) {

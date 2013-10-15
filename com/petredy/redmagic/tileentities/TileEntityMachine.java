@@ -8,9 +8,13 @@ import com.petredy.redmagic.api.machines.IMachineItem;
 import com.petredy.redmagic.api.redenergy.IEnergyHandler;
 import com.petredy.redmagic.lib.Guis;
 import com.petredy.redmagic.machines.Machine;
+import com.petredy.redmagic.network.PacketHandler;
+import com.petredy.redmagic.network.PacketMachineSync;
 import com.petredy.redmagic.redenergy.EnergyMap;
 import com.petredy.redmagic.redenergy.RedEnergy;
 import com.petredy.redmagic.utils.LogUtils;
+
+import cpw.mods.fml.common.network.PacketDispatcher;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -28,6 +32,8 @@ public class TileEntityMachine extends TileEntity implements IMachineHandler, IE
 	public float energy;
 	
 	public float heat;
+	
+	public int updateTick = 0, neededTicksForUpdate = 1000;
 	
 	public void updateEntity(){
 		for(Machine machine: machines){
@@ -233,6 +239,12 @@ public class TileEntityMachine extends TileEntity implements IMachineHandler, IE
 	public void onDisplayTick(Random par5Random) {
 		for(Machine machine: machines){
 			if(machine != null)machine.onDisplayTick((IMachineHandler)this, par5Random);
+		}
+	}
+
+	public void onNeighborChange(int blockID) {
+		for(Machine machine: machines){
+			if(machine != null)machine.onNeighborChange((IMachineHandler)this, blockID);
 		}
 	}
 	

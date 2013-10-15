@@ -1,10 +1,12 @@
 package com.petredy.redmagic.redhole;
 
 import java.util.HashMap;
+import java.util.List;
 
 import com.petredy.redmagic.lib.Redholes;
 import com.petredy.redmagic.utils.LogUtils;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -80,6 +82,18 @@ public class Hole {
 
 	public int getMinLayers() {
 		return 2;
+	}
+
+	public void update(ItemStack redhole, World world, Entity user, int idk, boolean idk2) {
+		
+	}
+
+	public void keyPressed(ItemStack redhole, EntityPlayer player, String keyName) {
+		
+	}
+
+	public void addInformation(ItemStack redhole, EntityPlayer player, List list) {
+		
 	}
 	
 }

@@ -2,7 +2,8 @@ package com.petredy.redmagic.container;
 
 import com.petredy.redmagic.container.slot.SlotOutput;
 import com.petredy.redmagic.lib.Machines;
-import com.petredy.redmagic.machines.MachineDisintegrator;
+import com.petredy.redmagic.machines.MachineCompactor;
+import com.petredy.redmagic.machines.MachineFreezer;
 import com.petredy.redmagic.tileentities.TileEntityMachine;
 import com.petredy.redmagic.utils.LogUtils;
 
@@ -12,16 +13,19 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public class ContainerDeintegrator extends Container {
+public class ContainerCompactor extends Container {
 
 	public TileEntityMachine machine;
 	
-	public ContainerDeintegrator(EntityPlayer player, TileEntityMachine machine){
+	public ContainerCompactor(EntityPlayer player, TileEntityMachine machine){
 		this.machine = machine;
-		MachineDisintegrator deintegrator = (MachineDisintegrator) machine.getMachine(Machines.DISINTEGRATOR_METADATA);
-		if(deintegrator != null){
-			this.addSlotToContainer(new Slot(deintegrator.inventory, 0, 80, 35));
-			this.addSlotToContainer(new SlotOutput(deintegrator.inventory, 1, 80, 55));
+		MachineCompactor compactor = (MachineCompactor) machine.getMachine(Machines.COMPACTOR_METADATA);
+		if(compactor != null){
+			this.addSlotToContainer(new SlotOutput(compactor.inventory, 0, 80, 35));
+			this.addSlotToContainer(new Slot(compactor.inventory, 1, 44, 17));
+			this.addSlotToContainer(new Slot(compactor.inventory, 2, 116, 17));
+			this.addSlotToContainer(new Slot(compactor.inventory, 3, 44, 53));
+			this.addSlotToContainer(new Slot(compactor.inventory, 4, 116, 53));
 		}
 		this.bindPlayerInventory(player.inventory);
 	}

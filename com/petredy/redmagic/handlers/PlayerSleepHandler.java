@@ -17,7 +17,7 @@ public class PlayerSleepHandler {
 		if(Reference.SLEEP && !event.entityPlayer.worldObj.isRemote){
 			for (int j = 0; j < MinecraftServer.getServer().worldServers.length; j++){
 	            WorldServer server = MinecraftServer.getServer().worldServers[j];
-	            if(!server.isDaytime())server.setWorldTime(0);
+	            if(!server.isDaytime() || Reference.SLEEP_ALWAYS)server.setWorldTime(0);
 	        }
 		}
 	}
