@@ -13,6 +13,7 @@ public class StructureUtils {
 
 	public static Structure loadStructure(World world, int id){
 		Structure structure = new Structure();
+		structure.setWorld(world);
 		NBTTagCompound tag = WorldSavedDataUtils.loadData(world, getTokenPrefix() + id);
 		if(tag == null)return null;
 		structure.readFromNBT(tag);

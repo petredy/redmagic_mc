@@ -94,8 +94,6 @@ public class TileEntityStructure extends TileEntity{
 		
 		public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt){
 			this.readFromNBT(pkt.data);
-			LogUtils.log("sync tile");
-			LogUtils.log(position);
 		}
 		
 		public void readFromNBT(NBTTagCompound tag){
@@ -201,6 +199,7 @@ public class TileEntityStructure extends TileEntity{
 				worldObj.markBlockForRenderUpdate(xCoord, yCoord, zCoord);
 				structure.machines[side] = null;
 				StructureUtils.saveStructure(worldObj, structure);
+				this.machine = -1;
 			}
 		}
 		

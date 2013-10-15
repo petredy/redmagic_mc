@@ -90,8 +90,10 @@ public class BlockRedStructure extends BlockContainer{
 					}
 				}
 			}
-			entity.activate(par5EntityPlayer, par7, par8, par9);
-			return true;
+			if(entity.machine >= 0){
+				entity.activate(par5EntityPlayer, par7, par8, par9);
+				return true;
+			}
 		}
         return false;
     }
@@ -100,7 +102,7 @@ public class BlockRedStructure extends BlockContainer{
     {
 		TileEntityStructure entity = (TileEntityStructure) par1World.getBlockTileEntity(par2, par3, par4);
 		if(entity != null){
-			if(entity.hasStructure())entity.onBreak();
+			if(entity.hasStructure() && entity.machine >= 0)entity.onBreak();
 			entity.destroy();
 		}
 		super.breakBlock(par1World, par2, par3, par4, par5, par6);
@@ -115,14 +117,14 @@ public class BlockRedStructure extends BlockContainer{
 	
 	public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random) {
 		TileEntityStructure machineBlock = (TileEntityStructure) par1World.getBlockTileEntity(par2, par3, par4);
-		if(machineBlock != null && machineBlock.hasStructure()){
+		if(machineBlock != null && machineBlock.hasStructure() && machineBlock.machine >= 0){
 			machineBlock.onDisplayTick(par5Random);
 		}
 	}
 	
 	public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5) {
 		TileEntityStructure machineBlock = (TileEntityStructure)par1World.getBlockTileEntity(par2, par3, par4);
-		if(machineBlock != null && machineBlock.hasStructure()){
+		if(machineBlock != null && machineBlock.hasStructure() && machineBlock.machine >= 0){
 			machineBlock.onNeighborChange(par5);
 		}
 	}
