@@ -21,7 +21,7 @@ public class MachineFreezer extends Machine{
 	public ItemStack item;
 	
 	public int tick;
-	public int neededTicks = 100;
+	public int neededTicks = 333;
 	
 	public MachineFreezer(){
 		this.metadata = Machines.FREEZER_METADATA;

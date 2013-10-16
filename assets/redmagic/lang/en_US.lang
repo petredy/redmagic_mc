@@ -44,9 +44,9 @@ item.crafting.concentrated.granite.name=Concentrated Granite
 item.soul.name=Soul
 
 item.redhole.name=Redhole
-item.redhole.storeable.name=Storeable Redhole
-item.redhole.portable.name=Portable Redhole
-item.redhole.disintegrateable.name=Disintegrateable Redhole
+item.redhole.storeable.name=Store-able Redhole
+item.redhole.portable.name=Port-able Redhole
+item.redhole.disintegrateable.name=Disintegrate-able Redhole
 
 item.redmeter.name=Redmeter
 item.screwdriver.name=Redmagic Screwdriver

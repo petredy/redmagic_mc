@@ -18,7 +18,7 @@ public class MachineRefrigerator extends Machine{
 	public int baseID, coolingID, topID;
 	
 	public int tick = 0;
-	public int neededTicks = 100;
+	public int neededTicks = 1000;
 	public ItemStack freezing;
 	
 	public MachineRefrigerator(){
