@@ -89,17 +89,17 @@ public class TileEntityMachine extends TileEntity implements IMachineHandler, IE
 	}
 	
 	@Override
-	public int getXCoord() {
+	public int getXCoord(int side) {
 		return xCoord;
 	}
 
 	@Override
-	public int getYCoord() {
+	public int getYCoord(int side) {
 		return yCoord;
 	}
 
 	@Override
-	public int getZCoord() {
+	public int getZCoord(int side) {
 		return zCoord;
 	}
 	

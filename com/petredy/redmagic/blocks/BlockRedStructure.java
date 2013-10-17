@@ -8,6 +8,8 @@ import com.petredy.redmagic.items.ItemMachine;
 import com.petredy.redmagic.items.ItemScrewdriver;
 import com.petredy.redmagic.lib.BlockIndex;
 import com.petredy.redmagic.lib.Reference;
+import com.petredy.redmagic.machines.Machine;
+import com.petredy.redmagic.structure.Structure;
 import com.petredy.redmagic.tileentities.TileEntityMachine;
 import com.petredy.redmagic.tileentities.TileEntityStructure;
 import com.petredy.redmagic.utils.LogUtils;
@@ -60,13 +62,15 @@ public class BlockRedStructure extends BlockContainer{
 		if(entity != null && entity.hasStructure()){
 			int position = entity.position;
 			if(position > 17 && par5 != 0 && par5 != 1)return this.border;
-			if(entity.machine >= 0){
-				if(position == 4)return this.icons[entity.machine];
-				if(position == 10)return this.icons[entity.machine];
-				if(position == 12)return this.icons[entity.machine];
-				if(position == 14)return this.icons[entity.machine];
-				if(position == 16)return this.icons[entity.machine];
-				if(position == 22)return this.icons[entity.machine];
+			Structure structure = entity.getStructure();
+			if(structure != null){
+				int side = structure.getSideByPosition(entity.position);
+				if(side != -1){
+					Machine machine = structure.getMachineOnSide(side);
+					if(machine != null){
+						return this.icons[machine.getMetadata()];
+					}
+				}
 			}
 			return this.active;
 		}
@@ -82,15 +86,24 @@ public class BlockRedStructure extends BlockContainer{
 					if(par5EntityPlayer.isSneaking()){
 						entity.removeMachine(par5EntityPlayer, par7, par8, par9);
 						return true;
+					}else{
+						Structure structure = entity.getStructure();
+						if(structure != null){
+							par5EntityPlayer.addChatMessage("Structure: " + structure.id);
+							par5EntityPlayer.addChatMessage("Energy: " + structure.getStoredEnergy());
+							par5EntityPlayer.addChatMessage("Heat: " + structure.heat);
+							return true;
+						}
 					}
 				}else if(current.getItem() instanceof IMachineItem){
 					if(entity.setMachine(((IMachineItem)current.getItem()).getMetadata(current), par5EntityPlayer)){
-						par5EntityPlayer.inventory.decrStackSize(par5EntityPlayer.inventory.currentItem, 1);
+						par5EntityPlayer.inventory.setInventorySlotContents(par5EntityPlayer.inventory.currentItem, null);
 						return true;
 					}
 				}
 			}
-			if(entity.machine >= 0){
+			Structure structure = entity.getStructure();
+			if(structure != null && structure.getSideByPosition(entity.position) != -1){
 				entity.activate(par5EntityPlayer, par7, par8, par9);
 				return true;
 			}
@@ -102,7 +115,13 @@ public class BlockRedStructure extends BlockContainer{
     {
 		TileEntityStructure entity = (TileEntityStructure) par1World.getBlockTileEntity(par2, par3, par4);
 		if(entity != null){
-			if(entity.hasStructure() && entity.machine >= 0)entity.onBreak();
+			if(entity.hasStructure()){
+				Structure structure = entity.getStructure();
+				if(structure != null){
+					int side = structure.getSideByPosition(entity.position);
+					if(side != -1)entity.onBreak();
+				}
+			}
 			entity.destroy();
 		}
 		super.breakBlock(par1World, par2, par3, par4, par5, par6);
@@ -110,22 +129,30 @@ public class BlockRedStructure extends BlockContainer{
 	
 	public void onBlockAdded(World par1World, int par2, int par3, int par4) {
 		TileEntityStructure entity = (TileEntityStructure) par1World.getBlockTileEntity(par2, par3, par4);
-		if(entity != null && !par1World.isRemote){
+		if(entity != null && !par1World.isRemote && !entity.hasStructure()){
 			entity.build();
 		}
 	}
 	
 	public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random) {
 		TileEntityStructure machineBlock = (TileEntityStructure) par1World.getBlockTileEntity(par2, par3, par4);
-		if(machineBlock != null && machineBlock.hasStructure() && machineBlock.machine >= 0){
-			machineBlock.onDisplayTick(par5Random);
+		if(machineBlock != null && machineBlock.hasStructure()){
+			Structure structure = machineBlock.getStructure();
+			if(structure != null){
+				int side = structure.getSideByPosition(machineBlock.position);
+				if(side != -1)machineBlock.onDisplayTick(par5Random);
+			}
 		}
 	}
 	
 	public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5) {
 		TileEntityStructure machineBlock = (TileEntityStructure)par1World.getBlockTileEntity(par2, par3, par4);
-		if(machineBlock != null && machineBlock.hasStructure() && machineBlock.machine >= 0){
-			machineBlock.onNeighborChange(par5);
+		if(machineBlock != null && machineBlock.hasStructure()){
+			Structure structure = machineBlock.getStructure();
+			if(structure != null){
+				int side = structure.getSideByPosition(machineBlock.position);
+				if(side != -1)machineBlock.onNeighborChange(par5);
+			}
 		}
 	}
 

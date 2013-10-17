@@ -14,6 +14,7 @@ import com.petredy.redmagic.api.machines.IMachineHandler;
 import com.petredy.redmagic.lib.Guis;
 import com.petredy.redmagic.lib.Machines;
 import com.petredy.redmagic.utils.InventoryUtils;
+import com.petredy.redmagic.utils.LogUtils;
 
 public class MachineFreezer extends Machine{
 
@@ -46,12 +47,12 @@ public class MachineFreezer extends Machine{
 				inventory.decrStackSize(0, 1);
 			}else if(inventory.getStackInSlot(0) == null){
 				switch(this.side){
-				case 0: transferItemFrom(handler.getWorld(), handler.getXCoord(), handler.getYCoord() - 1, handler.getZCoord());
-				case 1: transferItemFrom(handler.getWorld(), handler.getXCoord(), handler.getYCoord() + 1, handler.getZCoord());
-				case 2: transferItemFrom(handler.getWorld(), handler.getXCoord(), handler.getYCoord(), handler.getZCoord() - 1);
-				case 3: transferItemFrom(handler.getWorld(), handler.getXCoord(), handler.getYCoord(), handler.getZCoord() + 1);
-				case 4: transferItemFrom(handler.getWorld(), handler.getXCoord() - 1, handler.getYCoord(), handler.getZCoord());
-				case 5: transferItemFrom(handler.getWorld(), handler.getXCoord() + 1, handler.getYCoord() - 1, handler.getZCoord());
+				case 0: transferItemFrom(handler.getWorld(), handler.getXCoord(getSide()), handler.getYCoord(getSide()) - 1, handler.getZCoord(getSide()));
+				case 1: transferItemFrom(handler.getWorld(), handler.getXCoord(getSide()), handler.getYCoord(getSide()) + 1, handler.getZCoord(getSide()));
+				case 2: transferItemFrom(handler.getWorld(), handler.getXCoord(getSide()), handler.getYCoord(getSide()), handler.getZCoord(getSide()) - 1);
+				case 3: transferItemFrom(handler.getWorld(), handler.getXCoord(getSide()), handler.getYCoord(getSide()), handler.getZCoord(getSide()) + 1);
+				case 4: transferItemFrom(handler.getWorld(), handler.getXCoord(getSide()) - 1, handler.getYCoord(getSide()), handler.getZCoord(getSide()));
+				case 5: transferItemFrom(handler.getWorld(), handler.getXCoord(getSide()) + 1, handler.getYCoord(getSide()) - 1, handler.getZCoord(getSide()));
 				}
 			}
 		}
@@ -74,13 +75,13 @@ public class MachineFreezer extends Machine{
 
 
 	public void activate(IMachineHandler handler, EntityPlayer player, float offX, float offY, float offZ) {
-		player.openGui(Redmagic.instance, Guis.FREEZER, player.worldObj, handler.getXCoord(), handler.getYCoord(), handler.getZCoord());
+		player.openGui(Redmagic.instance, Guis.FREEZER, player.worldObj, handler.getXCoord(getSide()), handler.getYCoord(getSide()), handler.getZCoord(getSide()));
 	}
 	
 	public void remove(IMachineHandler handler) {
 		if(!handler.getWorld().isRemote){
-			InventoryUtils.dropInventory(inventory, handler.getWorld(), handler.getXCoord(), handler.getYCoord(), handler.getZCoord());
-			if(item != null)InventoryUtils.dropItemStack(item, handler.getWorld(), handler.getXCoord(), handler.getYCoord(), handler.getZCoord());
+			InventoryUtils.dropInventory(inventory, handler.getWorld(), handler.getXCoord(getSide()), handler.getYCoord(getSide()), handler.getZCoord(getSide()));
+			if(item != null)InventoryUtils.dropItemStack(item, handler.getWorld(), handler.getXCoord(getSide()), handler.getYCoord(getSide()), handler.getZCoord(getSide()));
 		}
 		super.remove(handler);
 	}

@@ -1,5 +1,6 @@
 package com.petredy.redmagic.container;
 
+import com.petredy.redmagic.api.machines.IMachineHandler;
 import com.petredy.redmagic.container.slot.SlotOutput;
 import com.petredy.redmagic.lib.Machines;
 import com.petredy.redmagic.machines.MachineFreezer;
@@ -14,9 +15,9 @@ import net.minecraft.item.ItemStack;
 
 public class ContainerFreezer extends Container {
 
-	public TileEntityMachine machine;
+	public IMachineHandler machine;
 	
-	public ContainerFreezer(EntityPlayer player, TileEntityMachine machine){
+	public ContainerFreezer(EntityPlayer player, IMachineHandler machine){
 		this.machine = machine;
 		MachineFreezer freezer = (MachineFreezer) machine.getMachine(Machines.FREEZER_METADATA);
 		if(freezer != null){

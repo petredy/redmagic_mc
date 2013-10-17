@@ -1,5 +1,9 @@
 package com.petredy.redmagic.machines;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.item.ItemStack;
@@ -13,6 +17,7 @@ import com.petredy.redmagic.lib.Guis;
 import com.petredy.redmagic.lib.Machines;
 import com.petredy.redmagic.utils.InventoryUtils;
 import com.petredy.redmagic.utils.LogUtils;
+import com.petredy.redmagic.container.ContainerFurnace;
 
 public class MachineFurnace extends Machine{
 
@@ -35,6 +40,7 @@ public class MachineFurnace extends Machine{
 				if(machineHandler.getEnergyHandler().use(burnTickCost) == burnTickCost){
 					burnTick++;
 					machineHandler.setHeat(machineHandler.getHeat() + heatProduction);
+					
 				}
 			}else{
 				burnTick = 0;
@@ -66,13 +72,13 @@ public class MachineFurnace extends Machine{
 	}
 	
 	public void activate(IMachineHandler handler, EntityPlayer player, float offX, float offY, float offZ) {
-		player.openGui(Redmagic.instance, Guis.FURNACE, player.worldObj, handler.getXCoord(), handler.getYCoord(), handler.getZCoord());
+		player.openGui(Redmagic.instance, Guis.FURNACE, player.worldObj, handler.getXCoord(getSide()), handler.getYCoord(getSide()), handler.getZCoord(getSide()));
 	}
 	
 	public void remove(IMachineHandler handler) {
 		if(!handler.getWorld().isRemote){
-			InventoryUtils.dropInventory(inventory, handler.getWorld(), handler.getXCoord(), handler.getYCoord(), handler.getZCoord());
-			if(burningStack != null)InventoryUtils.dropItemStack(burningStack, handler.getWorld(), handler.getXCoord(), handler.getYCoord(), handler.getZCoord());
+			InventoryUtils.dropInventory(inventory, handler.getWorld(), handler.getXCoord(getSide()), handler.getYCoord(getSide()), handler.getZCoord(getSide()));
+			if(burningStack != null)InventoryUtils.dropItemStack(burningStack, handler.getWorld(), handler.getXCoord(getSide()), handler.getYCoord(getSide()), handler.getZCoord(getSide()));
 		}
 		super.remove(handler);
 	}

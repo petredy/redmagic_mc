@@ -1,5 +1,6 @@
 package com.petredy.redmagic.container;
 
+import com.petredy.redmagic.api.machines.IMachineHandler;
 import com.petredy.redmagic.container.slot.SlotOutput;
 import com.petredy.redmagic.lib.Machines;
 import com.petredy.redmagic.machines.MachineDisintegrator;
@@ -12,16 +13,16 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public class ContainerDeintegrator extends Container {
+public class ContainerDisintegrator extends Container {
 
-	public TileEntityMachine machine;
+	public IMachineHandler machine;
 	
-	public ContainerDeintegrator(EntityPlayer player, TileEntityMachine machine){
+	public ContainerDisintegrator(EntityPlayer player, IMachineHandler machine){
 		this.machine = machine;
 		MachineDisintegrator deintegrator = (MachineDisintegrator) machine.getMachine(Machines.DISINTEGRATOR_METADATA);
 		if(deintegrator != null){
 			this.addSlotToContainer(new Slot(deintegrator.inventory, 0, 80, 35));
-			this.addSlotToContainer(new SlotOutput(deintegrator.inventory, 1, 80, 55));
+			this.addSlotToContainer(new SlotOutput(deintegrator.inventory, 1, 80, 56));
 		}
 		this.bindPlayerInventory(player.inventory);
 	}

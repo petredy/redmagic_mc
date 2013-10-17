@@ -9,11 +9,15 @@ import com.petredy.redmagic.api.machines.IMachineHandler;
 import com.petredy.redmagic.api.redenergy.IEnergyHandler;
 import com.petredy.redmagic.blocks.Blocks;
 import com.petredy.redmagic.machines.Machine;
+import com.petredy.redmagic.network.PacketHandler;
+import com.petredy.redmagic.network.PacketStructureSync;
 import com.petredy.redmagic.redenergy.EnergyMap;
 import com.petredy.redmagic.redenergy.RedEnergy;
 import com.petredy.redmagic.tileentities.TileEntityStructure;
 import com.petredy.redmagic.utils.BlockUtils.VirtualBlock;
 import com.petredy.redmagic.utils.LogUtils;
+
+import cpw.mods.fml.common.network.PacketDispatcher;
 
 
 public class Structure implements IEnergyHandler, IMachineHandler{
@@ -26,13 +30,30 @@ public class Structure implements IEnergyHandler, IMachineHandler{
 	public float energy;
 	public float heat;
 	
+	public int syncTick;
+	
+	
+	public static int BOTTOM = 4;
+	public static int TOP = 22;
+	public static int BACK = 16;
+	public static int FRONT = 10;
+	public static int LEFT = 14;
+	public static int RIGHT = 12;
+	
+	public static int MIDDLE = 13;
+	
 	public World world;
 	
 	public void requestUpdate(World world){
-		if(world.getTotalWorldTime() - updateTime > 100){
-			update(world);
-			updateTime = world.getTotalWorldTime();
+		update(world);
+		
+		if(syncTick < 0){
+			syncTick = 0;
+			NBTTagCompound tag = new NBTTagCompound();
+			writeToNBT(tag);
+			PacketDispatcher.sendPacketToAllInDimension(PacketHandler.populatePacket(new PacketStructureSync(tag)), world.provider.dimensionId);
 		}
+		syncTick++;
 	}
 	
 	public void setWorld(World world){
@@ -248,6 +269,7 @@ public class Structure implements IEnergyHandler, IMachineHandler{
 		this.updateTime = tag.getLong("updateTime");
 		this.energy = tag.getFloat("energy");
 		this.heat = tag.getFloat("heat");
+		this.id = tag.getInteger("index");
 		
 		NBTTagList machineList = tag.getTagList("redmagic.machines");
 		for(int i = 0; i < machineList.tagCount(); i++){
@@ -268,6 +290,7 @@ public class Structure implements IEnergyHandler, IMachineHandler{
 		tag.setLong("updateTime", updateTime);
 		tag.setFloat("energy", energy);
 		tag.setFloat("heat", heat);
+		tag.setInteger("index", id);
 		
 		NBTTagList machineList = new NBTTagList();
 		for(Machine machine: machines){
@@ -285,6 +308,18 @@ public class Structure implements IEnergyHandler, IMachineHandler{
 			if(blocks[i].x == x && blocks[i].y == y && blocks[i].z == z)return i;
 		}
 		return -1;
+	}
+	
+	public int getSideByPosition(int position) {
+		switch(position){
+		case 4: return 0;
+		case 10: return 3;
+		case 12: return 5;
+		case 14: return 4;
+		case 16: return 2;
+		case 22: return 1;
+		default: return -1;
+		}
 	}
 
 	// --------------------------------------------------------------------------
@@ -370,30 +405,50 @@ public class Structure implements IEnergyHandler, IMachineHandler{
 	}
 
 	@Override
-	public int getXCoord() {
-		return blocks[13] != null ? blocks[13].x : Integer.MAX_VALUE;
-	}
-
-	@Override
-	public int getYCoord() {
-		return blocks[13] != null ? blocks[13].y : Integer.MAX_VALUE;
-	}
-
-	@Override
-	public int getZCoord() {
-		return blocks[13] != null ? blocks[13].z : Integer.MAX_VALUE;
-	}
-
-	public int getSideByPosition(int position) {
-		switch(position){
-		case 4: return 0;
-		case 10: return 3;
-		case 12: return 5;
-		case 14: return 4;
-		case 16: return 2;
-		case 22: return 1;
-		default: return -1;
+	public int getXCoord(int side) {
+		switch(side){
+		case 1: return blocks[TOP] != null ? blocks[TOP].x : Integer.MAX_VALUE;
+		case 0: return blocks[BOTTOM] != null ? blocks[BOTTOM].x : Integer.MAX_VALUE;
+		case 2: return blocks[BACK] != null ? blocks[BACK].x : Integer.MAX_VALUE;
+		case 3: return blocks[FRONT] != null ? blocks[FRONT].x : Integer.MAX_VALUE;
+		case 4: return blocks[LEFT] != null ? blocks[LEFT].x : Integer.MAX_VALUE;
+		case 5: return blocks[RIGHT] != null ? blocks[RIGHT].x : Integer.MAX_VALUE;
+		default: return Integer.MAX_VALUE;
 		}
+	}
+
+	@Override
+	public int getYCoord(int side) {
+		switch(side){
+		case 1: return blocks[TOP] != null ? blocks[TOP].y : Integer.MAX_VALUE;
+		case 0: return blocks[BOTTOM] != null ? blocks[BOTTOM].y : Integer.MAX_VALUE;
+		case 2: return blocks[BACK] != null ? blocks[BACK].y : Integer.MAX_VALUE;
+		case 3: return blocks[FRONT] != null ? blocks[FRONT].y : Integer.MAX_VALUE;
+		case 4: return blocks[LEFT] != null ? blocks[LEFT].y : Integer.MAX_VALUE;
+		case 5: return blocks[RIGHT] != null ? blocks[RIGHT].y : Integer.MAX_VALUE;
+		default: return Integer.MAX_VALUE;
+		}
+	}
+
+	@Override
+	public int getZCoord(int side) {
+		switch(side){
+		case 1: return blocks[TOP] != null ? blocks[TOP].z : Integer.MAX_VALUE;
+		case 0: return blocks[BOTTOM] != null ? blocks[BOTTOM].z : Integer.MAX_VALUE;
+		case 2: return blocks[BACK] != null ? blocks[BACK].z : Integer.MAX_VALUE;
+		case 3: return blocks[FRONT] != null ? blocks[FRONT].z : Integer.MAX_VALUE;
+		case 4: return blocks[LEFT] != null ? blocks[LEFT].z : Integer.MAX_VALUE;
+		case 5: return blocks[RIGHT] != null ? blocks[RIGHT].z : Integer.MAX_VALUE;
+		default: return Integer.MAX_VALUE;
+		}
+	}
+
+	@Override
+	public Machine getMachine(int metadata) {
+		for(Machine machine: machines){
+			if(machine != null && machine.getMetadata() == metadata)return machine;
+		}
+		return null;
 	}
 	
 	

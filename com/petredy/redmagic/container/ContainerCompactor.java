@@ -1,5 +1,6 @@
 package com.petredy.redmagic.container;
 
+import com.petredy.redmagic.api.machines.IMachineHandler;
 import com.petredy.redmagic.container.slot.SlotOutput;
 import com.petredy.redmagic.lib.Machines;
 import com.petredy.redmagic.machines.MachineCompactor;
@@ -15,9 +16,9 @@ import net.minecraft.item.ItemStack;
 
 public class ContainerCompactor extends Container {
 
-	public TileEntityMachine machine;
+	public IMachineHandler machine;
 	
-	public ContainerCompactor(EntityPlayer player, TileEntityMachine machine){
+	public ContainerCompactor(EntityPlayer player, IMachineHandler machine){
 		this.machine = machine;
 		MachineCompactor compactor = (MachineCompactor) machine.getMachine(Machines.COMPACTOR_METADATA);
 		if(compactor != null){

@@ -8,6 +8,7 @@ import com.petredy.redmagic.network.PacketHandler;
 import com.petredy.redmagic.network.PacketMachineSync;
 import com.petredy.redmagic.network.PacketStructureSync;
 import com.petredy.redmagic.structure.Structure;
+import com.petredy.redmagic.structure.StructureManager;
 import com.petredy.redmagic.utils.LogUtils;
 import com.petredy.redmagic.utils.StructureUtils;
 
@@ -27,20 +28,20 @@ public class TileEntityStructure extends TileEntity{
 		public int index;
 		public int lastIndex;
 		public int position = 0;
-		public int machine = -1;
 	
 		public void updateEntity(){
-			Structure structure = StructureUtils.loadStructure(worldObj, index);
-			if(structure != null){
-				structure.requestUpdate(worldObj);
-				StructureUtils.saveStructure(worldObj, structure);
+			if(position == Structure.MIDDLE){
+				Structure structure = StructureManager.get(index);
+				if(structure != null){
+					structure.requestUpdate(worldObj);
+				}
 			}
 		}
 		
 
 		
 		public void destroy() {
-			Structure structure = StructureUtils.loadStructure(worldObj, index);
+			Structure structure = StructureManager.get(index);
 			if(structure != null){
 				structure.notifyAllBlocks(worldObj, 0);
 			}
@@ -50,34 +51,30 @@ public class TileEntityStructure extends TileEntity{
 			Structure structure = new Structure();
 			structure.build(worldObj, xCoord, yCoord, zCoord);
 			if(structure.isComplete()){
-				if(structure.id == 0){
-					structure.id = this.index = worldObj.getUniqueDataId(StructureUtils.getTokenPrefix());
-					if(index == 0)structure.id = this.index = worldObj.getUniqueDataId(StructureUtils.getTokenPrefix());
-				}else{
-					this.index = structure.id;
-				}
+				this.index = StructureManager.add(worldObj, structure);
 				structure.notifyAllBlocks(worldObj, index);
-				StructureUtils.saveStructure(worldObj, structure);
+				NBTTagCompound tag = new NBTTagCompound();
+				structure.writeToNBT(tag);
+				PacketDispatcher.sendPacketToAllInDimension(PacketHandler.populatePacket(new PacketStructureSync(tag)), worldObj.provider.dimensionId);
 			}
 		}
 		
 		public boolean hasStructure(){
-			return index > 0;
+			return index > 0 && getStructure() != null;
 		}
 		
 		public Structure getStructure(){
-			return StructureUtils.loadStructure(worldObj, index);
+			return StructureManager.get(index);
 		}
 
 		public void notify(Integer id) {
 			if(id == 0){
 				//Reset local data
-				this.position = -1;	
-				this.machine = -1;
+				this.position = -1;
 				this.lastIndex = this.index;
 			}else{
 				// Set local data
-				Structure structure = StructureUtils.loadStructure(worldObj, id);
+				Structure structure = StructureManager.get(id);
 				if(structure != null){
 					this.position = structure.getPosition(xCoord, yCoord, zCoord);
 				}
@@ -101,7 +98,6 @@ public class TileEntityStructure extends TileEntity{
 			this.index = tag.getInteger("redmagic.index");
 			this.position = tag.getInteger("redmagic.position");
 			this.lastIndex = tag.getInteger("redmagic.lastIndex");
-			this.machine = tag.getInteger("redmagic.machine");
 		}
 		
 		public void writeToNBT(NBTTagCompound tag){
@@ -109,11 +105,10 @@ public class TileEntityStructure extends TileEntity{
 			tag.setInteger("redmagic.index", index);
 			tag.setInteger("redmagic.position", position);
 			tag.setInteger("redmagic.lastIndex", lastIndex);
-			tag.setInteger("redmagic.machine", machine);
 		}
 
 		public boolean setMachine(int metadata, EntityPlayer player) {
-			Structure structure = StructureUtils.loadStructure(worldObj, index);
+			Structure structure = StructureManager.get(index);
 			int side;
 			if(structure != null && (side = structure.getSideByPosition(position)) >= 0){
 				if(structure.machines[side] == null){
@@ -122,8 +117,6 @@ public class TileEntityStructure extends TileEntity{
 						structure.machines[side] = machine;
 						structure.machines[side].onPlacedByPlayer((IMachineHandler) structure, side, player);
 						player.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-						this.machine = metadata;
-						StructureUtils.saveStructure(worldObj, structure);
 						return true;
 					}
 				}
@@ -133,7 +126,7 @@ public class TileEntityStructure extends TileEntity{
 
 		private int getSize() {
 			int size = 0;
-			Structure structure = StructureUtils.loadStructure(worldObj, index);
+			Structure structure = StructureManager.get(index);
 			if(structure != null){
 				for(Machine machine: structure.machines){
 					if(machine != null)size += machine.getSize();
@@ -143,7 +136,7 @@ public class TileEntityStructure extends TileEntity{
 		}
 
 		public Machine getMachine(int metadata){
-			Structure structure = StructureUtils.loadStructure(worldObj, index);
+			Structure structure = StructureManager.get(index);
 			if(structure != null){
 				for(Machine machine: structure.machines){
 					if(machine != null && machine.getMetadata() == metadata)return machine;
@@ -157,7 +150,7 @@ public class TileEntityStructure extends TileEntity{
 		}
 		
 		public void removeMachine(EntityPlayer player, float offX, float offY, float offZ) {
-			Structure structure = StructureUtils.loadStructure(worldObj, index);
+			Structure structure = StructureManager.get(index);
 			int side;
 			if(structure != null && (side = structure.getSideByPosition(position))> 0){
 				Machine machine = structure.getMachineOnSide(side);
@@ -165,30 +158,26 @@ public class TileEntityStructure extends TileEntity{
 					machine.removeByPlayer((IMachineHandler) structure, player, offX, offY, offZ);
 					player.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 					structure.machines[side] = null;
-					this.machine = -1;
-					StructureUtils.saveStructure(worldObj, structure);
 				}
 			}
 		}
 		
 		public boolean activate(EntityPlayer player, float offX, float offY, float offZ) {
-			Structure structure = StructureUtils.loadStructure(worldObj, index);
+			Structure structure = StructureManager.get(index);
 			int side = 0;
 			if(structure != null && (side = structure.getSideByPosition(position)) >= 0 && structure.machines[side] != null){
-				structure.machines[side].activate((IMachineHandler)this, player, offX, offY, offZ);
-				StructureUtils.saveStructure(worldObj, structure);
+				structure.machines[side].activate((IMachineHandler)structure, player, offX, offY, offZ);
 				return true;
 			}
 			return false;
 		}
 		
 		public void onBreak() {
-			Structure structure = StructureUtils.loadStructure(worldObj, index);
+			Structure structure = StructureManager.get(index);
 			if(structure != null){
 				for(int i = 0; i < 6; i++){
 					this.removeMachine(structure, i);
 				}
-				StructureUtils.saveStructure(worldObj, structure);
 			}
 		}
 		
@@ -198,28 +187,24 @@ public class TileEntityStructure extends TileEntity{
 				machine.remove(structure);
 				worldObj.markBlockForRenderUpdate(xCoord, yCoord, zCoord);
 				structure.machines[side] = null;
-				StructureUtils.saveStructure(worldObj, structure);
-				this.machine = -1;
 			}
 		}
 		
 		public void onDisplayTick(Random par5Random) {
-			Structure structure = StructureUtils.loadStructure(worldObj, index);
+			Structure structure = StructureManager.get(index);
 			if(structure != null){
 				for(Machine machine: structure.machines){
-					if(machine != null)machine.onDisplayTick((IMachineHandler)this, par5Random);
+					if(machine != null)machine.onDisplayTick((IMachineHandler)structure, par5Random);
 				}
-				StructureUtils.saveStructure(worldObj, structure);
 			}
 		}
 
 		public void onNeighborChange(int blockID) {
-			Structure structure = StructureUtils.loadStructure(worldObj, index);
+			Structure structure = StructureManager.get(index);
 			if(structure != null){
 				for(Machine machine: structure.machines){
-					if(machine != null)machine.onNeighborChange((IMachineHandler)this, blockID);
+					if(machine != null)machine.onNeighborChange((IMachineHandler)structure, blockID);
 				}
-				StructureUtils.saveStructure(worldObj, structure);
 			}
 		}
 }

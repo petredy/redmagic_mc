@@ -9,6 +9,8 @@ public interface IMachineHandler {
 
 	public Machine getMachineOnSide(int i);
 	
+	public Machine getMachine(int metadata);
+	
 	public IEnergyHandler getEnergyHandler();
 	
 	public float getHeat();
@@ -19,7 +21,7 @@ public interface IMachineHandler {
 	
 	public World getWorld();
 	
-	public int getXCoord();
-	public int getYCoord();
-	public int getZCoord();
+	public int getXCoord(int side);
+	public int getYCoord(int side);
+	public int getZCoord(int side);
 }

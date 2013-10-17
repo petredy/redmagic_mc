@@ -3,6 +3,7 @@ package com.petredy.redmagic.client.guis;
 import org.lwjgl.opengl.GL11;
 
 import com.petredy.redmagic.Redmagic;
+import com.petredy.redmagic.api.machines.IMachineHandler;
 import com.petredy.redmagic.blocks.Blocks;
 import com.petredy.redmagic.container.ContainerCompactor;
 import com.petredy.redmagic.items.Items;
@@ -22,10 +23,10 @@ import net.minecraft.util.StatCollector;
 
 public class GuiCompactor extends GuiContainer{
 
-	public TileEntityMachine machine;
+	public IMachineHandler machine;
 	public MachineCompactor compactor;
 	
-	public GuiCompactor(EntityPlayer player, TileEntityMachine entity) {
+	public GuiCompactor(EntityPlayer player, IMachineHandler entity) {
 		super(new ContainerCompactor(player, entity));
 		this.machine = entity;
 		this.compactor = (MachineCompactor) this.machine.getMachine(Machines.COMPACTOR_METADATA);

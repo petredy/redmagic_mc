@@ -1,12 +1,19 @@
 package com.petredy.redmagic.container;
 
+import com.petredy.redmagic.api.machines.IMachineHandler;
 import com.petredy.redmagic.container.slot.SlotOutput;
 import com.petredy.redmagic.lib.BlockIndex;
 import com.petredy.redmagic.lib.Machines;
 import com.petredy.redmagic.machines.MachineFurnace;
+import com.petredy.redmagic.structure.CrafterTest;
+import com.petredy.redmagic.structure.Structure;
+import com.petredy.redmagic.structure.StructureManager;
 import com.petredy.redmagic.tileentities.TileEntityMachine;
+import com.petredy.redmagic.utils.InventoryUtils;
 import com.petredy.redmagic.utils.LogUtils;
+import com.petredy.redmagic.utils.PlayerUtils;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -16,19 +23,22 @@ import net.minecraft.item.ItemStack;
 
 public class ContainerFurnace extends Container {
 
-	public TileEntityMachine machine;
+	public IMachineHandler machine;
+	public MachineFurnace furnace;
 	
-	public ContainerFurnace(EntityPlayer player, TileEntityMachine machine){
+	public ContainerFurnace(EntityPlayer player, IMachineHandler machine){
 		this.machine = machine;
-		MachineFurnace furnace = (MachineFurnace) machine.getMachine(Machines.FURNACE_METADATA);
+		this.furnace = (MachineFurnace) machine.getMachine(Machines.FURNACE_METADATA);
 		if(furnace != null){
 			this.addSlotToContainer(new Slot(furnace.inventory, 0, 56, 34));
 			this.addSlotToContainer(new SlotOutput(furnace.inventory, 1, 116, 35));
 		}
 		
+		this.addCraftingToCrafters(new CrafterTest());
+		
 		this.bindPlayerInventory(player.inventory);
 	}
-	
+
 	@Override
 	public boolean canInteractWith(EntityPlayer entityplayer) {
 		return true;
@@ -51,7 +61,7 @@ public class ContainerFurnace extends Container {
     {
         ItemStack itemstack = null;
         Slot slot = (Slot)this.inventorySlots.get(par2);
-
+        
         if (slot != null && slot.getHasStack())
         {
             ItemStack itemstack1 = slot.getStack();

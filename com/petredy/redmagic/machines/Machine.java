@@ -78,7 +78,7 @@ public class Machine {
 	public void remove(IMachineHandler handler) {
 		if(!handler.getWorld().isRemote){
 			ItemStack stack = new ItemStack(Items.machine, 1, getMetadata());
-			InventoryUtils.dropItemStack(stack, handler.getWorld(), handler.getXCoord(), handler.getYCoord(), handler.getZCoord());
+			InventoryUtils.dropItemStack(stack, handler.getWorld(), handler.getXCoord(getSide()), handler.getYCoord(getSide()), handler.getZCoord(getSide()));
 		}
 	}
 	

@@ -3,8 +3,9 @@ package com.petredy.redmagic.client.guis;
 import org.lwjgl.opengl.GL11;
 
 import com.petredy.redmagic.Redmagic;
+import com.petredy.redmagic.api.machines.IMachineHandler;
 import com.petredy.redmagic.blocks.Blocks;
-import com.petredy.redmagic.container.ContainerDeintegrator;
+import com.petredy.redmagic.container.ContainerDisintegrator;
 import com.petredy.redmagic.items.Items;
 import com.petredy.redmagic.lib.BlockIndex;
 import com.petredy.redmagic.lib.Guis;
@@ -20,13 +21,13 @@ import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 
-public class GuiDeintegrator extends GuiContainer{
+public class GuiDisintegrator extends GuiContainer{
 
-	public TileEntityMachine machine;
+	public IMachineHandler machine;
 	public MachineDisintegrator deintegrator;
 	
-	public GuiDeintegrator(EntityPlayer player, TileEntityMachine entity) {
-		super(new ContainerDeintegrator(player, entity));
+	public GuiDisintegrator(EntityPlayer player, IMachineHandler entity) {
+		super(new ContainerDisintegrator(player, entity));
 		this.machine = entity;
 		this.deintegrator = (MachineDisintegrator) this.machine.getMachine(Machines.DISINTEGRATOR_METADATA);
 	}

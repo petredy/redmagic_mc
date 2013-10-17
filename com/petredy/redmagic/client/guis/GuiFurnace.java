@@ -3,6 +3,7 @@ package com.petredy.redmagic.client.guis;
 import org.lwjgl.opengl.GL11;
 
 import com.petredy.redmagic.Redmagic;
+import com.petredy.redmagic.api.machines.IMachineHandler;
 import com.petredy.redmagic.blocks.Blocks;
 import com.petredy.redmagic.container.ContainerFurnace;
 import com.petredy.redmagic.items.Items;
@@ -10,6 +11,7 @@ import com.petredy.redmagic.lib.BlockIndex;
 import com.petredy.redmagic.lib.Guis;
 import com.petredy.redmagic.lib.Machines;
 import com.petredy.redmagic.lib.Textures;
+import com.petredy.redmagic.machines.Machine;
 import com.petredy.redmagic.machines.MachineFurnace;
 import com.petredy.redmagic.tileentities.TileEntityMachine;
 import com.petredy.redmagic.utils.LogUtils;
@@ -17,15 +19,16 @@ import com.petredy.redmagic.utils.LogUtils;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 
 public class GuiFurnace extends GuiContainer{
 
-	public TileEntityMachine machine;
+	public IMachineHandler machine;
 	public MachineFurnace furnace;
 	
-	public GuiFurnace(EntityPlayer player, TileEntityMachine entity) {
+	public GuiFurnace(EntityPlayer player, IMachineHandler entity) {
 		super(new ContainerFurnace(player, entity));
 		this.machine = entity;
 		this.furnace = (MachineFurnace) this.machine.getMachine(Machines.FURNACE_METADATA);

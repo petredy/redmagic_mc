@@ -10,6 +10,7 @@ import net.minecraft.network.INetworkManager;
 
 import com.petredy.redmagic.lib.Packets;
 import com.petredy.redmagic.structure.Structure;
+import com.petredy.redmagic.structure.StructureManager;
 import com.petredy.redmagic.utils.StructureUtils;
 
 import cpw.mods.fml.common.network.Player;
@@ -30,7 +31,7 @@ public class PacketStructureSync extends PacketNBTSync{
 		EntityPlayer thePlayer = (EntityPlayer)player;
 		Structure structure = new Structure();
 		structure.readFromNBT(data);
-		StructureUtils.saveStructure(thePlayer.worldObj, structure);
+		StructureManager.add(thePlayer.worldObj, structure);
 	}
 	
 }

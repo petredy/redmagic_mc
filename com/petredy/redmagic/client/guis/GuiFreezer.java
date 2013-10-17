@@ -3,6 +3,7 @@ package com.petredy.redmagic.client.guis;
 import org.lwjgl.opengl.GL11;
 
 import com.petredy.redmagic.Redmagic;
+import com.petredy.redmagic.api.machines.IMachineHandler;
 import com.petredy.redmagic.blocks.Blocks;
 import com.petredy.redmagic.container.ContainerFreezer;
 import com.petredy.redmagic.items.Items;
@@ -22,10 +23,10 @@ import net.minecraft.util.StatCollector;
 
 public class GuiFreezer extends GuiContainer{
 
-	public TileEntityMachine machine;
+	public IMachineHandler machine;
 	public MachineFreezer freezer;
 	
-	public GuiFreezer(EntityPlayer player, TileEntityMachine entity) {
+	public GuiFreezer(EntityPlayer player, IMachineHandler entity) {
 		super(new ContainerFreezer(player, entity));
 		this.machine = entity;
 		this.freezer = (MachineFreezer) this.machine.getMachine(Machines.FREEZER_METADATA);

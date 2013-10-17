@@ -36,18 +36,18 @@ public class MachineCompactor extends Machine{
 	}
 	
 	public void activate(IMachineHandler handler, EntityPlayer player, float offX, float offY, float offZ) {
-		player.openGui(Redmagic.instance, Guis.COMPACTOR, handler.getWorld(), handler.getXCoord(), handler.getYCoord(), handler.getZCoord());
+		player.openGui(Redmagic.instance, Guis.COMPACTOR, handler.getWorld(), handler.getXCoord(getSide()), handler.getYCoord(getSide()), handler.getZCoord(getSide()));
 	}
 	
 	public void onNeighborChange(IMachineHandler handler, int blockID) {
-		if(handler.getEnergyHandler().getStoredEnergy() >= COST && blockID == Block.pistonExtension.blockID && isPistonPress(handler.getWorld(), handler.getXCoord(), handler.getYCoord(), handler.getZCoord())){
+		if(handler.getEnergyHandler().getStoredEnergy() >= COST && blockID == Block.pistonExtension.blockID && isPistonPress(handler.getWorld(), handler.getXCoord(getSide()), handler.getYCoord(getSide()), handler.getZCoord(getSide()))){
 			ItemStack[] matrix = new ItemStack[4];
 			for(int i = 1; i < 5; i++){
 				matrix[i - 1] = this.inventory.getStackInSlot(i);
 			}
 			ItemStack output = CompactorDictionary.findOutput(matrix);
 			if(output != null && (this.inventory.getStackInSlot(0) == null || (this.inventory.getStackInSlot(0).isItemEqual(output) && this.inventory.getStackInSlot(0).stackSize + output.stackSize <= output.getMaxStackSize())) && handler.getEnergyHandler().use(COST) >= COST){
-				PacketDispatcher.sendPacketToAllInDimension(PacketHandler.populatePacket(new PacketMachineSync(handler.getXCoord(), handler.getYCoord(), handler.getZCoord(), handler.getEnergyHandler().getStoredEnergy())), handler.getWorld().provider.dimensionId);
+				PacketDispatcher.sendPacketToAllInDimension(PacketHandler.populatePacket(new PacketMachineSync(handler.getXCoord(getSide()), handler.getYCoord(getSide()), handler.getZCoord(getSide()), handler.getEnergyHandler().getStoredEnergy())), handler.getWorld().provider.dimensionId);
 				for(int i = 1; i < 5; i++){
 					this.inventory.decrStackSize(i, 1);
 				}
@@ -72,7 +72,7 @@ public class MachineCompactor extends Machine{
 	public void remove(IMachineHandler handler) {
 		super.remove(handler);
 		if(!handler.getWorld().isRemote){
-			InventoryUtils.dropInventory(inventory, handler.getWorld(), handler.getXCoord(), handler.getYCoord(), handler.getZCoord());
+			InventoryUtils.dropInventory(inventory, handler.getWorld(), handler.getXCoord(getSide()), handler.getYCoord(getSide()), handler.getZCoord(getSide()));
 		}
 	}
 	

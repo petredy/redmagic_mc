@@ -59,13 +59,13 @@ public class MachineDisintegrator extends Machine{
 	}
 	
 	public void activate(IMachineHandler handler, EntityPlayer player, float offX, float offY, float offZ) {
-		player.openGui(Redmagic.instance, Guis.DEINTEGRATOR, player.worldObj, handler.getXCoord(), handler.getYCoord(), handler.getZCoord());
+		player.openGui(Redmagic.instance, Guis.DISINTEGRATOR, player.worldObj, handler.getXCoord(getSide()), handler.getYCoord(getSide()), handler.getZCoord(getSide()));
 	}
 	
 	public void remove(IMachineHandler handler) {
 		if(!handler.getWorld().isRemote){
-			InventoryUtils.dropInventory(inventory, handler.getWorld(), handler.getXCoord(), handler.getYCoord(), handler.getZCoord());
-			if(item != null)InventoryUtils.dropItemStack(item, handler.getWorld(), handler.getXCoord(), handler.getYCoord(), handler.getZCoord());
+			InventoryUtils.dropInventory(inventory, handler.getWorld(), handler.getXCoord(getSide()), handler.getYCoord(getSide()), handler.getZCoord(getSide()));
+			if(item != null)InventoryUtils.dropItemStack(item, handler.getWorld(), handler.getXCoord(getSide()), handler.getYCoord(getSide()), handler.getZCoord(getSide()));
 		}
 		super.remove(handler);
 	}
