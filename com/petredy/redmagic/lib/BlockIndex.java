@@ -80,15 +80,9 @@ public class BlockIndex {
 	// ----------------------------------------------------------------------------
 	
 	
-	/**
-	 * Block Structure
-	 * Multi Block
-	 */
 	
-	public static final String RED_STRUCTURE_NAME = "red.structure";
-	public static final int RED_STRUCTURE_DEFAULT_ID = 3314;
-	public static int RED_STRUCTURE_ID;
-	
-	// -----------------------------------------------------------------------------
+	public static final String RED_TRANSFORMATOR_NAME = "red.transformator";
+	public static final int RED_TRANSFORMATOR_DEFAULT_ID = 3314;
+	public static int RED_TRANSFORMATOR_ID;
 
 }

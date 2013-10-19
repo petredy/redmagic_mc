@@ -15,6 +15,8 @@ import com.petredy.redmagic.lib.Guis;
 import com.petredy.redmagic.lib.Machines;
 import com.petredy.redmagic.network.PacketHandler;
 import com.petredy.redmagic.network.PacketMachineSync;
+import com.petredy.redmagic.redenergy.RedEnergy;
+import com.petredy.redmagic.redvalue.element.Composition;
 import com.petredy.redmagic.utils.InventoryUtils;
 import com.petredy.redmagic.utils.LogUtils;
 
@@ -22,7 +24,7 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 
 public class MachineCompactor extends Machine{
 
-	private static final float COST = 50;
+	private static final Composition COST = Composition.getStandard(5, 5, 5, 5, 5);
 	public InventoryBasic inventory;
 	
 	public MachineCompactor(){
@@ -36,18 +38,21 @@ public class MachineCompactor extends Machine{
 	}
 	
 	public void activate(IMachineHandler handler, EntityPlayer player, float offX, float offY, float offZ) {
-		player.openGui(Redmagic.instance, Guis.COMPACTOR, handler.getWorld(), handler.getXCoord(getSide()), handler.getYCoord(getSide()), handler.getZCoord(getSide()));
+		player.openGui(Redmagic.instance, Guis.COMPACTOR, handler.getWorld(), handler.getXCoord(), handler.getYCoord(), handler.getZCoord());
 	}
 	
 	public void onNeighborChange(IMachineHandler handler, int blockID) {
-		if(handler.getEnergyHandler().getStoredEnergy() >= COST && blockID == Block.pistonExtension.blockID && isPistonPress(handler.getWorld(), handler.getXCoord(getSide()), handler.getYCoord(getSide()), handler.getZCoord(getSide()))){
+		if(handler.getEnergyHandler().getStoredEnergy().contains(COST) && blockID == Block.pistonExtension.blockID && isPistonPress(handler.getWorld(), handler.getXCoord(), handler.getYCoord(), handler.getZCoord())){
 			ItemStack[] matrix = new ItemStack[4];
 			for(int i = 1; i < 5; i++){
 				matrix[i - 1] = this.inventory.getStackInSlot(i);
 			}
 			ItemStack output = CompactorDictionary.findOutput(matrix);
-			if(output != null && (this.inventory.getStackInSlot(0) == null || (this.inventory.getStackInSlot(0).isItemEqual(output) && this.inventory.getStackInSlot(0).stackSize + output.stackSize <= output.getMaxStackSize())) && handler.getEnergyHandler().use(COST) >= COST){
-				PacketDispatcher.sendPacketToAllInDimension(PacketHandler.populatePacket(new PacketMachineSync(handler.getXCoord(getSide()), handler.getYCoord(getSide()), handler.getZCoord(getSide()), handler.getEnergyHandler().getStoredEnergy())), handler.getWorld().provider.dimensionId);
+			if(output != null && 
+				(this.inventory.getStackInSlot(0) == null || 
+					(this.inventory.getStackInSlot(0).isItemEqual(output) && this.inventory.getStackInSlot(0).stackSize + output.stackSize <= output.getMaxStackSize()))
+				&& handler.getEnergyHandler().use(RedEnergy.getFrom(COST)).isEmpty()){
+				PacketDispatcher.sendPacketToAllInDimension(PacketHandler.populatePacket(new PacketMachineSync(handler.getXCoord(), handler.getYCoord(), handler.getZCoord(), handler.getEnergyHandler().getStoredEnergy())), handler.getWorld().provider.dimensionId);
 				for(int i = 1; i < 5; i++){
 					this.inventory.decrStackSize(i, 1);
 				}
@@ -72,7 +77,7 @@ public class MachineCompactor extends Machine{
 	public void remove(IMachineHandler handler) {
 		super.remove(handler);
 		if(!handler.getWorld().isRemote){
-			InventoryUtils.dropInventory(inventory, handler.getWorld(), handler.getXCoord(getSide()), handler.getYCoord(getSide()), handler.getZCoord(getSide()));
+			InventoryUtils.dropInventory(inventory, handler.getWorld(), handler.getXCoord(), handler.getYCoord(), handler.getZCoord());
 		}
 	}
 	

@@ -59,27 +59,34 @@ public class ItemIndex {
 	public static int MACHINE_ID;
 	
 	/**
-	 * ---------------------------------------------------------------------------------
-	 * Matter
-	 * MultiItem
-	 */
-	
-	public static final String MATTER_NAME = "matter";
-	public static final int MATTER_DEFAULT_ID = 13008;
-	public static int MATTER_ID;
-	
-	public static final String MATTER_LEFTOVER_NAME = "leftover";
-	public static final int MATTER_LEFTOVER_METADATA = 0;
-	public static final String MATTER_INSTABLE_NAME = "instable";
-	public static final int MATTER_INSTABLE_METADATA = 1;
-	public static final String MATTER_STABLE_NAME = "stable";
-	public static final int MATTER_STABLE_METADATA = 2;
-	
-	// ---------------------------------------------------------------------------------
+     * ---------------------------------------------------------------------------------
+     * Matter
+     * MultiItem
+     */
+    
+    public static final String MATTER_NAME = "matter";
+    public static final int MATTER_DEFAULT_ID = 13008;
+    public static int MATTER_ID;
+    
+    public static final String MATTER_LEFTOVER_NAME = "leftover";
+    public static final int MATTER_LEFTOVER_METADATA = 0;
+    public static final String MATTER_INSTABLE_NAME = "instable";
+    public static final int MATTER_INSTABLE_METADATA = 1;
+    public static final String MATTER_STABLE_NAME = "stable";
+    public static final int MATTER_STABLE_METADATA = 2;
+    
+    // ---------------------------------------------------------------------------------
 	
 	public static final String SCREWDRIVER_NAME = "screwdriver";
 	public static final int SCREWDRIVER_DEFAULT_ID = 13009;
 	public static int SCREWDRIVER_ID;
+	
+	public static final String SIEVE_NAME = "sieve";
+	public static final int SIEVE_DEFAULT_ID = 13010;
+	public static int SIEVE_ID;
+	
+	
+	
 	
 	
 }

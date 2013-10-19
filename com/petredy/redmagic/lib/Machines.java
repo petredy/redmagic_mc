@@ -19,4 +19,8 @@ public class Machines {
 	public static final int FREEZER_METADATA = 7;
 	public static final String COMPACTOR_NAME = "compactor";
 	public static final int COMPACTOR_METADATA = 8;
+	public static final String RECYCLER_NAME = "recycler";
+	public static final int RECYCLER_METADATA = 9;
+	public static final String SIEVE_NAME = "sieve";
+	public static final int SIEVE_METADATA = 10;
 }

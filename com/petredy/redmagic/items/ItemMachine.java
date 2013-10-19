@@ -32,7 +32,9 @@ public class ItemMachine extends Item implements IMachineItem{
 		Machines.CHARGER_NAME,
 		Machines.REFRIGERATOR_NAME,
 		Machines.FREEZER_NAME,
-		Machines.COMPACTOR_NAME
+		Machines.COMPACTOR_NAME,
+		Machines.RECYCLER_NAME,
+		Machines.SIEVE_NAME
 	};
 	
 	public Icon[] icons = new Icon[ItemMachine.subNames.length];

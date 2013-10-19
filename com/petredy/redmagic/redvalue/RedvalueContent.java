@@ -4,19 +4,23 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
+import com.petredy.redmagic.redvalue.element.Composition;
+
 import net.minecraft.item.ItemStack;
 
 public class RedvalueContent {
 	public ItemStack stack;
 	public float amount;
+	public Composition composition;
 	
-	public RedvalueContent(ItemStack stack, float amount){
+	public RedvalueContent(ItemStack stack, float amount, Composition composition){
 		this.stack = stack;
 		this.amount = amount;
+		this.composition = composition;
 	}
 	
 	public String toString(){
-		return "RedvalueContent: " + amount + "@" + stack; 
+		return "RedvalueContent: " + amount + "@" + stack + " @" + composition; 
 	}
 	
 	

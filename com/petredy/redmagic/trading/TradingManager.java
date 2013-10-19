@@ -22,6 +22,7 @@ public class TradingManager{
 		TradingItem item = items.get(stack.getUnlocalizedName());
 		if(item != null && item.amount > 0)amount += item.amount;
 		items.put(stack.getUnlocalizedName(), new TradingItem(stack, price, amount));
+		LogUtils.log(items.get(stack.getUnlocalizedName()));
 	}
 	
 	public static void initialise(){

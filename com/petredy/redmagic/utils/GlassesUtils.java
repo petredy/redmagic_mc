@@ -21,7 +21,6 @@ import com.petredy.redmagic.client.render.glasses.GlassesRenderOffline;
 import com.petredy.redmagic.client.render.glasses.GlassesRenderOnline;
 import com.petredy.redmagic.items.ItemGlasses;
 import com.petredy.redmagic.lib.Configs;
-import com.petredy.redmagic.network.PacketEnergySyncRequest;
 import com.petredy.redmagic.network.PacketHandler;
 import com.petredy.redmagic.redenergy.RedEnergy;
 import com.petredy.redmagic.redenergy.EnergyMap;

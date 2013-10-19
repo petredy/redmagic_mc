@@ -12,6 +12,7 @@ import java.util.LinkedList;
 import com.petredy.redmagic.redenergy.EnergyMap;
 import com.petredy.redmagic.redenergy.RedEnergy;
 import com.petredy.redmagic.redenergy.Redkey;
+import com.petredy.redmagic.redvalue.element.Composition;
 import com.petredy.redmagic.utils.BlockUtils;
 import com.petredy.redmagic.utils.LogUtils;
 
@@ -106,10 +107,10 @@ public abstract class TileEntityEngine extends TileEntity implements IPowerEmitt
 		if(blockTileEntity instanceof IPowerReceptor){
 			IPowerReceptor receptor = (IPowerReceptor)blockTileEntity;
 			if(receptor != null && !blockTileEntity.worldObj.isRemote && side != null){
-				float energy = EnergyMap.consumeEnergy(worldObj.provider.dimensionId, xCoord / 16, zCoord / 16, costs);
-				if(energy >= costs){
+				RedEnergy energy = EnergyMap.consumeEnergy(new RedEnergy(worldObj.provider.dimensionId, xCoord / 16, zCoord / 16, Composition.getStandard(1, 1, 1, 1, 1)));
+				if(energy.composition.isEmpty()){
 					PowerReceiver receiver = receptor.getPowerReceiver(side.getOpposite());
-					if(receiver != null)energy = receiver.receiveEnergy(PowerHandler.Type.ENGINE, power, side.getOpposite());
+					if(receiver != null)receiver.receiveEnergy(PowerHandler.Type.ENGINE, power, side.getOpposite());
 				}
 			}
 		}

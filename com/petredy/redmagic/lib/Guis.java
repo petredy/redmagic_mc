@@ -12,5 +12,6 @@ public class Guis {
 	public static final int FREEZER = 5;
 	public static final int MATERIALIZER = 6;
 	public static final int COMPACTOR = 7;
+	public static final int SIEVE = 8;
 	
 }

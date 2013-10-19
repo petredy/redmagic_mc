@@ -11,6 +11,6 @@ public class Sounds {
 	
 	public static final String CHEST_OPEN = SOUND_PREFIX + "chest_open";
 	public static final String CHEST_CLOSE = SOUND_PREFIX + "chest_close";
-	
+
 	
 }

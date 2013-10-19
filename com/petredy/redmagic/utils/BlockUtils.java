@@ -139,4 +139,16 @@ public class BlockUtils {
 			tag.setInteger("z", z);
 		}
 	}
+	
+	public static boolean isPunchedByPistionOnSide(World world, int x, int y, int z, int side){
+		switch(side){
+			case 0: return world.isAirBlock(x, y - 1, z) && world.getBlockId(x, y - 2, z) == Block.pistonMoving.blockID;
+			case 1: return world.isAirBlock(x, y + 1, z) && world.getBlockId(x, y + 2, z) == Block.pistonMoving.blockID;
+			case 2: return world.isAirBlock(x, y, z - 1) && world.getBlockId(x, y, z - 2) == Block.pistonMoving.blockID;
+			case 3: return world.isAirBlock(x, y, z + 1) && world.getBlockId(x, y, z + 2) == Block.pistonMoving.blockID;
+			case 4: return world.isAirBlock(x - 1, y, z) && world.getBlockId(x - 2, y, z) == Block.pistonMoving.blockID;
+			case 5: return world.isAirBlock(x + 1, y, z) && world.getBlockId(x + 2, y, z) == Block.pistonMoving.blockID;
+		default: return false;
+		}
+	}
 }

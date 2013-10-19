@@ -15,6 +15,8 @@ import com.petredy.redmagic.api.machines.IMachineHandler;
 import com.petredy.redmagic.lib.BlockIndex;
 import com.petredy.redmagic.lib.Guis;
 import com.petredy.redmagic.lib.Machines;
+import com.petredy.redmagic.redenergy.RedEnergy;
+import com.petredy.redmagic.redvalue.element.Composition;
 import com.petredy.redmagic.utils.InventoryUtils;
 import com.petredy.redmagic.utils.LogUtils;
 import com.petredy.redmagic.container.ContainerFurnace;
@@ -24,7 +26,7 @@ public class MachineFurnace extends Machine{
 	public InventoryBasic inventory;
 	public int burnTick;
 	public int needBurnTime = 100;
-	public float burnTickCost = 0.1f;
+	public Composition burnTickCost;
 	public float heatProduction = 0.1f;
 	public ItemStack burningStack;
 	
@@ -32,14 +34,16 @@ public class MachineFurnace extends Machine{
 		this.inventory = new InventoryBasic(Machines.FURNACE_NAME, false, 2);
 		this.metadata = Machines.FURNACE_METADATA;
 		this.size = 1;
+		this.burnTickCost = Composition.getStandard(0.1f, 0.1f, 0.1f, 0.1f, 0.1f);
 	}
 	
-	public void update(IMachineHandler machineHandler) {
+	public void update(IMachineHandler handler) {
 		if(burningStack != null){
 			if(this.burnTick < needBurnTime){
-				if(machineHandler.getEnergyHandler().use(burnTickCost) == burnTickCost){
+				RedEnergy used = handler.getEnergyHandler().use(new RedEnergy(handler.getWorld().provider.dimensionId, handler.getEnergyHandler().getChunkX(), handler.getEnergyHandler().getChunkZ(), burnTickCost));
+				if(!used.isEmpty() && used.isEqual(new RedEnergy(handler.getWorld().provider.dimensionId, handler.getEnergyHandler().getChunkX(), handler.getEnergyHandler().getChunkZ(), burnTickCost))){
 					burnTick++;
-					machineHandler.setHeat(machineHandler.getHeat() + heatProduction);
+					handler.setHeat(handler.getHeat() + heatProduction);
 					
 				}
 			}else{
@@ -72,13 +76,13 @@ public class MachineFurnace extends Machine{
 	}
 	
 	public void activate(IMachineHandler handler, EntityPlayer player, float offX, float offY, float offZ) {
-		player.openGui(Redmagic.instance, Guis.FURNACE, player.worldObj, handler.getXCoord(getSide()), handler.getYCoord(getSide()), handler.getZCoord(getSide()));
+		player.openGui(Redmagic.instance, Guis.FURNACE, player.worldObj, handler.getXCoord(), handler.getYCoord(), handler.getZCoord());
 	}
 	
 	public void remove(IMachineHandler handler) {
 		if(!handler.getWorld().isRemote){
-			InventoryUtils.dropInventory(inventory, handler.getWorld(), handler.getXCoord(getSide()), handler.getYCoord(getSide()), handler.getZCoord(getSide()));
-			if(burningStack != null)InventoryUtils.dropItemStack(burningStack, handler.getWorld(), handler.getXCoord(getSide()), handler.getYCoord(getSide()), handler.getZCoord(getSide()));
+			InventoryUtils.dropInventory(inventory, handler.getWorld(), handler.getXCoord(), handler.getYCoord(), handler.getZCoord());
+			if(burningStack != null)InventoryUtils.dropItemStack(burningStack, handler.getWorld(), handler.getXCoord(), handler.getYCoord(), handler.getZCoord());
 		}
 		super.remove(handler);
 	}

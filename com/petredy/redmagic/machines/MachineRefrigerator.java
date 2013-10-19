@@ -36,15 +36,15 @@ public class MachineRefrigerator extends Machine{
 	public void update(IMachineHandler handler) {
 		if(tick++ >= neededTicks && !handler.getWorld().isRemote){
 			tick = 0;
-			if(this.isBuilt(handler.getWorld(), handler.getXCoord(getSide()), handler.getYCoord(getSide()), handler.getZCoord(getSide()))){
-				ItemStack stack = this.getFreezingItem(handler.getWorld(), handler.getXCoord(getSide()), handler.getYCoord(getSide()) + 1, handler.getZCoord(getSide()));
+			if(this.isBuilt(handler.getWorld(), handler.getXCoord(), handler.getYCoord(), handler.getZCoord())){
+				ItemStack stack = this.getFreezingItem(handler.getWorld(), handler.getXCoord(), handler.getYCoord() + 1, handler.getZCoord());
 				if(freezing == null){
 					if(stack != null && stack.itemID > 0){
 						freezing = stack.copy();
 					}
 				}else{
 					if(stack != null && stack.itemID > 0 && freezing.itemID == stack.itemID){
-						this.freeze(handler.getWorld(), handler.getXCoord(getSide()), handler.getYCoord(getSide()) + 1, handler.getZCoord(getSide()));
+						this.freeze(handler.getWorld(), handler.getXCoord(), handler.getYCoord() + 1, handler.getZCoord());
 					}else{
 						freezing = null;
 					}

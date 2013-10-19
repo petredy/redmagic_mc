@@ -22,6 +22,11 @@ public class TradingItem implements Comparable<TradingItem>{
 		this.amount = amount;
 	}
 	
+	@Override
+	public String toString(){
+		return "TradingItem: " + item + " | " + price + " | " + amount;
+	}
+	
 	public void readFromNBT(NBTTagCompound tag){
 		this.item = ItemStack.loadItemStackFromNBT(tag);
 		this.price = tag.getFloat("price");

@@ -1,18 +1,24 @@
 package com.petredy.redmagic.api.redenergy;
 
+import com.petredy.redmagic.redenergy.RedEnergy;
+
 import net.minecraft.world.World;
 
 public interface IEnergyHandler {
 
-	public float collect(World world, float amount, int chunkX, int chunkZ);
+	public RedEnergy collect(World world, RedEnergy energy);
 	
-	public float release(World world, float amount, int chunkX, int chunkZ);
+	public RedEnergy release(World world, RedEnergy energy);
 	
-	public float use(float amount);
+	public RedEnergy use(RedEnergy energy);
 	
-	public float store(float store);
+	public float use(String element, float value);
 	
-	public float getStoredEnergy();
+	public RedEnergy store(RedEnergy energy);
+	
+	public float store(String element, float store);
+	
+	public RedEnergy getStoredEnergy();
 	
 	public int getChunkX();
 	

@@ -8,6 +8,7 @@ import com.petredy.redmagic.lib.Configs;
 import com.petredy.redmagic.lib.RedEnergyIndex;
 import com.petredy.redmagic.redenergy.EnergyMap;
 import com.petredy.redmagic.redenergy.RedEnergy;
+import com.petredy.redmagic.redvalue.element.Composition;
 
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
@@ -50,13 +51,18 @@ public class WorldGenerationUtils {
 		int Xcoord = blockX + random.nextInt(16);
 		int Ycoord = 4 + random.nextInt(16);
 		int Zcoord = blockZ + random.nextInt(16);
-		if(random.nextFloat() < 0.2){
+		if(random.nextFloat() < 0.2 && world.getBlockId(Xcoord, Ycoord, Zcoord) == Block.stone.blockID){
 			world.setBlock(Xcoord, Ycoord, Zcoord, Blocks.cage.blockID);
 		}
 	}
 	
 	public static void generateEnergy(World world, Random random, int chunkX, int chunkZ) {
-		EnergyMap.setEnergy(new RedEnergy(world.provider.dimensionId, chunkX, chunkZ, RedEnergyIndex.chunk_min_energy + random.nextFloat() * (RedEnergyIndex.chunk_energy - RedEnergyIndex.chunk_min_energy)));
+		float earth = RedEnergyIndex.chunk_min_energy + random.nextFloat() * (RedEnergyIndex.chunk_energy - RedEnergyIndex.chunk_min_energy);
+		float nature = RedEnergyIndex.chunk_min_energy + random.nextFloat() * (RedEnergyIndex.chunk_energy - RedEnergyIndex.chunk_min_energy);
+		float water = RedEnergyIndex.chunk_min_energy + random.nextFloat() * (RedEnergyIndex.chunk_energy - RedEnergyIndex.chunk_min_energy);
+		float fire = RedEnergyIndex.chunk_min_energy + random.nextFloat() * (RedEnergyIndex.chunk_energy - RedEnergyIndex.chunk_min_energy);
+		float metal = RedEnergyIndex.chunk_min_energy + random.nextFloat() * (RedEnergyIndex.chunk_energy - RedEnergyIndex.chunk_min_energy);
+		EnergyMap.setEnergy(new RedEnergy(world.provider.dimensionId, chunkX, chunkZ, Composition.getStandard(earth, nature, water, fire, metal)));
 	}
 
 }

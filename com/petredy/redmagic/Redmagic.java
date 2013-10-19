@@ -2,6 +2,8 @@ package com.petredy.redmagic;
 
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 import net.minecraft.stats.AchievementList;
 import net.minecraftforge.common.AchievementPage;
@@ -67,9 +69,6 @@ public class Redmagic{
       	//Initialise TileEntity registration
       	TileEntityHandler.init();
       	
-      	//Initilase Redvalue configuration
-      	RedvalueConfigurationHandler.init();
-      	
       	//Initialise item configuration
       	Items.config(config);
       	
@@ -127,6 +126,10 @@ public class Redmagic{
 	@EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
+		
+		//Initilase Redvalue configuration
+      	RedvalueConfigurationHandler.init();
+		
 		// Addons
 		RedvalueDictionary.initialise();
     }

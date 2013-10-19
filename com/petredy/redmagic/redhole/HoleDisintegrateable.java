@@ -5,10 +5,12 @@ import java.util.List;
 import com.petredy.redmagic.Redmagic;
 import com.petredy.redmagic.blocks.Blocks;
 import com.petredy.redmagic.lib.BlockIndex;
+import com.petredy.redmagic.lib.Elements;
 import com.petredy.redmagic.lib.Redholes;
 import com.petredy.redmagic.redenergy.EnergyMap;
 import com.petredy.redmagic.redenergy.RedEnergy;
 import com.petredy.redmagic.redvalue.RedvalueDictionary;
+import com.petredy.redmagic.redvalue.element.Composition;
 import com.petredy.redmagic.utils.ItemUtils;
 
 import net.minecraft.block.Block;
@@ -21,7 +23,7 @@ import net.minecraft.world.World;
 
 public class HoleDisintegrateable extends Hole{
 
-	public float energy;
+	public Composition energy = Composition.getStandard(0, 0, 0, 0, 0);
 	
 	public final int MAX_ENERGY = 2000;
 	
@@ -43,12 +45,15 @@ public class HoleDisintegrateable extends Hole{
 	}
 	
 	public void activate(ItemStack stack, World world, EntityPlayer player){
-		energy -= EnergyMap.releaseEnergy(new RedEnergy(world.provider.dimensionId,(int)(player.posX / 16), (int)(player.posZ / 16), energy));
+		EnergyMap.releaseEnergy(new RedEnergy(world.provider.dimensionId,(int)(player.posX / 16), (int)(player.posZ / 16), energy));
 	}
 	
 	public void update(ItemStack redhole, World world, Entity user, int idk, boolean idk2) {
-		energy -= 0.01f;
-		if(energy < 0)energy = 0;
+		energy.decreaseValue(Elements.EARTH, 0.01f);
+		energy.decreaseValue(Elements.NATURE, 0.01f);
+		energy.decreaseValue(Elements.WATER, 0.01f);
+		energy.decreaseValue(Elements.FIRE, 0.01f);
+		energy.decreaseValue(Elements.METAL, 0.01f);
 	}
 
 	public void keyPressed(ItemStack redhole, EntityPlayer player, String keyName) {
@@ -57,12 +62,10 @@ public class HoleDisintegrateable extends Hole{
 			if(player.worldObj.getBlockTileEntity(location.blockX, location.blockY, location.blockZ) == null){
 				ItemStack target = new ItemStack(player.worldObj.getBlockId(location.blockX, location.blockY, location.blockZ), 1, player.worldObj.getBlockMetadata(location.blockX, location.blockY, location.blockZ));
 				if(target != null){
-					float value = RedvalueDictionary.getRedvalue(target);
-					if(value > 0 && energy + value / 2 <= MAX_ENERGY){
-						player.worldObj.destroyBlock(location.blockX, location.blockY, location.blockZ, false);
-						energy += value / 2;
-						player.swingItem();
-					}
+					Composition value = RedvalueDictionary.getComposition(target);
+					player.worldObj.destroyBlock(location.blockX, location.blockY, location.blockZ, false);
+					energy.merge(value);
+					player.swingItem();
 				}
 			}
 		}
@@ -70,12 +73,12 @@ public class HoleDisintegrateable extends Hole{
 	
 	public void readFromNBT(NBTTagCompound tag){
 		super.readFromNBT(tag);
-		this.energy = tag.getFloat("energy");
+		this.energy = Composition.loadFromNBT(tag);
 	}
 	
 	public void writeToNBT(NBTTagCompound tag){
 		super.writeToNBT(tag);
-		tag.setFloat("energy", energy);
+		this.energy.writeToNBT(tag);
 	}
 	
 	public void addInformation(ItemStack redhole, EntityPlayer player, List list) {

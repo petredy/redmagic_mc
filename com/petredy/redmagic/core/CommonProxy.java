@@ -6,7 +6,6 @@ import com.petredy.redmagic.client.guis.*;
 import com.petredy.redmagic.container.*;
 import com.petredy.redmagic.lib.Guis;
 import com.petredy.redmagic.network.PacketTradingSync;
-import com.petredy.redmagic.structure.StructureManager;
 import com.petredy.redmagic.tileentities.*;
 import com.petredy.redmagic.trading.TradingManager;
 import com.petredy.redmagic.utils.LogUtils;
@@ -45,37 +44,16 @@ public class CommonProxy implements IGuiHandler{
 			return new ContainerMachine(player, (TileEntityMachine)tileEntity);
 		}
 		if(ID == Guis.FURNACE){
-			if(tileEntity instanceof TileEntityMachine){
-				return new ContainerFurnace(player, (IMachineHandler)tileEntity);
-			}
-			if(tileEntity instanceof TileEntityStructure){
-				return new ContainerFurnace(player, ((TileEntityStructure)tileEntity).getStructure());
-			}
+			return new ContainerFurnace(player, (IMachineHandler)tileEntity);
 		}
 		if(ID == Guis.DISINTEGRATOR){
-			if(tileEntity instanceof TileEntityMachine){
-				return new ContainerDisintegrator(player, (IMachineHandler)tileEntity);
-			}
-			LogUtils.log(tileEntity);
-			if(tileEntity instanceof TileEntityStructure){
-				return new ContainerDisintegrator(player, ((TileEntityStructure)tileEntity).getStructure());
-			}
+			return new ContainerDisintegrator(player, (IMachineHandler)tileEntity);
 		}
 		if(ID == Guis.FREEZER){
-			if(tileEntity instanceof TileEntityMachine){
-				return new ContainerFreezer(player, (IMachineHandler)tileEntity);
-			}
-			if(tileEntity instanceof TileEntityStructure){
-				return new ContainerFreezer(player, ((TileEntityStructure)tileEntity).getStructure());
-			}
+			return new ContainerFreezer(player, (IMachineHandler)tileEntity);
 		}
 		if(ID == Guis.COMPACTOR){
-			if(tileEntity instanceof TileEntityMachine){
-				return new ContainerCompactor(player, (IMachineHandler)tileEntity);
-			}
-			if(tileEntity instanceof TileEntityStructure){
-				return new ContainerCompactor(player, ((TileEntityStructure)tileEntity).getStructure());
-			}
+			return new ContainerCompactor(player, (IMachineHandler)tileEntity);
 		}
 		return null;
 	}
@@ -93,36 +71,16 @@ public class CommonProxy implements IGuiHandler{
 			return new GuiMachine(player, (TileEntityMachine)tileEntity);
 		}
 		if(ID == Guis.FURNACE){
-			if(tileEntity instanceof TileEntityMachine){
-				return new GuiFurnace(player, (IMachineHandler)tileEntity);
-			}
-			if(tileEntity instanceof TileEntityStructure){
-				return new GuiFurnace(player, ((TileEntityStructure)tileEntity).getStructure());
-			}
+			return new GuiFurnace(player, (IMachineHandler)tileEntity);
 		}
 		if(ID == Guis.DISINTEGRATOR){
-			if(tileEntity instanceof TileEntityMachine){
-				return new GuiDisintegrator(player, (IMachineHandler)tileEntity);
-			}
-			if(tileEntity instanceof TileEntityStructure){
-				return new GuiDisintegrator(player, ((TileEntityStructure)tileEntity).getStructure());
-			}
+			return new GuiDisintegrator(player, (IMachineHandler)tileEntity);
 		}
 		if(ID == Guis.FREEZER){
-			if(tileEntity instanceof TileEntityMachine){
-				return new GuiFreezer(player, (IMachineHandler)tileEntity);
-			}
-			if(tileEntity instanceof TileEntityStructure){
-				return new GuiFreezer(player, ((TileEntityStructure)tileEntity).getStructure());
-			}
+			return new GuiFreezer(player, (IMachineHandler)tileEntity);
 		}
 		if(ID == Guis.COMPACTOR){
-			if(tileEntity instanceof TileEntityMachine){
-				return new GuiCompactor(player, (IMachineHandler)tileEntity);
-			}
-			if(tileEntity instanceof TileEntityStructure){
-				return new GuiCompactor(player, ((TileEntityStructure)tileEntity).getStructure());
-			}
+			return new GuiCompactor(player, (IMachineHandler)tileEntity);
 		}
 		return null;
 	}

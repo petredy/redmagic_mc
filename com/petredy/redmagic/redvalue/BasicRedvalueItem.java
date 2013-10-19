@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import com.petredy.redmagic.redvalue.element.Composition;
+import com.petredy.redmagic.utils.LogUtils;
+
 import net.minecraft.item.ItemStack;
 
 public class BasicRedvalueItem extends NativeRedvalueItem{
@@ -18,12 +21,23 @@ public class BasicRedvalueItem extends NativeRedvalueItem{
 	}
 	
 	@Override
-	public float getValue(){
-		float cost = 0;
-		for(RedvalueContent con: content){
-			cost += RedvalueDictionary.getNativeRedvalue(con.stack) * con.amount;
+	public String toString(){
+		return "BasicRedvalueItem: " + this.stack + "@" + this.getComposition();
+	}
+	
+	@Override
+	public Composition getComposition(){
+		Composition comp = super.getComposition().copy();
+		for(RedvalueContent cont: content){
+			Composition contComp = cont.composition.copy();
+			comp.merge(contComp.multiply(cont.amount));
 		}
-		return cost;
+		return comp;
+	}
+	
+	@Override
+	public float getValue(){
+		return getComposition().getRedvalue();
 	}
 	
 	public List<RedvalueContent> getContent(){
@@ -31,7 +45,7 @@ public class BasicRedvalueItem extends NativeRedvalueItem{
 		for(RedvalueContent con: content){
 			ItemStack stack = con.stack.copy();
 			stack.stackSize = 1;
-			newCon.add(new RedvalueContent(stack, con.amount / con.stack.stackSize));
+			newCon.add(new RedvalueContent(stack, con.amount / con.stack.stackSize, con.composition.copy()));
 		}
 		return newCon;
 	}

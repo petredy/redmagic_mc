@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.petredy.redmagic.lib.Elements;
+import com.petredy.redmagic.redvalue.element.Composition;
 import com.petredy.redmagic.utils.LogUtils;
 
 import net.minecraft.item.Item;
@@ -24,14 +26,14 @@ public class RedvalueDictionary {
 	private static HashMap<String, BasicRedvalueItem> recipes = new HashMap<String, BasicRedvalueItem>();
 	private static HashMap<String, NativeRedvalueItem> values = new HashMap<String, NativeRedvalueItem>();
 	
-	public static void registerNative(ItemStack stack, int value){
-		values.put(stack.getUnlocalizedName(), new NativeRedvalueItem(stack, value));
-		LogUtils.log("Register " + stack.getUnlocalizedName() + " for a Redvalue of " + value);
+	public static void registerNative(ItemStack stack, Composition comp){
+		values.put(stack.getUnlocalizedName(), new NativeRedvalueItem(stack, comp));
+		LogUtils.log("Register " + values.get(stack.getUnlocalizedName()));
 	}
 	
 	public static void register(ItemStack stack, Collection<RedvalueContent> collection){
 		recipes.put(stack.getUnlocalizedName(), new BasicRedvalueItem(stack, collection));
-		LogUtils.log("RegisterBasic " + stack.getUnlocalizedName() + " with the content " + collection);
+		LogUtils.log("Register " + recipes.get(stack.getUnlocalizedName()));
 	}
 	
 	public static float getNativeRedvalue(ItemStack item){
@@ -57,11 +59,25 @@ public class RedvalueDictionary {
 		}
 	}
 	
+	public static RedvalueItem getRedvalueItem(ItemStack item){
+		if(item == null || item.getItem() == null)return null;
+		NativeRedvalueItem natItem = values.get(item.getUnlocalizedName());
+		if(natItem != null)return natItem;
+		BasicRedvalueItem basItem = recipes.get(item.getUnlocalizedName());
+		if(basItem != null)return basItem;
+		return null;
+	}
+	
+	public static Composition getComposition(ItemStack target) {
+		RedvalueItem item = getRedvalueItem(target);
+		if(item == null)return null;
+		return item.getComposition();
+	}
+	
 	public static List<RedvalueItem> getAllItems(){
 		List<RedvalueItem> list = new ArrayList<RedvalueItem>();
 		list.addAll(recipes.values());
 		list.addAll(values.values());
-		LogUtils.log(list);
 		return list;
 	}
 	
@@ -211,6 +227,7 @@ public class RedvalueDictionary {
 
 	private static List<RedvalueContent> handleItemStack(ItemStack item, List<RedvalueContent> content, ItemStack stack){
 		if(item != null && stack != null && content != null){
+			RedvalueItem reditem  = getRedvalueItem(item);
 			if(getNativeRedvalue(item) == 0){
 				if(getBasicRedvalue(item) > 0){
 					List<RedvalueContent> values = recipes.get(item.getUnlocalizedName()).getContent();
@@ -221,8 +238,8 @@ public class RedvalueDictionary {
 				}else {
 					return null;
 				}
-			}else{
-				content.add(new RedvalueContent(item, 1.0F / (float)stack.stackSize));
+			}else if(reditem != null){
+				content.add(new RedvalueContent(item, 1.0F / (float)stack.stackSize, reditem.composition.copy()));
 				return content;
 			}
 		}

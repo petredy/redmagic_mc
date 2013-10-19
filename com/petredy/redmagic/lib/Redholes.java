@@ -4,6 +4,7 @@ import com.petredy.redmagic.redhole.Hole;
 import com.petredy.redmagic.redhole.HoleDisintegrateable;
 import com.petredy.redmagic.redhole.HolePortable;
 import com.petredy.redmagic.redhole.HoleStoreable;
+import com.petredy.redmagic.redhole.HoleTransportable;
 
 public class Redholes {
 
@@ -13,7 +14,8 @@ public class Redholes {
 		Hole.class,
 		HoleStoreable.class,
 		HolePortable.class,
-		HoleDisintegrateable.class
+		HoleDisintegrateable.class,
+		HoleTransportable.class
 	};
 	
 	
@@ -25,4 +27,7 @@ public class Redholes {
 	
 	public static final String DISINTEGRATEABLE_NAME = "disintegrateable";
 	public static final int DISINTEGRATEABLE_ID = 3;
+	
+	public static final String TRANSPORTABLE_NAME = "transportable";
+	public static final int TRANSPORTABLE_ID = 4;
 }

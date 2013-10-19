@@ -28,6 +28,8 @@ public class Machine {
 		case Machines.REFRIGERATOR_METADATA: return new MachineRefrigerator();
 		case Machines.FREEZER_METADATA: return new MachineFreezer();
 		case Machines.COMPACTOR_METADATA: return new MachineCompactor();
+		case Machines.RECYCLER_METADATA: return new MachineRecycler();
+		case Machines.SIEVE_METADATA: return new MachineSieve();
 		default: return new Machine();
 		}
 	}
@@ -78,7 +80,7 @@ public class Machine {
 	public void remove(IMachineHandler handler) {
 		if(!handler.getWorld().isRemote){
 			ItemStack stack = new ItemStack(Items.machine, 1, getMetadata());
-			InventoryUtils.dropItemStack(stack, handler.getWorld(), handler.getXCoord(getSide()), handler.getYCoord(getSide()), handler.getZCoord(getSide()));
+			InventoryUtils.dropItemStack(stack, handler.getWorld(), handler.getXCoord(), handler.getYCoord(), handler.getZCoord());
 		}
 	}
 	

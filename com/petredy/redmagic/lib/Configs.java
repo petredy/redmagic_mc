@@ -13,7 +13,7 @@ public class Configs {
 	
 	
 	// Granite Veins
-	public static int GRANITE_DEPOSITS = 3;
+	public static int GRANITE_DEPOSITS = 7;
 	public static int GRANITE_DEPOSIT_AMOUNT = 30;
 
 	

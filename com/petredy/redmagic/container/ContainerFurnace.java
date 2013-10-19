@@ -5,9 +5,6 @@ import com.petredy.redmagic.container.slot.SlotOutput;
 import com.petredy.redmagic.lib.BlockIndex;
 import com.petredy.redmagic.lib.Machines;
 import com.petredy.redmagic.machines.MachineFurnace;
-import com.petredy.redmagic.structure.CrafterTest;
-import com.petredy.redmagic.structure.Structure;
-import com.petredy.redmagic.structure.StructureManager;
 import com.petredy.redmagic.tileentities.TileEntityMachine;
 import com.petredy.redmagic.utils.InventoryUtils;
 import com.petredy.redmagic.utils.LogUtils;
@@ -33,8 +30,6 @@ public class ContainerFurnace extends Container {
 			this.addSlotToContainer(new Slot(furnace.inventory, 0, 56, 34));
 			this.addSlotToContainer(new SlotOutput(furnace.inventory, 1, 116, 35));
 		}
-		
-		this.addCraftingToCrafters(new CrafterTest());
 		
 		this.bindPlayerInventory(player.inventory);
 	}

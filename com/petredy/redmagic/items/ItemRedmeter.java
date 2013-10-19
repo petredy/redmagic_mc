@@ -1,6 +1,7 @@
 package com.petredy.redmagic.items;
 
 import com.petredy.redmagic.Redmagic;
+import com.petredy.redmagic.lib.Elements;
 import com.petredy.redmagic.lib.ItemIndex;
 import com.petredy.redmagic.lib.Reference;
 import com.petredy.redmagic.network.PacketHandler;
@@ -34,8 +35,12 @@ public class ItemRedmeter extends Item{
     {
 		if(!par2World.isRemote){
 			RedEnergy en = EnergyMap.getEnergy(Redkey.get(par2World.provider.dimensionId, (int)(par3EntityPlayer.posX / 16), (int)(par3EntityPlayer.posZ / 16)));
+			LogUtils.log(en);
 			if(en != null){
-				par3EntityPlayer.addChatMessage("Chunk: " + (int)(par3EntityPlayer.posX / 16) + "/" + (int)(par3EntityPlayer.posZ / 16) + " | red: " + en.amount);
+				par3EntityPlayer.addChatMessage("Chunk: " + (int)(par3EntityPlayer.posX / 16) + "/" + (int)(par3EntityPlayer.posZ / 16));
+				par3EntityPlayer.addChatMessage("Earth: " + en.getValue(Elements.EARTH)+ " | Nature: " + en.getValue(Elements.NATURE));
+				par3EntityPlayer.addChatMessage("Water: " + en.getValue(Elements.WATER) + " | Fire: " + en.getValue(Elements.FIRE));
+				par3EntityPlayer.addChatMessage("Metal: " + en.getValue(Elements.METAL));
 			}else{
 				par3EntityPlayer.addChatMessage("Chunk: " + (int)(par3EntityPlayer.posX / 16) + "/" + (int)(par3EntityPlayer.posZ / 16) + " | no red here");
 			}

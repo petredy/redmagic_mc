@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.petredy.redmagic.redvalue.element.Composition;
 import com.petredy.redmagic.utils.LogUtils;
 
 import net.minecraft.nbt.NBTTagCompound;
@@ -51,12 +52,13 @@ public class EnergyMap {
 		}
 	}
 	
-	public static float releaseEnergy(RedEnergy energy){
+	public static RedEnergy releaseEnergy(RedEnergy energy){
 		RedEnergy en = getEnergy(Redkey.get(energy.dimension, energy.x, energy.z));
-		if(en != null)en.amount += energy.amount;
-		else en = energy;
+		RedEnergy rtn = null;
+		if(en != null)rtn = en.merge(energy);
+		else rtn = en = energy;
 		setEnergy(en);
-		return energy.amount;
+		return rtn;
 	}
 	
 	public static RedEnergy getEnergy(Redkey key){
@@ -67,22 +69,12 @@ public class EnergyMap {
 		EnergyMap.energy.put(Redkey.get(energy.dimension, energy.x,  energy.z), energy);
 	}
 	
-	public static float consumeEnergy(int dimension, int chunkX, int chunkZ, float amount) {
-		RedEnergy en = getEnergy(Redkey.get(dimension, chunkX, chunkZ));
+	public static RedEnergy consumeEnergy(RedEnergy energy) {
+		RedEnergy en = getEnergy(Redkey.get(energy.dimension, energy.x, energy.z));
 		if(en != null){
-			if(en.amount >= amount){
-				en.amount -= amount;
-				if(en.amount < 0)en.amount = 0;
-				setEnergy(en);
-				return amount;
-			}else{
-				amount = en.amount;
-				en.amount = 0;
-				setEnergy(en);
-				return amount;
-			}
+			return en.disjoin(energy);
 		}
-		return 0;
+		return new RedEnergy(energy.dimension, energy.x, energy.z, Composition.getStandard(0, 0, 0, 0, 0));
 	}
 	
 	
@@ -102,7 +94,7 @@ public class EnergyMap {
 		long count = 0;
 		try{
 			for(RedEnergy en: energy.values()){
-				if(en != null && en.amount > 0){
+				if(en != null){
 					NBTTagCompound energyTag = new NBTTagCompound();
 					en.writeToNBT(energyTag);
 					list.appendTag(energyTag);

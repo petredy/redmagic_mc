@@ -33,7 +33,7 @@ public class RecipeHandler {
 			new ItemStack(Item.bucketLava), new ItemStack(Item.bucketLava)
 		});
 		
-		CompactorDictionary.addRecipe(new ItemStack(Items.crafting, 4, ItemIndex.CRAFTING_CONCENTRADTED_GRANITE_METADATA), new ItemStack[]{
+		CompactorDictionary.addRecipe(new ItemStack(Items.crafting, 8, ItemIndex.CRAFTING_CONCENTRADTED_GRANITE_METADATA), new ItemStack[]{
 			new ItemStack(Blocks.decoration, 1, BlockIndex.GRANITE_METADATA), new ItemStack(Blocks.decoration, 1, BlockIndex.GRANITE_METADATA), 
 			new ItemStack(Blocks.decoration, 1, BlockIndex.GRANITE_METADATA), new ItemStack(Blocks.decoration, 1, BlockIndex.GRANITE_METADATA)
 		});
@@ -45,7 +45,7 @@ public class RecipeHandler {
 		
 		CompactorDictionary.addRecipe(new ItemStack(Item.clay), new ItemStack[]{
 			new ItemStack(Block.dirt), new ItemStack(Block.sand),
-			new ItemStack(Block.gravel), new ItemStack(Block.gravel)
+			new ItemStack(Block.gravel), null
 		});
 		
 		

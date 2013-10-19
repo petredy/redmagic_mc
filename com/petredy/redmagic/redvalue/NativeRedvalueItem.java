@@ -3,6 +3,9 @@ package com.petredy.redmagic.redvalue;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.petredy.redmagic.redvalue.element.Composition;
+import com.petredy.redmagic.redvalue.element.Element;
+
 import net.minecraft.item.ItemStack;
 
 public class NativeRedvalueItem extends RedvalueItem{
@@ -11,15 +14,19 @@ public class NativeRedvalueItem extends RedvalueItem{
 		super(stack);
 	}
 	
-	public NativeRedvalueItem(ItemStack stack, float value) {
+	public NativeRedvalueItem(ItemStack stack, Composition comp) {
 		this(stack);
-		this.value = value;
+		this.composition = comp;
 	}
+	
+	public List<Element> getElements(){
+		return new ArrayList<Element>();
+	}
+
 	
 	@Override
-	public float getValue(){
-		return this.value;
+	public String toString(){
+		return "NativeRedvalueItem: " + stack + "@" + getComposition();
 	}
-	
 	
 }

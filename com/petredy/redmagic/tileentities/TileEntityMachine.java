@@ -12,6 +12,7 @@ import com.petredy.redmagic.network.PacketHandler;
 import com.petredy.redmagic.network.PacketMachineSync;
 import com.petredy.redmagic.redenergy.EnergyMap;
 import com.petredy.redmagic.redenergy.RedEnergy;
+import com.petredy.redmagic.redvalue.element.Composition;
 import com.petredy.redmagic.utils.LogUtils;
 
 import cpw.mods.fml.common.network.PacketDispatcher;
@@ -29,7 +30,7 @@ import net.minecraft.world.World;
 public class TileEntityMachine extends TileEntity implements IMachineHandler, IEnergyHandler{
 	
 	public Machine[] machines = new Machine[6];
-	public float energy;
+	public RedEnergy energy = new RedEnergy();
 	
 	public float heat;
 	
@@ -89,49 +90,64 @@ public class TileEntityMachine extends TileEntity implements IMachineHandler, IE
 	}
 	
 	@Override
-	public int getXCoord(int side) {
+	public int getXCoord() {
 		return xCoord;
 	}
 
 	@Override
-	public int getYCoord(int side) {
+	public int getYCoord() {
 		return yCoord;
 	}
 
 	@Override
-	public int getZCoord(int side) {
+	public int getZCoord() {
 		return zCoord;
 	}
 	
 	@Override
-	public float collect(World world, float amount, int chunkX, int chunkZ) {
-		float collected = EnergyMap.consumeEnergy(world.provider.dimensionId, chunkX, chunkZ, amount);
+	public RedEnergy collect(World world, RedEnergy energy) {
+		RedEnergy collected = EnergyMap.consumeEnergy(energy);
 		return store(collected);
 	}
 
 	@Override
-	public float release(World world, float amount, int chunkX, int chunkZ) {
-		float released = EnergyMap.releaseEnergy(new RedEnergy(world.provider.dimensionId, chunkX, chunkZ, amount));
+	public RedEnergy release(World world, RedEnergy energy) {
+		RedEnergy released = EnergyMap.releaseEnergy(energy);
 		return use(released);
 	}
 	
 	@Override
-	public float use(float amount) {
-		if(getStoredEnergy() >= amount){
-			this.energy -= amount;
-			return amount;
+	public RedEnergy use(RedEnergy energy) {
+		RedEnergy used = RedEnergy.disjoin(this.energy, energy);
+		if(!used.isEmpty() && used.isEqual(energy)){
+			this.energy.minus(used);
+			return used;
+		}
+		return new RedEnergy(energy.dimension, energy.x, energy.z, Composition.getStandard(0, 0, 0, 0, 0));
+	}
+	
+	@Override
+	public float use(String element, float amount){
+		if(this.energy.composition.getValue(element) >= amount){
+			return this.energy.decreaseValue(element, amount);
 		}
 		return 0;
 	}
 	
 	@Override
-	public float store(float amount){
-		this.energy += amount;
+	public RedEnergy store(RedEnergy energy){
+		this.energy.merge(energy);
+		return energy;
+	}
+	
+	@Override
+	public float store(String element, float amount){
+		this.energy.addValue(element, amount);
 		return amount;
 	}
 
 	@Override
-	public float getStoredEnergy() {
+	public RedEnergy getStoredEnergy() {
 		return energy;
 	}
 
@@ -183,7 +199,10 @@ public class TileEntityMachine extends TileEntity implements IMachineHandler, IE
 	@Override
 	public void readFromNBT(NBTTagCompound tag){
 		super.readFromNBT(tag);
-		this.energy = tag.getFloat("redmagic.energy");
+		
+		NBTTagCompound energyTag = tag.getCompoundTag("redmagic.energy");
+		this.energy = RedEnergy.loadFromNBT(energyTag);
+		
 		this.heat = tag.getFloat("redmagic.heat");
 		NBTTagList list = tag.getTagList("redmagic.machines");
 		for(int i = 0; i < list.tagCount(); i++){
@@ -196,7 +215,11 @@ public class TileEntityMachine extends TileEntity implements IMachineHandler, IE
 	@Override
 	public void writeToNBT(NBTTagCompound tag){
 		super.writeToNBT(tag);
-		tag.setFloat("redmagic.energy", energy);
+		
+		NBTTagCompound energyTag = new NBTTagCompound();
+		energy.writeToNBT(energyTag);
+		tag.setTag("redmagic.energy", energyTag);
+		
 		tag.setFloat("redmagic.heat", heat);
 		NBTTagList list = new NBTTagList();
 		for(Machine machine: machines){

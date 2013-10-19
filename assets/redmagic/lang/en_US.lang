@@ -14,6 +14,7 @@ tile.decoration.marble.bricks.name=Marble Bricks
 tile.decoration.granite.name=Granite
 tile.decoration.granite.bricks.name=Granite Bricks
 tile.decoration.compressed.obsidian.name=Compressed Obsidian
+tile.decoration.rhenium.name=Rhenium Block
 
 tile.ore.rhenium.name=Rhenium Ore
 tile.cage.name=Soul Cage
@@ -47,13 +48,10 @@ item.redhole.name=Redhole
 item.redhole.storeable.name=Store-able Redhole
 item.redhole.portable.name=Port-able Redhole
 item.redhole.disintegrateable.name=Disintegrate-able Redhole
+item.redhole.transportable.name=Transport-able Redhole
 
 item.redmeter.name=Redmeter
 item.screwdriver.name=Redmagic Screwdriver
-
-item.matter.leftover.name=Matter Leftover
-item.matter.instable.name=Instable Matter
-item.matter.stable.name=Stable Matter
 
 item.machine.collector.name=Collector Unit
 item.machine.contact.cooling.name=Contact Cooling Unit
@@ -63,3 +61,11 @@ item.machine.charger.name=Charger Unit
 item.machine.refrigerator.name=Refrigerator Unit
 item.machine.freezer.name=Freezer Unit
 item.machine.compactor.name=Compactor Unit
+item.machine.sieve.name=Sieve Unit
+item.machine.recycler.name=Recycler Unit
+
+item.sieve.name=Sieve
+
+item.matter.leftover.name=Matter Leftover
+item.matter.instable.name=Instable Matter
+item.matter.stable.name=Stable Matter

@@ -4,14 +4,19 @@ import java.util.List;
 
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.Icon;
 
 import com.petredy.redmagic.Redmagic;
+import com.petredy.redmagic.lib.Elements;
 import com.petredy.redmagic.lib.ItemIndex;
 import com.petredy.redmagic.lib.Machines;
 import com.petredy.redmagic.lib.Reference;
+import com.petredy.redmagic.redvalue.element.Composition;
+import com.petredy.redmagic.utils.ItemUtils;
 import com.petredy.redmagic.utils.LogUtils;
 
 public class ItemMatter extends Item{
@@ -46,7 +51,7 @@ public class ItemMatter extends Item{
 	
 	public void getSubItems(int par1, CreativeTabs par2CreativeTabs, List par3List)
     {
-		for(int i = 0; i <subNames.length; i++){
+		for(int i = 0; i < subNames.length; i++){
 			par3List.add(new ItemStack(par1, 1, i));
 		}
     }

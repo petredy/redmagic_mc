@@ -6,6 +6,7 @@ import com.petredy.redmagic.Redmagic;
 import com.petredy.redmagic.blocks.Blocks;
 import com.petredy.redmagic.container.ContainerMachine;
 import com.petredy.redmagic.lib.BlockIndex;
+import com.petredy.redmagic.lib.Elements;
 import com.petredy.redmagic.lib.Guis;
 import com.petredy.redmagic.lib.Textures;
 import com.petredy.redmagic.tileentities.TileEntityMachine;
@@ -29,13 +30,21 @@ public class GuiMachine extends GuiContainer{
 		
 		this.fontRenderer.drawString(StatCollector.translateToLocal(new ItemStack(Blocks.machine).getUnlocalizedName()), 8, 4, Guis.DEFAULT_FONT_COLOR);
 		
-		String energy = "Red: " + machine.energy;
 		
-		this.fontRenderer.drawString(energy, 8, 30, Guis.DEFAULT_FONT_COLOR);
+		String earth = "Earth: " + machine.energy.getValue(Elements.EARTH);
+		String nature = "Nature: " + machine.energy.getValue(Elements.NATURE);
+		String water = "Water: " + machine.energy.getValue(Elements.WATER);
+		String fire = "Fire: " + machine.energy.getValue(Elements.FIRE);
+		String metal = "Metal: " + machine.energy.getValue(Elements.METAL);
+		this.fontRenderer.drawString(earth, 8, 15, Guis.DEFAULT_FONT_COLOR);
+		this.fontRenderer.drawString(nature, 8, 25, Guis.DEFAULT_FONT_COLOR);
+		this.fontRenderer.drawString(water, 8, 35, Guis.DEFAULT_FONT_COLOR);
+		this.fontRenderer.drawString(fire, 8, 45, Guis.DEFAULT_FONT_COLOR);
+		this.fontRenderer.drawString(metal, 8, 55, Guis.DEFAULT_FONT_COLOR);
+		
 		
 		String heat = "Heat: " + machine.heat;
-		
-		this.fontRenderer.drawString(heat, 8, 40, Guis.DEFAULT_FONT_COLOR);
+		this.fontRenderer.drawString(heat, 8, 65, Guis.DEFAULT_FONT_COLOR);
 	}
 	
 

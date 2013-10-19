@@ -16,9 +16,9 @@ public class MachineContactCooling extends Machine{
 		this.size = 1;
 	}
 	
-	public void update(IMachineHandler machineHandler) {
-		if(machineHandler.getHeat() > 0 && isAttachedBlockWater(machineHandler.getWorld(), this.side, machineHandler.getXCoord(getSide()), machineHandler.getYCoord(getSide()), machineHandler.getZCoord(getSide()))){
-			machineHandler.setHeat(machineHandler.getHeat() - cooling);
+	public void update(IMachineHandler handler) {
+		if(handler.getHeat() > 0 && isAttachedBlockWater(handler.getWorld(), this.side, handler.getXCoord(), handler.getYCoord(), handler.getZCoord())){
+			handler.setHeat(handler.getHeat() - cooling);
 		}
 	}
 
