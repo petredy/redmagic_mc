@@ -25,10 +25,10 @@ public class ElementDictionary {
 	
 	static{
 		addElement(Elements.EARTH, ElementEarth.class);
-		addElement(Elements.NATURE, ElementNature.class);
+		addElement(Elements.AIR, ElementAir.class);
 		addElement(Elements.WATER, ElementWater.class);
 		addElement(Elements.FIRE, ElementFire.class);
-		addElement(Elements.METAL, ElementMetal.class);
+		addElement(Elements.VOID, ElementVoid.class);
 	}
 	
 }

@@ -29,6 +29,7 @@ public class TileEntityEarthwire extends TileEntity implements IEnergyConsumer{
 	public void updateEntity(){
 		int layers = this.getLayers();
 		if(lastLayers != layers){
+			EnergyMap.removeConsumer(xCoord, yCoord, zCoord);
 			EnergyMap.registerConsumer(xCoord, yCoord, zCoord, (int)(layers * 1.5f));
 			lastLayers = layers;
 		}

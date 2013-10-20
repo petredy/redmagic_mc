@@ -30,6 +30,8 @@ public class Textures {
 	public static final ResourceLocation FURNACE = ResourceLocationUtils.getResourceLocation(GUI_PATH + "furnace.png");
 	public static final ResourceLocation DEINTEGRATOR = ResourceLocationUtils.getResourceLocation(GUI_PATH + "deintegrator.png");
 	public static final ResourceLocation COMPACTOR = ResourceLocationUtils.getResourceLocation(GUI_PATH + "compactor.png");
+	public static final ResourceLocation REDMETER = ResourceLocationUtils.getResourceLocation(GUI_PATH + "redmeter.png");
+
 	
 	//Symbols
 	public static final ResourceLocation SYMBOLS = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "symbols/symbols.png");

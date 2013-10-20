@@ -7,7 +7,7 @@ import com.petredy.redmagic.Redmagic;
 import com.petredy.redmagic.lib.BlockIndex;
 import com.petredy.redmagic.lib.Reference;
 
-import net.minecraft.block.BlockContainer;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -20,7 +20,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockDecoration extends BlockContainer{
+public class BlockDecoration extends Block{
 
 	public Icon[] icons = new Icon[ItemBlockDecoration.subNames.length];
 	
@@ -40,16 +40,6 @@ public class BlockDecoration extends BlockContainer{
 			case BlockIndex.COMPRESSED_OBSIDIAN_METADATA: return 80F;
 	        default: return this.blockHardness;
 		}
-    }
-	
-	@Override
-	public TileEntity createNewTileEntity(World world) {
-		return null;
-	}
-	@Override
-	public TileEntity createTileEntity(World world, int metadata)
-    {
-		return createNewTileEntity(world);
     }
 	
 	

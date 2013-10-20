@@ -58,11 +58,11 @@ public class WorldGenerationUtils {
 	
 	public static void generateEnergy(World world, Random random, int chunkX, int chunkZ) {
 		float earth = RedEnergyIndex.chunk_min_energy + random.nextFloat() * (RedEnergyIndex.chunk_energy - RedEnergyIndex.chunk_min_energy);
-		float nature = RedEnergyIndex.chunk_min_energy + random.nextFloat() * (RedEnergyIndex.chunk_energy - RedEnergyIndex.chunk_min_energy);
+		float air = RedEnergyIndex.chunk_min_energy + random.nextFloat() * (RedEnergyIndex.chunk_energy - RedEnergyIndex.chunk_min_energy);
 		float water = RedEnergyIndex.chunk_min_energy + random.nextFloat() * (RedEnergyIndex.chunk_energy - RedEnergyIndex.chunk_min_energy);
 		float fire = RedEnergyIndex.chunk_min_energy + random.nextFloat() * (RedEnergyIndex.chunk_energy - RedEnergyIndex.chunk_min_energy);
-		float metal = RedEnergyIndex.chunk_min_energy + random.nextFloat() * (RedEnergyIndex.chunk_energy - RedEnergyIndex.chunk_min_energy);
-		EnergyMap.setEnergy(new RedEnergy(world.provider.dimensionId, chunkX, chunkZ, Composition.getStandard(earth, nature, water, fire, metal)));
+		float theVoid = RedEnergyIndex.chunk_min_void + random.nextFloat() * (RedEnergyIndex.chunk_void - RedEnergyIndex.chunk_min_void);
+		EnergyMap.setEnergy(new RedEnergy(world.provider.dimensionId, chunkX, chunkZ, Composition.getStandard(earth, air, water, fire, theVoid)));
 	}
 
 }

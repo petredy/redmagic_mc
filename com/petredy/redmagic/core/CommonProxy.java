@@ -55,6 +55,9 @@ public class CommonProxy implements IGuiHandler{
 		if(ID == Guis.COMPACTOR){
 			return new ContainerCompactor(player, (IMachineHandler)tileEntity);
 		}
+		if(ID == Guis.REDMETER){
+			return new ContainerRedmeter(player);
+		}
 		return null;
 	}
 
@@ -81,6 +84,9 @@ public class CommonProxy implements IGuiHandler{
 		}
 		if(ID == Guis.COMPACTOR){
 			return new GuiCompactor(player, (IMachineHandler)tileEntity);
+		}
+		if(ID == Guis.REDMETER){
+			return new GuiRedmeter(player);
 		}
 		return null;
 	}

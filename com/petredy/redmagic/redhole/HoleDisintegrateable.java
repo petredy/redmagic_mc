@@ -37,11 +37,11 @@ public class HoleDisintegrateable extends Hole{
 	}
 	
 	public String getHoleColor(){
-		return "0.85#0.85#0.85";
+		return "0.65#0.85#0.65";
 	}
 	
 	public int getMaxHeight(){
-		return 32;
+		return 256;
 	}
 	
 	public void activate(ItemStack stack, World world, EntityPlayer player){
@@ -50,10 +50,10 @@ public class HoleDisintegrateable extends Hole{
 	
 	public void update(ItemStack redhole, World world, Entity user, int idk, boolean idk2) {
 		energy.decreaseValue(Elements.EARTH, 0.01f);
-		energy.decreaseValue(Elements.NATURE, 0.01f);
+		energy.decreaseValue(Elements.AIR, 0.01f);
 		energy.decreaseValue(Elements.WATER, 0.01f);
 		energy.decreaseValue(Elements.FIRE, 0.01f);
-		energy.decreaseValue(Elements.METAL, 0.01f);
+		energy.decreaseValue(Elements.VOID, 0.01f);
 	}
 
 	public void keyPressed(ItemStack redhole, EntityPlayer player, String keyName) {
@@ -63,9 +63,11 @@ public class HoleDisintegrateable extends Hole{
 				ItemStack target = new ItemStack(player.worldObj.getBlockId(location.blockX, location.blockY, location.blockZ), 1, player.worldObj.getBlockMetadata(location.blockX, location.blockY, location.blockZ));
 				if(target != null){
 					Composition value = RedvalueDictionary.getComposition(target);
-					player.worldObj.destroyBlock(location.blockX, location.blockY, location.blockZ, false);
-					energy.merge(value);
-					player.swingItem();
+					if(value != null){
+						player.worldObj.destroyBlock(location.blockX, location.blockY, location.blockZ, false);
+						energy.merge(value.copy());
+						player.swingItem();
+					}
 				}
 			}
 		}

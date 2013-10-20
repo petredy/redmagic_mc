@@ -19,14 +19,8 @@ public class EnergyMap {
 	
 	public static void registerConsumer(int x, int y, int z, int range){
 		if(!existsConsumer(x, y, z))consumers.add(new EnergyConsumer(x, y, z, range));
-		else overwriteConsumer(new EnergyConsumer(x, y, z, range));
 	}
-	
-	private static void overwriteConsumer(EnergyConsumer energyConsumer) {
-		for(EnergyConsumer consumer: consumers){
-			if(consumer.x == energyConsumer.x && consumer.y == energyConsumer.y && consumer.z == energyConsumer.z)consumer = energyConsumer;
-		}
-	}
+
 
 	public static boolean existsConsumer(int x, int y, int z){
 		for(EnergyConsumer consumer: consumers){
@@ -45,7 +39,7 @@ public class EnergyMap {
 
 	public static void removeConsumer(int xCoord, int yCoord, int zCoord) {
 		for(EnergyConsumer consumer: consumers){
-			if(consumer.x == xCoord && consumer.z == zCoord){
+			if(consumer.x == xCoord && consumer.y == yCoord && consumer.z == zCoord){
 				consumers.remove(consumer);
 				break;
 			}

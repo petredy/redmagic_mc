@@ -1,8 +1,11 @@
 package com.petredy.redmagic.items;
 
 import com.petredy.redmagic.Redmagic;
+import com.petredy.redmagic.api.IKeyBound;
 import com.petredy.redmagic.lib.Elements;
+import com.petredy.redmagic.lib.Guis;
 import com.petredy.redmagic.lib.ItemIndex;
+import com.petredy.redmagic.lib.Keys;
 import com.petredy.redmagic.lib.Reference;
 import com.petredy.redmagic.network.PacketHandler;
 import com.petredy.redmagic.redenergy.EnergyMap;
@@ -18,7 +21,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class ItemRedmeter extends Item{
+public class ItemRedmeter extends Item implements IKeyBound{
 
 	public ItemRedmeter(int par1) {
 		super(par1);
@@ -38,14 +41,22 @@ public class ItemRedmeter extends Item{
 			LogUtils.log(en);
 			if(en != null){
 				par3EntityPlayer.addChatMessage("Chunk: " + (int)(par3EntityPlayer.posX / 16) + "/" + (int)(par3EntityPlayer.posZ / 16));
-				par3EntityPlayer.addChatMessage("Earth: " + en.getValue(Elements.EARTH)+ " | Nature: " + en.getValue(Elements.NATURE));
+				par3EntityPlayer.addChatMessage("Earth: " + en.getValue(Elements.EARTH)+ " | Air: " + en.getValue(Elements.AIR));
 				par3EntityPlayer.addChatMessage("Water: " + en.getValue(Elements.WATER) + " | Fire: " + en.getValue(Elements.FIRE));
-				par3EntityPlayer.addChatMessage("Metal: " + en.getValue(Elements.METAL));
+				par3EntityPlayer.addChatMessage("Void: " + en.getValue(Elements.VOID));
 			}else{
 				par3EntityPlayer.addChatMessage("Chunk: " + (int)(par3EntityPlayer.posX / 16) + "/" + (int)(par3EntityPlayer.posZ / 16) + " | no red here");
 			}
 		}
 		return par1ItemStack;
     }
+
+	@Override
+	public void doKeyBindingAction(EntityPlayer player, ItemStack stack, String keyName) {
+		if(keyName.equals(Keys.KEY_EXTRA_NAME)){
+			player.openGui(Redmagic.instance, Guis.REDMETER, player.worldObj, 0, 0, 0);
+		}
+		
+	}
 
 }

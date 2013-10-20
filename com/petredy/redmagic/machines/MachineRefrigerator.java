@@ -50,7 +50,7 @@ public class MachineRefrigerator extends Machine{
 					}
 				}
 			}
-		}
+		}else if(tick >= neededTicks && handler.getWorld().isRemote)tick = 0;
 	}
 	
 	private void freeze(World world, int xCoord, int yCoord, int zCoord) {

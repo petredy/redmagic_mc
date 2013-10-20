@@ -34,7 +34,7 @@ public class TileEntityEnergySummoner extends TileEntity implements IPowerRecept
 	
 	public void updateEntity(){
 		if(this.worldObj.isRaining() && this.handler.useEnergy(50, 200, true) >= 50){
-			if(this.hasSurroundingBlocks()){
+			if(this.hasSurroundingBlocks()){ 
 				int layers = this.hasWire();
 				if(layers > 0){
 					this.createLightningStrike(layers, yCoord);
@@ -59,6 +59,7 @@ public class TileEntityEnergySummoner extends TileEntity implements IPowerRecept
 					boolean created = false;
 					float chance = 1 / (float)consumers.size();
 					for(EnergyConsumer consumer: consumers){
+						LogUtils.log(consumer);
 						if(rand.nextFloat() < chance){
 							bolt = new EntityLightningBolt(worldObj, consumer.x, consumer.y, consumer.z);
 							IEnergyConsumer con = (IEnergyConsumer) worldObj.getBlockTileEntity(consumer.x, consumer.y, consumer.z);

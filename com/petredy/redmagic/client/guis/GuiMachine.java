@@ -32,15 +32,15 @@ public class GuiMachine extends GuiContainer{
 		
 		
 		String earth = "Earth: " + machine.energy.getValue(Elements.EARTH);
-		String nature = "Nature: " + machine.energy.getValue(Elements.NATURE);
+		String air = "Air: " + machine.energy.getValue(Elements.AIR);
 		String water = "Water: " + machine.energy.getValue(Elements.WATER);
 		String fire = "Fire: " + machine.energy.getValue(Elements.FIRE);
-		String metal = "Metal: " + machine.energy.getValue(Elements.METAL);
+		String theVoid = "Void: " + machine.energy.getValue(Elements.VOID);
 		this.fontRenderer.drawString(earth, 8, 15, Guis.DEFAULT_FONT_COLOR);
-		this.fontRenderer.drawString(nature, 8, 25, Guis.DEFAULT_FONT_COLOR);
+		this.fontRenderer.drawString(air, 8, 25, Guis.DEFAULT_FONT_COLOR);
 		this.fontRenderer.drawString(water, 8, 35, Guis.DEFAULT_FONT_COLOR);
 		this.fontRenderer.drawString(fire, 8, 45, Guis.DEFAULT_FONT_COLOR);
-		this.fontRenderer.drawString(metal, 8, 55, Guis.DEFAULT_FONT_COLOR);
+		this.fontRenderer.drawString(theVoid, 8, 55, Guis.DEFAULT_FONT_COLOR);
 		
 		
 		String heat = "Heat: " + machine.heat;

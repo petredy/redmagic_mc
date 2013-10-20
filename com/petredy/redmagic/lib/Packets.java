@@ -20,5 +20,5 @@ public class Packets {
 	public static final byte SYNC = 3;
 	public static final byte SYNC_TRADING = 4;
 	public static final byte SYNC_ENERGY_MAP = 5;
-	public static final byte MACHINE_SYNC = 7;
+	public static final byte MACHINE_SYNC = 6;
 }

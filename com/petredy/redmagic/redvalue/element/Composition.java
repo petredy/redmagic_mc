@@ -28,13 +28,13 @@ public class Composition {
 		return elements.values();
 	}
 	
-	public static Composition getStandard(float earth, float nature, float water, float fire, float metal){
+	public static Composition getStandard(float earth, float air, float water, float fire, float theVoid){
 		Composition comp = new Composition();
 		comp.addElement(new ElementEarth(earth));
-		comp.addElement(new ElementNature(nature));
+		comp.addElement(new ElementAir(air));
 		comp.addElement(new ElementWater(water));
 		comp.addElement(new ElementFire(fire));
-		comp.addElement(new ElementMetal(metal));
+		comp.addElement(new ElementVoid(theVoid));
 		return comp;
 	}
 	

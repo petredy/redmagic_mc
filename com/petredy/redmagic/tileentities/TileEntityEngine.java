@@ -45,6 +45,8 @@ public abstract class TileEntityEngine extends TileEntity implements IPowerEmitt
 	public float costs = 100;
 	public float speed = 1.0f;
 	
+	public Composition cost = Composition.getStandard(0, 0, 0, 10, 0);
+	
 	@Override
 	public boolean canEmitPowerFrom(ForgeDirection side){
 		return side == this.side;
@@ -107,8 +109,8 @@ public abstract class TileEntityEngine extends TileEntity implements IPowerEmitt
 		if(blockTileEntity instanceof IPowerReceptor){
 			IPowerReceptor receptor = (IPowerReceptor)blockTileEntity;
 			if(receptor != null && !blockTileEntity.worldObj.isRemote && side != null){
-				RedEnergy energy = EnergyMap.consumeEnergy(new RedEnergy(worldObj.provider.dimensionId, xCoord / 16, zCoord / 16, Composition.getStandard(1, 1, 1, 1, 1)));
-				if(energy.composition.isEmpty()){
+				RedEnergy consumed = EnergyMap.consumeEnergy(new RedEnergy(worldObj.provider.dimensionId, xCoord / 16, zCoord / 16, cost));
+				if(consumed.isEqual(new RedEnergy(worldObj.provider.dimensionId, xCoord / 16, zCoord / 16, cost))){
 					PowerReceiver receiver = receptor.getPowerReceiver(side.getOpposite());
 					if(receiver != null)receiver.receiveEnergy(PowerHandler.Type.ENGINE, power, side.getOpposite());
 				}

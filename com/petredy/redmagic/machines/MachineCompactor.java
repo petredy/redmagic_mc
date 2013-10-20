@@ -24,7 +24,7 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 
 public class MachineCompactor extends Machine{
 
-	private static final Composition COST = Composition.getStandard(5, 5, 5, 5, 5);
+	private static final Composition COST = Composition.getStandard(20, 20, 20, 20, 0);
 	public InventoryBasic inventory;
 	
 	public MachineCompactor(){
@@ -51,7 +51,7 @@ public class MachineCompactor extends Machine{
 			if(output != null && 
 				(this.inventory.getStackInSlot(0) == null || 
 					(this.inventory.getStackInSlot(0).isItemEqual(output) && this.inventory.getStackInSlot(0).stackSize + output.stackSize <= output.getMaxStackSize()))
-				&& handler.getEnergyHandler().use(RedEnergy.getFrom(COST)).isEmpty()){
+				&& handler.getEnergyHandler().use(RedEnergy.getFrom(COST)).isEqual(RedEnergy.getFrom(COST))){
 				PacketDispatcher.sendPacketToAllInDimension(PacketHandler.populatePacket(new PacketMachineSync(handler.getXCoord(), handler.getYCoord(), handler.getZCoord(), handler.getEnergyHandler().getStoredEnergy())), handler.getWorld().provider.dimensionId);
 				for(int i = 1; i < 5; i++){
 					this.inventory.decrStackSize(i, 1);

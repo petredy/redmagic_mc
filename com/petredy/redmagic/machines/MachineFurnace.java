@@ -34,7 +34,7 @@ public class MachineFurnace extends Machine{
 		this.inventory = new InventoryBasic(Machines.FURNACE_NAME, false, 2);
 		this.metadata = Machines.FURNACE_METADATA;
 		this.size = 1;
-		this.burnTickCost = Composition.getStandard(0.1f, 0.1f, 0.1f, 0.1f, 0.1f);
+		this.burnTickCost = Composition.getStandard(0.1f, 0.1f, 0.1f, 0.1f, 0.0f);
 	}
 	
 	public void update(IMachineHandler handler) {
