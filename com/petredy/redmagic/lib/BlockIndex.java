@@ -84,5 +84,9 @@ public class BlockIndex {
 	public static final String RED_TRANSFORMATOR_NAME = "red.transformator";
 	public static final int RED_TRANSFORMATOR_DEFAULT_ID = 3314;
 	public static int RED_TRANSFORMATOR_ID;
+	
+	public static final String BLOCK_BREAKER_NAME = "breaker";
+	public static final int BLOCK_BREAKER_DEFAULT_ID = 3315;
+	public static int BLOCK_BREAKER_ID;
 
 }

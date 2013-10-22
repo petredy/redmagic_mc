@@ -30,6 +30,7 @@ public class Machine {
 		case Machines.COMPACTOR_METADATA: return new MachineCompactor();
 		case Machines.RECYCLER_METADATA: return new MachineRecycler();
 		case Machines.SIEVE_METADATA: return new MachineSieve();
+		case Machines.CRYSTALIZER_METADATA: return new MachineCrystalizer();
 		default: return new Machine();
 		}
 	}

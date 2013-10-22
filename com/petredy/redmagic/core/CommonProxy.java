@@ -58,6 +58,12 @@ public class CommonProxy implements IGuiHandler{
 		if(ID == Guis.REDMETER){
 			return new ContainerRedmeter(player);
 		}
+		if(ID == Guis.SIEVE){
+			return new ContainerSieve(player, (IMachineHandler)tileEntity);
+		}
+		if(ID == Guis.CRYSTALIZER){
+			return new ContainerCrystalizer(player, (IMachineHandler)tileEntity);
+		}
 		return null;
 	}
 
@@ -87,6 +93,12 @@ public class CommonProxy implements IGuiHandler{
 		}
 		if(ID == Guis.REDMETER){
 			return new GuiRedmeter(player);
+		}
+		if(ID == Guis.SIEVE){
+			return new GuiSieve(player, (IMachineHandler)tileEntity);
+		}
+		if(ID == Guis.CRYSTALIZER){
+			return new GuiCrystalizer(player, (IMachineHandler)tileEntity);
 		}
 		return null;
 	}

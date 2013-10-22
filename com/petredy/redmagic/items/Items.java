@@ -25,7 +25,7 @@ public class Items {
 	public static ItemRedmeter redmeter;
 	public static ItemScrewdriver screwdriver;
 	public static ItemSieve sieve;
-	public static ItemMatter matter;
+	
 	//Armor
 	public static EnumArmorMaterial glassMaterial = EnumHelper.addArmorMaterial(ItemIndex.GLASSES_NAME, 1000, new int[]{2, 2, 2, 2, 2}, 30);
 		
@@ -41,7 +41,6 @@ public class Items {
 		redmeter = new ItemRedmeter(ItemIndex.REDMETER_ID);
 		screwdriver = new ItemScrewdriver(ItemIndex.SCREWDRIVER_ID);
 		sieve = new ItemSieve(ItemIndex.SIEVE_ID);
-		matter = new ItemMatter(ItemIndex.MATTER_ID);
 		
 		addRecipes();
 	}

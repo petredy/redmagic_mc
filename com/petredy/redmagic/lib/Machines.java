@@ -23,4 +23,6 @@ public class Machines {
 	public static final int RECYCLER_METADATA = 9;
 	public static final String SIEVE_NAME = "sieve";
 	public static final int SIEVE_METADATA = 10;
+	public static final String CRYSTALIZER_NAME = "crystalizer";
+	public static final int CRYSTALIZER_METADATA = 11;
 }

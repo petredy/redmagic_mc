@@ -1,4 +1,4 @@
-package com.petredy.redmagic.compactor;
+package com.petredy.redmagic.recipes.compactor;
 
 import java.util.ArrayList;
 import java.util.List;

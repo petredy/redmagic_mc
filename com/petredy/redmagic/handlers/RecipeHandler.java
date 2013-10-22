@@ -5,7 +5,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import com.petredy.redmagic.blocks.Blocks;
-import com.petredy.redmagic.compactor.CompactorDictionary;
+import com.petredy.redmagic.recipes.compactor.CompactorDictionary;
+import com.petredy.redmagic.recipes.sieve.SieveDictionary;
 import com.petredy.redmagic.items.Items;
 import com.petredy.redmagic.lib.BlockIndex;
 import com.petredy.redmagic.lib.ItemIndex;
@@ -13,6 +14,11 @@ import com.petredy.redmagic.lib.ItemIndex;
 public class RecipeHandler {
 
 	public static void init(){
+		
+		/**
+		 * ---------------------------------------------------------------------------------------------------
+		 * Compactor
+		 */
 		CompactorDictionary.addRecipe(new ItemStack(Block.netherBrick), new ItemStack[]{
 				new ItemStack(Block.netherrack), new ItemStack(Block.netherrack), 
 				new ItemStack(Block.netherrack), new ItemStack(Block.netherrack)
@@ -50,6 +56,19 @@ public class RecipeHandler {
 		
 		
 		
+		/**
+		 * -----------------------------------------------------------------------------------------------------------------------------------
+		 * Sieve
+		 */
+		
+		SieveDictionary.register(new ItemStack(Item.flint, 2), new ItemStack(Block.gravel));
+		
+		SieveDictionary.register(new ItemStack(Item.seeds), new ItemStack(Block.grass));
+		
+		SieveDictionary.register(new ItemStack(Block.sapling), new ItemStack(Block.leaves));
+		SieveDictionary.register(new ItemStack(Block.sapling, 1, 1), new ItemStack(Block.leaves, 1, 1));
+		SieveDictionary.register(new ItemStack(Block.sapling, 1, 2), new ItemStack(Block.leaves, 1, 2));
+		SieveDictionary.register(new ItemStack(Block.sapling, 1, 3), new ItemStack(Block.leaves, 1, 3));
 	}
 	
 }

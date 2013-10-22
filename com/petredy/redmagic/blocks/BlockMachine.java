@@ -90,7 +90,6 @@ public class BlockMachine extends BlockContainer{
 					return true;
 				}else{
 					par5EntityPlayer.openGui(Redmagic.instance, Guis.MACHINE, par1World, par2, par3, par4);
-					par5EntityPlayer.addChatMessage(machineBlock.energy.toString());
 					return true;
 				}
 			}else{

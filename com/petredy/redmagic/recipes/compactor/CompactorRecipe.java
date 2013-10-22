@@ -1,4 +1,4 @@
-package com.petredy.redmagic.compactor;
+package com.petredy.redmagic.recipes.compactor;
 
 import net.minecraft.item.ItemStack;
 

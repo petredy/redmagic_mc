@@ -1,5 +1,8 @@
 package com.petredy.redmagic.utils;
 
+import java.util.Collection;
+
+import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryBasic;
@@ -391,6 +394,25 @@ public class InventoryUtils {
 		return null;
 	}
 	
+	public static ItemStack popItemMatches(IInventory inv, int amount, Collection<ItemStack> matches){
+		for(int i = 0; i < inv.getSizeInventory(); i++){
+			ItemStack slot = inv.getStackInSlot(i);
+			if(contains(matches, slot)){
+				inv.decrStackSize(i, amount);
+				return splitStack(slot, amount);
+			}
+		}
+		return null;
+	}
+	
+	public static boolean contains(Collection<ItemStack> matches, ItemStack slot) {
+		for(ItemStack match: matches){
+			if(match == null && slot == null)return true;
+			if(match != null && slot != null && match.isItemEqual(slot))return true;
+		}
+		return false;
+	}
+
 	public static IInventory[] getAdjecentInventories(World world, int x, int y, int z){
 		IInventory[] inventories = new IInventory[6];
 		inventories[0] = world.getBlockTileEntity(x, y - 1, z) instanceof IInventory ? (IInventory) world.getBlockTileEntity(x, y - 1, z) : null;

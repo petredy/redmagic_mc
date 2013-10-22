@@ -14,5 +14,6 @@ public class Guis {
 	public static final int COMPACTOR = 7;
 	public static final int SIEVE = 8;
 	public static final int REDMETER = 9;
+	public static final int CRYSTALIZER = 10;
 	
 }

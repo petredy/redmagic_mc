@@ -16,13 +16,15 @@ public class Textures {
 	public static final ResourceLocation EFFECT_NOISE = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "effects/noise.png");
 	public static final ResourceLocation TRADING_CHEST = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "blocks/" + BlockIndex.TRADING_CHEST_NAME + ".png");
 	public static final ResourceLocation CAGE = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "blocks/" + BlockIndex.CAGE_NAME + ".png");
-	
+
 	//Engine
 	public static final ResourceLocation ENGINE_CHAMBER = ResourceLocationUtils.getResourceLocation("models/engine/chamber.png");
 	public static final ResourceLocation ENGINE_TRUNK = ResourceLocationUtils.getResourceLocation("models/engine/trunk.png");
 	public static final ResourceLocation ENGINE_BASE = ResourceLocationUtils.getResourceLocation("models/engine/base.png");
 	
 	//Guis
+	public static final ResourceLocation GUI_3x3 = ResourceLocationUtils.getResourceLocation(GUI_PATH + "default_3x3.png");
+	public static final ResourceLocation GUI_2x3x3 = ResourceLocationUtils.getResourceLocation(GUI_PATH + "default_2x3x3.png");
 	public static final ResourceLocation TRADING_CHEST_GUI = ResourceLocationUtils.getResourceLocation(GUI_PATH + BlockIndex.TRADING_CHEST_NAME + ".png");
 	public static final ResourceLocation ALL_ITEMS = ResourceLocationUtils.getResourceLocation(GUI_PATH + "allitems.png"); 
 	public static final ResourceLocation PLAYER_INVENTORY = ResourceLocationUtils.getResourceLocation(GUI_PATH + "player.inventory.png");
@@ -31,7 +33,6 @@ public class Textures {
 	public static final ResourceLocation DEINTEGRATOR = ResourceLocationUtils.getResourceLocation(GUI_PATH + "deintegrator.png");
 	public static final ResourceLocation COMPACTOR = ResourceLocationUtils.getResourceLocation(GUI_PATH + "compactor.png");
 	public static final ResourceLocation REDMETER = ResourceLocationUtils.getResourceLocation(GUI_PATH + "redmeter.png");
-
 	
 	//Symbols
 	public static final ResourceLocation SYMBOLS = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "symbols/symbols.png");
@@ -48,6 +49,7 @@ public class Textures {
 	public static final ResourceLocation HOLE_FX = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "entities/particles/hole.png");
 	public static final ResourceLocation SOUL_FX = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "entities/particles/soul.png");
 	public static final ResourceLocation RING_FX = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "entities/particles/ring.png");
+	
 	
 	
 	

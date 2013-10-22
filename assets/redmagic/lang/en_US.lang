@@ -63,6 +63,7 @@ item.machine.freezer.name=Freezer Unit
 item.machine.compactor.name=Compactor Unit
 item.machine.sieve.name=Sieve Unit
 item.machine.recycler.name=Recycler Unit
+item.machine.crystalizer.name=Crystalizer Unit
 
 item.sieve.name=Sieve
 

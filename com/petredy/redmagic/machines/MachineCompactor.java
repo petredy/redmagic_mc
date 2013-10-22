@@ -9,12 +9,12 @@ import net.minecraft.world.World;
 
 import com.petredy.redmagic.Redmagic;
 import com.petredy.redmagic.api.machines.IMachineHandler;
-import com.petredy.redmagic.compactor.CompactorDictionary;
 import com.petredy.redmagic.items.Items;
 import com.petredy.redmagic.lib.Guis;
 import com.petredy.redmagic.lib.Machines;
 import com.petredy.redmagic.network.PacketHandler;
 import com.petredy.redmagic.network.PacketMachineSync;
+import com.petredy.redmagic.recipes.compactor.CompactorDictionary;
 import com.petredy.redmagic.redenergy.RedEnergy;
 import com.petredy.redmagic.redvalue.element.Composition;
 import com.petredy.redmagic.utils.InventoryUtils;

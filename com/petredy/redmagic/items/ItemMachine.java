@@ -34,7 +34,8 @@ public class ItemMachine extends Item implements IMachineItem{
 		Machines.FREEZER_NAME,
 		Machines.COMPACTOR_NAME,
 		Machines.RECYCLER_NAME,
-		Machines.SIEVE_NAME
+		Machines.SIEVE_NAME,
+		Machines.CRYSTALIZER_NAME
 	};
 	
 	public Icon[] icons = new Icon[ItemMachine.subNames.length];

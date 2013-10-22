@@ -24,6 +24,7 @@ public class Blocks {
 	public static BlockEnergySummoner energySummoner;
 	public static BlockMachine machine;
 	public static BlockRedTransformator transformator;
+	public static BlockBreaker breaker;
 	
 	public static void init(){
 		engine = new BlockEngine(BlockIndex.ENGINE_ID);
@@ -36,6 +37,7 @@ public class Blocks {
 		energySummoner = new BlockEnergySummoner(BlockIndex.ENERGY_SUMMONER_ID);
 		machine = new BlockMachine(BlockIndex.MACHINE_ID);
 		transformator = new BlockRedTransformator(BlockIndex.RED_TRANSFORMATOR_ID);
+		breaker = new BlockBreaker(BlockIndex.BLOCK_BREAKER_ID);
 		
 		GameRegistry.registerBlock(engine, ItemBlockEngine.class, BlockIndex.ENGINE_NAME);
 		GameRegistry.registerBlock(trading, BlockIndex.TRADING_CHEST_NAME);
@@ -47,6 +49,7 @@ public class Blocks {
 		GameRegistry.registerBlock(energySummoner, BlockIndex.ENERGY_SUMMONER_NAME);
 		GameRegistry.registerBlock(machine, BlockIndex.MACHINE_NAME);
 		GameRegistry.registerBlock(transformator, BlockIndex.RED_TRANSFORMATOR_NAME);
+		GameRegistry.registerBlock(breaker, BlockIndex.BLOCK_BREAKER_NAME);
 		
 		addRecipes();
 		
@@ -64,6 +67,7 @@ public class Blocks {
 		BlockIndex.ENERGY_SUMMONER_ID = config.getBlock(BlockIndex.ENERGY_SUMMONER_NAME, BlockIndex.ENERGY_SUMMONER_DEFAULT_ID).getInt(BlockIndex.ENERGY_SUMMONER_DEFAULT_ID);
 		BlockIndex.MACHINE_ID = config.getBlock(BlockIndex.MACHINE_NAME, BlockIndex.MACHINE_DEFAULT_ID).getInt(BlockIndex.MACHINE_DEFAULT_ID);
 		BlockIndex.RED_TRANSFORMATOR_ID = config.getBlock(BlockIndex.RED_TRANSFORMATOR_NAME, BlockIndex.RED_TRANSFORMATOR_DEFAULT_ID).getInt(BlockIndex.RED_TRANSFORMATOR_DEFAULT_ID);
+		BlockIndex.BLOCK_BREAKER_ID = config.getBlock(BlockIndex.BLOCK_BREAKER_NAME, BlockIndex.BLOCK_BREAKER_DEFAULT_ID).getInt(BlockIndex.BLOCK_BREAKER_DEFAULT_ID);
 		
 	}
 	
