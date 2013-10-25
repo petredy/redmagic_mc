@@ -11,7 +11,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import buildcraft.api.transport.IPipeTile.PipeType;
-import buildcraft.core.proxy.CoreProxy;
 
 public class TileEntityEngineRhenium extends TileEntityEngine {
 

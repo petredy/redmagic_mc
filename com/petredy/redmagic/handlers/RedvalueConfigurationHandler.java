@@ -140,6 +140,9 @@ public class RedvalueConfigurationHandler {
 		
 		RedvalueDictionary.registerNative(new ItemStack(Blocks.decoration.blockID, 1, BlockIndex.GRANITE_METADATA), Composition.getStandard(70, 1, 1, 30, 0));
 		RedvalueDictionary.registerNative(new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_NUGGET_RHENIUM_METADATA), Composition.getStandard(20, 1, 1, 30, 0));
+		RedvalueDictionary.registerNative(new ItemStack(Items.matter, 1, ItemIndex.MATTER_LEFTOVER_METADATA), Composition.getStandard(0, 0, 0, 0, 10));
+		RedvalueDictionary.registerNative(new ItemStack(Items.matter, 1, ItemIndex.MATTER_INSTABLE_METADATA), Composition.getStandard(0, 0, 0, 0, 50));
+		RedvalueDictionary.registerNative(new ItemStack(Items.matter, 1, ItemIndex.MATTER_STABLE_METADATA), Composition.getStandard(0, 0, 0, 0, 100));
 	}
 	
 }

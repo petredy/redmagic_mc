@@ -25,10 +25,14 @@ public class Items {
 	public static ItemRedmeter redmeter;
 	public static ItemScrewdriver screwdriver;
 	public static ItemSieve sieve;
+	public static ItemMatter matter;
+	public static ItemJackhammer jackhammer;
 	
 	//Armor
 	public static EnumArmorMaterial glassMaterial = EnumHelper.addArmorMaterial(ItemIndex.GLASSES_NAME, 1000, new int[]{2, 2, 2, 2, 2}, 30);
 		
+	//Rhenium
+	public static EnumToolMaterial rheniumMaterial = EnumHelper.addToolMaterial("rhenium", 3, 5000, 6, 1, 18);
 	
 	public static void init(){
 		trading = new ItemTradingCrystal(ItemIndex.TRADING_CRYSTAL_ID);
@@ -41,6 +45,8 @@ public class Items {
 		redmeter = new ItemRedmeter(ItemIndex.REDMETER_ID);
 		screwdriver = new ItemScrewdriver(ItemIndex.SCREWDRIVER_ID);
 		sieve = new ItemSieve(ItemIndex.SIEVE_ID);
+		matter = new ItemMatter(ItemIndex.MATTER_ID);
+		jackhammer = new ItemJackhammer(ItemIndex.JACKHAMMER_ID);
 		
 		addRecipes();
 	}
@@ -56,6 +62,7 @@ public class Items {
 		ItemIndex.SCREWDRIVER_ID = config.getItem(ItemIndex.SCREWDRIVER_NAME, ItemIndex.SCREWDRIVER_DEFAULT_ID).getInt(ItemIndex.SCREWDRIVER_DEFAULT_ID);
 		ItemIndex.SIEVE_ID = config.getItem(ItemIndex.SIEVE_NAME, ItemIndex.SIEVE_DEFAULT_ID).getInt(ItemIndex.SIEVE_DEFAULT_ID);
 		ItemIndex.MATTER_ID = config.getItem(ItemIndex.MATTER_NAME, ItemIndex.MATTER_DEFAULT_ID).getInt(ItemIndex.MATTER_DEFAULT_ID);
+		ItemIndex.JACKHAMMER_ID = config.getItem(ItemIndex.JACKHAMMER_NAME, ItemIndex.JACKHAMMER_DEFAULT_ID).getInt(ItemIndex.JACKHAMMER_DEFAULT_ID);
 		
 	}
 	
@@ -148,6 +155,15 @@ public class Items {
 			Item.flint
 		});
 		
+		GameRegistry.addShapedRecipe(new ItemStack(jackhammer, 1, rheniumMaterial.getMaxUses()), new Object[]{
+			" P ",
+			"I I",
+			"IpI",
+			'P', Item.pickaxeGold,
+			'I', new ItemStack(crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA),
+			'p', Block.pistonBase
+		});
+		
 		GameRegistry.addShapedRecipe(new ItemStack(machine, 1, Machines.COLLECTOR_METADATA), new Object[]{
 			"FFF",
 			"ISI",
@@ -231,6 +247,29 @@ public class Items {
 			'P', new ItemStack(crafting, 1, ItemIndex.CRAFTING_PLATE_RHENIUM_METADATA),
 			'O', Block.obsidian,
 			'W', Block.workbench
+		});
+		
+		/* TODO:
+		GameRegistry.addShapedRecipe(new ItemStack(machine, 1, Machines.RECYCLER_METADATA), new Object[]{
+			
+		});
+		*/
+		
+		GameRegistry.addShapedRecipe(new ItemStack(machine, 1, Machines.SIEVE_METADATA), new Object[]{
+			"FFF",
+			"P P",
+			"P P",
+			'F', Block.fenceIron,
+			'P', new ItemStack(crafting, 1, ItemIndex.CRAFTING_PLATE_RHENIUM_METADATA)
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(machine, 1, Machines.CRYSTALIZER_METADATA), new Object[]{
+			"PIP",
+			"IiI",
+			"PIP",
+			'P', new ItemStack(crafting, 1, ItemIndex.CRAFTING_PLATE_RHENIUM_METADATA),
+			'I', new ItemStack(crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA),
+			'i', Block.ice	
 		});
 		
 		

@@ -31,7 +31,7 @@ public class GuiRedmeter extends GuiContainer{
 	
 	protected void drawGuiContainerForegroundLayer(int par1, int par2) {
 		
-		this.fontRenderer.drawString(StatCollector.translateToLocal(new ItemStack(Items.redmeter).getUnlocalizedName()), 8, 4, Guis.DEFAULT_FONT_COLOR);
+		this.fontRenderer.drawString(StatCollector.translateToLocal(new ItemStack(Items.redmeter).getDisplayName()), 8, 4, Guis.DEFAULT_FONT_COLOR);
 
 		Slot slot = this.inventorySlots.getSlot(0);
 		if(slot != null && slot.getHasStack()){

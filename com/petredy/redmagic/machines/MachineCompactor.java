@@ -24,7 +24,7 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 
 public class MachineCompactor extends Machine{
 
-	private static final Composition COST = Composition.getStandard(20, 20, 20, 20, 0);
+	private static final Composition COST = Composition.getStandard(1, 1, 1, 1, 0);
 	public InventoryBasic inventory;
 	
 	public MachineCompactor(){

@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 
 public class BlockRedTransformator extends Block{
 
-	public static Composition PRODUCTION = Composition.getStandard(0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+	public static Composition PRODUCTION = Composition.getStandard(0.1f, 0.0f, 0.0f, 0.0f, 0.0f);
 	
 	public BlockRedTransformator(int par1) {
 		super(par1, Material.piston);

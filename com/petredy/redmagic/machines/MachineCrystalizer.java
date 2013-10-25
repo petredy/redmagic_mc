@@ -18,12 +18,14 @@ public class MachineCrystalizer extends Machine{
 
 	public InventoryBasic inventory;
 	
-	public static float PRODUCTION_ICE = 1;
-	public static float PRODUCTION_LAVA = 2;
+	public static float PRODUCTION_ICE = 2;
+	public static float PRODUCTION_LAVA = 5;
 	public static float MOVING_MODIFIER = 1f / 7f;
 	
 	public int tick = 0;
 	public int neededTicks = 100;
+	
+	public int energy;
 	
 	public MachineCrystalizer(){
 		metadata = Machines.CRYSTALIZER_METADATA;
@@ -58,29 +60,45 @@ public class MachineCrystalizer extends Machine{
 		}
 	}
 
+	private boolean getEnergy() {
+		if(energy > 0){
+			energy--;
+			return true;
+		}else{
+			if(InventoryUtils.reduceIDInInventory(inventory, Block.ice.blockID, 1) == 1){
+				energy += 9;
+				return getEnergy();
+			}else if(InventoryUtils.reduceIDInInventory(inventory, Block.blockSnow.blockID, 1) == 1){
+				energy += 3;
+				return getEnergy();
+			}
+		}
+		return false;
+	}
+	
 	private void handleStillWater(IMachineHandler handler, int x, int y, int z) {
-		if(InventoryUtils.reduceIDInInventory(inventory, Block.blockSnow.blockID, 1) == 1){
+		if(this.getEnergy()){
 			handler.getWorld().setBlock(x, y, z, Block.ice.blockID);
 			handler.getEnergyHandler().store(Elements.WATER, PRODUCTION_ICE);
 		}
 	}
-	
+
 	private void handleMovingWater(IMachineHandler handler, int x, int y, int z) {
-		if(InventoryUtils.reduceIDInInventory(inventory, Block.blockSnow.blockID, 1) == 1){
+		if(this.getEnergy()){
 			handler.getWorld().setBlock(x, y, z, Block.ice.blockID);
 			handler.getEnergyHandler().store(Elements.WATER, PRODUCTION_ICE * MOVING_MODIFIER);
 		}
 	}
 	
 	private void handleStillLava(IMachineHandler handler, int x, int y, int z) {
-		if(InventoryUtils.reduceIDInInventory(inventory, Block.ice.blockID, 1) == 1){
+		if(this.getEnergy()){
 			handler.getWorld().setBlock(x, y, z, Block.obsidian.blockID);
 			handler.getEnergyHandler().store(Elements.FIRE, PRODUCTION_LAVA);
 		}
 	}
 	
 	private void handleMovingLava(IMachineHandler handler, int x, int y, int z) {
-		if(InventoryUtils.reduceIDInInventory(inventory, Block.ice.blockID, 1) == 1){
+		if(this.getEnergy()){
 			handler.getWorld().setBlock(x, y, z, Block.cobblestone.blockID);
 			handler.getEnergyHandler().store(Elements.FIRE, PRODUCTION_LAVA * MOVING_MODIFIER);
 		}

@@ -88,5 +88,9 @@ public class BlockIndex {
 	public static final String BLOCK_BREAKER_NAME = "breaker";
 	public static final int BLOCK_BREAKER_DEFAULT_ID = 3315;
 	public static int BLOCK_BREAKER_ID;
+	
+	public static final String GENERATOR_NAME = "generator";
+	public static final int GENERATOR_DEFAULT_ID = 3316;
+	public static int GENERATOR_ID;
 
 }

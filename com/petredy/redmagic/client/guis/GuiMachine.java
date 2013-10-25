@@ -28,7 +28,7 @@ public class GuiMachine extends GuiContainer{
 	
 	protected void drawGuiContainerForegroundLayer(int par1, int par2) {
 		
-		this.fontRenderer.drawString(StatCollector.translateToLocal(new ItemStack(Blocks.machine).getUnlocalizedName()), 8, 4, Guis.DEFAULT_FONT_COLOR);
+		this.fontRenderer.drawString(StatCollector.translateToLocal(new ItemStack(Blocks.machine).getDisplayName()), 8, 4, Guis.DEFAULT_FONT_COLOR);
 		
 		
 		String earth = "Earth: " + machine.energy.getValue(Elements.EARTH);

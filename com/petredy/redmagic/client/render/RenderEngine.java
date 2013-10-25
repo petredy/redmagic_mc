@@ -25,12 +25,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.ForgeDirection;
 import org.lwjgl.opengl.GL11;
 
-import buildcraft.BuildCraftCore;
-import buildcraft.BuildCraftCore.RenderMode;
-import buildcraft.core.DefaultProps;
-import buildcraft.energy.TileEngine;
-import buildcraft.energy.TileEngine.EnergyStage;
-
 import com.petredy.redmagic.Redmagic;
 import com.petredy.redmagic.client.models.ModelEngine;
 import com.petredy.redmagic.lib.Rendering;

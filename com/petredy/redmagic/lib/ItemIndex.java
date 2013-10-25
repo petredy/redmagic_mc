@@ -85,5 +85,9 @@ public class ItemIndex {
 	public static final int SIEVE_DEFAULT_ID = 13010;
 	public static int SIEVE_ID;
 	
+	public static final String JACKHAMMER_NAME = "jackhammer";
+	public static final int JACKHAMMER_DEFAULT_ID = 13011;
+	public static int JACKHAMMER_ID;
+	
 	
 }

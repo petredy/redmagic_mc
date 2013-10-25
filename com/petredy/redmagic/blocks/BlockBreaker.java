@@ -39,7 +39,7 @@ public class BlockBreaker extends Block{
     }
 	
 	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack) {
-		par1World.setBlockMetadataWithNotify(par2, par3, par4, BlockUtils.getRotation(par1World, par2, par3, par4, par5EntityLivingBase, true).getOpposite().ordinal(), 3);
+		par1World.setBlockMetadataWithNotify(par2, par3, par4, BlockUtils.getRotation(par1World, par2, par3, par4, par5EntityLivingBase, true).ordinal(), 3);
 	}
 	
 	public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5) {

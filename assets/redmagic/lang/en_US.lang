@@ -31,6 +31,10 @@ tile.soul.energy.access.name=Energy Access Block
 
 tile.machine.name=Machine Block
 
+tile.red.transformator.name=Pressure Transformator
+tile.generator.name=EU Generator
+tile.breaker.name=Block Breaker
+
 item.trading.crystal.name=Trading Crystal
 item.glasses.name=Virtual Reality Glasses
 
@@ -70,3 +74,5 @@ item.sieve.name=Sieve
 item.matter.leftover.name=Matter Leftover
 item.matter.instable.name=Instable Matter
 item.matter.stable.name=Stable Matter
+
+item.jackhammer.name=Jackhammer

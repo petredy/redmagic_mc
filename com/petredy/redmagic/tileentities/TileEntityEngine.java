@@ -45,7 +45,7 @@ public abstract class TileEntityEngine extends TileEntity implements IPowerEmitt
 	public float costs = 100;
 	public float speed = 1.0f;
 	
-	public Composition cost = Composition.getStandard(0, 0, 0, 10, 0);
+	public Composition cost = Composition.getStandard(0, 0, 0, 0.1f, 0);
 	
 	@Override
 	public boolean canEmitPowerFrom(ForgeDirection side){

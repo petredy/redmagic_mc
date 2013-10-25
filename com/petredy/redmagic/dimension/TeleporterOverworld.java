@@ -21,6 +21,7 @@ public class TeleporterOverworld extends Teleporter {
 		if(par1Entity instanceof EntityPlayer){
 			EntityPlayer player = (EntityPlayer)par1Entity;
 			ChunkCoordinates bed = player.getBedLocation(0);
+			int exp = player.experienceTotal;
 			if(bed != null){
 				player.setPosition(bed.posX + 0.5, bed.posY, bed.posZ + 0.5);
 			}else{
@@ -34,6 +35,7 @@ public class TeleporterOverworld extends Teleporter {
 			}
 			player.motionX = player.motionY = player.motionZ = 0;
 			player.setSneaking(false);
+			player.experienceTotal = exp;
 
 		}
     }
