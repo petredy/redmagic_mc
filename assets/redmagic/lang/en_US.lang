@@ -76,3 +76,7 @@ item.matter.instable.name=Instable Matter
 item.matter.stable.name=Stable Matter
 
 item.jackhammer.name=Jackhammer
+
+item.es.storage.small.name=Small ES Device
+item.es.storage.medium.name=Medium ES Device
+item.es.storage.large.name=Large ES Device

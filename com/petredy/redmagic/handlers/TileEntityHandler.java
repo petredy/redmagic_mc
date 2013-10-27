@@ -14,6 +14,7 @@ public class TileEntityHandler {
 		GameRegistry.registerTileEntity(TileEntityEnergySummoner.class, "redmagic.TileEntityEnergySummoner");
 		GameRegistry.registerTileEntity(TileEntityMachine.class, "redmagic.TileEntityMachine");
 		GameRegistry.registerTileEntity(TileEntityGenerator.class, "redmagic.TileEntityGenerator");
+		GameRegistry.registerTileEntity(TileEntityESLoader.class, "redmagic.TileEntityESLoader");
 	}
 	
 }

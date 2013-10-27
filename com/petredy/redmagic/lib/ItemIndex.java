@@ -90,4 +90,22 @@ public class ItemIndex {
 	public static int JACKHAMMER_ID;
 	
 	
+	/**
+	 * ----------------------------------------------------------------------------------
+	 * ES Storage
+	 * MultiItem
+	 */
+	public static final String ES_STORAGE_NAME = "es.storage";
+	public static final int ES_STORAGE_DEFAULT_ID = 13012;
+	public static int ES_STORAGE_ID;
+	
+	
+	public static final String ES_STORAGE_SMALL_NAME = "small";
+	public static final int ES_STORAGE_SMALL_METADATA = 0;
+	public static final String ES_STORAGE_MEDIUM_NAME = "medium";
+	public static final int ES_STORAGE_MEDIUM_METADATA = 1;
+	public static final String ES_STORAGE_LARGE_NAME = "large";
+	public static final int ES_STORAGE_LARGE_METADATA = 2;
+	
+	// -----------------------------------------------------------------------------------
 }

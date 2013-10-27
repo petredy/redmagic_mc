@@ -64,6 +64,9 @@ public class CommonProxy implements IGuiHandler{
 		if(ID == Guis.CRYSTALIZER){
 			return new ContainerCrystalizer(player, (IMachineHandler)tileEntity);
 		}
+		if(ID == Guis.ES_LOADER){
+			return new ContainerESLoader(player, (TileEntityESLoader)tileEntity);
+		}
 		return null;
 	}
 
@@ -99,6 +102,9 @@ public class CommonProxy implements IGuiHandler{
 		}
 		if(ID == Guis.CRYSTALIZER){
 			return new GuiCrystalizer(player, (IMachineHandler)tileEntity);
+		}
+		if(ID == Guis.ES_LOADER){
+			return new GuiESLoader(player, (TileEntityESLoader)tileEntity);
 		}
 		return null;
 	}

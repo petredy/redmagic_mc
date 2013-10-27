@@ -24,7 +24,7 @@ public class MachineSieve extends Machine{
 	public ItemStack item;
 	
 	public int tick = 0, neededTicks = 100;
-	public Composition tickCost = Composition.getStandard(0.1f, 0, 0, 0, 0);
+	public Composition tickCost = Composition.getStandard(2f, 0, 0, 0, 0);
 	
 	public MachineSieve(){
 		metadata = Machines.SIEVE_METADATA;

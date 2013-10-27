@@ -23,6 +23,7 @@ public class Textures {
 	public static final ResourceLocation ENGINE_BASE = ResourceLocationUtils.getResourceLocation("models/engine/base.png");
 	
 	//Guis
+	public static final ResourceLocation GUI_1 = ResourceLocationUtils.getResourceLocation(GUI_PATH + "default_1.png");
 	public static final ResourceLocation GUI_3x3 = ResourceLocationUtils.getResourceLocation(GUI_PATH + "default_3x3.png");
 	public static final ResourceLocation GUI_2x3x3 = ResourceLocationUtils.getResourceLocation(GUI_PATH + "default_2x3x3.png");
 	public static final ResourceLocation TRADING_CHEST_GUI = ResourceLocationUtils.getResourceLocation(GUI_PATH + BlockIndex.TRADING_CHEST_NAME + ".png");
@@ -33,7 +34,7 @@ public class Textures {
 	public static final ResourceLocation DEINTEGRATOR = ResourceLocationUtils.getResourceLocation(GUI_PATH + "deintegrator.png");
 	public static final ResourceLocation COMPACTOR = ResourceLocationUtils.getResourceLocation(GUI_PATH + "compactor.png");
 	public static final ResourceLocation REDMETER = ResourceLocationUtils.getResourceLocation(GUI_PATH + "redmeter.png");
-	
+
 	//Symbols
 	public static final ResourceLocation SYMBOLS = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "symbols/symbols.png");
 	public static final ResourceLocation KNOWLEDGE_BASIC = ResourceLocationUtils.getResourceLocation(TEXTURE_PATH + "symbols/knowledge.basic.png");

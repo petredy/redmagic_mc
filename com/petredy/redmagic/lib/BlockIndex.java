@@ -92,5 +92,9 @@ public class BlockIndex {
 	public static final String GENERATOR_NAME = "generator";
 	public static final int GENERATOR_DEFAULT_ID = 3316;
 	public static int GENERATOR_ID;
-
+	
+	public static final String ES_LOADER_NAME = "es.loader";
+	public static final int ES_LOADER_DEFAULT_ID = 3317;
+	public static int ES_LOADER_ID;
+	
 }

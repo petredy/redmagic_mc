@@ -151,4 +151,10 @@ public class BlockUtils {
 		default: return false;
 		}
 	}
+	
+	public static ItemStack getBlockStack(World world, int x, int y, int z){
+		int id = world.getBlockId(x, y, z);
+		if(id > 0)return new ItemStack(id, 1, world.getBlockMetadata(x, y, z));
+		return null;
+	}
 }

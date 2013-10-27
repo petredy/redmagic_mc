@@ -27,6 +27,7 @@ public class Items {
 	public static ItemSieve sieve;
 	public static ItemMatter matter;
 	public static ItemJackhammer jackhammer;
+	public static ItemESStorage esStorage;
 	
 	//Armor
 	public static EnumArmorMaterial glassMaterial = EnumHelper.addArmorMaterial(ItemIndex.GLASSES_NAME, 1000, new int[]{2, 2, 2, 2, 2}, 30);
@@ -47,6 +48,7 @@ public class Items {
 		sieve = new ItemSieve(ItemIndex.SIEVE_ID);
 		matter = new ItemMatter(ItemIndex.MATTER_ID);
 		jackhammer = new ItemJackhammer(ItemIndex.JACKHAMMER_ID);
+		esStorage = new ItemESStorage(ItemIndex.ES_STORAGE_ID);
 		
 		addRecipes();
 	}
@@ -63,6 +65,7 @@ public class Items {
 		ItemIndex.SIEVE_ID = config.getItem(ItemIndex.SIEVE_NAME, ItemIndex.SIEVE_DEFAULT_ID).getInt(ItemIndex.SIEVE_DEFAULT_ID);
 		ItemIndex.MATTER_ID = config.getItem(ItemIndex.MATTER_NAME, ItemIndex.MATTER_DEFAULT_ID).getInt(ItemIndex.MATTER_DEFAULT_ID);
 		ItemIndex.JACKHAMMER_ID = config.getItem(ItemIndex.JACKHAMMER_NAME, ItemIndex.JACKHAMMER_DEFAULT_ID).getInt(ItemIndex.JACKHAMMER_DEFAULT_ID);
+		ItemIndex.ES_STORAGE_ID = config.getItem(ItemIndex.ES_STORAGE_NAME, ItemIndex.ES_STORAGE_DEFAULT_ID).getInt(ItemIndex.ES_STORAGE_DEFAULT_ID);
 		
 	}
 	

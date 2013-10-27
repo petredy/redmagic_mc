@@ -26,6 +26,7 @@ public class Blocks {
 	public static BlockRedTransformator transformator;
 	public static BlockBreaker breaker;
 	public static BlockGenerator generator;
+	public static BlockESLoader esLoader;
 	
 	public static void init(){
 		engine = new BlockEngine(BlockIndex.ENGINE_ID);
@@ -40,6 +41,7 @@ public class Blocks {
 		transformator = new BlockRedTransformator(BlockIndex.RED_TRANSFORMATOR_ID);
 		breaker = new BlockBreaker(BlockIndex.BLOCK_BREAKER_ID);
 		generator = new BlockGenerator(BlockIndex.GENERATOR_ID);
+		esLoader = new BlockESLoader(BlockIndex.ES_LOADER_ID);
 		
 		GameRegistry.registerBlock(engine, ItemBlockEngine.class, BlockIndex.ENGINE_NAME);
 		GameRegistry.registerBlock(trading, BlockIndex.TRADING_CHEST_NAME);
@@ -53,6 +55,7 @@ public class Blocks {
 		GameRegistry.registerBlock(transformator, BlockIndex.RED_TRANSFORMATOR_NAME);
 		GameRegistry.registerBlock(breaker, BlockIndex.BLOCK_BREAKER_NAME);
 		GameRegistry.registerBlock(generator, BlockIndex.GENERATOR_NAME);
+		GameRegistry.registerBlock(esLoader, BlockIndex.ES_LOADER_NAME);
 		
 		addRecipes();
 		
@@ -72,6 +75,7 @@ public class Blocks {
 		BlockIndex.RED_TRANSFORMATOR_ID = config.getBlock(BlockIndex.RED_TRANSFORMATOR_NAME, BlockIndex.RED_TRANSFORMATOR_DEFAULT_ID).getInt(BlockIndex.RED_TRANSFORMATOR_DEFAULT_ID);
 		BlockIndex.BLOCK_BREAKER_ID = config.getBlock(BlockIndex.BLOCK_BREAKER_NAME, BlockIndex.BLOCK_BREAKER_DEFAULT_ID).getInt(BlockIndex.BLOCK_BREAKER_DEFAULT_ID);
 		BlockIndex.GENERATOR_ID = config.getBlock(BlockIndex.GENERATOR_NAME, BlockIndex.GENERATOR_DEFAULT_ID).getInt(BlockIndex.GENERATOR_DEFAULT_ID);
+		BlockIndex.ES_LOADER_ID = config.getBlock(BlockIndex.ES_LOADER_NAME, BlockIndex.ES_LOADER_DEFAULT_ID).getInt(BlockIndex.ES_LOADER_DEFAULT_ID);
 		
 	}
 	
