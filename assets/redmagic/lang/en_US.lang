@@ -35,6 +35,8 @@ tile.red.transformator.name=Pressure Transformator
 tile.generator.name=EU Generator
 tile.breaker.name=Block Breaker
 
+tile.es.loader.name=ES Loader
+
 item.trading.crystal.name=Trading Crystal
 item.glasses.name=Virtual Reality Glasses
 

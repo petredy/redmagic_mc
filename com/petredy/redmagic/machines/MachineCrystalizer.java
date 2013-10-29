@@ -18,9 +18,9 @@ public class MachineCrystalizer extends Machine{
 
 	public InventoryBasic inventory;
 	
-	public static float PRODUCTION_ICE = 2;
-	public static float PRODUCTION_LAVA = 5;
-	public static float MOVING_MODIFIER = 1f / 7f;
+	public static float PRODUCTION_ICE = 20;
+	public static float PRODUCTION_LAVA = 50;
+	public static float MOVING_MODIFIER = 1f;
 	
 	public int tick = 0;
 	public int neededTicks = 100;

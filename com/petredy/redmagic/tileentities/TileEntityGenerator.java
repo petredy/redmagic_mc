@@ -29,7 +29,7 @@ public class TileEntityGenerator extends TileEntity implements IEnergySource{
 			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
 		}
 
-		RedEnergy energy = new RedEnergy(worldObj.provider.dimensionId, xCoord / 16, zCoord / 16, Composition.getStandard(0, 0, 0, 2f, 0));
+		RedEnergy energy = new RedEnergy(worldObj.provider.dimensionId, xCoord / 16, zCoord / 16, Composition.getStandard(0, 0, 0, 15f, 0));
 		if(this.energy + output < max && EnergyMap.consumeEnergy(energy.copy()).isEqual(energy.copy())){
 			this.energy += output;
 			this.run = true;

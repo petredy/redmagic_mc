@@ -14,7 +14,7 @@ public class MachineCollector extends Machine{
 	public MachineCollector(){
 		this.metadata = Machines.COLLECTOR_METADATA;
 		this.size = 1;
-		this.production = Composition.getStandard(0.1f, 0.1f, 0.1f, 0.1f, 0.0f);
+		this.production = Composition.getStandard(0.5f, 0.5f, 0.5f, 0.5f, 0.0f);
 	}
 	
 	public void update(IMachineHandler machineHandler) {

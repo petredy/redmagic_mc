@@ -14,7 +14,7 @@ public class MachineCharger extends Machine{
 	public MachineCharger(){
 		this.metadata = Machines.CHARGER_METADATA;
 		this.size = 1;
-		releaseEnergy = Composition.getStandard(2, 2, 2, 2, 0);
+		releaseEnergy = Composition.getStandard(0.5f, 0.5f, 0.5f, 0.5f, 0);
 	}
 	
 	public void update(IMachineHandler handler) {
