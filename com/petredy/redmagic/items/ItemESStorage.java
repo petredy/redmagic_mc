@@ -91,7 +91,7 @@ public class ItemESStorage extends Item implements IESContainer{
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
     	try{
     	Environment env = getEnvironment(par1ItemStack);
-    	par3List.add("Energy: " + env.energy + "/" + getMaxEnergy(par1ItemStack));
+    	//par3List.add("Energy: " + env.energy + "/" + getMaxEnergy(par1ItemStack));
     	if(env != null && env.valide){
     		par3List.add("Stored environment: " + env.width + "x" + env.breadth + "x" + env.height);
     	}else{

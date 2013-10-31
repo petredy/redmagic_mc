@@ -33,16 +33,8 @@ public class ItemIndex {
 	public static final int CRAFTING_INGOT_RHENIUM_METADATA = 0;
 	public static final String CRAFTING_NUGGET_RHENIUM_NAME = "nuggetRhenium";
 	public static final int CRAFTING_NUGGET_RHENIUM_METADATA = 1;
-	public static final String CRAFTING_LOGIC_CORE_NAME = "logic.core";
-	public static final int CRAFTING_LOGIC_CORE_METADATA = 2;
-	public static final String CRAFTING_LOGIC_STORAGE_NAME = "logic.storage";
-	public static final int CRAFTING_LOGIC_STORAGE_METADATA = 3;
-	public static final String CRAFTING_ENERGY_CONDENSER_NAME = "energy.condenser";
-	public static final int CRAFTING_ENERGY_CONDENSER_METADATA = 4;
-	public static final String CRAFTING_PLATE_RHENIUM_NAME = "plate.rhenium";
-	public static final int CRAFTING_PLATE_RHENIUM_METADATA = 5;
 	public static final String CRAFTING_CONCENTRATED_GRANITE_NAME = "concentrated.granite";
-	public static final int CRAFTING_CONCENTRADTED_GRANITE_METADATA = 6;
+	public static final int CRAFTING_CONCENTRADTED_GRANITE_METADATA = 2;
 	
 	// ------------------------------------------------------------------------------
 	
@@ -108,4 +100,24 @@ public class ItemIndex {
 	public static final int ES_STORAGE_LARGE_METADATA = 2;
 	
 	// -----------------------------------------------------------------------------------
+	
+	public static final String LOGIC_CORE_NAME = "logic.core";
+	public static final int LOGIC_CORE_DEFAULT_ID = 13013;
+	public static int LOGIC_CORE_ID;
+	
+	public static final String LOGIC_STORAGE_NAME = "logic.storage";
+	public static final int LOGIC_STORAGE_DEFAULT_ID = 13014;
+	public static int LOCIG_STORAGE_ID;
+	
+	public static final String ENERGY_CONDENSER_NAME = "energy.condenser";
+	public static final int ENERGY_CONDENSER_DEFAULT_ID = 13015;
+	public static int ENERGY_CONDENSER_ID;
+	
+	public static final String PLATE_RHENIUM_NAME = "plate.rhenium";
+	public static final int PLATE_RHENIUM_DEFAULT_ID = 13016;
+	public static int PLATE_RHENIUM_ID;
+	
+	
+	
+	
 }

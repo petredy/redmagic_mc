@@ -11,7 +11,8 @@ public class Packets {
 		PacketNBTSync.class,
 		PacketTradingSync.class,
 		PacketEnergyMapSync.class,
-		PacketMachineSync.class
+		PacketMachineSync.class,
+		PacketUpdateMachineOnSide.class
 	};
 	
 	public static final byte KEY = 0;
@@ -21,4 +22,5 @@ public class Packets {
 	public static final byte SYNC_TRADING = 4;
 	public static final byte SYNC_ENERGY_MAP = 5;
 	public static final byte MACHINE_SYNC = 6;
+	public static final byte UPDATE_MACHINE_ON_SIDE = 7;
 }

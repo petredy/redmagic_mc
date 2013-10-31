@@ -10,7 +10,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 import com.petredy.redmagic.Redmagic;
-import com.petredy.redmagic.api.machines.IMachineHandler;
+import com.petredy.redmagic.api.machinery.IMachineHandler;
 import com.petredy.redmagic.lib.Guis;
 import com.petredy.redmagic.lib.Machines;
 import com.petredy.redmagic.utils.InventoryUtils;
@@ -74,8 +74,9 @@ public class MachineFreezer extends Machine{
 	}
 
 
-	public void activate(IMachineHandler handler, EntityPlayer player, float offX, float offY, float offZ) {
+	public boolean activate(IMachineHandler handler, EntityPlayer player, float offX, float offY, float offZ) {
 		player.openGui(Redmagic.instance, Guis.FREEZER, player.worldObj, handler.getXCoord(), handler.getYCoord(), handler.getZCoord());
+		return true;
 	}
 	
 	public void remove(IMachineHandler handler) {

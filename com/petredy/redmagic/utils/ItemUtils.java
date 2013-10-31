@@ -85,7 +85,7 @@ public class ItemUtils {
 	
 	public static NBTTagCompound getData(ItemStack stack, String key) {
 		initNBT(stack);
-		return (NBTTagCompound) stack.stackTagCompound.getTag(key);
+		return stack.stackTagCompound.getCompoundTag(key);
 	}
 
 	public static void setData(ItemStack stack, String key, NBTTagCompound tag) {

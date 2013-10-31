@@ -3,6 +3,7 @@ package com.petredy.redmagic.client.guis;
 import org.lwjgl.opengl.GL11;
 
 import com.petredy.redmagic.Redmagic;
+import com.petredy.redmagic.api.machinery.IMachineHandler;
 import com.petredy.redmagic.blocks.Blocks;
 import com.petredy.redmagic.container.ContainerMachine;
 import com.petredy.redmagic.lib.BlockIndex;
@@ -19,9 +20,9 @@ import net.minecraft.util.StatCollector;
 
 public class GuiMachine extends GuiContainer{
 
-	public TileEntityMachine machine;
+	public IMachineHandler machine;
 	
-	public GuiMachine(EntityPlayer player, TileEntityMachine entity) {
+	public GuiMachine(EntityPlayer player, IMachineHandler entity) {
 		super(new ContainerMachine(player, entity));
 		this.machine = entity;
 	}
@@ -31,11 +32,11 @@ public class GuiMachine extends GuiContainer{
 		this.fontRenderer.drawString(StatCollector.translateToLocal(new ItemStack(Blocks.machine).getDisplayName()), 8, 4, Guis.DEFAULT_FONT_COLOR);
 		
 		
-		String earth = "Earth: " + machine.energy.getValue(Elements.EARTH);
-		String air = "Air: " + machine.energy.getValue(Elements.AIR);
-		String water = "Water: " + machine.energy.getValue(Elements.WATER);
-		String fire = "Fire: " + machine.energy.getValue(Elements.FIRE);
-		String theVoid = "Void: " + machine.energy.getValue(Elements.VOID);
+		String earth = "Earth: " + machine.getEnergyHandler().getStoredEnergy().getValue(Elements.EARTH);
+		String air = "Air: " + machine.getEnergyHandler().getStoredEnergy().getValue(Elements.AIR);
+		String water = "Water: " + machine.getEnergyHandler().getStoredEnergy().getValue(Elements.WATER);
+		String fire = "Fire: " + machine.getEnergyHandler().getStoredEnergy().getValue(Elements.FIRE);
+		String theVoid = "Void: " + machine.getEnergyHandler().getStoredEnergy().getValue(Elements.VOID);
 		this.fontRenderer.drawString(earth, 8, 15, Guis.DEFAULT_FONT_COLOR);
 		this.fontRenderer.drawString(air, 8, 25, Guis.DEFAULT_FONT_COLOR);
 		this.fontRenderer.drawString(water, 8, 35, Guis.DEFAULT_FONT_COLOR);
@@ -43,7 +44,7 @@ public class GuiMachine extends GuiContainer{
 		this.fontRenderer.drawString(theVoid, 8, 55, Guis.DEFAULT_FONT_COLOR);
 		
 		
-		String heat = "Heat: " + machine.heat;
+		String heat = "Heat: " + machine.getHeat();
 		this.fontRenderer.drawString(heat, 8, 65, Guis.DEFAULT_FONT_COLOR);
 	}
 	

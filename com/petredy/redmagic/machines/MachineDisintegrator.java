@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
 import com.petredy.redmagic.Redmagic;
-import com.petredy.redmagic.api.machines.IMachineHandler;
+import com.petredy.redmagic.api.machinery.IMachineHandler;
 import com.petredy.redmagic.items.Items;
 import com.petredy.redmagic.lib.Guis;
 import com.petredy.redmagic.lib.ItemIndex;
@@ -63,8 +63,9 @@ public class MachineDisintegrator extends Machine{
 		}
 	}
 	
-	public void activate(IMachineHandler handler, EntityPlayer player, float offX, float offY, float offZ) {
+	public boolean activate(IMachineHandler handler, EntityPlayer player, float offX, float offY, float offZ) {
 		player.openGui(Redmagic.instance, Guis.DISINTEGRATOR, player.worldObj, handler.getXCoord(), handler.getYCoord(), handler.getZCoord());
+		return true;
 	}
 	
 	public void remove(IMachineHandler handler) {

@@ -3,44 +3,35 @@ package com.petredy.redmagic.machines;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 
-import com.petredy.redmagic.api.machines.IMachineHandler;
+import com.petredy.redmagic.api.machinery.IMachineHandler;
+import com.petredy.redmagic.api.machinery.IMachineIconProvider;
+import com.petredy.redmagic.api.machines.IMachineItem;
 import com.petredy.redmagic.items.Items;
 import com.petredy.redmagic.lib.BlockIndex;
 import com.petredy.redmagic.lib.Machines;
+import com.petredy.redmagic.lib.Reference;
+import com.petredy.redmagic.machinery.IconHandler;
+import com.petredy.redmagic.machinery.MachineHandler;
+import com.petredy.redmagic.machinery.Tribological;
 import com.petredy.redmagic.utils.InventoryUtils;
 import com.petredy.redmagic.utils.LogUtils;
 
 
-public class Machine {
-
-	public static Machine getMachine(int metadata) {
-		switch(metadata){
-		case Machines.COLLECTOR_METADATA: return new MachineCollector();
-		case Machines.CONTACT_COOLING_METADATA: return new MachineContactCooling();
-		case Machines.FURNACE_METADATA: return new MachineFurnace();
-		case Machines.DISINTEGRATOR_METADATA: return new MachineDisintegrator();
-		case Machines.CHARGER_METADATA: return new MachineCharger();
-		case Machines.REFRIGERATOR_METADATA: return new MachineRefrigerator();
-		case Machines.FREEZER_METADATA: return new MachineFreezer();
-		case Machines.COMPACTOR_METADATA: return new MachineCompactor();
-		case Machines.RECYCLER_METADATA: return new MachineRecycler();
-		case Machines.SIEVE_METADATA: return new MachineSieve();
-		case Machines.CRYSTALIZER_METADATA: return new MachineCrystalizer();
-		default: return new Machine();
-		}
-	}
-	
+public class Machine implements IMachineIconProvider{
 	
 	protected int side;
 	protected int metadata;
 	protected int size;
-	
-	
+	protected String name;
+	public boolean active;
+	public Tribological tribological;
 	
 	public void update(IMachineHandler handler) {
 		
@@ -62,15 +53,20 @@ public class Machine {
 		side = i;
 	}
 	
-	public boolean canPlacedOnSide(int side){
+	public boolean canPlacedOnSide(int side, int size){
 		return true;
 	}
 	
 	public void onPlacedByPlayer(IMachineHandler handler, int side, EntityPlayer player){
 		this.side = side;
+		if(!handler.getWorld().isRemote){
+			ItemStack machine = player.getCurrentEquippedItem();
+			this.tribological = ((IMachineItem)machine.getItem()).getTribological(machine);
+			player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+		}
 	}
 	
-	public void removeByPlayer(IMachineHandler handler, EntityPlayer player, float offX, float offY, float offZ) {
+	public void removeByPlayer(IMachineHandler handler, EntityPlayer player) {
 		this.remove(handler);
 	}
 	
@@ -81,12 +77,13 @@ public class Machine {
 	public void remove(IMachineHandler handler) {
 		if(!handler.getWorld().isRemote){
 			ItemStack stack = new ItemStack(Items.machine, 1, getMetadata());
+			((IMachineItem)stack.getItem()).setTribological(stack, tribological);
 			InventoryUtils.dropItemStack(stack, handler.getWorld(), handler.getXCoord(), handler.getYCoord(), handler.getZCoord());
 		}
 	}
 	
-	public void activate(IMachineHandler handler, EntityPlayer player, float offX, float offY, float offZ) {
-		
+	public boolean activate(IMachineHandler handler, EntityPlayer player, float offX, float offY, float offZ) {
+		return false;
 	}
 	
 	public void readFromNBT(NBTTagCompound tag){
@@ -96,7 +93,7 @@ public class Machine {
 	
 	public static Machine loadFromNBT(NBTTagCompound tag){
 		int metadata = tag.getInteger("metadata");
-		Machine machine = Machine.getMachine(metadata);
+		Machine machine = MachineHandler.getMachine(metadata);
 		machine.readFromNBT(tag);
 		return machine;
 	}
@@ -108,6 +105,35 @@ public class Machine {
 
 	public void onNeighborChange(IMachineHandler handler, int blockID) {
 		
+	}
+
+	@Override
+	public Icon getIconForSmallMachine(IconRegister iconRegister) {
+		return iconRegister.registerIcon(Reference.MOD_ID + ":" + BlockIndex.MACHINE_NAME + "." + name);
+	}
+
+	@Override
+	public Icon[] getIconForLargeMachineInactive(IconRegister iconRegister) {
+		Icon[] icons = new Icon[9];
+		int index = 0;
+		for(int i = 0; i < 3; i++){
+			for(int j = 0; j < 3; j++){
+				icons[index++] = iconRegister.registerIcon(Reference.MOD_ID + ":" + BlockIndex.MACHINE_NAME + "." + name + ".inactive." + "_" + i + "_" + j);
+			}
+		}
+		return icons;
+	}
+
+	@Override
+	public Icon[] getIconForLargeMachineActive(IconRegister iconRegister) {
+		Icon[] icons = new Icon[9];
+		int index = 0;
+		for(int i = 0; i < 3; i++){
+			for(int j = 0; j < 3; j++){
+				icons[index++] = iconRegister.registerIcon(Reference.MOD_ID + ":" + BlockIndex.MACHINE_NAME + "." + name + ".active." + "_" + i + "_" + j);
+			}
+		}
+		return icons;
 	}
 
 	

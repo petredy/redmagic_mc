@@ -1,6 +1,6 @@
 package com.petredy.redmagic.machines;
 
-import com.petredy.redmagic.api.machines.IMachineHandler;
+import com.petredy.redmagic.api.machinery.IMachineHandler;
 import com.petredy.redmagic.lib.Elements;
 import com.petredy.redmagic.lib.Machines;
 import com.petredy.redmagic.redenergy.RedEnergy;
@@ -14,7 +14,7 @@ public class MachineCharger extends Machine{
 	public MachineCharger(){
 		this.metadata = Machines.CHARGER_METADATA;
 		this.size = 1;
-		releaseEnergy = Composition.getStandard(0.5f, 0.5f, 0.5f, 0.5f, 0);
+		releaseEnergy = Composition.getStandard(200f, 200f, 200f, 200f, 0);
 	}
 	
 	public void update(IMachineHandler handler) {

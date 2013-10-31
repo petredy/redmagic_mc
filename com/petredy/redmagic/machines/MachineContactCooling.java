@@ -3,7 +3,7 @@ package com.petredy.redmagic.machines;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 
-import com.petredy.redmagic.api.machines.IMachineHandler;
+import com.petredy.redmagic.api.machinery.IMachineHandler;
 import com.petredy.redmagic.lib.BlockIndex;
 import com.petredy.redmagic.lib.Machines;
 

@@ -27,6 +27,7 @@ public class Blocks {
 	public static BlockBreaker breaker;
 	public static BlockGenerator generator;
 	public static BlockESLoader esLoader;
+	public static BlockMachinery machinery;
 	
 	public static void init(){
 		engine = new BlockEngine(BlockIndex.ENGINE_ID);
@@ -42,6 +43,7 @@ public class Blocks {
 		breaker = new BlockBreaker(BlockIndex.BLOCK_BREAKER_ID);
 		generator = new BlockGenerator(BlockIndex.GENERATOR_ID);
 		esLoader = new BlockESLoader(BlockIndex.ES_LOADER_ID);
+		machinery = new BlockMachinery(BlockIndex.MACHINERY_ID);
 		
 		GameRegistry.registerBlock(engine, ItemBlockEngine.class, BlockIndex.ENGINE_NAME);
 		GameRegistry.registerBlock(trading, BlockIndex.TRADING_CHEST_NAME);
@@ -56,6 +58,7 @@ public class Blocks {
 		GameRegistry.registerBlock(breaker, BlockIndex.BLOCK_BREAKER_NAME);
 		GameRegistry.registerBlock(generator, BlockIndex.GENERATOR_NAME);
 		GameRegistry.registerBlock(esLoader, BlockIndex.ES_LOADER_NAME);
+		GameRegistry.registerBlock(machinery, ItemBlockMachinery.class, BlockIndex.MACHINERY_NAME);
 		
 		addRecipes();
 		
@@ -76,6 +79,7 @@ public class Blocks {
 		BlockIndex.BLOCK_BREAKER_ID = config.getBlock(BlockIndex.BLOCK_BREAKER_NAME, BlockIndex.BLOCK_BREAKER_DEFAULT_ID).getInt(BlockIndex.BLOCK_BREAKER_DEFAULT_ID);
 		BlockIndex.GENERATOR_ID = config.getBlock(BlockIndex.GENERATOR_NAME, BlockIndex.GENERATOR_DEFAULT_ID).getInt(BlockIndex.GENERATOR_DEFAULT_ID);
 		BlockIndex.ES_LOADER_ID = config.getBlock(BlockIndex.ES_LOADER_NAME, BlockIndex.ES_LOADER_DEFAULT_ID).getInt(BlockIndex.ES_LOADER_DEFAULT_ID);
+		BlockIndex.MACHINERY_ID = config.getBlock(BlockIndex.MACHINERY_NAME, BlockIndex.MACHINERY_DEFAULT_ID).getInt(BlockIndex.MACHINERY_DEFAULT_ID);
 		
 	}
 	
@@ -107,9 +111,9 @@ public class Blocks {
 			"SCS",
 			'I', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA),
 			'F', Item.flint,
-			'S', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_LOGIC_STORAGE_METADATA),
-			'C', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_LOGIC_CORE_METADATA),
-			'P', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_PLATE_RHENIUM_METADATA)
+			'S', new ItemStack(Items.logicStorage),
+			'C', new ItemStack(Items.logicCore),
+			'P', new ItemStack(Items.plateRhenium)
 		});
 		
 		GameRegistry.addShapedRecipe(new ItemStack(energySummoner), new Object[]{
@@ -118,28 +122,28 @@ public class Blocks {
 			"SCS",
 			'N', Block.netherBrick,
 			'I', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA),
-			'c', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_ENERGY_CONDENSER_METADATA),
-			'S', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_LOGIC_STORAGE_METADATA),
-			'C', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_LOGIC_CORE_METADATA),
-			'P', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_PLATE_RHENIUM_METADATA)
+			'c', new ItemStack(Items.energyCondenser),
+			'S', new ItemStack(Items.logicStorage),
+			'C', new ItemStack(Items.logicCore),
+			'P', new ItemStack(Items.plateRhenium)
 		});
 		
 		GameRegistry.addShapedRecipe(new ItemStack(machine), new Object[]{
 			"PSP",
 			"PCP",
 			"PSP",
-			'P', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_PLATE_RHENIUM_METADATA),
-			'C', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_LOGIC_CORE_METADATA),
-			'S', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_LOGIC_STORAGE_METADATA)
+			'P', new ItemStack(Items.plateRhenium),
+			'C', new ItemStack(Items.logicCore),
+			'S', new ItemStack(Items.logicStorage)
 		});
 		
 		GameRegistry.addShapedRecipe(new ItemStack(engine, 1, BlockIndex.ENGINE_RHENIUM_METADATA), new Object[]{
 			"PPP",
 			" G ",
 			"CpC",
-			'P', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_PLATE_RHENIUM_METADATA),
+			'P', new ItemStack(Items.plateRhenium),
 			'G', Block.glass,
-			'C', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_ENERGY_CONDENSER_METADATA),
+			'C', new ItemStack(Items.energyCondenser),
 			'p', Block.pistonBase
 		});
 		
@@ -168,11 +172,11 @@ public class Blocks {
 			"PSP",
 			"CMC",
 			"PcP",
-			'P', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_PLATE_RHENIUM_METADATA),
-			'S', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_LOGIC_STORAGE_METADATA),
-			'C', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_ENERGY_CONDENSER_METADATA),
+			'P', new ItemStack(Items.plateRhenium),
+			'S', new ItemStack(Items.logicStorage),
+			'C', new ItemStack(Items.energyCondenser),
 			'M', new ItemStack(machine),
-			'c', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_LOGIC_CORE_METADATA)
+			'c', new ItemStack(Items.logicCore)
 		});
 		
 		GameRegistry.addShapedRecipe(new ItemStack(breaker), new Object[]{
@@ -181,9 +185,18 @@ public class Blocks {
 			"PSP",
 			'A', Item.pickaxeGold,
 			'I', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA),
-			'C', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_LOGIC_CORE_METADATA),
-			'P', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_PLATE_RHENIUM_METADATA),
-			'S', new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_LOGIC_STORAGE_METADATA)
+			'C', new ItemStack(Items.logicCore),
+			'P', new ItemStack(Items.plateRhenium),
+			'S', new ItemStack(Items.logicStorage)
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(esLoader), new Object[]{
+			"PCP",
+			"CMC",
+			"PCP",
+			'P', new ItemStack(Items.plateRhenium),
+			'C', new ItemStack(Items.energyCondenser),
+			'Ḿ', new ItemStack(machine)
 		});
 		
 		// ITMES

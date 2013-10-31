@@ -1,11 +1,12 @@
 package com.petredy.redmagic.container;
 
-import com.petredy.redmagic.api.machines.IMachineHandler;
+import com.petredy.redmagic.api.machinery.IMachineHandler;
 import com.petredy.redmagic.container.slot.SlotOutput;
 import com.petredy.redmagic.lib.Machines;
 import com.petredy.redmagic.machines.MachineCompactor;
 import com.petredy.redmagic.machines.MachineFreezer;
 import com.petredy.redmagic.tileentities.TileEntityMachine;
+import com.petredy.redmagic.utils.BlockUtils;
 import com.petredy.redmagic.utils.LogUtils;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,7 +21,7 @@ public class ContainerCompactor extends Container {
 	
 	public ContainerCompactor(EntityPlayer player, IMachineHandler machine){
 		this.machine = machine;
-		MachineCompactor compactor = (MachineCompactor) machine.getMachine(Machines.COMPACTOR_METADATA);
+		MachineCompactor compactor = (MachineCompactor) machine.getMachineOnSide(BlockUtils.getRotation(player.worldObj, machine.getXCoord(), machine.getYCoord(), machine.getZCoord(), player, true).ordinal());
 		if(compactor != null){
 			this.addSlotToContainer(new SlotOutput(compactor.inventory, 0, 80, 35));
 			this.addSlotToContainer(new Slot(compactor.inventory, 1, 44, 17));
@@ -59,14 +60,14 @@ public class ContainerCompactor extends Container {
             ItemStack itemstack1 = slot.getStack();
             itemstack = itemstack1.copy();
 
-            if (par2 < 2)
+            if (par2 < 5 && par2 > 0)
             {
-                if (!this.mergeItemStack(itemstack1, 2, 4 * 9, true))
+                if (!this.mergeItemStack(itemstack1, 5, 4 * 9, true))
                 {
                     return null;
                 }
             }
-            else if (!this.mergeItemStack(itemstack1, 0, 2, false))
+            else if (!this.mergeItemStack(itemstack1, 1, 5, false))
             {
                 return null;
             }

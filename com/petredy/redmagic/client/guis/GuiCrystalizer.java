@@ -3,7 +3,7 @@ package com.petredy.redmagic.client.guis;
 import org.lwjgl.opengl.GL11;
 
 import com.petredy.redmagic.Redmagic;
-import com.petredy.redmagic.api.machines.IMachineHandler;
+import com.petredy.redmagic.api.machinery.IMachineHandler;
 import com.petredy.redmagic.blocks.Blocks;
 import com.petredy.redmagic.container.ContainerCrystalizer;
 import com.petredy.redmagic.items.Items;

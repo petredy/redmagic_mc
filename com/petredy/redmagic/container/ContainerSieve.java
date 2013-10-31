@@ -1,10 +1,11 @@
 package com.petredy.redmagic.container;
 
-import com.petredy.redmagic.api.machines.IMachineHandler;
+import com.petredy.redmagic.api.machinery.IMachineHandler;
 import com.petredy.redmagic.container.slot.SlotOutput;
 import com.petredy.redmagic.lib.Machines;
 import com.petredy.redmagic.machines.MachineSieve;
 import com.petredy.redmagic.tileentities.TileEntityMachine;
+import com.petredy.redmagic.utils.BlockUtils;
 import com.petredy.redmagic.utils.LogUtils;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,7 +20,7 @@ public class ContainerSieve extends Container {
 	
 	public ContainerSieve(EntityPlayer player, IMachineHandler machine){
 		this.machine = machine;
-		MachineSieve sieve = (MachineSieve) machine.getMachine(Machines.SIEVE_METADATA);
+		MachineSieve sieve = (MachineSieve) machine.getMachineOnSide(BlockUtils.getRotation(player.worldObj, machine.getXCoord(), machine.getYCoord(), machine.getZCoord(), player, true).ordinal());
 		if(sieve != null){
 			int indexInput = 0;
 			for(int i = 0; i < 3; i++){

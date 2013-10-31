@@ -42,10 +42,10 @@ public abstract class TileEntityEngine extends TileEntity implements IPowerEmitt
 	public ForgeDirection side;
 	
 	public float power = 300;
-	public float costs = 100;
 	public float speed = 1.0f;
+	public float maxSpeed = 3.0f;
 	
-	public Composition cost = Composition.getStandard(0, 0, 0, 300, 0);
+	public Composition cost = Composition.getStandard(300, 0, 0, 0, 0);
 	
 	@Override
 	public boolean canEmitPowerFrom(ForgeDirection side){
@@ -73,7 +73,7 @@ public abstract class TileEntityEngine extends TileEntity implements IPowerEmitt
 		}
 		moving += modifier * speed;
 		speed += 0.01f;
-		if(speed > 2.0f)speed = 2.0f;
+		if(speed > maxSpeed)speed = maxSpeed;
 	}
 
 	private void sendPower() {
@@ -121,11 +121,13 @@ public abstract class TileEntityEngine extends TileEntity implements IPowerEmitt
 	public void readFromNBT(NBTTagCompound tag){
 		super.readFromNBT(tag);
 		this.side = ForgeDirection.getOrientation(tag.getInteger("side"));
+		this.speed = tag.getFloat("speed");
 	}
 	
 	public void writeToNBT(NBTTagCompound tag){
 		super.writeToNBT(tag);
 		tag.setInteger("side", BlockUtils.forgeDirectionToInt(side));
+		tag.setFloat("speed", speed);
 	}
 	
 	

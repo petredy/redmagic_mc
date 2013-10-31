@@ -113,7 +113,11 @@ public class InventoryUtils {
 	}
 	
 	public static IInventory itemStacksToInventory(ItemStack[] stacks){
-		IInventory inv = new InventoryBasic("", true, stacks.length);
+		return itemStacksToInventory(stacks, "redmagic.inventorybasic");
+	}
+	
+	public static IInventory itemStacksToInventory(ItemStack[] stacks, String name){
+		IInventory inv = new InventoryBasic(name, true, stacks.length);
 		for(int i = 0; i < stacks.length; i++){
 			inv.setInventorySlotContents(i, stacks[i]);
 		}

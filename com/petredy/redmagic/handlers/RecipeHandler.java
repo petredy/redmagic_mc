@@ -19,9 +19,14 @@ public class RecipeHandler {
 		 * ---------------------------------------------------------------------------------------------------
 		 * Compactor
 		 */
-		CompactorDictionary.addRecipe(new ItemStack(Block.netherBrick), new ItemStack[]{
+		CompactorDictionary.addRecipe(new ItemStack(Block.netherBrick, 4), new ItemStack[]{
 				new ItemStack(Block.netherrack), new ItemStack(Block.netherrack), 
 				new ItemStack(Block.netherrack), new ItemStack(Block.netherrack)
+		});
+		
+		CompactorDictionary.addRecipe(new ItemStack(Block.sandStone, 8), new ItemStack[]{
+			new ItemStack(Block.sand), new ItemStack(Block.sand), 
+			new ItemStack(Block.sand), new ItemStack(Block.sand)
 		});
 		
 		CompactorDictionary.addRecipe(new ItemStack(Item.blazeRod), new ItemStack[]{
@@ -29,12 +34,12 @@ public class RecipeHandler {
 			new ItemStack(Item.blazePowder), new ItemStack(Item.blazePowder) 
 		});
 		
-		CompactorDictionary.addRecipe(new ItemStack(Item.dyePowder, 1, 15), new ItemStack[]{
+		CompactorDictionary.addRecipe(new ItemStack(Item.dyePowder, 4, 15), new ItemStack[]{
 			new ItemStack(Item.egg), new ItemStack(Item.egg),
 			new ItemStack(Item.egg), new ItemStack(Item.egg)
 		});
 		
-		CompactorDictionary.addRecipe(new ItemStack(Block.obsidian, 3), new ItemStack[]{
+		CompactorDictionary.addRecipe(new ItemStack(Block.obsidian, 5), new ItemStack[]{
 			new ItemStack(Item.bucketWater), new ItemStack(Item.bucketWater),
 			new ItemStack(Item.bucketLava), new ItemStack(Item.bucketLava)
 		});
@@ -44,16 +49,15 @@ public class RecipeHandler {
 			new ItemStack(Blocks.decoration, 1, BlockIndex.GRANITE_METADATA), new ItemStack(Blocks.decoration, 1, BlockIndex.GRANITE_METADATA)
 		});
 		
-		CompactorDictionary.addRecipe(new ItemStack(Blocks.decoration, 1, BlockIndex.COMPRESSED_OBSIDIAN_METADATA), new ItemStack[]{
+		CompactorDictionary.addRecipe(new ItemStack(Blocks.decoration, 2, BlockIndex.COMPRESSED_OBSIDIAN_METADATA), new ItemStack[]{
 			new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_CONCENTRADTED_GRANITE_METADATA), new ItemStack(Items.crafting, 1, ItemIndex.CRAFTING_CONCENTRADTED_GRANITE_METADATA),
 			new ItemStack(Block.obsidian), new ItemStack(Block.obsidian)
 		});
 		
-		CompactorDictionary.addRecipe(new ItemStack(Item.clay), new ItemStack[]{
+		CompactorDictionary.addRecipe(new ItemStack(Item.clay, 2), new ItemStack[]{
 			new ItemStack(Block.dirt), new ItemStack(Block.sand),
 			new ItemStack(Block.gravel), null
 		});
-		
 		
 		
 		/**

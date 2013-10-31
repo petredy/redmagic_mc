@@ -15,6 +15,11 @@ public class TileEntityHandler {
 		GameRegistry.registerTileEntity(TileEntityMachine.class, "redmagic.TileEntityMachine");
 		GameRegistry.registerTileEntity(TileEntityGenerator.class, "redmagic.TileEntityGenerator");
 		GameRegistry.registerTileEntity(TileEntityESLoader.class, "redmagic.TileEntityESLoader");
+		GameRegistry.registerTileEntity(TileEntityMachineryCore.class, "redmagic.TileEntityMachineryCore");
+		GameRegistry.registerTileEntity(TileEntityMachinery.class, "redmagic.TileEntityMachinery");
+		GameRegistry.registerTileEntity(TileEntityMachineryDrive.class, "redmagic.TileEntityMachineryDrive");
+		
+		
 	}
 	
 }

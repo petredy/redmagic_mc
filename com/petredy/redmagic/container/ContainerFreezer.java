@@ -1,10 +1,11 @@
 package com.petredy.redmagic.container;
 
-import com.petredy.redmagic.api.machines.IMachineHandler;
+import com.petredy.redmagic.api.machinery.IMachineHandler;
 import com.petredy.redmagic.container.slot.SlotOutput;
 import com.petredy.redmagic.lib.Machines;
 import com.petredy.redmagic.machines.MachineFreezer;
 import com.petredy.redmagic.tileentities.TileEntityMachine;
+import com.petredy.redmagic.utils.BlockUtils;
 import com.petredy.redmagic.utils.LogUtils;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,7 +20,7 @@ public class ContainerFreezer extends Container {
 	
 	public ContainerFreezer(EntityPlayer player, IMachineHandler machine){
 		this.machine = machine;
-		MachineFreezer freezer = (MachineFreezer) machine.getMachine(Machines.FREEZER_METADATA);
+		MachineFreezer freezer = (MachineFreezer) machine.getMachineOnSide(BlockUtils.getRotation(player.worldObj, machine.getXCoord(), machine.getYCoord(), machine.getZCoord(), player, true).ordinal());
 		if(freezer != null){
 			this.addSlotToContainer(new Slot(freezer.inventory, 0, 80, 35));
 			this.addSlotToContainer(new SlotOutput(freezer.inventory, 1, 80, 54));

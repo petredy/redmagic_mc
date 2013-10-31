@@ -1,7 +1,7 @@
 package com.petredy.redmagic.container;
 
 import com.petredy.redmagic.api.es.IESContainer;
-import com.petredy.redmagic.api.machines.IMachineHandler;
+import com.petredy.redmagic.api.machinery.IMachineHandler;
 import com.petredy.redmagic.container.slot.SlotOnlyItem;
 import com.petredy.redmagic.container.slot.SlotOutput;
 import com.petredy.redmagic.items.Items;

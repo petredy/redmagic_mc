@@ -3,13 +3,15 @@ package com.petredy.redmagic.tileentities;
 import java.util.Random;
 
 import com.petredy.redmagic.Redmagic;
-import com.petredy.redmagic.api.machines.IMachineHandler;
+import com.petredy.redmagic.api.machinery.IMachineHandler;
 import com.petredy.redmagic.api.machines.IMachineItem;
 import com.petredy.redmagic.api.redenergy.IEnergyHandler;
 import com.petredy.redmagic.lib.Guis;
+import com.petredy.redmagic.machinery.MachineHandler;
 import com.petredy.redmagic.machines.Machine;
 import com.petredy.redmagic.network.PacketHandler;
 import com.petredy.redmagic.network.PacketMachineSync;
+import com.petredy.redmagic.network.PacketUpdateMachineOnSide;
 import com.petredy.redmagic.redenergy.EnergyMap;
 import com.petredy.redmagic.redenergy.RedEnergy;
 import com.petredy.redmagic.redvalue.element.Composition;
@@ -61,7 +63,7 @@ public class TileEntityMachine extends TileEntity implements IMachineHandler, IE
 	}
 	
 	@Override
-	public int getSize(){
+	public int getUsedSize(){
 		int size = 0;
 		for(Machine machine: machines){
 			if(machine != null)size += machine.getSize();
@@ -120,7 +122,7 @@ public class TileEntityMachine extends TileEntity implements IMachineHandler, IE
 	public RedEnergy use(RedEnergy energy) {
 		RedEnergy used = RedEnergy.disjoin(this.energy, energy);
 		if(!used.isEmpty() && used.isEqual(energy)){
-			this.energy.minus(used);
+			this.energy.minus(used.copy());
 			return used;
 		}
 		return new RedEnergy(energy.dimension, energy.x, energy.z, Composition.getStandard(0, 0, 0, 0, 0));
@@ -136,7 +138,7 @@ public class TileEntityMachine extends TileEntity implements IMachineHandler, IE
 	
 	@Override
 	public RedEnergy store(RedEnergy energy){
-		this.energy.merge(energy);
+		this.energy.merge(energy.copy());
 		return energy;
 	}
 	
@@ -163,10 +165,10 @@ public class TileEntityMachine extends TileEntity implements IMachineHandler, IE
 
 
 
-	public boolean setMachine(int metadata, int side, EntityPlayer player) {
+	public boolean addMachine(int metadata, int side, EntityPlayer player) {
 		if(machines[side] == null){
-			Machine machine = Machine.getMachine(metadata);
-			if(machine != null && !containsMachine(machine) && machine.canPlacedOnSide(side) && getSize() + machine.getSize() <= 6){
+			Machine machine = MachineHandler.getMachine(metadata);
+			if(machine != null && machine.canPlacedOnSide(side, getHandlerSize()) && getUsedSize() + machine.getSize() <= 6){
 				machines[side] = machine;
 				machines[side].onPlacedByPlayer(this, side, player);
 				player.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
@@ -176,13 +178,15 @@ public class TileEntityMachine extends TileEntity implements IMachineHandler, IE
 		return false;
 	}
 	
-	public void removeMachine(EntityPlayer player, int side, float offX, float offY, float offZ) {
+	public boolean removeMachine(int side, EntityPlayer player) {
 		Machine machine = getMachineOnSide(side);
 		if(machine != null){
-			machine.removeByPlayer(this, player, offX, offY, offZ);
+			machine.removeByPlayer((IMachineHandler)this, player);
 			player.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 			machines[side] = null;
+			return true;
 		}
+		return false;
 	}
 
 
@@ -269,6 +273,11 @@ public class TileEntityMachine extends TileEntity implements IMachineHandler, IE
 		for(Machine machine: machines){
 			if(machine != null)machine.onNeighborChange((IMachineHandler)this, blockID);
 		}
+	}
+
+	@Override
+	public int getHandlerSize() {
+		return 1;
 	}
 	
 	

@@ -29,6 +29,12 @@ public class Items {
 	public static ItemJackhammer jackhammer;
 	public static ItemESStorage esStorage;
 	
+	public static ItemTribological logicCore;
+	public static ItemTribological logicStorage;
+	public static ItemTribological energyCondenser;
+	public static ItemTribological plateRhenium;
+	
+	
 	//Armor
 	public static EnumArmorMaterial glassMaterial = EnumHelper.addArmorMaterial(ItemIndex.GLASSES_NAME, 1000, new int[]{2, 2, 2, 2, 2}, 30);
 		
@@ -50,6 +56,10 @@ public class Items {
 		jackhammer = new ItemJackhammer(ItemIndex.JACKHAMMER_ID);
 		esStorage = new ItemESStorage(ItemIndex.ES_STORAGE_ID);
 		
+		logicCore = new ItemTribological(ItemIndex.LOGIC_CORE_ID, ItemIndex.LOGIC_CORE_NAME, 3f);
+		logicStorage = new ItemTribological(ItemIndex.LOCIG_STORAGE_ID, ItemIndex.LOGIC_STORAGE_NAME, 2f);
+		energyCondenser = new ItemTribological(ItemIndex.ENERGY_CONDENSER_ID, ItemIndex.ENERGY_CONDENSER_NAME, 4f);
+		plateRhenium = new ItemTribological(ItemIndex.PLATE_RHENIUM_ID, ItemIndex.PLATE_RHENIUM_NAME, 1f);
 		addRecipes();
 	}
 	
@@ -66,6 +76,12 @@ public class Items {
 		ItemIndex.MATTER_ID = config.getItem(ItemIndex.MATTER_NAME, ItemIndex.MATTER_DEFAULT_ID).getInt(ItemIndex.MATTER_DEFAULT_ID);
 		ItemIndex.JACKHAMMER_ID = config.getItem(ItemIndex.JACKHAMMER_NAME, ItemIndex.JACKHAMMER_DEFAULT_ID).getInt(ItemIndex.JACKHAMMER_DEFAULT_ID);
 		ItemIndex.ES_STORAGE_ID = config.getItem(ItemIndex.ES_STORAGE_NAME, ItemIndex.ES_STORAGE_DEFAULT_ID).getInt(ItemIndex.ES_STORAGE_DEFAULT_ID);
+	
+		
+		ItemIndex.LOGIC_CORE_ID = config.getItem(ItemIndex.LOGIC_CORE_NAME, ItemIndex.LOGIC_CORE_DEFAULT_ID).getInt(ItemIndex.LOGIC_CORE_DEFAULT_ID);
+		ItemIndex.LOCIG_STORAGE_ID = config.getItem(ItemIndex.LOGIC_STORAGE_NAME, ItemIndex.LOGIC_STORAGE_DEFAULT_ID).getInt(ItemIndex.LOGIC_STORAGE_DEFAULT_ID);
+		ItemIndex.ENERGY_CONDENSER_ID = config.getItem(ItemIndex.ENERGY_CONDENSER_NAME, ItemIndex.ENERGY_CONDENSER_DEFAULT_ID).getInt(ItemIndex.ENERGY_CONDENSER_DEFAULT_ID);
+		ItemIndex.PLATE_RHENIUM_ID = config.getItem(ItemIndex.PLATE_RHENIUM_NAME, ItemIndex.PLATE_RHENIUM_DEFAULT_ID).getInt(ItemIndex.PLATE_RHENIUM_DEFAULT_ID);
 		
 	}
 	
@@ -93,7 +109,7 @@ public class Items {
 			"s s",
 			'P', Block.thinGlass,
 			's', Item.stick,
-			'S', new ItemStack(crafting, 1, ItemIndex.CRAFTING_LOGIC_CORE_METADATA)
+			'S', new ItemStack(logicCore)
 		});
 		
 		GameRegistry.addShapedRecipe(new ItemStack(redhole), new Object[]{
@@ -101,10 +117,10 @@ public class Items {
 			"RCR",
 			"RRR",
 			'R', Item.redstone,
-			'C', new ItemStack(crafting, 1, ItemIndex.CRAFTING_ENERGY_CONDENSER_METADATA)
+			'C', new ItemStack(energyCondenser)
 		});
 		
-		GameRegistry.addShapedRecipe(new ItemStack(crafting, 1, ItemIndex.CRAFTING_LOGIC_CORE_METADATA), new Object[]{
+		GameRegistry.addShapedRecipe(new ItemStack(logicCore), new Object[]{
 			"rRF",
 			"RIR",
 			"FRr",
@@ -114,17 +130,17 @@ public class Items {
 			'F', Item.flint
 		});
 		
-		GameRegistry.addShapedRecipe(new ItemStack(crafting, 1, ItemIndex.CRAFTING_LOGIC_STORAGE_METADATA), new Object[]{
+		GameRegistry.addShapedRecipe(new ItemStack(logicStorage), new Object[]{
 			"IfI",
 			"rcr",
 			"IfI",
-			'C', new ItemStack(crafting, 1, ItemIndex.CRAFTING_LOGIC_CORE_METADATA),
+			'C', new ItemStack(logicCore),
 			'I', new ItemStack(crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA),
 			'r', Item.redstone,
 			'f', Item.flint
 		});
 		
-		GameRegistry.addShapedRecipe(new ItemStack(crafting, 1, ItemIndex.CRAFTING_ENERGY_CONDENSER_METADATA), new Object[]{
+		GameRegistry.addShapedRecipe(new ItemStack(energyCondenser), new Object[]{
 			"fIf",
 			"p p",
 			"fIf",
@@ -135,7 +151,7 @@ public class Items {
 			
 		});
 		
-		GameRegistry.addShapedRecipe(new ItemStack(crafting, 1, ItemIndex.CRAFTING_PLATE_RHENIUM_METADATA), new Object[]{
+		GameRegistry.addShapedRecipe(new ItemStack(plateRhenium), new Object[]{
 			"CfC",
 			"iii",
 			"CfC",
@@ -167,15 +183,26 @@ public class Items {
 			'p', Block.pistonBase
 		});
 		
+		GameRegistry.addShapedRecipe(new ItemStack(esStorage, 1, ItemIndex.ES_STORAGE_SMALL_METADATA), new Object[]{
+			"DDD",
+			"DCD",
+			"DDD",
+			'D', Item.diamond,
+			'C', new ItemStack(energyCondenser)
+		});
+		
+		
+		// Machines
+		
 		GameRegistry.addShapedRecipe(new ItemStack(machine, 1, Machines.COLLECTOR_METADATA), new Object[]{
 			"FFF",
 			"ISI",
 			"PCP",
-			'P', new ItemStack(crafting, 1, ItemIndex.CRAFTING_PLATE_RHENIUM_METADATA),
+			'P', new ItemStack(plateRhenium),
 			'I', new ItemStack(crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA),
 			'F', Block.fenceIron,
-			'C', new ItemStack(crafting, 1, ItemIndex.CRAFTING_LOGIC_CORE_METADATA),
-			'S', new ItemStack(crafting, 1, ItemIndex.CRAFTING_LOGIC_STORAGE_METADATA)
+			'C', new ItemStack(logicCore),
+			'S', new ItemStack(logicStorage)
 		});
 		
 		GameRegistry.addShapedRecipe(new ItemStack(machine, 1, Machines.CONTACT_COOLING_METADATA), new Object[]{
@@ -184,9 +211,9 @@ public class Items {
 			"PCP",
 			'f', Item.flint,
 			'I', Block.ice,
-			'P',  new ItemStack(crafting, 1, ItemIndex.CRAFTING_PLATE_RHENIUM_METADATA),
-			's', new ItemStack(crafting, 1, ItemIndex.CRAFTING_LOGIC_STORAGE_METADATA),
-			'C', new ItemStack(crafting, 1, ItemIndex.CRAFTING_LOGIC_CORE_METADATA)
+			'P',  new ItemStack(plateRhenium),
+			's', new ItemStack(logicStorage),
+			'C', new ItemStack(logicCore)
 		});
 		
 		GameRegistry.addShapedRecipe(new ItemStack(machine, 1, Machines.FURNACE_METADATA), new Object[]{
@@ -194,10 +221,10 @@ public class Items {
 			"ICI",
 			"PcP",
 			'I', new ItemStack(crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA),
-			'P', new ItemStack(crafting, 1, ItemIndex.CRAFTING_PLATE_RHENIUM_METADATA),
+			'P', new ItemStack(plateRhenium),
 			'F', Block.furnaceIdle,
-			'C', new ItemStack(crafting, 1, ItemIndex.CRAFTING_ENERGY_CONDENSER_METADATA),
-			'c', new ItemStack(crafting, 1, ItemIndex.CRAFTING_LOGIC_CORE_METADATA)
+			'C', new ItemStack(energyCondenser),
+			'c', new ItemStack(logicCore)
 		});
 		
 		GameRegistry.addShapedRecipe(new ItemStack(machine, 1, Machines.DISINTEGRATOR_METADATA), new Object[]{
@@ -205,20 +232,20 @@ public class Items {
 			"SRS",
 			"PcP",
 			'R', new ItemStack(redhole),
-			'P', new ItemStack(crafting, 1, ItemIndex.CRAFTING_PLATE_RHENIUM_METADATA),
-			'C', new ItemStack(crafting, 1, ItemIndex.CRAFTING_ENERGY_CONDENSER_METADATA),
-			'S', new ItemStack(crafting, 1, ItemIndex.CRAFTING_LOGIC_STORAGE_METADATA),
-			'c', new ItemStack(crafting, 1, ItemIndex.CRAFTING_LOGIC_CORE_METADATA)
+			'P', new ItemStack(plateRhenium),
+			'C', new ItemStack(energyCondenser),
+			'S', new ItemStack(logicStorage),
+			'c', new ItemStack(logicCore)
 		});
 		
 		GameRegistry.addShapedRecipe(new ItemStack(machine, 1, Machines.CHARGER_METADATA), new Object[]{
 			"ISI",
 			"FFF",
 			"PCP",
-			'P', new ItemStack(crafting, 1, ItemIndex.CRAFTING_PLATE_RHENIUM_METADATA),
-			'C', new ItemStack(crafting, 1, ItemIndex.CRAFTING_LOGIC_CORE_METADATA),
+			'P', new ItemStack(plateRhenium),
+			'C', new ItemStack(logicCore),
 			'F', Block.fenceIron,
-			'S', new ItemStack(crafting, 1, ItemIndex.CRAFTING_LOGIC_STORAGE_METADATA)
+			'S', new ItemStack(logicStorage)
 		});
 		
 		GameRegistry.addShapedRecipe(new ItemStack(machine, 1, Machines.REFRIGERATOR_METADATA), new Object[]{
@@ -226,9 +253,9 @@ public class Items {
 			"PSP",
 			"PCP",
 			'i', Block.ice,
-			'P', new ItemStack(crafting, 1, ItemIndex.CRAFTING_PLATE_RHENIUM_METADATA),
-			'S', new ItemStack(crafting, 1, ItemIndex.CRAFTING_LOGIC_STORAGE_METADATA),
-			'C', new ItemStack(crafting, 1, ItemIndex.CRAFTING_LOGIC_CORE_METADATA)	
+			'P', new ItemStack(plateRhenium),
+			'S', new ItemStack(logicStorage),
+			'C', new ItemStack(logicCore)	
 		});
 		
 		GameRegistry.addShapedRecipe(new ItemStack(machine, 1, Machines.FREEZER_METADATA), new Object[]{
@@ -238,8 +265,8 @@ public class Items {
 			'i', Block.ice,
 			'f', Item.flint,
 			'F', Block.furnaceIdle,
-			'c', new ItemStack(crafting, 1, ItemIndex.CRAFTING_LOGIC_CORE_METADATA),
-			'P', new ItemStack(crafting, 1, ItemIndex.CRAFTING_PLATE_RHENIUM_METADATA),
+			'c', new ItemStack(logicCore),
+			'P', new ItemStack(plateRhenium),
 		});
 		
 	
@@ -247,7 +274,7 @@ public class Items {
 			"POP",
 			"PWP",
 			"PPP",
-			'P', new ItemStack(crafting, 1, ItemIndex.CRAFTING_PLATE_RHENIUM_METADATA),
+			'P', new ItemStack(plateRhenium),
 			'O', Block.obsidian,
 			'W', Block.workbench
 		});
@@ -263,14 +290,14 @@ public class Items {
 			"P P",
 			"P P",
 			'F', Block.fenceIron,
-			'P', new ItemStack(crafting, 1, ItemIndex.CRAFTING_PLATE_RHENIUM_METADATA)
+			'P', new ItemStack(plateRhenium)
 		});
 		
 		GameRegistry.addShapedRecipe(new ItemStack(machine, 1, Machines.CRYSTALIZER_METADATA), new Object[]{
 			"PIP",
 			"IiI",
 			"PIP",
-			'P', new ItemStack(crafting, 1, ItemIndex.CRAFTING_PLATE_RHENIUM_METADATA),
+			'P', new ItemStack(plateRhenium),
 			'I', new ItemStack(crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA),
 			'i', Block.ice	
 		});

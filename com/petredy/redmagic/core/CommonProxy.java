@@ -1,7 +1,7 @@
 package com.petredy.redmagic.core;
 
 import com.google.common.base.Throwables;
-import com.petredy.redmagic.api.machines.IMachineHandler;
+import com.petredy.redmagic.api.machinery.IMachineHandler;
 import com.petredy.redmagic.client.guis.*;
 import com.petredy.redmagic.container.*;
 import com.petredy.redmagic.lib.Guis;
@@ -41,7 +41,7 @@ public class CommonProxy implements IGuiHandler{
 			return new ContainerPlayerInventory(player);
 		}
 		if(ID == Guis.MACHINE){
-			return new ContainerMachine(player, (TileEntityMachine)tileEntity);
+			return new ContainerMachine(player, (IMachineHandler)tileEntity);
 		}
 		if(ID == Guis.FURNACE){
 			return new ContainerFurnace(player, (IMachineHandler)tileEntity);
@@ -67,6 +67,9 @@ public class CommonProxy implements IGuiHandler{
 		if(ID == Guis.ES_LOADER){
 			return new ContainerESLoader(player, (TileEntityESLoader)tileEntity);
 		}
+		if(ID == Guis.TRIBOLOGICAL){
+			return new ContainerTribological(player, (IMachineHandler)tileEntity);
+		}
 		return null;
 	}
 
@@ -80,7 +83,7 @@ public class CommonProxy implements IGuiHandler{
 			return new GuiPlayerInventory(player);
 		}
 		if(ID == Guis.MACHINE){
-			return new GuiMachine(player, (TileEntityMachine)tileEntity);
+			return new GuiMachine(player, (IMachineHandler)tileEntity);
 		}
 		if(ID == Guis.FURNACE){
 			return new GuiFurnace(player, (IMachineHandler)tileEntity);
@@ -105,6 +108,9 @@ public class CommonProxy implements IGuiHandler{
 		}
 		if(ID == Guis.ES_LOADER){
 			return new GuiESLoader(player, (TileEntityESLoader)tileEntity);
+		}
+		if(ID == Guis.TRIBOLOGICAL){
+			return new GuiTribological(player, (IMachineHandler)tileEntity);
 		}
 		return null;
 	}

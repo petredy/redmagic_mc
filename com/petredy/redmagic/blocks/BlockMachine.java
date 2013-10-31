@@ -11,11 +11,14 @@ import com.petredy.redmagic.lib.BlockIndex;
 import com.petredy.redmagic.lib.Guis;
 import com.petredy.redmagic.lib.Reference;
 import com.petredy.redmagic.lib.Sounds;
+import com.petredy.redmagic.network.PacketHandler;
+import com.petredy.redmagic.network.PacketUpdateMachineOnSide;
 import com.petredy.redmagic.tileentities.TileEntityMachine;
 import com.petredy.redmagic.utils.InventoryUtils;
 import com.petredy.redmagic.utils.ItemUtils;
 import com.petredy.redmagic.utils.LogUtils;
 
+import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -80,16 +83,16 @@ public class BlockMachine extends BlockContainer{
 		if(machineBlock != null){
 			ItemStack current = par5EntityPlayer.getCurrentEquippedItem();
 			if(current != null && current.getItem() instanceof IMachineItem){
-				if(machineBlock.setMachine(((IMachineItem)current.getItem()).getMetadata(current), par6, par5EntityPlayer)){
-					par5EntityPlayer.inventory.decrStackSize(par5EntityPlayer.inventory.currentItem, 1);
-					return true;
-				}
+				PacketDispatcher.sendPacketToAllInDimension(PacketHandler.populatePacket(new PacketUpdateMachineOnSide(par2, par3, par4, par6, ((IMachineItem)current.getItem()).getMetadata(current), true)), par1World.provider.dimensionId);
+				if(!par1World.isRemote)machineBlock.addMachine(((IMachineItem)current.getItem()).getMetadata(current), par6, par5EntityPlayer);
+				return true;
 			}else if(current != null && current.getItem() instanceof IScrewdriver){
 				if(par5EntityPlayer.isSneaking()){
-					machineBlock.removeMachine(par5EntityPlayer, par6, par7, par8, par9);
+					PacketDispatcher.sendPacketToAllInDimension(PacketHandler.populatePacket(new PacketUpdateMachineOnSide(par2, par3, par4, par6, 0, false)), par1World.provider.dimensionId);
+					if(!par1World.isRemote)machineBlock.removeMachine(par6, par5EntityPlayer);
 					return true;
 				}else{
-					par5EntityPlayer.openGui(Redmagic.instance, Guis.MACHINE, par1World, par2, par3, par4);
+					par5EntityPlayer.openGui(Redmagic.instance, Guis.TRIBOLOGICAL, par1World, par2, par3, par4);
 					return true;
 				}
 			}else{

@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
 import com.petredy.redmagic.Redmagic;
-import com.petredy.redmagic.api.machines.IMachineHandler;
+import com.petredy.redmagic.api.machinery.IMachineHandler;
 import com.petredy.redmagic.lib.Elements;
 import com.petredy.redmagic.lib.Guis;
 import com.petredy.redmagic.lib.Machines;
@@ -25,7 +25,7 @@ public class MachineCrystalizer extends Machine{
 	public int tick = 0;
 	public int neededTicks = 100;
 	
-	public int energy;
+	public int uses;
 	
 	public MachineCrystalizer(){
 		metadata = Machines.CRYSTALIZER_METADATA;
@@ -61,15 +61,15 @@ public class MachineCrystalizer extends Machine{
 	}
 
 	private boolean getEnergy() {
-		if(energy > 0){
-			energy--;
+		if(uses > 0){
+			uses--;
 			return true;
 		}else{
 			if(InventoryUtils.reduceIDInInventory(inventory, Block.ice.blockID, 1) == 1){
-				energy += 9;
+				uses += 90;
 				return getEnergy();
 			}else if(InventoryUtils.reduceIDInInventory(inventory, Block.blockSnow.blockID, 1) == 1){
-				energy += 3;
+				uses += 30;
 				return getEnergy();
 			}
 		}
@@ -104,8 +104,9 @@ public class MachineCrystalizer extends Machine{
 		}
 	}
 
-	public void activate(IMachineHandler handler, EntityPlayer player, float offX, float offY, float offZ) {
+	public boolean activate(IMachineHandler handler, EntityPlayer player, float offX, float offY, float offZ) {
 		player.openGui(Redmagic.instance, Guis.CRYSTALIZER, player.worldObj, handler.getXCoord(), handler.getYCoord(), handler.getZCoord());
+		return true;
 	}
 	
 	public void remove(IMachineHandler handler) {
@@ -119,12 +120,14 @@ public class MachineCrystalizer extends Machine{
 	public void readFromNBT(NBTTagCompound tag){
 		super.readFromNBT(tag);
 		InventoryUtils.readFromNBT(inventory, tag);
+		this.uses = tag.getInteger("uses");
 	}
 	
 	@Override
 	public void writeToNBT(NBTTagCompound tag){
 		super.writeToNBT(tag);
 		InventoryUtils.writeToNBT(inventory, tag);
+		tag.setInteger("uses", uses);
 	}
 	
 }

@@ -3,7 +3,7 @@ package com.petredy.redmagic.client.guis;
 import org.lwjgl.opengl.GL11;
 
 import com.petredy.redmagic.Redmagic;
-import com.petredy.redmagic.api.machines.IMachineHandler;
+import com.petredy.redmagic.api.machinery.IMachineHandler;
 import com.petredy.redmagic.blocks.Blocks;
 import com.petredy.redmagic.container.ContainerCompactor;
 import com.petredy.redmagic.items.Items;
@@ -13,6 +13,7 @@ import com.petredy.redmagic.lib.Machines;
 import com.petredy.redmagic.lib.Textures;
 import com.petredy.redmagic.machines.MachineCompactor;
 import com.petredy.redmagic.tileentities.TileEntityMachine;
+import com.petredy.redmagic.utils.BlockUtils;
 import com.petredy.redmagic.utils.LogUtils;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -29,7 +30,7 @@ public class GuiCompactor extends GuiContainer{
 	public GuiCompactor(EntityPlayer player, IMachineHandler entity) {
 		super(new ContainerCompactor(player, entity));
 		this.machine = entity;
-		this.compactor = (MachineCompactor) this.machine.getMachine(Machines.COMPACTOR_METADATA);
+		this.compactor = (MachineCompactor) this.machine.getMachineOnSide(BlockUtils.getRotation(player.worldObj, machine.getXCoord(), machine.getYCoord(), machine.getZCoord(), player, true).ordinal());
 	}
 	
 	protected void drawGuiContainerForegroundLayer(int par1, int par2) {

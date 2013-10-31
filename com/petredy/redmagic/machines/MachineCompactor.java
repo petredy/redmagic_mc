@@ -8,7 +8,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 import com.petredy.redmagic.Redmagic;
-import com.petredy.redmagic.api.machines.IMachineHandler;
+import com.petredy.redmagic.api.machinery.IMachineHandler;
 import com.petredy.redmagic.items.Items;
 import com.petredy.redmagic.lib.Guis;
 import com.petredy.redmagic.lib.Machines;
@@ -33,12 +33,13 @@ public class MachineCompactor extends Machine{
 		this.inventory = new InventoryBasic(Machines.COMPACTOR_NAME, false, 5);
 	}
 	
-	public boolean canPlacedOnSide(int side){
-		return side == 1;
+	public boolean canPlacedOnSide(int side, int size){
+		return size == 1 && side == 1;
 	}
 	
-	public void activate(IMachineHandler handler, EntityPlayer player, float offX, float offY, float offZ) {
+	public boolean activate(IMachineHandler handler, EntityPlayer player, float offX, float offY, float offZ) {
 		player.openGui(Redmagic.instance, Guis.COMPACTOR, handler.getWorld(), handler.getXCoord(), handler.getYCoord(), handler.getZCoord());
+		return true;
 	}
 	
 	public void onNeighborChange(IMachineHandler handler, int blockID) {

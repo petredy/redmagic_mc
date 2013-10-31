@@ -18,10 +18,6 @@ public class ItemCrafting extends Item {
 	public String[] subNames = new String[]{
 		ItemIndex.CRAFTING_INGOT_RHENIUM_NAME,
 		ItemIndex.CRAFTING_NUGGET_RHENIUM_NAME,
-		ItemIndex.CRAFTING_LOGIC_CORE_NAME,
-		ItemIndex.CRAFTING_LOGIC_STORAGE_NAME,
-		ItemIndex.CRAFTING_ENERGY_CONDENSER_NAME,
-		ItemIndex.CRAFTING_PLATE_RHENIUM_NAME,
 		ItemIndex.CRAFTING_CONCENTRATED_GRANITE_NAME
 	};
 	

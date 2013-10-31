@@ -29,6 +29,7 @@ import com.petredy.redmagic.core.CreativeTabRedMagic;
 import com.petredy.redmagic.handlers.*;
 import com.petredy.redmagic.items.Items;
 import com.petredy.redmagic.lib.*;
+import com.petredy.redmagic.machinery.MachineHandler;
 import com.petredy.redmagic.network.PacketHandler;
 import com.petredy.redmagic.redvalue.RedvalueDictionary;
 import com.petredy.redmagic.trading.TradingManager;

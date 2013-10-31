@@ -96,5 +96,23 @@ public class BlockIndex {
 	public static final String ES_LOADER_NAME = "es.loader";
 	public static final int ES_LOADER_DEFAULT_ID = 3317;
 	public static int ES_LOADER_ID;
+
+	/**
+	 * ----------------------------------------------------------------------------
+	 * Machinery
+	 * MultiBlock
+	 */
 	
+	public static final String MACHINERY_NAME = "machinery";
+	public static final int MACHINERY_DEFAULT_ID = 3318;
+	public static int MACHINERY_ID;
+	
+	public static final String MACHINERY_CORE_NAME = "core";
+	public static final int MACHINERY_CORE_METADATA = 0;
+	public static final String MACHINERY_DRIVE_NAME = "drive";
+	public static final int MACHINERY_DRIVE_METADATA = 1;
+	public static final String MACHINERY_HULL_NAME = "hull";
+	public static final int MACHINERY_HULL_METADATA = 2;
+	
+	// -----------------------------------------------------------------------------
 }

@@ -1,10 +1,11 @@
 package com.petredy.redmagic.container;
 
-import com.petredy.redmagic.api.machines.IMachineHandler;
+import com.petredy.redmagic.api.machinery.IMachineHandler;
 import com.petredy.redmagic.container.slot.SlotOutput;
 import com.petredy.redmagic.lib.Machines;
 import com.petredy.redmagic.machines.MachineCrystalizer;
 import com.petredy.redmagic.tileentities.TileEntityMachine;
+import com.petredy.redmagic.utils.BlockUtils;
 import com.petredy.redmagic.utils.LogUtils;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,7 +20,7 @@ public class ContainerCrystalizer extends Container {
 	
 	public ContainerCrystalizer(EntityPlayer player, IMachineHandler machine){
 		this.machine = machine;
-		MachineCrystalizer crystalizer = (MachineCrystalizer) machine.getMachine(Machines.CRYSTALIZER_METADATA);
+		MachineCrystalizer crystalizer = (MachineCrystalizer) machine.getMachineOnSide(BlockUtils.getRotation(player.worldObj, machine.getXCoord(), machine.getYCoord(), machine.getZCoord(), player, true).ordinal());
 		if(crystalizer != null){
 			int index = 0;
 			for(int i = 0; i < 3; i++){

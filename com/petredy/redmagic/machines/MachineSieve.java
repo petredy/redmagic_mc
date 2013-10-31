@@ -7,7 +7,7 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 
 import com.petredy.redmagic.Redmagic;
-import com.petredy.redmagic.api.machines.IMachineHandler;
+import com.petredy.redmagic.api.machinery.IMachineHandler;
 import com.petredy.redmagic.lib.Guis;
 import com.petredy.redmagic.lib.Machines;
 import com.petredy.redmagic.recipes.sieve.SieveDictionary;
@@ -56,8 +56,9 @@ public class MachineSieve extends Machine{
 	}
 	
 	@Override
-	public void activate(IMachineHandler handler, EntityPlayer player, float offX, float offY, float offZ) {
+	public boolean activate(IMachineHandler handler, EntityPlayer player, float offX, float offY, float offZ) {
 		player.openGui(Redmagic.instance, Guis.SIEVE, player.worldObj, handler.getXCoord(), handler.getYCoord(), handler.getZCoord());
+		return true;
 	}
 	
 	@Override

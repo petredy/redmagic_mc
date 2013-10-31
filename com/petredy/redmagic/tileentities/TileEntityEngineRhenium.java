@@ -16,9 +16,5 @@ import buildcraft.api.transport.IPipeTile.PipeType;
 
 public class TileEntityEngineRhenium extends TileEntityEngine {
 
-	public float power = 300;
-	public float costs = 10;
-	
-	public Composition cost = Composition.getStandard(0, 0, 0, 300, 0);
 	
 }

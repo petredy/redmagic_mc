@@ -1,11 +1,12 @@
 package com.petredy.redmagic.container;
 
-import com.petredy.redmagic.api.machines.IMachineHandler;
+import com.petredy.redmagic.api.machinery.IMachineHandler;
 import com.petredy.redmagic.container.slot.SlotOutput;
 import com.petredy.redmagic.lib.BlockIndex;
 import com.petredy.redmagic.lib.Machines;
 import com.petredy.redmagic.machines.MachineFurnace;
 import com.petredy.redmagic.tileentities.TileEntityMachine;
+import com.petredy.redmagic.utils.BlockUtils;
 import com.petredy.redmagic.utils.InventoryUtils;
 import com.petredy.redmagic.utils.LogUtils;
 import com.petredy.redmagic.utils.PlayerUtils;
@@ -25,7 +26,7 @@ public class ContainerFurnace extends Container {
 	
 	public ContainerFurnace(EntityPlayer player, IMachineHandler machine){
 		this.machine = machine;
-		this.furnace = (MachineFurnace) machine.getMachine(Machines.FURNACE_METADATA);
+		this.furnace = (MachineFurnace) machine.getMachineOnSide(BlockUtils.getRotation(player.worldObj, machine.getXCoord(), machine.getYCoord(), machine.getZCoord(), player, true).ordinal());
 		if(furnace != null){
 			this.addSlotToContainer(new Slot(furnace.inventory, 0, 56, 34));
 			this.addSlotToContainer(new SlotOutput(furnace.inventory, 1, 116, 35));
