@@ -122,9 +122,9 @@ public class BlockUtils {
 		}
 		
 		public void readFromNBT(NBTTagCompound tag){
-			this.x = tag.getInteger("x");
-			this.y = tag.getInteger("y");
-			this.z = tag.getInteger("z");
+			this.x = tag.getInteger("redmagic.BlockUtils.VirtualBlock.x");
+			this.y = tag.getInteger("redmagic.BlockUtils.VirtualBlock.y");
+			this.z = tag.getInteger("redmagic.BlockUtils.VirtualBlock.z");
 		}
 		
 		public static VirtualBlock loadFromNBT(NBTTagCompound tag){
@@ -134,9 +134,9 @@ public class BlockUtils {
 		}
 		
 		public void writeToNBT(NBTTagCompound tag){
-			tag.setInteger("x", x);
-			tag.setInteger("y", y);
-			tag.setInteger("z", z);
+			tag.setInteger("redmagic.BlockUtils.VirtualBlock.x", x);
+			tag.setInteger("redmagic.BlockUtils.VirtualBlock.y", y);
+			tag.setInteger("redmagic.BlockUtils.VirtualBlock.z", z);
 		}
 	}
 	

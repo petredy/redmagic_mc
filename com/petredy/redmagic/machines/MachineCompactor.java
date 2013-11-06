@@ -12,6 +12,7 @@ import com.petredy.redmagic.api.machinery.IMachineHandler;
 import com.petredy.redmagic.items.Items;
 import com.petredy.redmagic.lib.Guis;
 import com.petredy.redmagic.lib.Machines;
+import com.petredy.redmagic.machinery.Tribological;
 import com.petredy.redmagic.network.PacketHandler;
 import com.petredy.redmagic.network.PacketMachineSync;
 import com.petredy.redmagic.recipes.compactor.CompactorDictionary;
@@ -30,7 +31,13 @@ public class MachineCompactor extends Machine{
 	public MachineCompactor(){
 		this.metadata = Machines.COMPACTOR_METADATA;
 		this.size = 1;
+		this.name = Machines.COMPACTOR_NAME;
 		this.inventory = new InventoryBasic(Machines.COMPACTOR_NAME, false, 5);
+		this.tribological = new Tribological(new ItemStack[]{
+			new ItemStack(Items.plateRhenium), new ItemStack(Items.frameRehnium), new ItemStack(Items.plateRhenium),
+			new ItemStack(Items.frameRehnium), new ItemStack(Items.plateRhenium), new ItemStack(Items.frameRehnium),
+			new ItemStack(Items.plateRhenium), new ItemStack(Items.frameRehnium), new ItemStack(Items.plateRhenium)
+		});
 	}
 	
 	public boolean canPlacedOnSide(int side, int size){
@@ -43,7 +50,7 @@ public class MachineCompactor extends Machine{
 	}
 	
 	public void onNeighborChange(IMachineHandler handler, int blockID) {
-		if(handler.getEnergyHandler().getStoredEnergy().contains(COST) && blockID == Block.pistonExtension.blockID && isPistonPress(handler.getWorld(), handler.getXCoord(), handler.getYCoord(), handler.getZCoord())){
+		if(tribological.getStatus() > 0 && handler.getEnergyHandler().getStoredEnergy().contains(COST) && blockID == Block.pistonExtension.blockID && isPistonPress(handler.getWorld(), handler.getXCoord(), handler.getYCoord(), handler.getZCoord())){
 			ItemStack[] matrix = new ItemStack[4];
 			for(int i = 1; i < 5; i++){
 				matrix[i - 1] = this.inventory.getStackInSlot(i);

@@ -20,7 +20,7 @@ public class ContainerFreezer extends Container {
 	
 	public ContainerFreezer(EntityPlayer player, IMachineHandler machine){
 		this.machine = machine;
-		MachineFreezer freezer = (MachineFreezer) machine.getMachineOnSide(BlockUtils.getRotation(player.worldObj, machine.getXCoord(), machine.getYCoord(), machine.getZCoord(), player, true).ordinal());
+		MachineFreezer freezer = (MachineFreezer) machine.getMachineOnSide(player.getEntityData().getInteger("redmagic.machine.side"));
 		if(freezer != null){
 			this.addSlotToContainer(new Slot(freezer.inventory, 0, 80, 35));
 			this.addSlotToContainer(new SlotOutput(freezer.inventory, 1, 80, 54));

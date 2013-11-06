@@ -117,7 +117,20 @@ public class ItemIndex {
 	public static final int PLATE_RHENIUM_DEFAULT_ID = 13016;
 	public static int PLATE_RHENIUM_ID;
 	
+	public static final String FRAME_RHENIUM_NAME = "frame.rhenium";
+	public static final int FRAME_RHENIUM_DEFAULT_ID = 13017;
+	public static int FRAME_RHENIUM_ID;
 	
+	public static final String COOLING_DEVICE_NAME = "cooling.device";
+	public static final int COOLING_DEVICE_DEFAULT_ID = 13018;
+	public static int COOLING_DEVICE_ID;
 	
+	public static final String HEAT_DEVICE_NAME = "heat.device";
+	public static final int HEAT_DEVICE_DEFAULT_ID = 13019;
+	public static int HEAT_DEVICE_ID;
+	
+	public static final String FILTER_DEVICE_NAME = "filter.device";
+	public static final int FILTER_DEVICE_DEFAULT_ID = 13020;
+	public static int FILTER_DEVICE_ID;
 	
 }

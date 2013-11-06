@@ -30,7 +30,7 @@ public class GuiSieve extends GuiContainer{
 	public GuiSieve(EntityPlayer player, IMachineHandler entity) {
 		super(new ContainerSieve(player, entity));
 		this.machine = entity;
-		this.sieve = (MachineSieve) machine.getMachineOnSide(BlockUtils.getRotation(player.worldObj, machine.getXCoord(), machine.getYCoord(), machine.getZCoord(), player, true).ordinal());
+		this.sieve = (MachineSieve) machine.getMachineOnSide(player.getEntityData().getInteger("redmagic.machine.side"));
 	}
 	
 	protected void drawGuiContainerForegroundLayer(int par1, int par2) {

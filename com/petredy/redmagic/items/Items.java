@@ -33,6 +33,10 @@ public class Items {
 	public static ItemTribological logicStorage;
 	public static ItemTribological energyCondenser;
 	public static ItemTribological plateRhenium;
+	public static ItemTribological frameRehnium;
+	public static ItemTribological coolingDevice;
+	public static ItemTribological heatDevice;
+	public static ItemTribological filterDevice;
 	
 	
 	//Armor
@@ -60,6 +64,11 @@ public class Items {
 		logicStorage = new ItemTribological(ItemIndex.LOCIG_STORAGE_ID, ItemIndex.LOGIC_STORAGE_NAME, 2f);
 		energyCondenser = new ItemTribological(ItemIndex.ENERGY_CONDENSER_ID, ItemIndex.ENERGY_CONDENSER_NAME, 4f);
 		plateRhenium = new ItemTribological(ItemIndex.PLATE_RHENIUM_ID, ItemIndex.PLATE_RHENIUM_NAME, 1f);
+		frameRehnium = new ItemTribological(ItemIndex.FRAME_RHENIUM_ID, ItemIndex.FRAME_RHENIUM_NAME, 2f);
+		coolingDevice = new ItemTribological(ItemIndex.COOLING_DEVICE_ID, ItemIndex.COOLING_DEVICE_NAME, 5f);
+		heatDevice = new ItemTribological(ItemIndex.HEAT_DEVICE_ID, ItemIndex.HEAT_DEVICE_NAME, 5f);
+		filterDevice = new ItemTribological(ItemIndex.FILTER_DEVICE_ID, ItemIndex.FILTER_DEVICE_NAME, 2f);
+		
 		addRecipes();
 	}
 	
@@ -82,6 +91,10 @@ public class Items {
 		ItemIndex.LOCIG_STORAGE_ID = config.getItem(ItemIndex.LOGIC_STORAGE_NAME, ItemIndex.LOGIC_STORAGE_DEFAULT_ID).getInt(ItemIndex.LOGIC_STORAGE_DEFAULT_ID);
 		ItemIndex.ENERGY_CONDENSER_ID = config.getItem(ItemIndex.ENERGY_CONDENSER_NAME, ItemIndex.ENERGY_CONDENSER_DEFAULT_ID).getInt(ItemIndex.ENERGY_CONDENSER_DEFAULT_ID);
 		ItemIndex.PLATE_RHENIUM_ID = config.getItem(ItemIndex.PLATE_RHENIUM_NAME, ItemIndex.PLATE_RHENIUM_DEFAULT_ID).getInt(ItemIndex.PLATE_RHENIUM_DEFAULT_ID);
+		ItemIndex.FRAME_RHENIUM_ID = config.getItem(ItemIndex.FRAME_RHENIUM_NAME, ItemIndex.FRAME_RHENIUM_DEFAULT_ID).getInt(ItemIndex.FRAME_RHENIUM_DEFAULT_ID);
+		ItemIndex.COOLING_DEVICE_ID = config.getItem(ItemIndex.COOLING_DEVICE_NAME, ItemIndex.COOLING_DEVICE_DEFAULT_ID).getInt(ItemIndex.COOLING_DEVICE_DEFAULT_ID);
+		ItemIndex.HEAT_DEVICE_ID = config.getItem(ItemIndex.HEAT_DEVICE_NAME, ItemIndex.HEAT_DEVICE_DEFAULT_ID).getInt(ItemIndex.HEAT_DEVICE_DEFAULT_ID);
+		ItemIndex.FILTER_DEVICE_ID = config.getItem(ItemIndex.FILTER_DEVICE_NAME, ItemIndex.FILTER_DEVICE_DEFAULT_ID).getInt(ItemIndex.FILTER_DEVICE_DEFAULT_ID);
 		
 	}
 	

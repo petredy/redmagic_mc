@@ -1,5 +1,8 @@
 package com.petredy.redmagic.machines;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -11,8 +14,10 @@ import net.minecraft.world.World;
 
 import com.petredy.redmagic.Redmagic;
 import com.petredy.redmagic.api.machinery.IMachineHandler;
+import com.petredy.redmagic.items.Items;
 import com.petredy.redmagic.lib.Guis;
 import com.petredy.redmagic.lib.Machines;
+import com.petredy.redmagic.machinery.Tribological;
 import com.petredy.redmagic.utils.InventoryUtils;
 import com.petredy.redmagic.utils.LogUtils;
 
@@ -27,51 +32,43 @@ public class MachineFreezer extends Machine{
 	public MachineFreezer(){
 		this.metadata = Machines.FREEZER_METADATA;
 		this.size = 1;
+		this.name = Machines.FREEZER_NAME;
 		this.inventory = new InventoryBasic(Machines.FREEZER_NAME, false, 2);
+		this.tribological = new Tribological(new ItemStack[]{
+			new ItemStack(Items.plateRhenium), new ItemStack(Items.coolingDevice), new ItemStack(Items.plateRhenium),
+			new ItemStack(Items.logicStorage), new ItemStack(Items.logicCore), new ItemStack(Items.logicStorage),
+			new ItemStack(Items.plateRhenium), new ItemStack(Items.coolingDevice), new ItemStack(Items.plateRhenium)
+		});
 	}
 	
 	
 	public void update(IMachineHandler handler) {
 		if(item != null){
-			if(tick < neededTicks){
+			if(tick < neededTicks && tribological.getStatus() > 0){
 				tick++;
+				tribological.damage(1f);
 				handler.setHeat(handler.getHeat() - (getCooling(item) / neededTicks));
+				this.active = true;
 			}else{
 				tick = 0;
 				item = null;
+				this.active = false;
 			}
 		}else{
+			this.active = false;
 			if(inventory.getStackInSlot(0) != null && getCooling(inventory.getStackInSlot(0)) > 0){
 				item = inventory.getStackInSlot(0).copy();
 				item.stackSize = 1;
 				inventory.decrStackSize(0, 1);
-			}else if(inventory.getStackInSlot(0) == null){
-				switch(this.side){
-				case 0: transferItemFrom(handler.getWorld(), handler.getXCoord(), handler.getYCoord() - 1, handler.getZCoord());
-				case 1: transferItemFrom(handler.getWorld(), handler.getXCoord(), handler.getYCoord() + 1, handler.getZCoord());
-				case 2: transferItemFrom(handler.getWorld(), handler.getXCoord(), handler.getYCoord(), handler.getZCoord() - 1);
-				case 3: transferItemFrom(handler.getWorld(), handler.getXCoord(), handler.getYCoord(), handler.getZCoord() + 1);
-				case 4: transferItemFrom(handler.getWorld(), handler.getXCoord() - 1, handler.getYCoord(), handler.getZCoord());
-				case 5: transferItemFrom(handler.getWorld(), handler.getXCoord() + 1, handler.getYCoord() - 1, handler.getZCoord());
-				}
+			}else if(inventory.getStackInSlot(0) == null && handler.getHandlerSize() > 1){
+				List<ItemStack> items = new ArrayList<ItemStack>();
+				items.add(new ItemStack(Block.ice));
+				this.transferItemToSlot(handler, this.inventory, 0, items);
 			}
 		}
 	}
 	
-	public void transferItemFrom(World world, int x, int y, int z) {
-		TileEntity entity = world.getBlockTileEntity(x, y, z);
-		if(entity instanceof IInventory){
-			IInventory inv = (IInventory)entity;
-			for(int i = 0; i < inv.getSizeInventory(); i++){
-				ItemStack slot = inv.getStackInSlot(i);
-				if(slot != null && getCooling(slot) > 0){
-					this.inventory.setInventorySlotContents(0, slot.copy());
-					inv.setInventorySlotContents(i, null);
-					break;
-				}
-			}
-		}
-	}
+	
 
 
 	public boolean activate(IMachineHandler handler, EntityPlayer player, float offX, float offY, float offZ) {

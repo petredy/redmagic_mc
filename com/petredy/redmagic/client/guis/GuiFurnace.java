@@ -32,7 +32,7 @@ public class GuiFurnace extends GuiContainer{
 	public GuiFurnace(EntityPlayer player, IMachineHandler entity) {
 		super(new ContainerFurnace(player, entity));
 		this.machine = entity;
-		this.furnace = (MachineFurnace) this.machine.getMachineOnSide(BlockUtils.getRotation(player.worldObj, machine.getXCoord(), machine.getYCoord(), machine.getZCoord(), player, true).ordinal());
+		this.furnace = (MachineFurnace) this.machine.getMachineOnSide(player.getEntityData().getInteger("redmagic.machine.side"));
 	}
 	
 	protected void drawGuiContainerForegroundLayer(int par1, int par2) {
@@ -50,8 +50,7 @@ public class GuiFurnace extends GuiContainer{
 		int y = (this.height - this.ySize) / 2;
 		this.drawTexturedModalRect(x, y, 0, 0, this.xSize,this.ySize);
 		
-		float percent = furnace != null ? (float)this.furnace.burnTick / machine.getHandlerSize() > 1 ? this.furnace.LARGE_MACHINE_BURN_TIME : (float)this.furnace.needBurnTime : 0;
-		
+		float percent = furnace != null ? (float)this.furnace.burnTick / (float)this.furnace.needBurnTime : 0;
 		this.drawTexturedModalRect(x + 79, y + 34, 176, 14, (int)(percent * 24), 16);
 		
 		GL11.glPopMatrix();

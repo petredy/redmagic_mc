@@ -20,7 +20,7 @@ public class ContainerCrystalizer extends Container {
 	
 	public ContainerCrystalizer(EntityPlayer player, IMachineHandler machine){
 		this.machine = machine;
-		MachineCrystalizer crystalizer = (MachineCrystalizer) machine.getMachineOnSide(BlockUtils.getRotation(player.worldObj, machine.getXCoord(), machine.getYCoord(), machine.getZCoord(), player, true).ordinal());
+		MachineCrystalizer crystalizer = (MachineCrystalizer) machine.getMachineOnSide(player.getEntityData().getInteger("redmagic.machine.side"));
 		if(crystalizer != null){
 			int index = 0;
 			for(int i = 0; i < 3; i++){

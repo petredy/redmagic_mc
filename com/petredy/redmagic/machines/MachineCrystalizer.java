@@ -1,5 +1,8 @@
 package com.petredy.redmagic.machines;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.InventoryBasic;
@@ -8,9 +11,11 @@ import net.minecraft.nbt.NBTTagCompound;
 
 import com.petredy.redmagic.Redmagic;
 import com.petredy.redmagic.api.machinery.IMachineHandler;
+import com.petredy.redmagic.items.Items;
 import com.petredy.redmagic.lib.Elements;
 import com.petredy.redmagic.lib.Guis;
 import com.petredy.redmagic.lib.Machines;
+import com.petredy.redmagic.machinery.Tribological;
 import com.petredy.redmagic.utils.InventoryUtils;
 import com.petredy.redmagic.utils.LogUtils;
 
@@ -30,17 +35,29 @@ public class MachineCrystalizer extends Machine{
 	public MachineCrystalizer(){
 		metadata = Machines.CRYSTALIZER_METADATA;
 		size = 1;
+		name = Machines.CRYSTALIZER_NAME;
 		this.inventory = new InventoryBasic(Machines.CRYSTALIZER_NAME, false, 9);
+		this.tribological = new Tribological(new ItemStack[]{
+			new ItemStack(Items.plateRhenium), new ItemStack(Items.coolingDevice), new ItemStack(Items.plateRhenium),
+			new ItemStack(Items.coolingDevice), new ItemStack(Items.logicCore), new ItemStack(Items.coolingDevice),
+			new ItemStack(Items.plateRhenium), new ItemStack(Items.energyCondenser), new ItemStack(Items.plateRhenium)
+		});
 	}
+	
+	public boolean canPlacedOnSide(int side, int size){
+		return size == 1;
+	}
+	
 	
 	public void update(IMachineHandler handler) {
 		if(tick++  >= neededTicks){
 			tick = 0;
-			LogUtils.log("tick");
-			for(int x = -1; x <= 1; x++){
-				for(int z = -1; z <= 1; z++){
-					for(int y = -1; y <= 2; y++){
-						handleBlockAt(handler, handler.getXCoord() + x, handler.getYCoord() + y, handler.getZCoord() + z);
+			if(tribological.getStatus() > 0){
+				for(int x = -1; x <= 1; x++){
+					for(int z = -1; z <= 1; z++){
+						for(int y = -1; y <= 2; y++){
+							handleBlockAt(handler, handler.getXCoord() + x, handler.getYCoord() + y, handler.getZCoord() + z);
+						}
 					}
 				}
 			}
@@ -60,47 +77,56 @@ public class MachineCrystalizer extends Machine{
 		}
 	}
 
-	private boolean getEnergy() {
+	private boolean getEnergy(IMachineHandler handler) {
 		if(uses > 0){
 			uses--;
 			return true;
 		}else{
 			if(InventoryUtils.reduceIDInInventory(inventory, Block.ice.blockID, 1) == 1){
 				uses += 90;
-				return getEnergy();
+				return getEnergy(handler);
 			}else if(InventoryUtils.reduceIDInInventory(inventory, Block.blockSnow.blockID, 1) == 1){
 				uses += 30;
-				return getEnergy();
+				return getEnergy(handler);
+			}else{
+				List<ItemStack> matches = new ArrayList<ItemStack>();
+				matches.add(new ItemStack(Block.blockSnow));
+				matches.add(new ItemStack(Block.ice));
+				if(this.transferItemToInventory(handler, inventory, matches))return getEnergy(handler);
 			}
 		}
 		return false;
 	}
 	
 	private void handleStillWater(IMachineHandler handler, int x, int y, int z) {
-		if(this.getEnergy()){
+		if(this.getEnergy(handler)){
 			handler.getWorld().setBlock(x, y, z, Block.ice.blockID);
-			handler.getEnergyHandler().store(Elements.WATER, PRODUCTION_ICE);
+			handler.getEnergyHandler().store(Elements.WATER, PRODUCTION_ICE * tribological.getStatus() / 100);
+			this.tribological.damage(1f);
 		}
 	}
 
 	private void handleMovingWater(IMachineHandler handler, int x, int y, int z) {
-		if(this.getEnergy()){
+		if(this.getEnergy(handler)){
 			handler.getWorld().setBlock(x, y, z, Block.ice.blockID);
-			handler.getEnergyHandler().store(Elements.WATER, PRODUCTION_ICE * MOVING_MODIFIER);
+			handler.getEnergyHandler().store(Elements.WATER, PRODUCTION_ICE * MOVING_MODIFIER * tribological.getStatus() / 100);
+			this.tribological.damage(1f);
 		}
 	}
 	
 	private void handleStillLava(IMachineHandler handler, int x, int y, int z) {
-		if(this.getEnergy()){
+		if(this.getEnergy(handler)){
 			handler.getWorld().setBlock(x, y, z, Block.obsidian.blockID);
-			handler.getEnergyHandler().store(Elements.FIRE, PRODUCTION_LAVA);
+			handler.getEnergyHandler().store(Elements.FIRE, PRODUCTION_LAVA * tribological.getStatus() / 100);
+			this.tribological.damage(1f);
 		}
 	}
 	
 	private void handleMovingLava(IMachineHandler handler, int x, int y, int z) {
-		if(this.getEnergy()){
+		if(this.getEnergy(handler)){
 			handler.getWorld().setBlock(x, y, z, Block.cobblestone.blockID);
-			handler.getEnergyHandler().store(Elements.FIRE, PRODUCTION_LAVA * MOVING_MODIFIER);
+			handler.getEnergyHandler().store(Elements.FIRE, PRODUCTION_LAVA * MOVING_MODIFIER * tribological.getStatus() / 100);
+			this.tribological.damage(1f);
 		}
 	}
 

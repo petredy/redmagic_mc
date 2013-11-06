@@ -20,7 +20,7 @@ public class ContainerDisintegrator extends Container {
 	
 	public ContainerDisintegrator(EntityPlayer player, IMachineHandler machine){
 		this.machine = machine;
-		MachineDisintegrator deintegrator = (MachineDisintegrator) machine.getMachineOnSide(BlockUtils.getRotation(player.worldObj, machine.getXCoord(), machine.getYCoord(), machine.getZCoord(), player, true).ordinal());
+		MachineDisintegrator deintegrator = (MachineDisintegrator) machine.getMachineOnSide(player.getEntityData().getInteger("redmagic.machine.side"));
 		if(deintegrator != null){
 			this.addSlotToContainer(new Slot(deintegrator.inventory, 0, 80, 35));
 			this.addSlotToContainer(new SlotOutput(deintegrator.inventory, 1, 80, 56));

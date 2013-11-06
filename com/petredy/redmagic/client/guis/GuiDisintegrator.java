@@ -30,7 +30,7 @@ public class GuiDisintegrator extends GuiContainer{
 	public GuiDisintegrator(EntityPlayer player, IMachineHandler entity) {
 		super(new ContainerDisintegrator(player, entity));
 		this.machine = entity;
-		this.deintegrator = (MachineDisintegrator) this.machine.getMachineOnSide(BlockUtils.getRotation(player.worldObj, machine.getXCoord(), machine.getYCoord(), machine.getZCoord(), player, true).ordinal());
+		this.deintegrator = (MachineDisintegrator) this.machine.getMachineOnSide(player.getEntityData().getInteger("redmagic.machine.side"));
 	}
 	
 	protected void drawGuiContainerForegroundLayer(int par1, int par2) {

@@ -15,6 +15,7 @@ import com.petredy.redmagic.network.PacketUpdateMachineOnSide;
 import com.petredy.redmagic.redenergy.EnergyMap;
 import com.petredy.redmagic.redenergy.RedEnergy;
 import com.petredy.redmagic.redvalue.element.Composition;
+import com.petredy.redmagic.utils.BlockUtils.VirtualBlock;
 import com.petredy.redmagic.utils.LogUtils;
 
 import cpw.mods.fml.common.network.PacketDispatcher;
@@ -192,6 +193,7 @@ public class TileEntityMachine extends TileEntity implements IMachineHandler, IE
 
 
 	public boolean activate(EntityPlayer player, int side, float offX, float offY, float offZ) {
+		player.getEntityData().setInteger("redmagic.machine.side", side);
 		if(machines[side] != null){
 			machines[side].activate((IMachineHandler)this, player, offX, offY, offZ);
 			return true;
@@ -278,6 +280,19 @@ public class TileEntityMachine extends TileEntity implements IMachineHandler, IE
 	@Override
 	public int getHandlerSize() {
 		return 1;
+	}
+
+	@Override
+	public VirtualBlock getBlockInfrontMachineOnSide(int side) {
+		switch(side){
+		case 0: return new VirtualBlock(xCoord, yCoord - 1, zCoord);
+		case 1: return new VirtualBlock(xCoord, yCoord + 1, zCoord);
+		case 2: return new VirtualBlock(xCoord, yCoord, zCoord - 1);
+		case 3: return new VirtualBlock(xCoord, yCoord, zCoord + 1);
+		case 4: return new VirtualBlock(xCoord - 1, yCoord, zCoord);
+		case 5: return new VirtualBlock(xCoord + 1, yCoord, zCoord);
+		default: return new VirtualBlock(xCoord, yCoord - 1, zCoord);
+		}
 	}
 	
 	

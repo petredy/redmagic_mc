@@ -30,7 +30,7 @@ public class GuiFreezer extends GuiContainer{
 	public GuiFreezer(EntityPlayer player, IMachineHandler entity) {
 		super(new ContainerFreezer(player, entity));
 		this.machine = entity;
-		this.freezer = (MachineFreezer) this.machine.getMachineOnSide(BlockUtils.getRotation(player.worldObj, machine.getXCoord(), machine.getYCoord(), machine.getZCoord(), player, true).ordinal());
+		this.freezer = (MachineFreezer) this.machine.getMachineOnSide(player.getEntityData().getInteger("redmagic.machine.side"));
 	}
 	
 	protected void drawGuiContainerForegroundLayer(int par1, int par2) {
@@ -48,7 +48,7 @@ public class GuiFreezer extends GuiContainer{
 		int y = (this.height - this.ySize) / 2;
 		this.drawTexturedModalRect(x, y, 0, 0, this.xSize,this.ySize);
 		
-		float percent = (float)this.freezer.tick / (float)this.freezer.neededTicks;
+		float percent = freezer != null ? (float)this.freezer.tick / (float)this.freezer.neededTicks : 0;
 		
 		this.drawTexturedModalRect(x + 10, y + 68, 0, 166, (int)(percent * 156), 13);
 		

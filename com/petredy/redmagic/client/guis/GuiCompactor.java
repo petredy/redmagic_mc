@@ -30,7 +30,7 @@ public class GuiCompactor extends GuiContainer{
 	public GuiCompactor(EntityPlayer player, IMachineHandler entity) {
 		super(new ContainerCompactor(player, entity));
 		this.machine = entity;
-		this.compactor = (MachineCompactor) this.machine.getMachineOnSide(BlockUtils.getRotation(player.worldObj, machine.getXCoord(), machine.getYCoord(), machine.getZCoord(), player, true).ordinal());
+		this.compactor = (MachineCompactor) this.machine.getMachineOnSide(player.getEntityData().getInteger("redmagic.machine.side"));
 	}
 	
 	protected void drawGuiContainerForegroundLayer(int par1, int par2) {

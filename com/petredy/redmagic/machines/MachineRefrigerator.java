@@ -9,7 +9,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
 import com.petredy.redmagic.api.machinery.IMachineHandler;
+import com.petredy.redmagic.items.Items;
 import com.petredy.redmagic.lib.Machines;
+import com.petredy.redmagic.machinery.Tribological;
 import com.petredy.redmagic.utils.InventoryUtils;
 import com.petredy.redmagic.utils.LogUtils;
 
@@ -24,17 +26,23 @@ public class MachineRefrigerator extends Machine{
 	public MachineRefrigerator(){
 		this.metadata = Machines.REFRIGERATOR_METADATA;
 		this.size = 6;
+		this.name = Machines.REFRIGERATOR_NAME;
 		this.baseID = Block.blockIron.blockID;
 		this.coolingID = Block.ice.blockID;
 		this.topID = this.baseID;
+		this.tribological = new Tribological(new ItemStack[]{
+			new ItemStack(Items.plateRhenium), new ItemStack(Items.coolingDevice), new ItemStack(Items.plateRhenium),
+			new ItemStack(Items.frameRehnium), new ItemStack(Items.logicCore), new ItemStack(Items.frameRehnium),
+			new ItemStack(Items.plateRhenium), new ItemStack(Items.coolingDevice), new ItemStack(Items.plateRhenium)
+		});
 	}
 	
-	public boolean canPlacedOnSide(int side){
-		return side != 0 && side != 1;
+	public boolean canPlacedOnSide(int side, int size){
+		return size == 1 && side != 0 && side != 1;
 	}
 	
 	public void update(IMachineHandler handler) {
-		if(tick++ >= neededTicks && !handler.getWorld().isRemote){
+		if(tick++ >= neededTicks && !handler.getWorld().isRemote && tribological.getStatus() > 0){
 			tick = 0;
 			if(this.isBuilt(handler.getWorld(), handler.getXCoord(), handler.getYCoord(), handler.getZCoord())){
 				ItemStack stack = this.getFreezingItem(handler.getWorld(), handler.getXCoord(), handler.getYCoord() + 1, handler.getZCoord());
@@ -45,6 +53,7 @@ public class MachineRefrigerator extends Machine{
 				}else{
 					if(stack != null && stack.itemID > 0 && freezing.itemID == stack.itemID){
 						this.freeze(handler.getWorld(), handler.getXCoord(), handler.getYCoord() + 1, handler.getZCoord());
+						this.tribological.damage(1f);
 					}else{
 						freezing = null;
 					}

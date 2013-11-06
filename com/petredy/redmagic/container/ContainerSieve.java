@@ -20,7 +20,7 @@ public class ContainerSieve extends Container {
 	
 	public ContainerSieve(EntityPlayer player, IMachineHandler machine){
 		this.machine = machine;
-		MachineSieve sieve = (MachineSieve) machine.getMachineOnSide(BlockUtils.getRotation(player.worldObj, machine.getXCoord(), machine.getYCoord(), machine.getZCoord(), player, true).ordinal());
+		MachineSieve sieve = (MachineSieve) machine.getMachineOnSide(player.getEntityData().getInteger("redmagic.machine.side"));
 		if(sieve != null){
 			int indexInput = 0;
 			for(int i = 0; i < 3; i++){

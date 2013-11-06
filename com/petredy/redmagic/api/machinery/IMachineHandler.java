@@ -6,6 +6,7 @@ import net.minecraft.world.World;
 
 import com.petredy.redmagic.api.redenergy.IEnergyHandler;
 import com.petredy.redmagic.machines.Machine;
+import com.petredy.redmagic.utils.BlockUtils.VirtualBlock;
 
 public interface IMachineHandler {
 
@@ -30,4 +31,6 @@ public interface IMachineHandler {
 	public int getXCoord();
 	public int getYCoord();
 	public int getZCoord();
+	
+	public VirtualBlock getBlockInfrontMachineOnSide(int side);
 }

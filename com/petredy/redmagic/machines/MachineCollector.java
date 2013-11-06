@@ -26,9 +26,9 @@ public class MachineCollector extends Machine{
 		this.name = Machines.COLLECTOR_NAME;
 		this.production = Composition.getStandard(20f, 20f, 20f, 20f, 0.0f);
 		this.tribological = new Tribological(new ItemStack[]{
-			new ItemStack(Items.plateRhenium), new ItemStack(Items.logicStorage), new ItemStack(Items.plateRhenium),
-			new ItemStack(Items.logicStorage), new ItemStack(Items.logicCore), new ItemStack(Items.logicStorage),
-			new ItemStack(Items.plateRhenium), new ItemStack(Items.logicStorage), new ItemStack(Items.plateRhenium)
+			new ItemStack(Items.plateRhenium), new ItemStack(Items.filterDevice), new ItemStack(Items.plateRhenium),
+			new ItemStack(Items.energyCondenser), new ItemStack(Items.filterDevice), new ItemStack(Items.energyCondenser),
+			new ItemStack(Items.plateRhenium), new ItemStack(Items.filterDevice), new ItemStack(Items.plateRhenium)
 		});
 	}
 	
@@ -47,6 +47,9 @@ public class MachineCollector extends Machine{
 		RedEnergy collected = handler.getEnergyHandler().collect(handler.getWorld(), new RedEnergy(handler.getWorld().provider.dimensionId, handler.getEnergyHandler().getChunkX(), handler.getEnergyHandler().getChunkZ(), comp));
 		if(collected.composition.getRedvalue() > 0){
 			tribological.damage(1f);
+			this.active = true;
+		}else{
+			this.active = false;
 		}
 		float heatUp = collected.composition.getRedvalue() / 100 * 5;
 		heatUp *= MODIFIER_LARGE_MACHINE_HEAT;

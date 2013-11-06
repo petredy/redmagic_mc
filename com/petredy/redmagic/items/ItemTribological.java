@@ -13,8 +13,8 @@ public class ItemTribological extends Item implements ITribologicalItem{
 	
 	public String name;
 	public float strength; 
-	public static int MAX_DAMAGE = 10000;
-	public static final int DIVISOR = 100;
+	public static int MAX_DAMAGE = 1000000;
+	public static final int DIVISOR = 10000;
 	
 	public ItemTribological(int par1, String name, float strength) {
 		super(par1);

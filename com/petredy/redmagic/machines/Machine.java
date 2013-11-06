@@ -1,12 +1,15 @@
 package com.petredy.redmagic.machines;
 
+import java.util.Collection;
 import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 
@@ -20,6 +23,7 @@ import com.petredy.redmagic.lib.Reference;
 import com.petredy.redmagic.machinery.IconHandler;
 import com.petredy.redmagic.machinery.MachineHandler;
 import com.petredy.redmagic.machinery.Tribological;
+import com.petredy.redmagic.utils.BlockUtils.VirtualBlock;
 import com.petredy.redmagic.utils.InventoryUtils;
 import com.petredy.redmagic.utils.LogUtils;
 
@@ -78,7 +82,8 @@ public class Machine implements IMachineIconProvider{
 		if(!handler.getWorld().isRemote){
 			ItemStack stack = new ItemStack(Items.machine, 1, getMetadata());
 			((IMachineItem)stack.getItem()).setTribological(stack, tribological);
-			InventoryUtils.dropItemStack(stack, handler.getWorld(), handler.getXCoord(), handler.getYCoord(), handler.getZCoord());
+			VirtualBlock dropBlock = handler.getBlockInfrontMachineOnSide(getSide());
+			InventoryUtils.dropItemStack(stack, handler.getWorld(), dropBlock.x, dropBlock.y, dropBlock.z);
 		}
 	}
 	
@@ -135,9 +140,40 @@ public class Machine implements IMachineIconProvider{
 		}
 		return icons;
 	}
-
 	
+	public boolean transferItemToSlot(IMachineHandler handler, IInventory inventory, int input, Collection<ItemStack> matches) {
+		VirtualBlock block = handler.getBlockInfrontMachineOnSide(getSide());
+		TileEntity entity = handler.getWorld().getBlockTileEntity(block.x, block.y, block.z);
+		if(entity instanceof IInventory){
+			IInventory inv = (IInventory)entity;
+			for(int i = 0; i < inv.getSizeInventory(); i++){
+				ItemStack slot = inv.getStackInSlot(i);
+				if(slot != null && InventoryUtils.contains(matches, slot)){
+					inventory.setInventorySlotContents(input, slot.copy());
+					inv.setInventorySlotContents(i, null);
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 	
+	public boolean transferItemToInventory(IMachineHandler handler, IInventory inventory, Collection<ItemStack> matches) {
+		VirtualBlock block = handler.getBlockInfrontMachineOnSide(getSide());
+		TileEntity entity = handler.getWorld().getBlockTileEntity(block.x, block.y, block.z);
+		if(entity instanceof IInventory){
+			IInventory inv = (IInventory)entity;
+			for(int i = 0; i < inv.getSizeInventory(); i++){
+				ItemStack slot = inv.getStackInSlot(i);
+				if(slot != null && InventoryUtils.contains(matches, slot)){
+					InventoryUtils.addItemStackToInventory(inventory, slot.copy());
+					inv.setInventorySlotContents(i, null);
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 	
 	
 }

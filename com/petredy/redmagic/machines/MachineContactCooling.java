@@ -1,11 +1,14 @@
 package com.petredy.redmagic.machines;
 
 import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import com.petredy.redmagic.api.machinery.IMachineHandler;
+import com.petredy.redmagic.items.Items;
 import com.petredy.redmagic.lib.BlockIndex;
 import com.petredy.redmagic.lib.Machines;
+import com.petredy.redmagic.machinery.Tribological;
 
 public class MachineContactCooling extends Machine{
 	
@@ -14,12 +17,22 @@ public class MachineContactCooling extends Machine{
 	public MachineContactCooling(){
 		this.metadata = Machines.CONTACT_COOLING_METADATA;
 		this.size = 1;
+		this.name = Machines.CONTACT_COOLING_NAME;
+		this.tribological = new Tribological(new ItemStack[]{
+			new ItemStack(Items.plateRhenium), new ItemStack(Items.coolingDevice), new ItemStack(Items.plateRhenium),
+			new ItemStack(Items.coolingDevice), new ItemStack(Items.coolingDevice), new ItemStack(Items.coolingDevice),
+			new ItemStack(Items.plateRhenium), new ItemStack(Items.coolingDevice), new ItemStack(Items.plateRhenium)
+		});
 	}
 	
 	public void update(IMachineHandler handler) {
-		if(handler.getHeat() > 0 && isAttachedBlockWater(handler.getWorld(), this.side, handler.getXCoord(), handler.getYCoord(), handler.getZCoord())){
-			handler.setHeat(handler.getHeat() - cooling);
+		if(tribological.getStatus() > 0 && handler.getHeat() > 0 && isAttachedBlockWater(handler.getWorld(), this.side, handler.getXCoord(), handler.getYCoord(), handler.getZCoord())){
+			handler.setHeat(handler.getHeat() - (cooling * tribological.getStatus() / 100));
 		}
+	}
+	
+	public boolean canPlacedOnSide(int side, int size){
+		return size == 1;
 	}
 
 	private boolean isAttachedBlockWater(World world, int side, int xCoord, int yCoord, int zCoord) {

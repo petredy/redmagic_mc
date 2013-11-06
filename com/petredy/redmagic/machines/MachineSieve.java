@@ -8,8 +8,10 @@ import net.minecraft.nbt.NBTTagCompound;
 
 import com.petredy.redmagic.Redmagic;
 import com.petredy.redmagic.api.machinery.IMachineHandler;
+import com.petredy.redmagic.items.Items;
 import com.petredy.redmagic.lib.Guis;
 import com.petredy.redmagic.lib.Machines;
+import com.petredy.redmagic.machinery.Tribological;
 import com.petredy.redmagic.recipes.sieve.SieveDictionary;
 import com.petredy.redmagic.redenergy.RedEnergy;
 import com.petredy.redmagic.redvalue.element.Composition;
@@ -29,27 +31,36 @@ public class MachineSieve extends Machine{
 	public MachineSieve(){
 		metadata = Machines.SIEVE_METADATA;
 		size = 1;
+		name = Machines.SIEVE_NAME;
 		this.inventoryInput = new InventoryBasic(Machines.SIEVE_NAME + ".input", false, 9);
 		this.inventoryOutput = new InventoryBasic(Machines.SIEVE_NAME + ".output", false, 9);
+		this.tribological = new Tribological(new ItemStack[]{
+			new ItemStack(Items.plateRhenium), new ItemStack(Items.filterDevice), new ItemStack(Items.plateRhenium),
+			new ItemStack(Items.frameRehnium), new ItemStack(Items.logicCore), new ItemStack(Items.frameRehnium),
+			new ItemStack(Items.plateRhenium), new ItemStack(Items.filterDevice), new ItemStack(Items.plateRhenium)
+		});
 	}
 	
 	@Override
 	public void update(IMachineHandler handler) {
-		if(item != null){
+		if(item != null && tribological.getStatus() > 0){
 			if(this.tick < neededTicks){
 				RedEnergy used = handler.getEnergyHandler().use(new RedEnergy(handler.getWorld().provider.dimensionId, handler.getEnergyHandler().getChunkX(), handler.getEnergyHandler().getChunkZ(), tickCost));
 				if(!used.isEmpty() && used.isEqual(new RedEnergy(handler.getWorld().provider.dimensionId, handler.getEnergyHandler().getChunkX(), handler.getEnergyHandler().getChunkZ(), tickCost))){
 					tick++;
-					
+					this.active = true;
 				}
 			}else{
 				if(InventoryUtils.addItemStackToInventory(inventoryOutput, SieveDictionary.findOutput(item).copy()) == null){
 					tick = 0;
 					item = null;
+					tribological.damage(1f);
 				}
+				this.active = false;
 				
 			}
 		}else{
+			this.active = false;
 			ItemStack next = InventoryUtils.popItemMatches(inventoryInput, 1, SieveDictionary.getInputs());
 			item = next;
 		}

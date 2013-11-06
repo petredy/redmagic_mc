@@ -21,6 +21,7 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
@@ -187,6 +188,7 @@ public class TileEntityMachineryCore extends TileEntity implements IMachineHandl
 	}
 
 	public boolean activate(int side, EntityPlayer player, float offX, float offY, float offZ) {
+		player.getEntityData().setInteger("redmagic.machine.side", side);
 		Machine machine = this.machines.get(side);
 		if(machine != null){
 			return machine.activate((IMachineHandler)this, player, offX, offY, offZ);
@@ -273,6 +275,55 @@ public class TileEntityMachineryCore extends TileEntity implements IMachineHandl
 	@Override
 	public int getChunkZ() {
 		return (int)(zCoord / 16);
+	}
+
+	@Override
+	public VirtualBlock getBlockInfrontMachineOnSide(int side) {
+		switch(side){
+		case 0: return new VirtualBlock(xCoord, yCoord - 2, zCoord);
+		case 1: return new VirtualBlock(xCoord, yCoord + 2, zCoord);
+		case 2: return new VirtualBlock(xCoord, yCoord, zCoord - 2);
+		case 3: return new VirtualBlock(xCoord, yCoord, zCoord + 2);
+		case 4: return new VirtualBlock(xCoord - 2, yCoord, zCoord);
+		case 5: return new VirtualBlock(xCoord + 2, yCoord, zCoord);
+		default: return new VirtualBlock(xCoord, yCoord - 2, zCoord);
+		}
+	}
+	
+	public void readFromNBT(NBTTagCompound tag){
+		super.readFromNBT(tag);
+		NBTTagCompound energyTag = tag.getCompoundTag("energy");
+		energy.readFromNBT(energyTag);
+		
+		heat = tag.getFloat("heat");
+		found = tag.getBoolean("found");
+		
+		NBTTagList list = tag.getTagList("machines");
+		for(int i = 0; i < list.tagCount(); i++){
+			NBTTagCompound machineTag = (NBTTagCompound) list.tagAt(i);
+			int side = machineTag.getInteger("side");
+			machines.put(side, Machine.loadFromNBT(machineTag));
+		}
+	}
+	
+	public void writeToNBT(NBTTagCompound tag){
+		super.writeToNBT(tag);
+		NBTTagCompound energyTag = new NBTTagCompound();
+		energy.writeToNBT(energyTag);
+		tag.setTag("energy", energyTag);
+		
+		tag.setFloat("heat", heat);
+		tag.setBoolean("found", found);
+		
+		NBTTagList list = new NBTTagList();
+		for(Machine machine: machines.values()){
+			NBTTagCompound machineTag = new NBTTagCompound();
+			if(machine != null){
+				machine.writeToNBT(machineTag);
+				list.appendTag(machineTag);
+			}
+		}
+		tag.setTag("machines", list);
 	}
 	
 	

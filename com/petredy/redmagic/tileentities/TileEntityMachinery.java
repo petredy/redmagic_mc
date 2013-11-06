@@ -31,4 +31,16 @@ public class TileEntityMachinery extends TileEntity {
     {
 		this.readFromNBT(pkt.data);
     }
+	
+	public void readFromNBT(NBTTagCompound tag){
+		super.readFromNBT(tag);
+		position = tag.getInteger("position");
+		reference = VirtualBlock.loadFromNBT(tag);
+	}
+	
+	public void writeToNBT(NBTTagCompound tag){
+		super.writeToNBT(tag);
+		tag.setInteger("position", position);
+		if(reference != null)reference.writeToNBT(tag);
+	}
 }

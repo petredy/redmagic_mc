@@ -26,7 +26,7 @@ public class ContainerFurnace extends Container {
 	
 	public ContainerFurnace(EntityPlayer player, IMachineHandler machine){
 		this.machine = machine;
-		this.furnace = (MachineFurnace) machine.getMachineOnSide(BlockUtils.getRotation(player.worldObj, machine.getXCoord(), machine.getYCoord(), machine.getZCoord(), player, true).ordinal());
+		this.furnace = (MachineFurnace) machine.getMachineOnSide(player.getEntityData().getInteger("redmagic.machine.side"));
 		if(furnace != null){
 			this.addSlotToContainer(new Slot(furnace.inventory, 0, 56, 34));
 			this.addSlotToContainer(new SlotOutput(furnace.inventory, 1, 116, 35));

@@ -21,7 +21,7 @@ public class ContainerCompactor extends Container {
 	
 	public ContainerCompactor(EntityPlayer player, IMachineHandler machine){
 		this.machine = machine;
-		MachineCompactor compactor = (MachineCompactor) machine.getMachineOnSide(BlockUtils.getRotation(player.worldObj, machine.getXCoord(), machine.getYCoord(), machine.getZCoord(), player, true).ordinal());
+		MachineCompactor compactor = (MachineCompactor) machine.getMachineOnSide(player.getEntityData().getInteger("redmagic.machine.side"));
 		if(compactor != null){
 			this.addSlotToContainer(new SlotOutput(compactor.inventory, 0, 80, 35));
 			this.addSlotToContainer(new Slot(compactor.inventory, 1, 44, 17));

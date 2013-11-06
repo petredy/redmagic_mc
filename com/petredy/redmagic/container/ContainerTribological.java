@@ -19,7 +19,7 @@ public class ContainerTribological extends Container {
 	
 	public ContainerTribological(EntityPlayer player, IMachineHandler handler){
 		this.handler = handler;
-		this.machine = handler.getMachineOnSide(BlockUtils.getRotation(player.worldObj, handler.getXCoord(), handler.getYCoord(), handler.getZCoord(), player, true).ordinal());
+		this.machine = handler.getMachineOnSide(player.getEntityData().getInteger("redmagic.machine.side"));
 		if(machine != null){
 			int index = 0;
 			for(int i = 0; i < 3; i++){
