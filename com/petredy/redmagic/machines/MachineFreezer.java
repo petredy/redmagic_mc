@@ -41,6 +41,13 @@ public class MachineFreezer extends Machine{
 		});
 	}
 	
+	public boolean canPlacedOnSide(int side, int size){
+		switch(size){
+		case 1: return true;
+		case 18: return side != 1;
+		default: return false;
+		}
+	}
 	
 	public void update(IMachineHandler handler) {
 		if(item != null){
@@ -54,7 +61,7 @@ public class MachineFreezer extends Machine{
 				item = null;
 				this.active = false;
 			}
-		}else{
+		}else if(tribological.getStatus() > 0){
 			this.active = false;
 			if(inventory.getStackInSlot(0) != null && getCooling(inventory.getStackInSlot(0)) > 0){
 				item = inventory.getStackInSlot(0).copy();

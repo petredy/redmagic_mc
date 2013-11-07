@@ -325,6 +325,12 @@ public class TileEntityMachineryCore extends TileEntity implements IMachineHandl
 		}
 		tag.setTag("machines", list);
 	}
+
+	public void removeAllMachines() {
+		for(Machine machine: machines.values()){
+			machine.remove((IMachineHandler)this);
+		}
+	}
 	
 	
 }

@@ -276,5 +276,15 @@ public class BlockMachinery extends BlockContainer {
 		player.openGui(Redmagic.instance, Guis.MACHINE, world, x, y, z);
 		return true;
 	}
+	
+	public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6){
+		if(par6 == BlockIndex.MACHINERY_CORE_METADATA){
+			TileEntityMachineryCore core = (TileEntityMachineryCore) par1World.getBlockTileEntity(par2, par3, par4);
+			if(core != null){
+				core.removeAllMachines();
+			}
+		}
+		super.breakBlock(par1World, par2, par3, par4, par5, par6);
+    }
 
 }

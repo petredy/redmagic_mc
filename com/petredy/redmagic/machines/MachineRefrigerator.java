@@ -32,7 +32,7 @@ public class MachineRefrigerator extends Machine{
 		this.topID = this.baseID;
 		this.tribological = new Tribological(new ItemStack[]{
 			new ItemStack(Items.plateRhenium), new ItemStack(Items.coolingDevice), new ItemStack(Items.plateRhenium),
-			new ItemStack(Items.frameRehnium), new ItemStack(Items.logicCore), new ItemStack(Items.frameRehnium),
+			new ItemStack(Items.frameRhenium), new ItemStack(Items.logicCore), new ItemStack(Items.frameRhenium),
 			new ItemStack(Items.plateRhenium), new ItemStack(Items.coolingDevice), new ItemStack(Items.plateRhenium)
 		});
 	}

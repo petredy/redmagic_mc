@@ -34,9 +34,9 @@ public class MachineCompactor extends Machine{
 		this.name = Machines.COMPACTOR_NAME;
 		this.inventory = new InventoryBasic(Machines.COMPACTOR_NAME, false, 5);
 		this.tribological = new Tribological(new ItemStack[]{
-			new ItemStack(Items.plateRhenium), new ItemStack(Items.frameRehnium), new ItemStack(Items.plateRhenium),
-			new ItemStack(Items.frameRehnium), new ItemStack(Items.plateRhenium), new ItemStack(Items.frameRehnium),
-			new ItemStack(Items.plateRhenium), new ItemStack(Items.frameRehnium), new ItemStack(Items.plateRhenium)
+			new ItemStack(Items.plateRhenium), new ItemStack(Items.frameRhenium), new ItemStack(Items.plateRhenium),
+			new ItemStack(Items.frameRhenium), new ItemStack(Items.plateRhenium), new ItemStack(Items.frameRhenium),
+			new ItemStack(Items.plateRhenium), new ItemStack(Items.frameRhenium), new ItemStack(Items.plateRhenium)
 		});
 	}
 	

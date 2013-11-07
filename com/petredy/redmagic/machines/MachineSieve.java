@@ -36,9 +36,17 @@ public class MachineSieve extends Machine{
 		this.inventoryOutput = new InventoryBasic(Machines.SIEVE_NAME + ".output", false, 9);
 		this.tribological = new Tribological(new ItemStack[]{
 			new ItemStack(Items.plateRhenium), new ItemStack(Items.filterDevice), new ItemStack(Items.plateRhenium),
-			new ItemStack(Items.frameRehnium), new ItemStack(Items.logicCore), new ItemStack(Items.frameRehnium),
+			new ItemStack(Items.frameRhenium), new ItemStack(Items.logicCore), new ItemStack(Items.frameRhenium),
 			new ItemStack(Items.plateRhenium), new ItemStack(Items.filterDevice), new ItemStack(Items.plateRhenium)
 		});
+	}
+	
+	public boolean canPlacedOnSide(int side, int size){
+		switch(size){
+		case 1: return side == 1;
+		case 18: return side == 1;
+		default: return false;
+		}
 	}
 	
 	@Override
@@ -59,7 +67,7 @@ public class MachineSieve extends Machine{
 				this.active = false;
 				
 			}
-		}else{
+		}else if(tribological.getStatus() > 0){
 			this.active = false;
 			ItemStack next = InventoryUtils.popItemMatches(inventoryInput, 1, SieveDictionary.getInputs());
 			item = next;

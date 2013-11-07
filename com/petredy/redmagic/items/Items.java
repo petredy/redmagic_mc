@@ -33,7 +33,7 @@ public class Items {
 	public static ItemTribological logicStorage;
 	public static ItemTribological energyCondenser;
 	public static ItemTribological plateRhenium;
-	public static ItemTribological frameRehnium;
+	public static ItemTribological frameRhenium;
 	public static ItemTribological coolingDevice;
 	public static ItemTribological heatDevice;
 	public static ItemTribological filterDevice;
@@ -64,7 +64,7 @@ public class Items {
 		logicStorage = new ItemTribological(ItemIndex.LOCIG_STORAGE_ID, ItemIndex.LOGIC_STORAGE_NAME, 2f);
 		energyCondenser = new ItemTribological(ItemIndex.ENERGY_CONDENSER_ID, ItemIndex.ENERGY_CONDENSER_NAME, 4f);
 		plateRhenium = new ItemTribological(ItemIndex.PLATE_RHENIUM_ID, ItemIndex.PLATE_RHENIUM_NAME, 1f);
-		frameRehnium = new ItemTribological(ItemIndex.FRAME_RHENIUM_ID, ItemIndex.FRAME_RHENIUM_NAME, 2f);
+		frameRhenium = new ItemTribological(ItemIndex.FRAME_RHENIUM_ID, ItemIndex.FRAME_RHENIUM_NAME, 2f);
 		coolingDevice = new ItemTribological(ItemIndex.COOLING_DEVICE_ID, ItemIndex.COOLING_DEVICE_NAME, 5f);
 		heatDevice = new ItemTribological(ItemIndex.HEAT_DEVICE_ID, ItemIndex.HEAT_DEVICE_NAME, 5f);
 		filterDevice = new ItemTribological(ItemIndex.FILTER_DEVICE_ID, ItemIndex.FILTER_DEVICE_NAME, 2f);
@@ -208,88 +208,81 @@ public class Items {
 		// Machines
 		
 		GameRegistry.addShapedRecipe(new ItemStack(machine, 1, Machines.COLLECTOR_METADATA), new Object[]{
-			"FFF",
-			"ISI",
-			"PCP",
+			"PFP",
+			"EFE",
+			"PFP",
 			'P', new ItemStack(plateRhenium),
-			'I', new ItemStack(crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA),
-			'F', Block.fenceIron,
-			'C', new ItemStack(logicCore),
-			'S', new ItemStack(logicStorage)
+			'F', new ItemStack(filterDevice),
+			'E', new ItemStack(energyCondenser)
 		});
 		
 		GameRegistry.addShapedRecipe(new ItemStack(machine, 1, Machines.CONTACT_COOLING_METADATA), new Object[]{
-			"fIf",
-			"sis",
 			"PCP",
-			'f', Item.flint,
-			'I', Block.ice,
+			"CCC",
+			"PCP",
 			'P',  new ItemStack(plateRhenium),
-			's', new ItemStack(logicStorage),
-			'C', new ItemStack(logicCore)
+			'C', new ItemStack(coolingDevice)
 		});
 		
 		GameRegistry.addShapedRecipe(new ItemStack(machine, 1, Machines.FURNACE_METADATA), new Object[]{
-			"FFF",
-			"ICI",
-			"PcP",
-			'I', new ItemStack(crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA),
+			"PSP",
+			"HCH",
+			"PHP",
+			'H', new ItemStack(heatDevice),
 			'P', new ItemStack(plateRhenium),
-			'F', Block.furnaceIdle,
-			'C', new ItemStack(energyCondenser),
-			'c', new ItemStack(logicCore)
+			'C', new ItemStack(logicCore),
+			'S', new ItemStack(logicStorage)
 		});
 		
 		GameRegistry.addShapedRecipe(new ItemStack(machine, 1, Machines.DISINTEGRATOR_METADATA), new Object[]{
 			"PCP",
-			"SRS",
-			"PcP",
-			'R', new ItemStack(redhole),
+			"HLc",
+			"PSP",
+			'H', new ItemStack(heatDevice),
 			'P', new ItemStack(plateRhenium),
 			'C', new ItemStack(energyCondenser),
 			'S', new ItemStack(logicStorage),
-			'c', new ItemStack(logicCore)
+			'c', new ItemStack(coolingDevice),
+			'L', new ItemStack(logicCore)
 		});
 		
 		GameRegistry.addShapedRecipe(new ItemStack(machine, 1, Machines.CHARGER_METADATA), new Object[]{
-			"ISI",
-			"FFF",
-			"PCP",
+			"PSP",
+			"FCF",
+			"PFP",
 			'P', new ItemStack(plateRhenium),
 			'C', new ItemStack(logicCore),
-			'F', Block.fenceIron,
+			'F', new ItemStack(filterDevice),
 			'S', new ItemStack(logicStorage)
 		});
 		
 		GameRegistry.addShapedRecipe(new ItemStack(machine, 1, Machines.REFRIGERATOR_METADATA), new Object[]{
-			"iii",
-			"PSP",
-			"PCP",
-			'i', Block.ice,
+			"PcP",
+			"FCF",
+			"PcP",
 			'P', new ItemStack(plateRhenium),
-			'S', new ItemStack(logicStorage),
-			'C', new ItemStack(logicCore)	
+			'F', new ItemStack(frameRhenium),
+			'C', new ItemStack(logicCore),
+			'c', new ItemStack(coolingDevice)
 		});
 		
 		GameRegistry.addShapedRecipe(new ItemStack(machine, 1, Machines.FREEZER_METADATA), new Object[]{
-			"fif",
-			"fif",
-			"PFP",
-			'i', Block.ice,
-			'f', Item.flint,
-			'F', Block.furnaceIdle,
-			'c', new ItemStack(logicCore),
+			"PcP",
+			"SCS",
+			"PcP",
+			'C', new ItemStack(logicCore),
+			'S', new ItemStack(logicStorage),
+			'c', new ItemStack(coolingDevice),
 			'P', new ItemStack(plateRhenium),
 		});
 		
 	
 		GameRegistry.addShapedRecipe(new ItemStack(machine, 1, Machines.COMPACTOR_METADATA), new Object[]{
-			"POP",
-			"PWP",
-			"PPP",
+			"PFP",
+			"FPF",
+			"PFP",
 			'P', new ItemStack(plateRhenium),
-			'O', Block.obsidian,
-			'W', Block.workbench
+			'F', new ItemStack(frameRhenium)
 		});
 		
 		/* TODO:
@@ -299,20 +292,23 @@ public class Items {
 		*/
 		
 		GameRegistry.addShapedRecipe(new ItemStack(machine, 1, Machines.SIEVE_METADATA), new Object[]{
-			"FFF",
-			"P P",
-			"P P",
-			'F', Block.fenceIron,
+			"PFP",
+			"fCf",
+			"PFP",
+			'F', new ItemStack(filterDevice),
+			'f', new ItemStack(frameRhenium),
+			'C', new ItemStack(logicCore),
 			'P', new ItemStack(plateRhenium)
 		});
 		
 		GameRegistry.addShapedRecipe(new ItemStack(machine, 1, Machines.CRYSTALIZER_METADATA), new Object[]{
-			"PIP",
-			"IiI",
-			"PIP",
+			"PcP",
+			"cCc",
+			"PEP",
 			'P', new ItemStack(plateRhenium),
-			'I', new ItemStack(crafting, 1, ItemIndex.CRAFTING_INGOT_RHENIUM_METADATA),
-			'i', Block.ice	
+			'C', new ItemStack(logicCore),
+			'c', new ItemStack(coolingDevice),
+			'E', new ItemStack(energyCondenser)
 		});
 		
 		

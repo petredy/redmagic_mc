@@ -44,6 +44,14 @@ public class MachineDisintegrator extends Machine{
 		});
 	}
 	
+	public boolean canPlacedOnSide(int side, int size){
+		switch(size){
+		case 1: return true;
+		case 18: return side != 1;
+		default: return false;
+		}
+	}
+	
 	public void update(IMachineHandler handler) {
 		if(item != null && tribological.getStatus() > 0){
 			Composition redvalue = RedvalueDictionary.getComposition(item);
@@ -70,7 +78,7 @@ public class MachineDisintegrator extends Machine{
 					}
 				}
 			}
-		}else{
+		}else if(tribological.getStatus() > 0){
 			this.active = false;
 			if(handler.getHeat() < -100 && inventory.getStackInSlot(0) != null && RedvalueDictionary.getComposition(inventory.getStackInSlot(0)) != null && !RedvalueDictionary.getComposition(inventory.getStackInSlot(0)).isEmpty()){
 				item = inventory.getStackInSlot(0);

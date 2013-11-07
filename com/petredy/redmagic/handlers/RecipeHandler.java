@@ -73,6 +73,7 @@ public class RecipeHandler {
 		SieveDictionary.register(new ItemStack(Block.sapling, 1, 1), new ItemStack(Block.leaves, 1, 1));
 		SieveDictionary.register(new ItemStack(Block.sapling, 1, 2), new ItemStack(Block.leaves, 1, 2));
 		SieveDictionary.register(new ItemStack(Block.sapling, 1, 3), new ItemStack(Block.leaves, 1, 3));
+	
 	}
 	
 }

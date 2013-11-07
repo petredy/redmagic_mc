@@ -87,7 +87,7 @@ public class MachineFurnace extends Machine{
 				}
 				burningStack = null;
 			}
-		}else{
+		}else if(tribological.getStatus() > 0){
 			this.active = false;
 			if(inventory.getStackInSlot(0) != null){
 				ItemStack inputBurned = FurnaceRecipes.smelting().getSmeltingResult(inventory.getStackInSlot(0));

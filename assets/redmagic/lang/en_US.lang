@@ -37,20 +37,21 @@ tile.breaker.name=Block Breaker
 
 tile.es.loader.name=ES Loader
 
+tile.machinery.core.name=Machinery Core
+tile.machinery.hull.name=Machinery Block
+tile.machinery.drive.name=Machinery Drive
+
 item.trading.crystal.name=Trading Crystal
 item.glasses.name=Virtual Reality Glasses
 
 item.crafting.ingotRhenium.name=Rhenium Ingot
 item.crafting.nuggetRhenium.name=Rhenium Nugget
-item.crafting.logic.core.name=Logic Core
-item.crafting.logic.storage.name=Logic Memory
-item.crafting.energy.condenser.name=Energy Condenser
-item.crafting.plate.rhenium.name=Rhenium Plate
 item.crafting.concentrated.granite.name=Concentrated Granite
 
 item.soul.name=Soul
 
 item.redhole.name=Redhole
+item.redhole.null.name=Redhole
 item.redhole.storeable.name=Store-able Redhole
 item.redhole.portable.name=Port-able Redhole
 item.redhole.disintegrateable.name=Disintegrate-able Redhole
@@ -82,3 +83,13 @@ item.jackhammer.name=Jackhammer
 item.es.storage.small.name=Small ES Device
 item.es.storage.medium.name=Medium ES Device
 item.es.storage.large.name=Large ES Device
+
+
+item.logic.core.name=Logic Core
+item.logic.storage.name=Logic Storage
+item.logic.energy.condenser.name=Energy Condenser
+item.plate.rhenium.name=Rhenium Plate
+item.frame.rhenium.name=Rhenium Frame
+item.cooling.device.name=Cooling Device
+item.heat.device.name=Heat Device
+item.filter.device.name=Filter Device
