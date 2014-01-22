@@ -1,0 +1,38 @@
+language.name=English
+language.region=US
+language.code=en_US
+
+itemGroup.redmagic=Redmagic
+redmagic.player.inventory=Redhole Inventory
+
+tile.trading.chest.name=Trading Chest
+
+tile.decoration.marble.name=Marble
+tile.decoration.marble.bricks.name=Marble Bricks
+tile.decoration.granite.name=Granite
+
+tile.ore.rhenium.name=Rhenium Ore
+tile.cage.name=Soul Cage
+
+tile.crystal.small.name=Small Crystal
+tile.crystal.medium.name=Medium Crystal
+tile.crystal.large.name=Large Crystal
+tile.crystal.leftover.name=Leftover Crystal
+
+tile.earthwire.name=Earthwire
+tile.energy.summoner.name=Lightning Summoner
+tile.soul.name=Soul
+tile.soul.energy.access.name=Energy Access Block
+
+item.trading.crystal.name=Trading Crystal
+item.glasses.name=Virtual Reality Glasses
+
+item.crafting.ingotRhenium.name=Rhenium Ingot
+item.crafting.nuggetRhenium.name=Rhenium Nugget
+item.crafting.gearRhenium.name=Rhenium Gear
+
+item.redhole.name=Redhole
+item.redhole.storeable.name=Storeable Redhole
+item.redhole.portable.name=Portable Redhole
+
+item.redmeter.name=Redmeter
