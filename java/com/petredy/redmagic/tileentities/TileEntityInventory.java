@@ -1,5 +1,9 @@
 package com.petredy.redmagic.tileentities;
 
+import com.petredy.redmagic.forge.helper.NBTTagHelper;
+import com.petredy.redmagic.forge.helper.WorldHelper;
+import com.petredy.redmagic.forge.wrapper.TileEntityWrapper;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -7,7 +11,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 
-public class TileEntityInventory extends TileEntity implements IInventory{
+public class TileEntityInventory extends TileEntityWrapper implements IInventory{
 
 	public ItemStack[] inv;
 	public String name;
@@ -128,11 +132,11 @@ public class TileEntityInventory extends TileEntity implements IInventory{
     public void readFromNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.readFromNBT(par1NBTTagCompound);
-        NBTTagList nbttaglist = par1NBTTagCompound.getTagList("Items");
+        NBTTagList nbttaglist = (NBTTagList) par1NBTTagCompound.getTag("Items");
 
         for (int i = 0; i < nbttaglist.tagCount(); ++i)
         {
-            NBTTagCompound nbttagcompound1 = (NBTTagCompound)nbttaglist.tagAt(i);
+            NBTTagCompound nbttagcompound1 = NBTTagHelper.getTagAt(nbttaglist, i);
             int j = nbttagcompound1.getByte("Slot") & 255;
 
             if (j >= 0 && j < this.inv.length)
@@ -178,7 +182,7 @@ public class TileEntityInventory extends TileEntity implements IInventory{
      */
     public boolean isUseableByPlayer(EntityPlayer par1EntityPlayer)
     {
-        return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false : par1EntityPlayer.getDistanceSq((double)this.xCoord + 0.5D, (double)this.yCoord + 0.5D, (double)this.zCoord + 0.5D) <= 64.0D;
+        return WorldHelper.getBlockTileEntity(this.getWorld(), this.getX(), this.getY(), this.getZ()) != this ? false : par1EntityPlayer.getDistanceSq((double)this.getX() + 0.5D, (double)this.getY() + 0.5D, (double)this.getZ() + 0.5D) <= 64.0D;
     }
 
 	@Override

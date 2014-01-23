@@ -1,7 +1,11 @@
 package com.petredy.redmagic.utils;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
 
 import com.petredy.redmagic.Redmagic;
 import com.petredy.redmagic.lib.Comments;
@@ -10,20 +14,18 @@ import com.petredy.redmagic.lib.Reference;
 import cpw.mods.fml.common.FMLLog;
 
 
-import net.minecraftforge.common.Configuration;
-import net.minecraftforge.common.Property;
 
 public class LogUtils {
 	
-	private static Logger redLogger = Logger.getLogger(Reference.MOD_ID);
+	private static Logger redLogger;
 	
 	public static void init(Configuration config){
-		Property propDebug = config.get(Configuration.CATEGORY_GENERAL, Reference.DEBUG, false);
+		Property propDebug = config.get(Configuration.CATEGORY_GENERAL, Reference.DEBUG, true);
 		propDebug.comment = Comments.DEBUG;
 		Redmagic.DEBUG = propDebug.getBoolean(true);
 		if (Redmagic.DEBUG){
+			redLogger = LogManager.getLogger(Reference.MOD_ID);
 			LogUtils.info("Initialise Debugging...");
-			redLogger.setParent(FMLLog.getLogger());
 		}
 	}
 
@@ -42,19 +44,14 @@ public class LogUtils {
     	}
     }
 
-    public static void severe(String message) {
+    public static void fatal(String message) {
 
-        log(Level.SEVERE, message);
-    }
-
-    public static void debug(String message) {
-
-        log(Level.WARNING, "[DEBUG] " + message);
+        log(Level.FATAL, message);
     }
 
     public static void warning(String message) {
 
-        log(Level.WARNING, message);
+        log(Level.WARN, message);
     }
 
     public static void info(String message) {
@@ -62,24 +59,9 @@ public class LogUtils {
         log(Level.INFO, message);
     }
 
-    public static void config(String message) {
+    public static void debug(String message) {
 
-        log(Level.CONFIG, message);
-    }
-
-    public static void fine(String message) {
-
-        log(Level.FINE, message);
-    }
-
-    public static void finer(String message) {
-
-        log(Level.FINER, message);
-    }
-
-    public static void finest(String message) {
-
-        log(Level.FINEST, message);
+        log(Level.DEBUG, message);
     }
 	
 	

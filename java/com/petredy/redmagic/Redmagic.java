@@ -16,6 +16,8 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.network.FMLEventChannel;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -27,13 +29,10 @@ import com.petredy.redmagic.core.CreativeTabRedMagic;
 import com.petredy.redmagic.handlers.*;
 import com.petredy.redmagic.items.Items;
 import com.petredy.redmagic.lib.*;
-import com.petredy.redmagic.machinery.MachineHandler;
-import com.petredy.redmagic.network.PacketHandler;
-import com.petredy.redmagic.redvalue.RedvalueDictionary;
-import com.petredy.redmagic.trading.TradingManager;
+import com.petredy.redmagic.network.NetworkHandler;
 import com.petredy.redmagic.utils.LogUtils;
+
 @Mod( modid = Reference.MOD_ID, name=Reference.MOD_NAME, version=Reference.VERSION)
-@NetworkMod(channels = { Reference.PACKET_CHANNEL },clientSideRequired = true, serverSideRequired = true, packetHandler = PacketHandler.class)
 
 public class Redmagic{
 	@SidedProxy(clientSide = Reference.PROXY_CLIENT, serverSide = Reference.PROXY_SERVER)
@@ -79,18 +78,12 @@ public class Redmagic{
       	
       	//Initialise block registration
       	Blocks.init();
-      	
-        //Register GuiHandler
-        NetworkRegistry.instance().registerGuiHandler(instance, this.proxy);
         
         //Register Rendering IDs
         proxy.initRendering();
   		
   		//Configurate
       	ConfigHandler.postConfig(config);
-      	
-      	//Initialise Recipe registration
-      	RecipeHandler.init();
         
         config.save();
 	}
@@ -106,18 +99,6 @@ public class Redmagic{
 		proxy.registerKeyBinding();
 		proxy.registerRendering();
 		
-		//Register TradingSystem loading/saving
-		MinecraftForge.EVENT_BUS.register(new WorldLoadingHandler());
-		
-		//Register Instant Sleep Ability
-		MinecraftForge.EVENT_BUS.register(new PlayerSleepHandler());
-		
-		//Register World Generation
-		GameRegistry.registerWorldGenerator(new WorldGenerationHandler());
-		
-		//Register Player loading/saving
-		GameRegistry.registerPlayerTracker(new PlayerTracker());
-		
     }
 	
 	//----------------------------------------------------------------------------------------
@@ -126,10 +107,10 @@ public class Redmagic{
     public void postInit(FMLPostInitializationEvent event)
     {
 		
-		//Initilase Redvalue configuration
-      	RedvalueConfigurationHandler.init();
-		
-		// Addons
-		RedvalueDictionary.initialise();
+    }
+	
+	@EventHandler
+    public void serverLoad(FMLServerStartingEvent event) {
+		NetworkHandler.init();
     }
 }

@@ -13,14 +13,13 @@ import com.petredy.redmagic.lib.ItemIndex;
 import com.petredy.redmagic.lib.Keys;
 import com.petredy.redmagic.lib.Reference;
 import com.petredy.redmagic.lib.Textures;
-import com.petredy.redmagic.utils.GlassesUtils;
 
 import cpw.mods.fml.common.registry.EntityRegistry;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.Configuration;
-import net.minecraftforge.common.Property;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
 
 public class ConfigHandler {
 	public static void config(Configuration config){
@@ -36,20 +35,10 @@ public class ConfigHandler {
 		key.comment = Comments.KEY_EXTRA;
 		Keys.KEY_EXTRA_ID = key.getInt(Keys.KEY_EXTRA_DEFAULT);
 		
-		Redmagic.proxy.setKeyBinding(Keys.KEY_EXTRA_NAME, Keys.KEY_EXTRA_ID);
-		
-		//.........................................................................
-		
-		Property sleeprop = config.get("general", "sleep", Reference.SLEEP);
-		sleeprop.comment = Comments.SLEEP;
-		Reference.SLEEP = sleeprop.getBoolean(Reference.SLEEP);
-		
-		Property alwaysSleeprop = config.get("general", "sleep_always", Reference.SLEEP_ALWAYS);
-		alwaysSleeprop.comment = Comments.SLEEP_ALWAYS;
-		Reference.SLEEP_ALWAYS = alwaysSleeprop.getBoolean(Reference.SLEEP_ALWAYS);
+		Redmagic.proxy.setKeyBinding(Keys.KEY_EXTRA_NAME, Keys.KEY_EXTRA_ID);	
 	}
 
 	public static void postConfig(Configuration config){
-		Configs.GLASSES_ORE_DIC = config.get("glasses", "ores", GlassesUtils.getOres(), "Always write id and metadata for your ore like the default values.").getIntList();
+		
 	}
 }

@@ -2,6 +2,9 @@ package com.petredy.redmagic.utils;
 
 import java.util.Collection;
 
+import com.petredy.redmagic.forge.helper.NBTTagHelper;
+import com.petredy.redmagic.forge.helper.WorldHelper;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.inventory.IInventory;
@@ -12,21 +15,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
 
 public class InventoryUtils {
-	
-	public static IInventory getInventoryOnSide(World world, int x, int y, int z, int side){
-		switch(side){
-			case 0: return (IInventory) world.getBlockTileEntity(x, y - 1, z);
-			case 1: return (IInventory) world.getBlockTileEntity(x, y + 1, z);
-			case 2: return (IInventory) world.getBlockTileEntity(x, y, z - 1);
-			case 3: return (IInventory) world.getBlockTileEntity(x, y, z + 1);
-			case 4: return (IInventory) world.getBlockTileEntity(x - 1, y, z);
-			case 5: return (IInventory) world.getBlockTileEntity(x + 1, y, z);
-		}
-		return null;
-	}
 	
 	public static boolean containsInventoryItems(IInventory inventory, ItemStack[] items){
 		ItemStack[] containedItems = containedItemsInInventory(inventory, items);
@@ -133,7 +123,7 @@ public class InventoryUtils {
 				inventory.setInventorySlotContents(i, stackToMove);
 				return null;
 			}
-			if (stackToMove.itemID == stack.itemID && (stackToMove.getItem().isDamageable() || stackToMove.getItemDamage() == stack.getItemDamage()) && ItemStack.areItemStackTagsEqual(stack, stackToMove)) {
+			if (stackToMove.isItemEqual(stack) && (stackToMove.getItem().isDamageable() || stackToMove.getItemDamage() == stack.getItemDamage()) && ItemStack.areItemStackTagsEqual(stack, stackToMove)) {
 				if (stackToMove.stackSize + stack.stackSize <= stack.getMaxStackSize()) {
 					stack.stackSize += stackToMove.stackSize;
 					inventory.setInventorySlotContents(i, stack);
@@ -180,7 +170,7 @@ public class InventoryUtils {
     {
         for (int var2 = 0; var2 < inv.length; ++var2)
         {
-            if (inv[var2] != null && inv[var2].itemID == par1ItemStack.itemID && inv[var2].isStackable() && inv[var2].stackSize < inv[var2].getMaxStackSize() && inv[var2].stackSize < 64 && (!inv[var2].getHasSubtypes() || inv[var2].getItemDamage() == par1ItemStack.getItemDamage()) && ItemStack.areItemStackTagsEqual(inv[var2], par1ItemStack))
+            if (inv[var2] != null && inv[var2].isItemEqual(par1ItemStack) && inv[var2].isStackable() && inv[var2].stackSize < inv[var2].getMaxStackSize() && inv[var2].stackSize < 64 && (!inv[var2].getHasSubtypes() || inv[var2].getItemDamage() == par1ItemStack.getItemDamage()) && ItemStack.areItemStackTagsEqual(inv[var2], par1ItemStack))
             {
                 return var2;
             }
@@ -239,59 +229,39 @@ public class InventoryUtils {
 		return used;
 	}
 	
-	
-	public static int reduceIDInInventory(IInventory inv, int id, int amount) {
-		int used = 0;
-		for(int i = 0; i < inv.getSizeInventory(); i++){
-			ItemStack item = inv.getStackInSlot(i);
-			if(item != null && item.itemID == id && item.stackSize > 0){
-				if(item.stackSize - amount >= 0){
-					inv.decrStackSize(i, amount);
-					if(item.stackSize <= 0)inv.setInventorySlotContents(i, null);
-					return amount;
-				}else{
-					used += item.stackSize;
-					inv.setInventorySlotContents(i, null);
-				}
-			}
-			
-		}
-		return used;
-	}
-	
 	public static ItemStack addToAdjacentInventory(World world, int x, int y, int z, ItemStack stack){
-		TileEntity entityTo = world.getBlockTileEntity(x, y + 1, z);
+		TileEntity entityTo = WorldHelper.getBlockTileEntity(world, x, y + 1, z);
 		ItemStack rtn = null;
 		if(entityTo instanceof IInventory){
 			IInventory inv = (IInventory)entityTo;
 			ItemStack drop = InventoryUtils.addItemStackToInventory(inv, stack);
 			if(drop == null)return null;
 		}
-		TileEntity entityBo = world.getBlockTileEntity(x, y - 1, z);
+		TileEntity entityBo = WorldHelper.getBlockTileEntity(world, x, y - 1, z);
 		if(entityBo instanceof IInventory){
 			IInventory inv = (IInventory)entityBo;
 			ItemStack drop = InventoryUtils.addItemStackToInventory(inv, stack);
 			if(drop == null)return null;
 		}
-		TileEntity entityBa = world.getBlockTileEntity(x, y, z - 1);
+		TileEntity entityBa = WorldHelper.getBlockTileEntity(world, x, y, z - 1);
 		if(entityBa instanceof IInventory){
 			IInventory inv = (IInventory)entityBa;
 			ItemStack drop = InventoryUtils.addItemStackToInventory(inv, stack);
 			if(drop == null)return null;
 		}
-		TileEntity entityFr = world.getBlockTileEntity(x, y, z + 1);
+		TileEntity entityFr = WorldHelper.getBlockTileEntity(world, x, y, z + 1);
 		if(entityFr instanceof IInventory){
 			IInventory inv = (IInventory)entityFr;
 			ItemStack drop = InventoryUtils.addItemStackToInventory(inv, stack);
 			if(drop == null)return null;
 		}
-		TileEntity entityLe = world.getBlockTileEntity(x - 1, y, z);
+		TileEntity entityLe = WorldHelper.getBlockTileEntity(world, x - 1, y, z);
 		if(entityLe instanceof IInventory){
 			IInventory inv = (IInventory)entityLe;
 			ItemStack drop = InventoryUtils.addItemStackToInventory(inv, stack);
 			if(drop == null)return null;
 		}
-		TileEntity entityRi = world.getBlockTileEntity(x + 1, y, z);
+		TileEntity entityRi = WorldHelper.getBlockTileEntity(world, x + 1, y, z);
 		if(entityRi instanceof IInventory){
 			IInventory inv = (IInventory)entityRi;
 			ItemStack drop = InventoryUtils.addItemStackToInventory(inv, stack);
@@ -318,13 +288,13 @@ public class InventoryUtils {
 				list.appendTag(tmpTag);
 			}
 		}
-		tag.setTag(inventory.getInvName(), list);
+		tag.setTag(inventory.func_145825_b(), list);
 	}
 	
 	public static void readFromNBT(IInventory inventory, NBTTagCompound tag){
-		NBTTagList list = tag.getTagList(inventory.getInvName());
+		NBTTagList list = (NBTTagList) tag.getTag(inventory.func_145825_b());
 		for(int i = 0; i < list.tagCount(); i++){
-			NBTTagCompound tmpTag = (NBTTagCompound) list.tagAt(i);
+			NBTTagCompound tmpTag = (NBTTagCompound) NBTTagHelper.getTagAt(list, i);
 			ItemStack stack = ItemStack.loadItemStackFromNBT(tmpTag);
 			inventory.setInventorySlotContents(tmpTag.getInteger("slot"), stack);
 		}
@@ -344,7 +314,7 @@ public class InventoryUtils {
 	public static ItemStack popBurnableItemStack(IInventory inv) {
 		for(int i = 0; i < inv.getSizeInventory(); i++){
 			ItemStack stack = inv.getStackInSlot(i);
-			if(stack != null && FurnaceRecipes.smelting().getSmeltingResult(stack) != null){
+			if(stack != null && FurnaceRecipes.smelting().func_151395_a(stack) != null){
 				inv.setInventorySlotContents(i, null);
 				return stack;
 			}
@@ -358,12 +328,12 @@ public class InventoryUtils {
 	}
 
 	public static IInventory getNextInventory(World world, int x, int y, int z, boolean top) {
-		if(world.getBlockTileEntity(x + 1, y, z) instanceof IInventory)return (IInventory) world.getBlockTileEntity(x + 1, y, z);
-		if(world.getBlockTileEntity(x - 1, y, z) instanceof IInventory)return (IInventory) world.getBlockTileEntity(x - 1, y, z);
-		if(world.getBlockTileEntity(x, y, z + 1) instanceof IInventory)return (IInventory) world.getBlockTileEntity(x, y, z + 1);
-		if(world.getBlockTileEntity(x, y, z - 1) instanceof IInventory)return (IInventory) world.getBlockTileEntity(x, y, z - 1);
-		if(top && world.getBlockTileEntity(x, y + 1, z) instanceof IInventory)return (IInventory) world.getBlockTileEntity(x, y + 1, z);
-		if(top && world.getBlockTileEntity(x, y - 1, z) instanceof IInventory)return (IInventory) world.getBlockTileEntity(x, y - 1, z);
+		if(WorldHelper.getBlockTileEntity(world, x + 1, y, z) instanceof IInventory)return (IInventory) WorldHelper.getBlockTileEntity(world, x + 1, y, z);
+		if(WorldHelper.getBlockTileEntity(world, x - 1, y, z) instanceof IInventory)return (IInventory) WorldHelper.getBlockTileEntity(world, x - 1, y, z);
+		if(WorldHelper.getBlockTileEntity(world, x, y, z + 1) instanceof IInventory)return (IInventory) WorldHelper.getBlockTileEntity(world, x, y, z + 1);
+		if(WorldHelper.getBlockTileEntity(world, x, y, z - 1) instanceof IInventory)return (IInventory) WorldHelper.getBlockTileEntity(world, x, y, z - 1);
+		if(top && WorldHelper.getBlockTileEntity(world, x, y + 1, z) instanceof IInventory)return (IInventory) WorldHelper.getBlockTileEntity(world, x, y + 1, z);
+		if(top && WorldHelper.getBlockTileEntity(world, x, y - 1, z) instanceof IInventory)return (IInventory) WorldHelper.getBlockTileEntity(world, x, y - 1, z);
 		return null;
 
 
@@ -385,7 +355,7 @@ public class InventoryUtils {
 	public static boolean containsBurnableItem(IInventory inv) {
 		for(int i = 0; i < inv.getSizeInventory(); i ++){
 			ItemStack slot = inv.getStackInSlot(i);
-			if(FurnaceRecipes.smelting().getSmeltingResult(slot) != null)return true;
+			if(FurnaceRecipes.smelting().func_151395_a(slot) != null)return true;
 		}
 		return false;
 	}
@@ -393,7 +363,7 @@ public class InventoryUtils {
 	public static ItemStack popBurnableItem(IInventory inv, int amount){
 		for(int i = 0; i < inv.getSizeInventory(); i ++){
 			ItemStack slot = inv.getStackInSlot(i);
-			if(FurnaceRecipes.smelting().getSmeltingResult(slot) != null)return splitStack(slot, amount);
+			if(FurnaceRecipes.smelting().func_151395_a(slot) != null)return splitStack(slot, amount);
 		}
 		return null;
 	}
@@ -419,12 +389,12 @@ public class InventoryUtils {
 
 	public static IInventory[] getAdjecentInventories(World world, int x, int y, int z){
 		IInventory[] inventories = new IInventory[6];
-		inventories[0] = world.getBlockTileEntity(x, y - 1, z) instanceof IInventory ? (IInventory) world.getBlockTileEntity(x, y - 1, z) : null;
-		inventories[1] = world.getBlockTileEntity(x, y - 1, z) instanceof IInventory ? (IInventory) world.getBlockTileEntity(x, y + 1, z) : null;
-		inventories[2] = world.getBlockTileEntity(x, y - 1, z) instanceof IInventory ? (IInventory) world.getBlockTileEntity(x, y, z - 1) : null;
-		inventories[3] = world.getBlockTileEntity(x, y - 1, z) instanceof IInventory ? (IInventory) world.getBlockTileEntity(x, y, z + 1) : null;
-		inventories[4] = world.getBlockTileEntity(x, y - 1, z) instanceof IInventory ? (IInventory) world.getBlockTileEntity(x - 1, y, z) : null;
-		inventories[5] = world.getBlockTileEntity(x, y - 1, z) instanceof IInventory ? (IInventory) world.getBlockTileEntity(x + 1, y, z) : null;
+		inventories[0] = WorldHelper.getBlockTileEntity(world, x, y - 1, z) instanceof IInventory ? (IInventory) WorldHelper.getBlockTileEntity(world, x, y - 1, z) : null;
+		inventories[1] = WorldHelper.getBlockTileEntity(world, x, y - 1, z) instanceof IInventory ? (IInventory) WorldHelper.getBlockTileEntity(world, x, y + 1, z) : null;
+		inventories[2] = WorldHelper.getBlockTileEntity(world, x, y - 1, z) instanceof IInventory ? (IInventory) WorldHelper.getBlockTileEntity(world, x, y, z - 1) : null;
+		inventories[3] = WorldHelper.getBlockTileEntity(world, x, y - 1, z) instanceof IInventory ? (IInventory) WorldHelper.getBlockTileEntity(world, x, y, z + 1) : null;
+		inventories[4] = WorldHelper.getBlockTileEntity(world, x, y - 1, z) instanceof IInventory ? (IInventory) WorldHelper.getBlockTileEntity(world, x - 1, y, z) : null;
+		inventories[5] = WorldHelper.getBlockTileEntity(world, x, y - 1, z) instanceof IInventory ? (IInventory) WorldHelper.getBlockTileEntity(world, x + 1, y, z) : null;
 		return inventories;
 	}
 	

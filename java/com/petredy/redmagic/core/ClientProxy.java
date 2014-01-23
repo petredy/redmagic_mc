@@ -2,26 +2,19 @@ package com.petredy.redmagic.core;
 
 
 import com.petredy.redmagic.client.SoundHandler;
-import com.petredy.redmagic.client.render.*;
 import com.petredy.redmagic.entities.particle.EntityCustomFX;
-import com.petredy.redmagic.entities.particle.EntityHoleFX;
-import com.petredy.redmagic.entities.particle.EntitySoulFX;
-import com.petredy.redmagic.entities.particle.EntityStarFX;
-import com.petredy.redmagic.handlers.KeyBindingHandler;
+import com.petredy.redmagic.forge.helper.EventHelper;
+import com.petredy.redmagic.handlers.InputHandler;
+import com.petredy.redmagic.lib.Keys;
 import com.petredy.redmagic.lib.Rendering;
-import com.petredy.redmagic.tileentities.TileEntityCage;
-import com.petredy.redmagic.tileentities.TileEntityEarthwire;
-import com.petredy.redmagic.tileentities.TileEntityEngine;
-import com.petredy.redmagic.tileentities.TileEntityTradingChest;
-import com.petredy.redmagic.utils.KeyBindingUtils;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
-import cpw.mods.fml.client.registry.KeyBindingRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -32,35 +25,23 @@ import net.minecraftforge.common.MinecraftForge;
 public class ClientProxy extends CommonProxy{
 	
 	
+	
 	@Override
 	public void registerKeyBinding() {
-		KeyBindingRegistry.registerKeyBinding(new KeyBindingHandler());
+		Keys.extra = new KeyBinding(Keys.KEY_EXTRA_NAME, Keys.KEY_EXTRA_ID, "key.categories.gameplay");
+		ClientRegistry.registerKeyBinding(Keys.extra);
+		
+		EventHelper.register(new InputHandler());
 	}
 	
 	@Override
-    public void setKeyBinding(String name, int value) {
-        KeyBindingUtils.addKeyBinding(name, value);
-        KeyBindingUtils.addIsRepeating(false);
-    }
-	
-	@Override
     public void initRendering() {
-		Rendering.TRADING_CHEST_ID = RenderingRegistry.getNextAvailableRenderId();
-		Rendering.CAGE_ID = RenderingRegistry.getNextAvailableRenderId();
-		Rendering.ENGINE_ID = RenderingRegistry.getNextAvailableRenderId();
+
 	}
 	
 	@Override
     public void registerRendering(){	
-		
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTradingChest.class, new RenderTradingChest());
-		RenderingRegistry.registerBlockHandler(new RenderTradingChest());
-		
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCage.class, new RenderCage());
-		RenderingRegistry.registerBlockHandler(new RenderCage());
-		
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEngine.class, new RenderEngine());
-		RenderingRegistry.registerBlockHandler(new RenderEngine());		
+			
 	}
 	
 	
@@ -72,18 +53,6 @@ public class ClientProxy extends CommonProxy{
 	@Override
 	public void addEffect(String name, World world, double d1, double d2, double d3, Object...data) {
 		EntityFX efx = null;
-
-		if(name.equals("star")){
-			efx = new EntityStarFX(world, d1, d2, d3, (Double)data[0], (Double)data[1], (Double)data[2]);
-		}
-		
-		if(name.equals("hole")){
-			efx = new EntityHoleFX(world, d1, d2, d3, (String)data[0]);
-		}
-		
-		if(name.equals("soul")){
-			efx = new EntitySoulFX(world, d1, d2, d3);
-		}
 		
 		if(name.equals("custom")){
 			efx = new EntityCustomFX(world, d1, d2, d3, (ResourceLocation)data[0]);

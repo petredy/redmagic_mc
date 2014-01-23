@@ -3,6 +3,9 @@ package com.petredy.redmagic.utils;
 import java.util.List;
 import java.util.Random;
 
+import com.petredy.redmagic.forge.helper.BlockHelper;
+import com.petredy.redmagic.forge.helper.WorldHelper;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -13,14 +16,14 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class BlockUtils {
 	public static void breakBlock(World world, int x, int y, int z, int forcedLifespan, boolean drop) {
-		int blockId = world.getBlockId(x, y, z);
-
-		if (blockId != 0 && drop && !world.isRemote && world.getGameRules().getGameRuleBooleanValue("doTileDrops")) {
-			List<ItemStack> items = Block.blocksList[blockId].getBlockDropped(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
+		Block block = BlockHelper.getBlock(world, x, y, z);
+		
+		if (!block.isAir(world, x, y, z) && drop && !world.isRemote && world.getGameRules().getGameRuleBooleanValue("doTileDrops")) {
+			List<ItemStack> items = block.getDrops(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
 
 			for (ItemStack item : items) {
 				float var = 0.7F;
@@ -30,18 +33,18 @@ public class BlockUtils {
 				EntityItem entityitem = new EntityItem(world, x + dx, y + dy, z + dz, item);
 
 				entityitem.lifespan = forcedLifespan;
-				entityitem.delayBeforeCanPickup = 10;
+				entityitem.field_145804_b = 10;
 
 				world.spawnEntityInWorld(entityitem);
 			}
 		}
 
-		world.setBlockToAir(x, y, z);
+		BlockHelper.setBlockToAir(world, x, y, z);
 	}
 	
 	
 	public static void dropItems(World world, int x, int y, int z){
-		TileEntity entity = world.getBlockTileEntity(x, y, z);
+		TileEntity entity = WorldHelper.getBlockTileEntity(world, x, y, z);
 		if(entity instanceof IInventory){
 			IInventory inv = (IInventory)entity;
 			Random rand = new Random();
@@ -105,10 +108,6 @@ public class BlockUtils {
 	}
 	
 	
-	public static int forgeDirectionToInt(ForgeDirection direction){
-		return direction == ForgeDirection.UP ? 1 : direction == ForgeDirection.DOWN ? 0 : direction == ForgeDirection.NORTH ? 2 : direction == ForgeDirection.SOUTH ? 3 : direction == ForgeDirection.WEST ? 4 : 5;
-	}
-	
 	public static class VirtualBlock{
 		
 		public int x, y, z;
@@ -138,23 +137,5 @@ public class BlockUtils {
 			tag.setInteger("redmagic.BlockUtils.VirtualBlock.y", y);
 			tag.setInteger("redmagic.BlockUtils.VirtualBlock.z", z);
 		}
-	}
-	
-	public static boolean isPunchedByPistionOnSide(World world, int x, int y, int z, int side){
-		switch(side){
-			case 0: return world.isAirBlock(x, y - 1, z) && world.getBlockId(x, y - 2, z) == Block.pistonMoving.blockID;
-			case 1: return world.isAirBlock(x, y + 1, z) && world.getBlockId(x, y + 2, z) == Block.pistonMoving.blockID;
-			case 2: return world.isAirBlock(x, y, z - 1) && world.getBlockId(x, y, z - 2) == Block.pistonMoving.blockID;
-			case 3: return world.isAirBlock(x, y, z + 1) && world.getBlockId(x, y, z + 2) == Block.pistonMoving.blockID;
-			case 4: return world.isAirBlock(x - 1, y, z) && world.getBlockId(x - 2, y, z) == Block.pistonMoving.blockID;
-			case 5: return world.isAirBlock(x + 1, y, z) && world.getBlockId(x + 2, y, z) == Block.pistonMoving.blockID;
-		default: return false;
-		}
-	}
-	
-	public static ItemStack getBlockStack(World world, int x, int y, int z){
-		int id = world.getBlockId(x, y, z);
-		if(id > 0)return new ItemStack(id, 1, world.getBlockMetadata(x, y, z));
-		return null;
 	}
 }
